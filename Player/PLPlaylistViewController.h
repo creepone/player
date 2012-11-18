@@ -10,4 +10,11 @@
 
 @interface PLPlaylistViewController : UIViewController
 
+@property (strong, nonatomic) IBOutlet UITableView *tableView;
+@property (strong, nonatomic) IBOutlet UINavigationBar *navigationBar;
+@property (strong, nonatomic) IBOutlet UISegmentedControl *segmentedControl;
+
+- (IBAction)switchMode:(id)sender;
+- (IBAction)addObject:(id)sender;
+
 @end

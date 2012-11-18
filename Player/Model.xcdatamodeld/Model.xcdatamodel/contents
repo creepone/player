@@ -14,7 +14,7 @@
     <entity name="PLPlaylist" representedClassName="PLPlaylist" syncable="YES">
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="position" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
-        <relationship name="songs" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="PLPlaylistSong" inverseName="playlist" inverseEntity="PLPlaylistSong" syncable="YES"/>
+        <relationship name="songs" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="PLPlaylistSong" inverseName="playlist" inverseEntity="PLPlaylistSong" syncable="YES"/>
     </entity>
     <entity name="PLPlaylistSong" representedClassName="PLPlaylistSong" syncable="YES">
         <attribute name="order" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
@@ -23,9 +23,9 @@
         <relationship name="playlist" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="PLPlaylist" inverseName="songs" inverseEntity="PLPlaylist" syncable="YES"/>
     </entity>
     <elements>
-        <element name="PLPlaylist" positionX="160" positionY="192" width="128" height="90"/>
-        <element name="PLPlaylistSong" positionX="160" positionY="192" width="128" height="105"/>
         <element name="PLBookmark" positionX="160" positionY="192" width="128" height="90"/>
         <element name="PLBookmarkSong" positionX="160" positionY="192" width="128" height="105"/>
+        <element name="PLPlaylist" positionX="160" positionY="192" width="128" height="90"/>
+        <element name="PLPlaylistSong" positionX="160" positionY="192" width="128" height="105"/>
     </elements>
 </model>

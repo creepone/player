@@ -13,6 +13,7 @@
 
 #import "MBProgressHUD.h"
 
+#import "PLPlayer.h"
 #import "PLPlaylistViewController.h"
 #import "PLPlayerViewController.h"
 #import "PLBookmarksViewController.h"
@@ -36,7 +37,7 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
-    
+        
     [PLDefaultsManager registerDefaults];
 
     // temporary VC for the progress hud
@@ -72,6 +73,7 @@
 - (void)applicationWillTerminate:(UIApplication *)application
 {
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
+    [application endReceivingRemoteControlEvents];
 }
 
 #pragma mark - Data initialization on startup
@@ -106,8 +108,8 @@
         NSLog(@"Data initialization error: %@", [_migrationError localizedDescription]);
         
         UIAlertView *alert = [[UIAlertView alloc]
-                              initWithTitle:NSLocalizedString(@"MigrationErrorTitle", @"")
-                              message:NSLocalizedString(@"MigrationErrorMessage", @"")
+                              initWithTitle:@"Error"
+                              message:@"There was an error migrating the data."
                               delegate:self
                               cancelButtonTitle:@"OK"
                               otherButtonTitles:nil];
@@ -128,11 +130,34 @@
     self.tabBarController.viewControllers = @[playlistViewController, playerViewController, bookmarksViewController, settingsViewController];
     
     self.window.rootViewController = self.tabBarController;
+    
+    [[UIApplication sharedApplication] beginReceivingRemoteControlEvents];
 }
 
 - (void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex {
     if(alertView.tag == MigrationErrorAlertTag) {
         exit(1);
+    }
+}
+
+- (void)remoteControlReceivedWithEvent:(UIEvent *)event {
+    switch (event.subtype) {
+        case UIEventSubtypeRemoteControlTogglePlayPause:
+            [[PLPlayer sharedPlayer] playPause];
+            break;
+        case UIEventSubtypeRemoteControlPlay:
+            break;
+        case UIEventSubtypeRemoteControlPause:
+            break;
+        case UIEventSubtypeRemoteControlStop:
+            break;
+        case UIEventSubtypeRemoteControlNextTrack:
+            break;
+        case UIEventSubtypeRemoteControlPreviousTrack:
+            [[PLPlayer sharedPlayer] goBack];
+            break;
+        default:
+            break;
     }
 }
 

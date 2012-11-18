@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		C3544850165922C80083D703 /* SliderCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C354484F165922C80083D703 /* SliderCell.m */; };
 		C3BC5A2C1656B772002DA837 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C3BC5A2B1656B772002DA837 /* UIKit.framework */; };
 		C3BC5A2E1656B772002DA837 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C3BC5A2D1656B772002DA837 /* Foundation.framework */; };
 		C3BC5A301656B772002DA837 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C3BC5A2F1656B772002DA837 /* CoreGraphics.framework */; };
@@ -41,9 +42,20 @@
 		C3BC5AEB1656CCC9002DA837 /* PLDefaultsManager.m in Sources */ = {isa = PBXBuildFile; fileRef = C3BC5AEA1656CCC9002DA837 /* PLDefaultsManager.m */; };
 		C3BC5AEF1656CD35002DA837 /* PLUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = C3BC5AEE1656CD35002DA837 /* PLUtils.m */; };
 		C3BC5AF41656CFA6002DA837 /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = C3BC5AF31656CFA6002DA837 /* MBProgressHUD.m */; };
+		C3BC5B011658DE07002DA837 /* PLAlerts.m in Sources */ = {isa = PBXBuildFile; fileRef = C3BC5B001658DE07002DA837 /* PLAlerts.m */; };
+		C3BC5B041658E76A002DA837 /* NSString+Extensions.m in Sources */ = {isa = PBXBuildFile; fileRef = C3BC5B031658E76A002DA837 /* NSString+Extensions.m */; };
+		C3BC5B0A1658F334002DA837 /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C3BC5B091658F333002DA837 /* MediaPlayer.framework */; };
+		C3BC5B0C1658FC0E002DA837 /* default_artwork.jpg in Resources */ = {isa = PBXBuildFile; fileRef = C3BC5B0B1658FC0E002DA837 /* default_artwork.jpg */; };
+		C3BC5B0E1659002C002DA837 /* todo.txt in Resources */ = {isa = PBXBuildFile; fileRef = C3BC5B0D1659002C002DA837 /* todo.txt */; };
+		C3BC5B14165912F6002DA837 /* PLPlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = C3BC5B13165912F5002DA837 /* PLPlayer.m */; };
+		C3BC5B161659146F002DA837 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C3BC5B151659146E002DA837 /* AVFoundation.framework */; };
+		C3BC5B1816591AF8002DA837 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C3BC5B1716591AF8002DA837 /* AudioToolbox.framework */; };
+		C3BC5B20165921AD002DA837 /* SliderCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C3BC5B1F165921AD002DA837 /* SliderCell.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		C354484E165922C80083D703 /* SliderCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SliderCell.h; sourceTree = "<group>"; };
+		C354484F165922C80083D703 /* SliderCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SliderCell.m; sourceTree = "<group>"; };
 		C3BC5A271656B772002DA837 /* Player.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Player.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C3BC5A2B1656B772002DA837 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		C3BC5A2D1656B772002DA837 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -96,6 +108,18 @@
 		C3BC5AEE1656CD35002DA837 /* PLUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PLUtils.m; sourceTree = "<group>"; };
 		C3BC5AF21656CFA6002DA837 /* MBProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBProgressHUD.h; sourceTree = "<group>"; };
 		C3BC5AF31656CFA6002DA837 /* MBProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBProgressHUD.m; sourceTree = "<group>"; };
+		C3BC5AFF1658DE07002DA837 /* PLAlerts.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PLAlerts.h; sourceTree = "<group>"; };
+		C3BC5B001658DE07002DA837 /* PLAlerts.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PLAlerts.m; sourceTree = "<group>"; };
+		C3BC5B021658E76A002DA837 /* NSString+Extensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+Extensions.h"; sourceTree = "<group>"; };
+		C3BC5B031658E76A002DA837 /* NSString+Extensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+Extensions.m"; sourceTree = "<group>"; };
+		C3BC5B091658F333002DA837 /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
+		C3BC5B0B1658FC0E002DA837 /* default_artwork.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = default_artwork.jpg; sourceTree = "<group>"; };
+		C3BC5B0D1659002C002DA837 /* todo.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = todo.txt; sourceTree = "<group>"; };
+		C3BC5B12165912F4002DA837 /* PLPlayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PLPlayer.h; sourceTree = "<group>"; };
+		C3BC5B13165912F5002DA837 /* PLPlayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PLPlayer.m; sourceTree = "<group>"; };
+		C3BC5B151659146E002DA837 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
+		C3BC5B1716591AF8002DA837 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
+		C3BC5B1F165921AD002DA837 /* SliderCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SliderCell.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -103,6 +127,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C3BC5B1816591AF8002DA837 /* AudioToolbox.framework in Frameworks */,
+				C3BC5B161659146F002DA837 /* AVFoundation.framework in Frameworks */,
+				C3BC5B0A1658F334002DA837 /* MediaPlayer.framework in Frameworks */,
 				C3BC5AE41656CBDD002DA837 /* CoreData.framework in Frameworks */,
 				C3BC5A2C1656B772002DA837 /* UIKit.framework in Frameworks */,
 				C3BC5A2E1656B772002DA837 /* Foundation.framework in Frameworks */,
@@ -113,6 +140,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		C354484C165922B90083D703 /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				C354484E165922C80083D703 /* SliderCell.h */,
+				C354484F165922C80083D703 /* SliderCell.m */,
+			);
+			name = Cells;
+			sourceTree = "<group>";
+		};
 		C3BC5A1C1656B772002DA837 = {
 			isa = PBXGroup;
 			children = (
@@ -133,6 +169,9 @@
 		C3BC5A2A1656B772002DA837 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				C3BC5B1716591AF8002DA837 /* AudioToolbox.framework */,
+				C3BC5B151659146E002DA837 /* AVFoundation.framework */,
+				C3BC5B091658F333002DA837 /* MediaPlayer.framework */,
 				C3BC5AE31656CBDD002DA837 /* CoreData.framework */,
 				C3BC5A2B1656B772002DA837 /* UIKit.framework */,
 				C3BC5A2D1656B772002DA837 /* Foundation.framework */,
@@ -157,11 +196,11 @@
 		C3BC5A321656B772002DA837 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				C3BC5A9B1656BB13002DA837 /* Images */,
 				C3BC5A331656B772002DA837 /* Player-Info.plist */,
 				C3BC5A341656B772002DA837 /* InfoPlist.strings */,
 				C3BC5A371656B772002DA837 /* main.m */,
 				C3BC5A391656B772002DA837 /* Player-Prefix.pch */,
+				C3BC5B0D1659002C002DA837 /* todo.txt */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -169,6 +208,7 @@
 		C3BC5A9B1656BB13002DA837 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				C3BC5B0B1658FC0E002DA837 /* default_artwork.jpg */,
 				C3BC5AB81656C4D8002DA837 /* bookmark.png */,
 				C3BC5AB61656C480002DA837 /* settings.png */,
 				C3BC5AB41656C2D7002DA837 /* music.png */,
@@ -199,6 +239,8 @@
 		C3BC5AAD1656C25F002DA837 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				C3BC5A9B1656BB13002DA837 /* Images */,
+				C3BC5AFD1658DDF7002DA837 /* Utilities */,
 				C3BC5AF01656CF94002DA837 /* Custom views */,
 				C3BC5AAE1656C265002DA837 /* Xibs */,
 			);
@@ -208,6 +250,7 @@
 		C3BC5AAE1656C265002DA837 /* Xibs */ = {
 			isa = PBXGroup;
 			children = (
+				C3BC5B1F165921AD002DA837 /* SliderCell.xib */,
 				C3BC5ABC1656C4E7002DA837 /* PLBookmarksViewController.xib */,
 				C3BC5AC11656C4EF002DA837 /* PLSettingsViewController.xib */,
 				C3BC5AB11656C284002DA837 /* PLPlayerViewController.xib */,
@@ -222,6 +265,8 @@
 				C3BC5AEC1656CD2D002DA837 /* Utilities */,
 				C3BC5AE81656CCBB002DA837 /* AppSettings */,
 				C3BC5AC91656C801002DA837 /* CoreDataModel */,
+				C3BC5B12165912F4002DA837 /* PLPlayer.h */,
+				C3BC5B13165912F5002DA837 /* PLPlayer.m */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -268,6 +313,8 @@
 		C3BC5AEC1656CD2D002DA837 /* Utilities */ = {
 			isa = PBXGroup;
 			children = (
+				C3BC5B021658E76A002DA837 /* NSString+Extensions.h */,
+				C3BC5B031658E76A002DA837 /* NSString+Extensions.m */,
 				C3BC5AED1656CD35002DA837 /* PLUtils.h */,
 				C3BC5AEE1656CD35002DA837 /* PLUtils.m */,
 			);
@@ -277,6 +324,7 @@
 		C3BC5AF01656CF94002DA837 /* Custom views */ = {
 			isa = PBXGroup;
 			children = (
+				C354484C165922B90083D703 /* Cells */,
 				C3BC5AF11656CF9C002DA837 /* Lib */,
 			);
 			name = "Custom views";
@@ -289,6 +337,15 @@
 				C3BC5AF31656CFA6002DA837 /* MBProgressHUD.m */,
 			);
 			name = Lib;
+			sourceTree = "<group>";
+		};
+		C3BC5AFD1658DDF7002DA837 /* Utilities */ = {
+			isa = PBXGroup;
+			children = (
+				C3BC5AFF1658DE07002DA837 /* PLAlerts.h */,
+				C3BC5B001658DE07002DA837 /* PLAlerts.m */,
+			);
+			name = Utilities;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -356,6 +413,9 @@
 				C3BC5AB91656C4D8002DA837 /* bookmark.png in Resources */,
 				C3BC5ABE1656C4E7002DA837 /* PLBookmarksViewController.xib in Resources */,
 				C3BC5AC31656C4EF002DA837 /* PLSettingsViewController.xib in Resources */,
+				C3BC5B0C1658FC0E002DA837 /* default_artwork.jpg in Resources */,
+				C3BC5B0E1659002C002DA837 /* todo.txt in Resources */,
+				C3BC5B20165921AD002DA837 /* SliderCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -383,6 +443,10 @@
 				C3BC5AEB1656CCC9002DA837 /* PLDefaultsManager.m in Sources */,
 				C3BC5AEF1656CD35002DA837 /* PLUtils.m in Sources */,
 				C3BC5AF41656CFA6002DA837 /* MBProgressHUD.m in Sources */,
+				C3BC5B011658DE07002DA837 /* PLAlerts.m in Sources */,
+				C3BC5B041658E76A002DA837 /* NSString+Extensions.m in Sources */,
+				C3BC5B14165912F6002DA837 /* PLPlayer.m in Sources */,
+				C3544850165922C80083D703 /* SliderCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -490,6 +554,7 @@
 				C3BC5A4D1656B772002DA837 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 

@@ -10,4 +10,6 @@
 
 @interface PLSettingsViewController : UIViewController
 
+@property (strong, nonatomic) IBOutlet UITableView *tableView;
+
 @end

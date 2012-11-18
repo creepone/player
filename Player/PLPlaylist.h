@@ -9,6 +9,8 @@
 #import <Foundation/Foundation.h>
 #import <CoreData/CoreData.h>
 
+@class PLPlaylistSong;
+
 
 @interface PLPlaylist : NSManagedObject
 
@@ -23,5 +25,11 @@
 - (void)removeSongsObject:(NSManagedObject *)value;
 - (void)addSongs:(NSSet *)values;
 - (void)removeSongs:(NSSet *)values;
+
+- (void)addNewSong:(PLPlaylistSong *)song;
+- (void)removeSong:(PLPlaylistSong *)song;
+- (void)renumberSongsOrder:(NSArray *)allSongs;
+- (PLPlaylistSong *)currentSong;
+- (void)moveToNextSong;
 
 @end

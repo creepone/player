@@ -91,11 +91,18 @@
 }
 
 
-+ (BOOL)createDefaultObjectsInContext:(NSManagedObjectContext *)context error:(NSError **)error  {
-
-    // todo: maybe some default objects - a single playlist maybe ?
-
-    return [context save:error];
++ (BOOL)createDefaultObjectsInContext:(NSManagedObjectContext *)context error:(NSError **)error  {    
+    PLPlaylist *playlist = [NSEntityDescription insertNewObjectForEntityForName:@"PLPlaylist" inManagedObjectContext:context];
+    playlist.name = @"Default";
+    playlist.position = [NSNumber numberWithInt:0];
+    
+    BOOL result = [context save:error];
+    
+    if (*error == nil) {
+        PLDataAccess *dataAccess = [[PLDataAccess alloc] initWithContext:context];
+        [dataAccess selectPlaylist:playlist];
+    }
+    return result;
 }
 
 + (BOOL)migrateFromVersion:(NSInteger)version error:(NSError **)error {        

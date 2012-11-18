@@ -40,4 +40,12 @@
 - (void)rollbackChanges;
 - (void)processChanges;
 
+- (PLPlaylist *)createPlaylist:(NSString *)name;
+- (PLPlaylist *)selectedPlaylist;
+- (void)selectPlaylist:(PLPlaylist *)playlist;
+- (PLPlaylistSong *)addSong:(MPMediaItem *)song toPlaylist:(PLPlaylist *)playlist;
+
+- (NSFetchedResultsController *)fetchedResultsControllerForAllPlaylists;
+- (NSFetchedResultsController *)fetchedResultsControllerForSongsOfPlaylist:(PLPlaylist *)playlist;
+
 @end

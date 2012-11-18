@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 #import <CoreData/CoreData.h>
 
-@class PLPlaylist;
+@class PLPlaylist, MPMediaItem;
 
 @interface PLPlaylistSong : NSManagedObject
 
@@ -17,5 +17,7 @@
 @property (nonatomic, retain) NSNumber * order;
 @property (nonatomic, retain) NSNumber * position;
 @property (nonatomic, retain) PLPlaylist *playlist;
+
+@property (nonatomic, readonly) MPMediaItem *mediaItem;
 
 @end

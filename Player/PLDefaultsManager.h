@@ -9,6 +9,14 @@
 + (NSInteger)dataStoreVersion;
 + (void)setDataStoreVersion:(NSInteger)version;
 
++ (NSURL *)selectedPlaylist;
++ (void)setSelectedPlaylist:(NSURL *)playlist;
+
++ (double)playbackRate;
++ (void)setPlaybackRate:(double)playbackRate;
+
++ (double)goBackTime;
++ (void)setGoBackTime:(double)goBackTime;
 
 + (NSString *)preferencesPath;
 + (NSString *)preferencesName;
