@@ -1,5 +1,5 @@
 //
-//  PLViewController.h
+//  PLSettingsViewController.h
 //  Player
 //
 //  Created by Tomas Vana on 11/16/12.
@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface PLViewController : UIViewController
+@interface PLSettingsViewController : UIViewController
 
 @end

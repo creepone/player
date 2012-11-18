@@ -8,12 +8,13 @@
 
 #import <UIKit/UIKit.h>
 
-@class PLViewController;
+@class PLCoreDataStack, PLViewController;
 
 @interface PLAppDelegate : UIResponder <UIApplicationDelegate>
 
 @property (strong, nonatomic) UIWindow *window;
+@property (strong, nonatomic) UITabBarController *tabBarController;
 
-@property (strong, nonatomic) PLViewController *viewController;
+@property (nonatomic) PLCoreDataStack *coreDataStack;
 
 @end

@@ -16,8 +16,31 @@
 		C3BC5A3E1656B772002DA837 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = C3BC5A3D1656B772002DA837 /* Default.png */; };
 		C3BC5A401656B772002DA837 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C3BC5A3F1656B772002DA837 /* Default@2x.png */; };
 		C3BC5A421656B772002DA837 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C3BC5A411656B772002DA837 /* Default-568h@2x.png */; };
-		C3BC5A451656B772002DA837 /* PLViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C3BC5A441656B772002DA837 /* PLViewController.m */; };
-		C3BC5A481656B772002DA837 /* PLViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C3BC5A461656B772002DA837 /* PLViewController.xib */; };
+		C3BC5A991656B959002DA837 /* PLPlaylistViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C3BC5A971656B959002DA837 /* PLPlaylistViewController.m */; };
+		C3BC5A9A1656B959002DA837 /* PLPlaylistViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C3BC5A981656B959002DA837 /* PLPlaylistViewController.xib */; };
+		C3BC5AA91656BF74002DA837 /* icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C3BC5AA81656BF74002DA837 /* icon@2x.png */; };
+		C3BC5AAB1656C23A002DA837 /* list.png in Resources */ = {isa = PBXBuildFile; fileRef = C3BC5AAA1656C23A002DA837 /* list.png */; };
+		C3BC5AB21656C284002DA837 /* PLPlayerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C3BC5AB01656C284002DA837 /* PLPlayerViewController.m */; };
+		C3BC5AB31656C284002DA837 /* PLPlayerViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C3BC5AB11656C284002DA837 /* PLPlayerViewController.xib */; };
+		C3BC5AB51656C2D7002DA837 /* music.png in Resources */ = {isa = PBXBuildFile; fileRef = C3BC5AB41656C2D7002DA837 /* music.png */; };
+		C3BC5AB71656C480002DA837 /* settings.png in Resources */ = {isa = PBXBuildFile; fileRef = C3BC5AB61656C480002DA837 /* settings.png */; };
+		C3BC5AB91656C4D8002DA837 /* bookmark.png in Resources */ = {isa = PBXBuildFile; fileRef = C3BC5AB81656C4D8002DA837 /* bookmark.png */; };
+		C3BC5ABD1656C4E7002DA837 /* PLBookmarksViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C3BC5ABB1656C4E7002DA837 /* PLBookmarksViewController.m */; };
+		C3BC5ABE1656C4E7002DA837 /* PLBookmarksViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C3BC5ABC1656C4E7002DA837 /* PLBookmarksViewController.xib */; };
+		C3BC5AC21656C4EF002DA837 /* PLSettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C3BC5AC01656C4EF002DA837 /* PLSettingsViewController.m */; };
+		C3BC5AC31656C4EF002DA837 /* PLSettingsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C3BC5AC11656C4EF002DA837 /* PLSettingsViewController.xib */; };
+		C3BC5ACD1656C81C002DA837 /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = C3BC5ACB1656C81C002DA837 /* Model.xcdatamodeld */; };
+		C3BC5AD31656CA4D002DA837 /* PLBookmark.m in Sources */ = {isa = PBXBuildFile; fileRef = C3BC5AD21656CA4D002DA837 /* PLBookmark.m */; };
+		C3BC5AD61656CA4E002DA837 /* PLPlaylist.m in Sources */ = {isa = PBXBuildFile; fileRef = C3BC5AD51656CA4E002DA837 /* PLPlaylist.m */; };
+		C3BC5AD91656CA4E002DA837 /* PLBookmarkSong.m in Sources */ = {isa = PBXBuildFile; fileRef = C3BC5AD81656CA4E002DA837 /* PLBookmarkSong.m */; };
+		C3BC5ADC1656CA4E002DA837 /* PLPlaylistSong.m in Sources */ = {isa = PBXBuildFile; fileRef = C3BC5ADB1656CA4E002DA837 /* PLPlaylistSong.m */; };
+		C3BC5ADF1656CA73002DA837 /* PLCoreDataStack.m in Sources */ = {isa = PBXBuildFile; fileRef = C3BC5ADE1656CA73002DA837 /* PLCoreDataStack.m */; };
+		C3BC5AE21656CACC002DA837 /* PLDataAccess.m in Sources */ = {isa = PBXBuildFile; fileRef = C3BC5AE11656CABF002DA837 /* PLDataAccess.m */; };
+		C3BC5AE41656CBDD002DA837 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C3BC5AE31656CBDD002DA837 /* CoreData.framework */; };
+		C3BC5AE71656CC24002DA837 /* PLMigrationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = C3BC5AE61656CC24002DA837 /* PLMigrationManager.m */; };
+		C3BC5AEB1656CCC9002DA837 /* PLDefaultsManager.m in Sources */ = {isa = PBXBuildFile; fileRef = C3BC5AEA1656CCC9002DA837 /* PLDefaultsManager.m */; };
+		C3BC5AEF1656CD35002DA837 /* PLUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = C3BC5AEE1656CD35002DA837 /* PLUtils.m */; };
+		C3BC5AF41656CFA6002DA837 /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = C3BC5AF31656CFA6002DA837 /* MBProgressHUD.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -34,9 +57,45 @@
 		C3BC5A3D1656B772002DA837 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
 		C3BC5A3F1656B772002DA837 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
 		C3BC5A411656B772002DA837 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
-		C3BC5A431656B772002DA837 /* PLViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PLViewController.h; sourceTree = "<group>"; };
-		C3BC5A441656B772002DA837 /* PLViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PLViewController.m; sourceTree = "<group>"; };
-		C3BC5A471656B772002DA837 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/PLViewController.xib; sourceTree = "<group>"; };
+		C3BC5A961656B958002DA837 /* PLPlaylistViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PLPlaylistViewController.h; sourceTree = "<group>"; };
+		C3BC5A971656B959002DA837 /* PLPlaylistViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PLPlaylistViewController.m; sourceTree = "<group>"; };
+		C3BC5A981656B959002DA837 /* PLPlaylistViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PLPlaylistViewController.xib; sourceTree = "<group>"; };
+		C3BC5AA81656BF74002DA837 /* icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon@2x.png"; sourceTree = "<group>"; };
+		C3BC5AAA1656C23A002DA837 /* list.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = list.png; sourceTree = "<group>"; };
+		C3BC5AAF1656C284002DA837 /* PLPlayerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PLPlayerViewController.h; sourceTree = "<group>"; };
+		C3BC5AB01656C284002DA837 /* PLPlayerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PLPlayerViewController.m; sourceTree = "<group>"; };
+		C3BC5AB11656C284002DA837 /* PLPlayerViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PLPlayerViewController.xib; sourceTree = "<group>"; };
+		C3BC5AB41656C2D7002DA837 /* music.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = music.png; sourceTree = "<group>"; };
+		C3BC5AB61656C480002DA837 /* settings.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = settings.png; sourceTree = "<group>"; };
+		C3BC5AB81656C4D8002DA837 /* bookmark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bookmark.png; sourceTree = "<group>"; };
+		C3BC5ABA1656C4E7002DA837 /* PLBookmarksViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PLBookmarksViewController.h; sourceTree = "<group>"; };
+		C3BC5ABB1656C4E7002DA837 /* PLBookmarksViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PLBookmarksViewController.m; sourceTree = "<group>"; };
+		C3BC5ABC1656C4E7002DA837 /* PLBookmarksViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PLBookmarksViewController.xib; sourceTree = "<group>"; };
+		C3BC5ABF1656C4EF002DA837 /* PLSettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PLSettingsViewController.h; sourceTree = "<group>"; };
+		C3BC5AC01656C4EF002DA837 /* PLSettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PLSettingsViewController.m; sourceTree = "<group>"; };
+		C3BC5AC11656C4EF002DA837 /* PLSettingsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PLSettingsViewController.xib; sourceTree = "<group>"; };
+		C3BC5ACC1656C81C002DA837 /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
+		C3BC5AD11656CA4D002DA837 /* PLBookmark.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PLBookmark.h; sourceTree = "<group>"; };
+		C3BC5AD21656CA4D002DA837 /* PLBookmark.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PLBookmark.m; sourceTree = "<group>"; };
+		C3BC5AD41656CA4E002DA837 /* PLPlaylist.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PLPlaylist.h; sourceTree = "<group>"; };
+		C3BC5AD51656CA4E002DA837 /* PLPlaylist.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PLPlaylist.m; sourceTree = "<group>"; };
+		C3BC5AD71656CA4E002DA837 /* PLBookmarkSong.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PLBookmarkSong.h; sourceTree = "<group>"; };
+		C3BC5AD81656CA4E002DA837 /* PLBookmarkSong.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PLBookmarkSong.m; sourceTree = "<group>"; };
+		C3BC5ADA1656CA4E002DA837 /* PLPlaylistSong.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PLPlaylistSong.h; sourceTree = "<group>"; };
+		C3BC5ADB1656CA4E002DA837 /* PLPlaylistSong.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PLPlaylistSong.m; sourceTree = "<group>"; };
+		C3BC5ADD1656CA73002DA837 /* PLCoreDataStack.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PLCoreDataStack.h; sourceTree = "<group>"; };
+		C3BC5ADE1656CA73002DA837 /* PLCoreDataStack.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PLCoreDataStack.m; sourceTree = "<group>"; };
+		C3BC5AE01656CABF002DA837 /* PLDataAccess.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PLDataAccess.h; sourceTree = "<group>"; };
+		C3BC5AE11656CABF002DA837 /* PLDataAccess.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PLDataAccess.m; sourceTree = "<group>"; };
+		C3BC5AE31656CBDD002DA837 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
+		C3BC5AE51656CC24002DA837 /* PLMigrationManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PLMigrationManager.h; sourceTree = "<group>"; };
+		C3BC5AE61656CC24002DA837 /* PLMigrationManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PLMigrationManager.m; sourceTree = "<group>"; };
+		C3BC5AE91656CCC9002DA837 /* PLDefaultsManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PLDefaultsManager.h; sourceTree = "<group>"; };
+		C3BC5AEA1656CCC9002DA837 /* PLDefaultsManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PLDefaultsManager.m; sourceTree = "<group>"; };
+		C3BC5AED1656CD35002DA837 /* PLUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PLUtils.h; sourceTree = "<group>"; };
+		C3BC5AEE1656CD35002DA837 /* PLUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PLUtils.m; sourceTree = "<group>"; };
+		C3BC5AF21656CFA6002DA837 /* MBProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBProgressHUD.h; sourceTree = "<group>"; };
+		C3BC5AF31656CFA6002DA837 /* MBProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBProgressHUD.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -44,6 +103,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C3BC5AE41656CBDD002DA837 /* CoreData.framework in Frameworks */,
 				C3BC5A2C1656B772002DA837 /* UIKit.framework in Frameworks */,
 				C3BC5A2E1656B772002DA837 /* Foundation.framework in Frameworks */,
 				C3BC5A301656B772002DA837 /* CoreGraphics.framework in Frameworks */,
@@ -73,6 +133,7 @@
 		C3BC5A2A1656B772002DA837 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				C3BC5AE31656CBDD002DA837 /* CoreData.framework */,
 				C3BC5A2B1656B772002DA837 /* UIKit.framework */,
 				C3BC5A2D1656B772002DA837 /* Foundation.framework */,
 				C3BC5A2F1656B772002DA837 /* CoreGraphics.framework */,
@@ -83,11 +144,11 @@
 		C3BC5A311656B772002DA837 /* Player */ = {
 			isa = PBXGroup;
 			children = (
+				C3BC5AC41656C7DB002DA837 /* Model */,
+				C3BC5AAD1656C25F002DA837 /* View */,
+				C3BC5AAC1656C24D002DA837 /* ViewControllers */,
 				C3BC5A3A1656B772002DA837 /* PLAppDelegate.h */,
 				C3BC5A3B1656B772002DA837 /* PLAppDelegate.m */,
-				C3BC5A431656B772002DA837 /* PLViewController.h */,
-				C3BC5A441656B772002DA837 /* PLViewController.m */,
-				C3BC5A461656B772002DA837 /* PLViewController.xib */,
 				C3BC5A321656B772002DA837 /* Supporting Files */,
 			);
 			path = Player;
@@ -96,15 +157,138 @@
 		C3BC5A321656B772002DA837 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				C3BC5A9B1656BB13002DA837 /* Images */,
 				C3BC5A331656B772002DA837 /* Player-Info.plist */,
 				C3BC5A341656B772002DA837 /* InfoPlist.strings */,
 				C3BC5A371656B772002DA837 /* main.m */,
 				C3BC5A391656B772002DA837 /* Player-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		C3BC5A9B1656BB13002DA837 /* Images */ = {
+			isa = PBXGroup;
+			children = (
+				C3BC5AB81656C4D8002DA837 /* bookmark.png */,
+				C3BC5AB61656C480002DA837 /* settings.png */,
+				C3BC5AB41656C2D7002DA837 /* music.png */,
+				C3BC5AAA1656C23A002DA837 /* list.png */,
+				C3BC5AA81656BF74002DA837 /* icon@2x.png */,
 				C3BC5A3D1656B772002DA837 /* Default.png */,
 				C3BC5A3F1656B772002DA837 /* Default@2x.png */,
 				C3BC5A411656B772002DA837 /* Default-568h@2x.png */,
 			);
-			name = "Supporting Files";
+			name = Images;
+			sourceTree = "<group>";
+		};
+		C3BC5AAC1656C24D002DA837 /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				C3BC5A961656B958002DA837 /* PLPlaylistViewController.h */,
+				C3BC5A971656B959002DA837 /* PLPlaylistViewController.m */,
+				C3BC5AAF1656C284002DA837 /* PLPlayerViewController.h */,
+				C3BC5AB01656C284002DA837 /* PLPlayerViewController.m */,
+				C3BC5ABA1656C4E7002DA837 /* PLBookmarksViewController.h */,
+				C3BC5ABB1656C4E7002DA837 /* PLBookmarksViewController.m */,
+				C3BC5ABF1656C4EF002DA837 /* PLSettingsViewController.h */,
+				C3BC5AC01656C4EF002DA837 /* PLSettingsViewController.m */,
+			);
+			name = ViewControllers;
+			sourceTree = "<group>";
+		};
+		C3BC5AAD1656C25F002DA837 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				C3BC5AF01656CF94002DA837 /* Custom views */,
+				C3BC5AAE1656C265002DA837 /* Xibs */,
+			);
+			name = View;
+			sourceTree = "<group>";
+		};
+		C3BC5AAE1656C265002DA837 /* Xibs */ = {
+			isa = PBXGroup;
+			children = (
+				C3BC5ABC1656C4E7002DA837 /* PLBookmarksViewController.xib */,
+				C3BC5AC11656C4EF002DA837 /* PLSettingsViewController.xib */,
+				C3BC5AB11656C284002DA837 /* PLPlayerViewController.xib */,
+				C3BC5A981656B959002DA837 /* PLPlaylistViewController.xib */,
+			);
+			name = Xibs;
+			sourceTree = "<group>";
+		};
+		C3BC5AC41656C7DB002DA837 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				C3BC5AEC1656CD2D002DA837 /* Utilities */,
+				C3BC5AE81656CCBB002DA837 /* AppSettings */,
+				C3BC5AC91656C801002DA837 /* CoreDataModel */,
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
+		C3BC5AC91656C801002DA837 /* CoreDataModel */ = {
+			isa = PBXGroup;
+			children = (
+				C3BC5AE01656CABF002DA837 /* PLDataAccess.h */,
+				C3BC5AE11656CABF002DA837 /* PLDataAccess.m */,
+				C3BC5ADD1656CA73002DA837 /* PLCoreDataStack.h */,
+				C3BC5ADE1656CA73002DA837 /* PLCoreDataStack.m */,
+				C3BC5AE51656CC24002DA837 /* PLMigrationManager.h */,
+				C3BC5AE61656CC24002DA837 /* PLMigrationManager.m */,
+				C3BC5ACA1656C808002DA837 /* Entities */,
+				C3BC5ACB1656C81C002DA837 /* Model.xcdatamodeld */,
+			);
+			name = CoreDataModel;
+			sourceTree = "<group>";
+		};
+		C3BC5ACA1656C808002DA837 /* Entities */ = {
+			isa = PBXGroup;
+			children = (
+				C3BC5ADA1656CA4E002DA837 /* PLPlaylistSong.h */,
+				C3BC5ADB1656CA4E002DA837 /* PLPlaylistSong.m */,
+				C3BC5AD71656CA4E002DA837 /* PLBookmarkSong.h */,
+				C3BC5AD81656CA4E002DA837 /* PLBookmarkSong.m */,
+				C3BC5AD41656CA4E002DA837 /* PLPlaylist.h */,
+				C3BC5AD51656CA4E002DA837 /* PLPlaylist.m */,
+				C3BC5AD11656CA4D002DA837 /* PLBookmark.h */,
+				C3BC5AD21656CA4D002DA837 /* PLBookmark.m */,
+			);
+			name = Entities;
+			sourceTree = "<group>";
+		};
+		C3BC5AE81656CCBB002DA837 /* AppSettings */ = {
+			isa = PBXGroup;
+			children = (
+				C3BC5AE91656CCC9002DA837 /* PLDefaultsManager.h */,
+				C3BC5AEA1656CCC9002DA837 /* PLDefaultsManager.m */,
+			);
+			name = AppSettings;
+			sourceTree = "<group>";
+		};
+		C3BC5AEC1656CD2D002DA837 /* Utilities */ = {
+			isa = PBXGroup;
+			children = (
+				C3BC5AED1656CD35002DA837 /* PLUtils.h */,
+				C3BC5AEE1656CD35002DA837 /* PLUtils.m */,
+			);
+			name = Utilities;
+			sourceTree = "<group>";
+		};
+		C3BC5AF01656CF94002DA837 /* Custom views */ = {
+			isa = PBXGroup;
+			children = (
+				C3BC5AF11656CF9C002DA837 /* Lib */,
+			);
+			name = "Custom views";
+			sourceTree = "<group>";
+		};
+		C3BC5AF11656CF9C002DA837 /* Lib */ = {
+			isa = PBXGroup;
+			children = (
+				C3BC5AF21656CFA6002DA837 /* MBProgressHUD.h */,
+				C3BC5AF31656CFA6002DA837 /* MBProgressHUD.m */,
+			);
+			name = Lib;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -163,7 +347,15 @@
 				C3BC5A3E1656B772002DA837 /* Default.png in Resources */,
 				C3BC5A401656B772002DA837 /* Default@2x.png in Resources */,
 				C3BC5A421656B772002DA837 /* Default-568h@2x.png in Resources */,
-				C3BC5A481656B772002DA837 /* PLViewController.xib in Resources */,
+				C3BC5A9A1656B959002DA837 /* PLPlaylistViewController.xib in Resources */,
+				C3BC5AA91656BF74002DA837 /* icon@2x.png in Resources */,
+				C3BC5AAB1656C23A002DA837 /* list.png in Resources */,
+				C3BC5AB31656C284002DA837 /* PLPlayerViewController.xib in Resources */,
+				C3BC5AB51656C2D7002DA837 /* music.png in Resources */,
+				C3BC5AB71656C480002DA837 /* settings.png in Resources */,
+				C3BC5AB91656C4D8002DA837 /* bookmark.png in Resources */,
+				C3BC5ABE1656C4E7002DA837 /* PLBookmarksViewController.xib in Resources */,
+				C3BC5AC31656C4EF002DA837 /* PLSettingsViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -176,7 +368,21 @@
 			files = (
 				C3BC5A381656B772002DA837 /* main.m in Sources */,
 				C3BC5A3C1656B772002DA837 /* PLAppDelegate.m in Sources */,
-				C3BC5A451656B772002DA837 /* PLViewController.m in Sources */,
+				C3BC5A991656B959002DA837 /* PLPlaylistViewController.m in Sources */,
+				C3BC5AB21656C284002DA837 /* PLPlayerViewController.m in Sources */,
+				C3BC5ABD1656C4E7002DA837 /* PLBookmarksViewController.m in Sources */,
+				C3BC5AC21656C4EF002DA837 /* PLSettingsViewController.m in Sources */,
+				C3BC5ACD1656C81C002DA837 /* Model.xcdatamodeld in Sources */,
+				C3BC5AD31656CA4D002DA837 /* PLBookmark.m in Sources */,
+				C3BC5AD61656CA4E002DA837 /* PLPlaylist.m in Sources */,
+				C3BC5AD91656CA4E002DA837 /* PLBookmarkSong.m in Sources */,
+				C3BC5ADC1656CA4E002DA837 /* PLPlaylistSong.m in Sources */,
+				C3BC5ADF1656CA73002DA837 /* PLCoreDataStack.m in Sources */,
+				C3BC5AE21656CACC002DA837 /* PLDataAccess.m in Sources */,
+				C3BC5AE71656CC24002DA837 /* PLMigrationManager.m in Sources */,
+				C3BC5AEB1656CCC9002DA837 /* PLDefaultsManager.m in Sources */,
+				C3BC5AEF1656CD35002DA837 /* PLUtils.m in Sources */,
+				C3BC5AF41656CFA6002DA837 /* MBProgressHUD.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -189,14 +395,6 @@
 				C3BC5A351656B772002DA837 /* en */,
 			);
 			name = InfoPlist.strings;
-			sourceTree = "<group>";
-		};
-		C3BC5A461656B772002DA837 /* PLViewController.xib */ = {
-			isa = PBXVariantGroup;
-			children = (
-				C3BC5A471656B772002DA837 /* en */,
-			);
-			name = PLViewController.xib;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -294,6 +492,19 @@
 			defaultConfigurationIsVisible = 0;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		C3BC5ACB1656C81C002DA837 /* Model.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				C3BC5ACC1656C81C002DA837 /* Model.xcdatamodel */,
+			);
+			currentVersion = C3BC5ACC1656C81C002DA837 /* Model.xcdatamodel */;
+			path = Model.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = C3BC5A1E1656B772002DA837 /* Project object */;
 }

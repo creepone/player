@@ -7,17 +7,42 @@
 //
 
 #import "PLAppDelegate.h"
+#import "PLCoreDataStack.h"
+#import "PLMigrationManager.h"
+#import "PLDefaultsManager.h"
 
-#import "PLViewController.h"
+#import "MBProgressHUD.h"
+
+#import "PLPlaylistViewController.h"
+#import "PLPlayerViewController.h"
+#import "PLBookmarksViewController.h"
+#import "PLSettingsViewController.h"
+
+#define MigrationErrorAlertTag 44
+
+
+@interface PLAppDelegate() <MBProgressHUDDelegate> {
+    NSError *_migrationError;
+    MBProgressHUD *_progressHud;
+}
+
+- (void)startDataInitialization;
+
+@end
+
 
 @implementation PLAppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
-    // Override point for customization after application launch.
-    self.viewController = [[PLViewController alloc] initWithNibName:@"PLViewController" bundle:nil];
-    self.window.rootViewController = self.viewController;
+    
+    [PLDefaultsManager registerDefaults];
+
+    // temporary VC for the progress hud
+    self.window.rootViewController = [[UIViewController alloc] init];
+    [self startDataInitialization];
+
     [self.window makeKeyAndVisible];
     return YES;
 }
@@ -48,5 +73,68 @@
 {
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
 }
+
+#pragma mark - Data initialization on startup
+
+- (void)startDataInitialization {
+    _progressHud = [[MBProgressHUD alloc] initWithWindow:self.window];
+    
+    [self.window.rootViewController.view addSubview:_progressHud];
+    _progressHud.delegate = self;
+    _progressHud.graceTime = 1.0;
+    _progressHud.labelText = @"Initializing...";
+    [_progressHud showWhileExecuting:@selector(performDataInitialization) onTarget:self withObject:nil animated:YES];
+}
+
+- (void)performDataInitialization {
+    @autoreleasepool {
+        NSError *error;
+        self.coreDataStack = [PLMigrationManager coreDataStack:&error];
+        
+        if(error != nil) {
+            _migrationError = error;
+        }
+    }
+}
+
+- (void)hudWasHidden:(MBProgressHUD *)hud {
+    [_progressHud removeFromSuperview];
+    _progressHud.delegate = nil;
+    _progressHud = nil;
+    
+    if(self.coreDataStack == nil || _migrationError != nil) {
+        NSLog(@"Data initialization error: %@", [_migrationError localizedDescription]);
+        
+        UIAlertView *alert = [[UIAlertView alloc]
+                              initWithTitle:NSLocalizedString(@"MigrationErrorTitle", @"")
+                              message:NSLocalizedString(@"MigrationErrorMessage", @"")
+                              delegate:self
+                              cancelButtonTitle:@"OK"
+                              otherButtonTitles:nil];
+        
+        [alert setTag:MigrationErrorAlertTag];
+        [alert show];
+        
+        return;
+    }
+    
+    UIViewController *playlistViewController = [[PLPlaylistViewController alloc] initWithNibName:@"PLPlaylistViewController" bundle:nil];
+    UIViewController *playerViewController = [[PLPlayerViewController alloc] initWithNibName:@"PLPlayerViewController" bundle:nil];
+    UIViewController *settingsViewController = [[PLSettingsViewController alloc] initWithNibName:@"PLSettingsViewController" bundle:nil];
+    UIViewController *bookmarksViewController = [[PLBookmarksViewController alloc] initWithNibName:@"PLBookmarksViewController" bundle:nil];
+    
+    
+    self.tabBarController = [[UITabBarController alloc] init];
+    self.tabBarController.viewControllers = @[playlistViewController, playerViewController, bookmarksViewController, settingsViewController];
+    
+    self.window.rootViewController = self.tabBarController;
+}
+
+- (void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex {
+    if(alertView.tag == MigrationErrorAlertTag) {
+        exit(1);
+    }
+}
+
 
 @end
