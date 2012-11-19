@@ -81,22 +81,21 @@ void audioRouteChangeListenerCallback (void *inUserData, AudioSessionPropertyID 
 }
 
 - (void)play {
+    PLPlaylistSong *song = self.currentSong;
+    if (song == nil)
+        return;
+    
     if (_audioPlayer == nil) {
         NSError *error;
-        PLPlaylistSong *song = self.currentSong;
-        
-        if (song == nil)
-            return;
-        
         NSURL *songURL = [song.mediaItem valueForProperty:MPMediaItemPropertyAssetURL];        
         _audioPlayer = [[AVAudioPlayer alloc] initWithContentsOfURL:songURL error:&error];
         _audioPlayer.enableRate = YES;
         _audioPlayer.rate = [PLDefaultsManager playbackRate];
-        _audioPlayer.currentTime = [song.position doubleValue];
         
         [_audioPlayer setDelegate:self];
     }
     
+    _audioPlayer.currentTime = [song.position doubleValue];
     [_audioPlayer play];
 }
 
