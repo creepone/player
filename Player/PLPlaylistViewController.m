@@ -12,6 +12,7 @@
 #import "PLDataAccess.h"
 #import "PLAlerts.h"
 #import "PLPlayer.h"
+#import "PLUtils.h"
 #import "NSString+Extensions.h"
 
 #define kSongRowHeight 65.0
@@ -221,13 +222,9 @@
             artist = [mediaItem valueForProperty:MPMediaItemPropertyPodcastTitle];
         
         NSTimeInterval duration = [[mediaItem valueForProperty:MPMediaItemPropertyPlaybackDuration] doubleValue];
-        
-        long min = (long)duration / 60;
-        long sec = (long)duration % 60;
-        NSString *durationString = [[NSString alloc] initWithFormat:@"%02ld:%02ld", min, sec];
-        
+    
         cell.detailTextLabel.numberOfLines = 2;
-        cell.detailTextLabel.text = [NSString stringWithFormat:@"%@\n%@", artist, durationString];
+        cell.detailTextLabel.text = [NSString stringWithFormat:@"%@\n%@", artist, [PLUtils formatDuration:duration]];
         
         MPMediaItemArtwork *itemArtwork = [mediaItem valueForProperty:MPMediaItemPropertyArtwork];
         UIImage *imageArtwork = [itemArtwork imageWithSize:CGSizeMake(kSongRowHeight, kSongRowHeight)];

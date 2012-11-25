@@ -18,8 +18,8 @@
     AVAudioPlayer *_audioPlayer;
 }
 
-- (PLPlaylistSong *)currentSong;
 - (void)pause;
+- (void)save;
 
 @end
 
@@ -73,6 +73,24 @@ void audioRouteChangeListenerCallback (void *inUserData, AudioSessionPropertyID 
     return playlist.currentSong;
 }
 
+- (NSTimeInterval)currentPosition {
+    if (_audioPlayer != nil)
+        return _audioPlayer.currentTime;
+    else {
+        PLPlaylistSong *song = self.currentSong;
+        if (song == nil)
+            return 0;
+        return [song.position doubleValue];
+    }
+}
+
+- (void)setCurrentPosition:(NSTimeInterval)position {
+    if (_audioPlayer != nil) {
+        _audioPlayer.currentTime = position;
+    }
+}
+
+
 - (void)playPause {
     if ([_audioPlayer isPlaying])
         [self pause];
@@ -108,9 +126,7 @@ void audioRouteChangeListenerCallback (void *inUserData, AudioSessionPropertyID 
         [_audioPlayer setDelegate:nil];
         _audioPlayer = nil;
         
-        NSError *error;
-        [[PLDataAccess sharedDataAccess] saveChanges:&error];
-        [PLAlerts checkForDataStoreError:error];
+        [self save];
     }
 }
 
@@ -120,29 +136,7 @@ void audioRouteChangeListenerCallback (void *inUserData, AudioSessionPropertyID 
 
     [_audioPlayer pause];
 
-    NSError *error;
-    [[PLDataAccess sharedDataAccess] saveChanges:&error];
-    [PLAlerts checkForDataStoreError:error];
-}
-
-- (void)audioPlayerDidFinishPlaying:(AVAudioPlayer *)player successfully:(BOOL)flag {
-    [player setDelegate:nil];
-    
-    PLPlaylistSong *song = self.currentSong;
-    song.position = [NSNumber numberWithDouble:0.0];
-    
-    PLDataAccess *dataAccess = [PLDataAccess sharedDataAccess];
-    PLPlaylist *playlist = [dataAccess selectedPlaylist];
-    [playlist moveToNextSong];
-    
-    NSError *error;
-    [dataAccess saveChanges:&error];
-    [PLAlerts checkForDataStoreError:error];
-    
-    [_audioPlayer setDelegate:nil];
-    _audioPlayer = nil;
-
-    [self play];
+    [self save];
 }
 
 - (void)setPlaybackRate:(double)rate {
@@ -160,6 +154,48 @@ void audioRouteChangeListenerCallback (void *inUserData, AudioSessionPropertyID 
         _audioPlayer.currentTime = position;
     }
 }
+
+
+- (void)save {
+    NSError *error;
+    [[PLDataAccess sharedDataAccess] saveChanges:&error];
+    [PLAlerts checkForDataStoreError:error];
+}
+
+
+#pragma mark - AVAudioPlayerDelegate
+
+- (void)audioPlayerDidFinishPlaying:(AVAudioPlayer *)player successfully:(BOOL)flag {
+    [player setDelegate:nil];
+    
+    PLPlaylistSong *song = self.currentSong;
+    song.position = [NSNumber numberWithDouble:0.0];
+    
+    PLDataAccess *dataAccess = [PLDataAccess sharedDataAccess];
+    PLPlaylist *playlist = [dataAccess selectedPlaylist];
+    [playlist moveToNextSong];
+    
+    [[NSNotificationCenter defaultCenter] postNotificationName:kPLPlayerSongChange object:nil];
+    
+    [self save];
+    
+    [_audioPlayer setDelegate:nil];
+    _audioPlayer = nil;
+    [self play];
+}
+
+- (void)audioPlayerBeginInterruption:(AVAudioPlayer *)player {
+    PLPlaylistSong *song = self.currentSong;
+    song.position = [NSNumber numberWithDouble:_audioPlayer.currentTime];
+    [self save];
+}
+
+- (void)audioPlayerEndInterruption:(AVAudioPlayer *)player withOptions:(NSUInteger)flags {
+    if(flags == AVAudioSessionInterruptionOptionShouldResume){
+        [self play];
+    }
+}
+
 
 
 - (void)dealloc {

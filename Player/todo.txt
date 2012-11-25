@@ -1,1 +1,1 @@
-go back 10 s
+play / pause, stop buttons

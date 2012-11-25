@@ -43,4 +43,10 @@
     return uuidString;
 }
 
++ (NSString *)formatDuration:(NSTimeInterval)duration {    
+    long min = (long)duration / 60;
+    long sec = (long)duration % 60;
+    return [[NSString alloc] initWithFormat:@"%02ld:%02ld", min, sec];
+}
+
 @end

@@ -8,9 +8,16 @@
 
 #import <Foundation/Foundation.h>
 
+static NSString *kPLPlayerSongChange = @"PLPlayerSongChange";
+
+@class PLPlaylistSong;
+
 @interface PLPlayer : NSObject
 
 + (PLPlayer *)sharedPlayer;
+- (PLPlaylistSong *)currentSong;
+
+@property (nonatomic) NSTimeInterval currentPosition;
 
 - (void)playPause;
 - (void)stop;

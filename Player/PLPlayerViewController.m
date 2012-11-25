@@ -6,16 +6,27 @@
 //  Copyright (c) 2012 Tomas Vana. All rights reserved.
 //
 
-#import "PLPlayerViewController.h"
+#import <MediaPlayer/MediaPlayer.h>
 
-@interface PLPlayerViewController ()
+#import "PLPlayerViewController.h"
+#import "PLDataAccess.h"
+#import "PLPlayer.h"
+#import "PLUtils.h"
+#import "NSString+Extensions.h"
+
+
+@interface PLPlayerViewController () {
+    BOOL _isShown;
+}
+
+- (void)reloadData;
+- (void)updateTimeline;
 
 @end
 
 @implementation PLPlayerViewController
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
-{
+- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         self.title = @"Player";
@@ -24,16 +35,115 @@
     return self;
 }
 
-- (void)viewDidLoad
-{
+- (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
+    
+    self.sliderTimeline.continuous = NO;
 }
 
-- (void)didReceiveMemoryWarning
-{
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(changeSong) name:kPLPlayerSongChange object:nil];
+    
+    _isShown = YES;
+    [self reloadData];
+    [self updateTimeline];
+}
+
+- (void)viewWillDisappear:(BOOL)animated {
+    [super viewWillDisappear:animated];
+    
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+    
+    _isShown = NO;
+}
+
+- (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+
+- (void)changeSong {
+    [self reloadData];
+}
+
+- (void)reloadData {
+    PLPlaylistSong *currentSong = [[PLPlayer sharedPlayer] currentSong];
+    
+    if (currentSong == nil) {
+        self.labelArtist.text = @"";
+        self.labelTitle.text = @"";
+        self.labelTotal.text = @"";
+        self.labelCurrent.text = @"";
+        self.sliderTimeline.hidden = YES;
+        
+        self.imgArtwork.image = [UIImage imageNamed:@"default_artwork.jpg"];
+    }
+    else {
+        MPMediaItem *mediaItem = currentSong.mediaItem;
+        
+        NSString *artist = [mediaItem valueForProperty:MPMediaItemPropertyArtist];
+        if ([artist pl_isEmptyOrWhitespace])
+            artist = [mediaItem valueForProperty:MPMediaItemPropertyPodcastTitle];
+        
+        self.labelTitle.text = [mediaItem valueForProperty:MPMediaItemPropertyTitle];
+        self.labelArtist.text = artist;
+        
+        NSTimeInterval duration = [[mediaItem valueForProperty:MPMediaItemPropertyPlaybackDuration] doubleValue];
+        self.labelTotal.text = [PLUtils formatDuration:duration];
+        
+        self.sliderTimeline.hidden = NO;
+        
+        MPMediaItemArtwork *itemArtwork = [mediaItem valueForProperty:MPMediaItemPropertyArtwork];
+        UIImage *imageArtwork = [itemArtwork imageWithSize:CGSizeMake(self.imgArtwork.bounds.size.width, self.imgArtwork.bounds.size.height)];
+    
+        if (imageArtwork != nil) {
+            self.imgArtwork.image = imageArtwork;
+        }
+        else {
+            self.imgArtwork.image = [UIImage imageNamed:@"default_artwork.jpg"];
+        }
+    }
+}
+
+- (void)updateTimeline {
+    PLPlayer *player = [PLPlayer sharedPlayer];
+    PLPlaylistSong *currentSong = [player currentSong];
+    
+    if (currentSong == nil || !_isShown) {
+        return;
+    }
+    
+    NSTimeInterval duration = [[currentSong.mediaItem valueForProperty:MPMediaItemPropertyPlaybackDuration] doubleValue];
+    NSTimeInterval currentPosition = [player currentPosition];
+    
+    self.labelCurrent.text = [PLUtils formatDuration:currentPosition];
+    self.sliderTimeline.value = currentPosition / duration;
+    
+    // update again in a second
+    [self performSelector:@selector(updateTimeline) withObject:self afterDelay:1.0];
+}
+
+
+
+- (IBAction)timelineChange:(id)sender {
+    float value = self.sliderTimeline.value;
+    
+    PLPlayer *player = [PLPlayer sharedPlayer];
+    PLPlaylistSong *currentSong = [player currentSong];
+    
+    if (currentSong == nil)
+        return;
+    
+    NSTimeInterval duration = [[currentSong.mediaItem valueForProperty:MPMediaItemPropertyPlaybackDuration] doubleValue];
+    [player setCurrentPosition:duration * value];
+}
+
+- (IBAction)clickedPlayPause:(id)sender {
+    [[PLPlayer sharedPlayer] playPause];
+}
+
 
 @end

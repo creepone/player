@@ -10,4 +10,14 @@
 
 @interface PLPlayerViewController : UIViewController
 
+@property (strong, nonatomic) IBOutlet UIImageView *imgArtwork;
+@property (strong, nonatomic) IBOutlet UILabel *labelTotal;
+@property (strong, nonatomic) IBOutlet UILabel *labelCurrent;
+@property (strong, nonatomic) IBOutlet UILabel *labelTitle;
+@property (strong, nonatomic) IBOutlet UILabel *labelArtist;
+@property (strong, nonatomic) IBOutlet UISlider *sliderTimeline;
+
+- (IBAction)timelineChange:(id)sender;
+- (IBAction)clickedPlayPause:(id)sender;
+
 @end

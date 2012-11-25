@@ -10,4 +10,6 @@
 
 + (NSString *)generateUuid;
 
++ (NSString *)formatDuration:(NSTimeInterval)duration;
+
 @end
