@@ -152,6 +152,7 @@
         case UIEventSubtypeRemoteControlStop:
             break;
         case UIEventSubtypeRemoteControlNextTrack:
+            [[PLPlayer sharedPlayer] makeBookmark];
             break;
         case UIEventSubtypeRemoteControlPreviousTrack:
             [[PLPlayer sharedPlayer] goBack];

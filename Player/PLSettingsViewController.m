@@ -8,10 +8,16 @@
 
 #import "PLSettingsViewController.h"
 #import "PLDefaultsManager.h"
+#import "PLPlaylistSelectViewController.h"
 #import "PLPlayer.h"
+#import "PLDataAccess.h"
+#import "PLAlerts.h"
 #import "SliderCell.h"
+#import "NSString+Extensions.h"
 
-@interface PLSettingsViewController () <UITableViewDataSource, UITableViewDelegate>
+#define GoBackAlert 22
+
+@interface PLSettingsViewController () <UITableViewDataSource, UITableViewDelegate, UIAlertViewDelegate, PLPlaylistSelectViewControllerDelegate>
 
 @end
 
@@ -48,7 +54,7 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return 1;
+    return 3;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -62,6 +68,31 @@
         sliderCell.labelValue.text = [NSString stringWithFormat:@"%.2f", playbackRate];
         
         return sliderCell;
+    }
+    else {
+        static NSString *CellIdentifier = @"Cell";
+        UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+        
+        if (cell == nil) {
+            cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:CellIdentifier];
+        }
+        
+        if (indexPath.row == 1) {
+            cell.textLabel.text = @"Bookmark playlist";
+            
+            PLPlaylist *bookmarkPlaylist = [[PLDataAccess sharedDataAccess] bookmarkPlaylist];
+            if (bookmarkPlaylist != nil)
+                cell.detailTextLabel.text = [bookmarkPlaylist name];
+            
+            cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+        }
+        else if (indexPath.row == 2) {
+            cell.textLabel.text = @"Go back time";
+            cell.detailTextLabel.text = [NSString stringWithFormat:@"%.0f", [PLDefaultsManager goBackTime]];
+            cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+        }
+        
+        return cell;
     }
     
     return nil;
@@ -82,6 +113,48 @@
 
     [PLDefaultsManager setPlaybackRate:slider.value];
     [[PLPlayer sharedPlayer] setPlaybackRate:slider.value];
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    
+    if (indexPath.row == 1) {
+        PLPlaylistSelectViewController *psvc = [[PLPlaylistSelectViewController alloc] init];
+        [psvc setDelegate:self];
+        
+        UINavigationController *nc = [[UINavigationController alloc] initWithRootViewController:psvc];
+        [self presentViewController:nc animated:YES completion:NULL];
+    }
+    else if (indexPath.row == 2) {
+        UIAlertView * alert = [[UIAlertView alloc] initWithTitle:@"Go back time" message:@"Enter the new go back time" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:@"Cancel", nil];
+        alert.alertViewStyle = UIAlertViewStylePlainTextInput;
+        alert.tag = GoBackAlert;
+        [alert show];
+    }
+}
+
+- (void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex {
+    if (alertView.tag == GoBackAlert && buttonIndex == 0) {
+        NSString *goBackTimeString = [[alertView textFieldAtIndex:0] text];
+        double goBackTime = [goBackTimeString doubleValue];
+        
+        // ignore absurd values
+        if (goBackTime > 0 && goBackTime < 120) {
+            [PLDefaultsManager setGoBackTime:goBackTime];
+            [self.tableView reloadData];
+        }
+    }
+}
+
+- (void)didSelectPlaylist:(PLPlaylist *)playlist {
+    PLDataAccess *dataAccess = [PLDataAccess sharedDataAccess];
+    [dataAccess setBookmarkPlaylist:playlist];
+    
+    NSError *error;
+    [dataAccess saveChanges:&error];
+    [PLAlerts checkForDataStoreError:error];
+    
+    [self.tableView reloadData];
 }
 
 @end

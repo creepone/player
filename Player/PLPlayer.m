@@ -155,6 +155,35 @@ void audioRouteChangeListenerCallback (void *inUserData, AudioSessionPropertyID 
     }
 }
 
+- (void)makeBookmark {
+    PLDataAccess *dataAccess = [PLDataAccess sharedDataAccess];
+    PLPlaylistSong *song = self.currentSong;
+    
+    NSError *error;
+    PLBookmarkSong *bookmarkSong = [dataAccess bookmarkSongForSong:song.mediaItem error:&error];
+    if (![PLAlerts checkForDataStoreError:error])
+        return;
+    
+    [dataAccess addBookmarkAtPosition:self.currentPosition forSong:bookmarkSong];
+    [self save];
+    
+    
+    // ivar
+    SystemSoundID mBeep;
+    
+    // Create the sound ID
+    NSString *path = [[NSBundle mainBundle] pathForResource:@"jbl_confirm" ofType:@"aiff"];
+    NSURL* url = [NSURL fileURLWithPath:path];
+    AudioServicesCreateSystemSoundID((__bridge CFURLRef)url, &mBeep);
+    
+    // Play the sound
+    AudioServicesPlaySystemSound(mBeep);
+    
+    
+    // Dispose of the sound
+    //AudioServicesDisposeSystemSoundID(mBeep);
+}
+
 
 - (void)save {
     NSError *error;

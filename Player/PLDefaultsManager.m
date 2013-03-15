@@ -5,6 +5,7 @@
 
 NSString *kDataStoreVersion = @"DataStoreVersion";
 NSString *kSelectedPlaylist = @"SelectedPlaylist";
+NSString *kBookmarkPlaylist = @"BookmarkPlaylist";
 NSString *kPlaybackRate = @"PlaybackRate";
 NSString *kGoBackTime = @"GoBackTime";
 
@@ -54,6 +55,17 @@ NSString *kGoBackTime = @"GoBackTime";
     [userDefaults synchronize];
 }
 
++ (NSURL *)bookmarkPlaylist {
+    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+    return [userDefaults URLForKey:kBookmarkPlaylist];
+}
+
++ (void)setBookmarkPlaylist:(NSURL *)playlist {
+    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+    [userDefaults setURL:playlist forKey:kBookmarkPlaylist];
+    [userDefaults synchronize];
+}
+
 
 + (NSString *)preferencesPath {
     return [[PLUtils libraryDirectoryPath] stringByAppendingPathComponent:@"Preferences/at.iosapps.Player.plist"];
@@ -77,7 +89,7 @@ NSString *kGoBackTime = @"GoBackTime";
     NSDictionary *userDefaultsDefaults = [NSDictionary dictionaryWithObjectsAndKeys:
         [NSNumber numberWithInt:0], kDataStoreVersion,
         [NSNumber numberWithDouble:1.0], kPlaybackRate,
-        [NSNumber numberWithDouble:10.0], kGoBackTime,
+        [NSNumber numberWithDouble:30.0], kGoBackTime,
         nil];
     
     [[NSUserDefaults standardUserDefaults] registerDefaults:userDefaultsDefaults];

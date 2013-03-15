@@ -53,7 +53,10 @@
     
     self.tableView.dataSource = self;
     self.tableView.delegate = self;
-    
+}
+
+- (void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
     [self reloadData];
 }
 

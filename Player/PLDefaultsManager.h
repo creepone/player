@@ -12,6 +12,9 @@
 + (NSURL *)selectedPlaylist;
 + (void)setSelectedPlaylist:(NSURL *)playlist;
 
++ (NSURL *)bookmarkPlaylist;
++ (void)setBookmarkPlaylist:(NSURL *)playlist;
+
 + (double)playbackRate;
 + (void)setPlaybackRate:(double)playbackRate;
 

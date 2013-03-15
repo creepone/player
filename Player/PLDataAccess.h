@@ -43,9 +43,16 @@
 - (PLPlaylist *)createPlaylist:(NSString *)name;
 - (PLPlaylist *)selectedPlaylist;
 - (void)selectPlaylist:(PLPlaylist *)playlist;
+- (PLPlaylist *)bookmarkPlaylist;
+- (void)setBookmarkPlaylist:(PLPlaylist *)playlist;
 - (PLPlaylistSong *)addSong:(MPMediaItem *)song toPlaylist:(PLPlaylist *)playlist;
+- (PLPlaylistSong *)findSongWithPersistentID:(NSNumber *)persistentID onPlaylist:(PLPlaylist *)playlist;
+
+- (PLBookmarkSong *)bookmarkSongForSong:(MPMediaItem *)song error:(NSError **)error;
+- (void)addBookmarkAtPosition:(NSTimeInterval)position forSong:(PLBookmarkSong *)song;
 
 - (NSFetchedResultsController *)fetchedResultsControllerForAllPlaylists;
+- (NSFetchedResultsController *)fetchedResultsControllerForAllBookmarks;
 - (NSFetchedResultsController *)fetchedResultsControllerForSongsOfPlaylist:(PLPlaylist *)playlist;
 
 @end

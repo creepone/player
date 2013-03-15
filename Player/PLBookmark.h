@@ -9,11 +9,12 @@
 #import <Foundation/Foundation.h>
 #import <CoreData/CoreData.h>
 
+@class PLBookmarkSong;
 
 @interface PLBookmark : NSManagedObject
 
 @property (nonatomic, retain) NSDate * timestamp;
 @property (nonatomic, retain) NSNumber * position;
-@property (nonatomic, retain) NSManagedObject *song;
+@property (nonatomic, retain) PLBookmarkSong *song;
 
 @end

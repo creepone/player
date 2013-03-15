@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		C3437569166BE531006EC87D /* jbl_confirm.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = C3437568166BE531006EC87D /* jbl_confirm.mp3 */; };
+		C343756B166BE5ED006EC87D /* jbl_confirm.caf in Resources */ = {isa = PBXBuildFile; fileRef = C343756A166BE5ED006EC87D /* jbl_confirm.caf */; };
+		C343756D166BE661006EC87D /* jbl_confirm.aiff in Resources */ = {isa = PBXBuildFile; fileRef = C343756C166BE661006EC87D /* jbl_confirm.aiff */; };
 		C3544850165922C80083D703 /* SliderCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C354484F165922C80083D703 /* SliderCell.m */; };
 		C3BC5A2C1656B772002DA837 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C3BC5A2B1656B772002DA837 /* UIKit.framework */; };
 		C3BC5A2E1656B772002DA837 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C3BC5A2D1656B772002DA837 /* Foundation.framework */; };
@@ -51,9 +54,13 @@
 		C3BC5B161659146F002DA837 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C3BC5B151659146E002DA837 /* AVFoundation.framework */; };
 		C3BC5B1816591AF8002DA837 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C3BC5B1716591AF8002DA837 /* AudioToolbox.framework */; };
 		C3BC5B20165921AD002DA837 /* SliderCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C3BC5B1F165921AD002DA837 /* SliderCell.xib */; };
+		C3D1A65A16CFC337006D3E5F /* PLPlaylistSelectViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C3D1A65916CFC337006D3E5F /* PLPlaylistSelectViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		C3437568166BE531006EC87D /* jbl_confirm.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = jbl_confirm.mp3; sourceTree = "<group>"; };
+		C343756A166BE5ED006EC87D /* jbl_confirm.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = jbl_confirm.caf; sourceTree = "<group>"; };
+		C343756C166BE661006EC87D /* jbl_confirm.aiff */ = {isa = PBXFileReference; lastKnownFileType = audio.aiff; path = jbl_confirm.aiff; sourceTree = "<group>"; };
 		C354484E165922C80083D703 /* SliderCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SliderCell.h; sourceTree = "<group>"; };
 		C354484F165922C80083D703 /* SliderCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SliderCell.m; sourceTree = "<group>"; };
 		C3BC5A271656B772002DA837 /* Player.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Player.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -120,6 +127,8 @@
 		C3BC5B151659146E002DA837 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		C3BC5B1716591AF8002DA837 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		C3BC5B1F165921AD002DA837 /* SliderCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SliderCell.xib; sourceTree = "<group>"; };
+		C3D1A65816CFC337006D3E5F /* PLPlaylistSelectViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PLPlaylistSelectViewController.h; sourceTree = "<group>"; };
+		C3D1A65916CFC337006D3E5F /* PLPlaylistSelectViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PLPlaylistSelectViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -196,6 +205,9 @@
 		C3BC5A321656B772002DA837 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				C343756C166BE661006EC87D /* jbl_confirm.aiff */,
+				C343756A166BE5ED006EC87D /* jbl_confirm.caf */,
+				C3437568166BE531006EC87D /* jbl_confirm.mp3 */,
 				C3BC5A331656B772002DA837 /* Player-Info.plist */,
 				C3BC5A341656B772002DA837 /* InfoPlist.strings */,
 				C3BC5A371656B772002DA837 /* main.m */,
@@ -232,6 +244,8 @@
 				C3BC5ABB1656C4E7002DA837 /* PLBookmarksViewController.m */,
 				C3BC5ABF1656C4EF002DA837 /* PLSettingsViewController.h */,
 				C3BC5AC01656C4EF002DA837 /* PLSettingsViewController.m */,
+				C3D1A65816CFC337006D3E5F /* PLPlaylistSelectViewController.h */,
+				C3D1A65916CFC337006D3E5F /* PLPlaylistSelectViewController.m */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -416,6 +430,9 @@
 				C3BC5B0C1658FC0E002DA837 /* default_artwork.jpg in Resources */,
 				C3BC5B0E1659002C002DA837 /* todo.txt in Resources */,
 				C3BC5B20165921AD002DA837 /* SliderCell.xib in Resources */,
+				C3437569166BE531006EC87D /* jbl_confirm.mp3 in Resources */,
+				C343756B166BE5ED006EC87D /* jbl_confirm.caf in Resources */,
+				C343756D166BE661006EC87D /* jbl_confirm.aiff in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -447,6 +464,7 @@
 				C3BC5B041658E76A002DA837 /* NSString+Extensions.m in Sources */,
 				C3BC5B14165912F6002DA837 /* PLPlayer.m in Sources */,
 				C3544850165922C80083D703 /* SliderCell.m in Sources */,
+				C3D1A65A16CFC337006D3E5F /* PLPlaylistSelectViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

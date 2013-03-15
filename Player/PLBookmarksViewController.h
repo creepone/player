@@ -10,4 +10,7 @@
 
 @interface PLBookmarksViewController : UIViewController
 
+@property (strong, nonatomic) IBOutlet UINavigationBar *navigationBar;
+@property (strong, nonatomic) IBOutlet UITableView *tableView;
+
 @end

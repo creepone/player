@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 #import <CoreData/CoreData.h>
 
-@class PLBookmark;
+@class PLBookmark, MPMediaItem;
 
 @interface PLBookmarkSong : NSManagedObject
 
@@ -17,6 +17,9 @@
 @property (nonatomic, retain) NSString * title;
 @property (nonatomic, retain) NSString * artist;
 @property (nonatomic, retain) NSSet *bookmarks;
+
+@property (nonatomic, readonly) MPMediaItem *mediaItem;
+
 @end
 
 @interface PLBookmarkSong (CoreDataGeneratedAccessors)

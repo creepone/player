@@ -24,5 +24,6 @@ static NSString *kPLPlayerSongChange = @"PLPlayerSongChange";
 - (void)play;
 - (void)goBack;
 - (void)setPlaybackRate:(double)rate;
+- (void)makeBookmark;
 
 @end

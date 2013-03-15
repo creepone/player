@@ -145,5 +145,13 @@
     [[PLPlayer sharedPlayer] playPause];
 }
 
+- (IBAction)clickedAddBookmark:(id)sender {
+    [[PLPlayer sharedPlayer] makeBookmark];
+}
+
+- (IBAction)clickedGoBack:(id)sender {
+    [[PLPlayer sharedPlayer] goBack];
+}
+
 
 @end

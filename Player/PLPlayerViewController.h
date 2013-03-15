@@ -19,5 +19,7 @@
 
 - (IBAction)timelineChange:(id)sender;
 - (IBAction)clickedPlayPause:(id)sender;
+- (IBAction)clickedAddBookmark:(id)sender;
+- (IBAction)clickedGoBack:(id)sender;
 
 @end
