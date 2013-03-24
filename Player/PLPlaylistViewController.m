@@ -9,6 +9,7 @@
 #import <MediaPlayer/MediaPlayer.h>
 
 #import "PLPlaylistViewController.h"
+#import "PLPlaylistSongViewController.h"
 #import "PLDataAccess.h"
 #import "PLAlerts.h"
 #import "PLPlayer.h"
@@ -53,6 +54,7 @@
     
     self.tableView.dataSource = self;
     self.tableView.delegate = self;
+    self.tableView.allowsSelectionDuringEditing = YES;
 }
 
 - (void)viewDidAppear:(BOOL)animated {
@@ -177,8 +179,6 @@
     
     _selectedPlaylist = playlist;
     [[PLDataAccess sharedDataAccess] selectPlaylist:playlist];
-
-    [player play];
 }
 
 
@@ -304,7 +304,15 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     
-    if (_singleMode) {
+    if (_singleMode && self.isEditing) {
+        PLPlaylistSong *song = [_songsFetchedResultsController objectAtIndexPath:indexPath];
+        PLPlaylistSongViewController *svc = [[PLPlaylistSongViewController alloc] initWithPlaylistSong:song];
+        
+        UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:svc];
+        [navController.navigationBar setTintColor:[UIColor colorWithRed:1.0 green:0.5 blue:0.0 alpha:1.0]];
+        [self presentViewController:navController animated:YES completion:NULL];
+    }
+    else if (_singleMode) {
         PLPlayer *player = [PLPlayer sharedPlayer];
         [player stop];
         

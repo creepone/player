@@ -55,6 +55,7 @@
 		C3BC5B1816591AF8002DA837 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C3BC5B1716591AF8002DA837 /* AudioToolbox.framework */; };
 		C3BC5B20165921AD002DA837 /* SliderCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C3BC5B1F165921AD002DA837 /* SliderCell.xib */; };
 		C3D1A65A16CFC337006D3E5F /* PLPlaylistSelectViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C3D1A65916CFC337006D3E5F /* PLPlaylistSelectViewController.m */; };
+		C3FCEC2E16FF0AD3008CD497 /* PLPlaylistSongViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C3FCEC2D16FF0AD3008CD497 /* PLPlaylistSongViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -129,6 +130,8 @@
 		C3BC5B1F165921AD002DA837 /* SliderCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SliderCell.xib; sourceTree = "<group>"; };
 		C3D1A65816CFC337006D3E5F /* PLPlaylistSelectViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PLPlaylistSelectViewController.h; sourceTree = "<group>"; };
 		C3D1A65916CFC337006D3E5F /* PLPlaylistSelectViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PLPlaylistSelectViewController.m; sourceTree = "<group>"; };
+		C3FCEC2C16FF0AD3008CD497 /* PLPlaylistSongViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PLPlaylistSongViewController.h; sourceTree = "<group>"; };
+		C3FCEC2D16FF0AD3008CD497 /* PLPlaylistSongViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PLPlaylistSongViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -246,6 +249,8 @@
 				C3BC5AC01656C4EF002DA837 /* PLSettingsViewController.m */,
 				C3D1A65816CFC337006D3E5F /* PLPlaylistSelectViewController.h */,
 				C3D1A65916CFC337006D3E5F /* PLPlaylistSelectViewController.m */,
+				C3FCEC2C16FF0AD3008CD497 /* PLPlaylistSongViewController.h */,
+				C3FCEC2D16FF0AD3008CD497 /* PLPlaylistSongViewController.m */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -465,6 +470,7 @@
 				C3BC5B14165912F6002DA837 /* PLPlayer.m in Sources */,
 				C3544850165922C80083D703 /* SliderCell.m in Sources */,
 				C3D1A65A16CFC337006D3E5F /* PLPlaylistSelectViewController.m in Sources */,
+				C3FCEC2E16FF0AD3008CD497 /* PLPlaylistSongViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

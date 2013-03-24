@@ -108,8 +108,15 @@ void audioRouteChangeListenerCallback (void *inUserData, AudioSessionPropertyID 
         NSURL *songURL = [song.mediaItem valueForProperty:MPMediaItemPropertyAssetURL];        
         _audioPlayer = [[AVAudioPlayer alloc] initWithContentsOfURL:songURL error:&error];
         _audioPlayer.enableRate = YES;
-        _audioPlayer.rate = [PLDefaultsManager playbackRate];
         
+        double customRate = [song.playbackRate doubleValue];
+        if (customRate > 0.01) {
+            _audioPlayer.rate = customRate;
+        }
+        else {
+            _audioPlayer.rate = [PLDefaultsManager playbackRate];
+        }
+
         [_audioPlayer setDelegate:self];
     }
     

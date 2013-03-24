@@ -112,7 +112,10 @@
     sliderCell.labelValue.text = [NSString stringWithFormat:@"%.2f", slider.value];
 
     [PLDefaultsManager setPlaybackRate:slider.value];
-    [[PLPlayer sharedPlayer] setPlaybackRate:slider.value];
+    
+    PLPlayer *player = [PLPlayer sharedPlayer];
+    if ([player.currentSong.playbackRate doubleValue] < 0.01)
+        [player setPlaybackRate:slider.value];
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {

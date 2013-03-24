@@ -23,6 +23,7 @@
 @dynamic order;
 @dynamic position;
 @dynamic playlist;
+@dynamic playbackRate;
 
 #pragma mark -- Derived properties
 

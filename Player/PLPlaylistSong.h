@@ -17,6 +17,7 @@
 @property (nonatomic, retain) NSNumber * order;
 @property (nonatomic, retain) NSNumber * position;
 @property (nonatomic, retain) PLPlaylist *playlist;
+@property (nonatomic, retain) NSNumber * playbackRate;
 
 @property (nonatomic, readonly) MPMediaItem *mediaItem;
 
