@@ -16,7 +16,7 @@
 #import "PLUtils.h"
 #import "NSString+Extensions.h"
 
-#define kSongRowHeight 65.0
+#define kSongRowHeight 75.0
 
 @interface PLPlaylistViewController () <UITableViewDataSource, UITableViewDelegate, NSFetchedResultsControllerDelegate, MPMediaPickerControllerDelegate> {
     BOOL _singleMode;   // YES = single playlist, NO = all playlists
@@ -245,6 +245,27 @@
             cell.textLabel.textColor = [UIColor blackColor];
         }
         
+        NSTimeInterval position = [song.position doubleValue];
+        
+        PLPlayer *player = [PLPlayer sharedPlayer];
+        if ([player currentSong] == song)
+            position = [player currentPosition];
+        
+        double coeff = song.played ? 1.0 : (position / duration);
+        CGFloat width = (cell.frame.size.width - kSongRowHeight) * coeff;
+        CGRect progressFrame = CGRectMake(kSongRowHeight, kSongRowHeight - 5, width, 5);
+        
+        
+        if (cell.backgroundView == nil) {
+            cell.backgroundView = [[UIView alloc] init];
+            UIView *progressView = [[UIView alloc] initWithFrame:progressFrame];
+            [progressView setBackgroundColor:[UIColor orangeColor]];
+            [cell.backgroundView addSubview:progressView];
+        }
+        else {
+            UIView *progressView = [[cell.backgroundView subviews] objectAtIndex:0];
+            [progressView setFrame:progressFrame];
+        }
     }
     else {
         PLPlaylist *playlist = [_playlistsFetchedResultsController objectAtIndexPath:indexPath];
@@ -395,7 +416,11 @@
     PLDataAccess *dataAccess = [PLDataAccess sharedDataAccess];
         
     for (MPMediaItem *item in [collection items]) {
-        [dataAccess addSong:item toPlaylist:_selectedPlaylist];
+        NSNumber *persistentId = [item valueForProperty:MPMediaItemPropertyPersistentID];
+        
+        PLPlaylistSong *playlistSong = [dataAccess findSongWithPersistentID:persistentId onPlaylist:_selectedPlaylist];
+        if (playlistSong == nil)
+            [dataAccess addSong:item toPlaylist:_selectedPlaylist];
     }
     
     NSError *error;

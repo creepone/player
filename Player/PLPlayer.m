@@ -206,6 +206,7 @@ void audioRouteChangeListenerCallback (void *inUserData, AudioSessionPropertyID 
     
     PLPlaylistSong *song = self.currentSong;
     song.position = [NSNumber numberWithDouble:0.0];
+    song.played = YES;
     
     PLDataAccess *dataAccess = [PLDataAccess sharedDataAccess];
     PLPlaylist *playlist = [dataAccess selectedPlaylist];
