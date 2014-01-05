@@ -51,7 +51,7 @@
     [super viewDidLoad];
     
     [[self.navigationBar.items objectAtIndex:0] setRightBarButtonItem:self.editButtonItem];
-    
+        
     self.tableView.dataSource = self;
     self.tableView.delegate = self;
     self.tableView.allowsSelectionDuringEditing = YES;
@@ -251,10 +251,11 @@
         if ([player currentSong] == song)
             position = [player currentPosition];
         
-        double coeff = song.played ? 1.0 : (position / duration);
-        CGFloat width = (cell.frame.size.width - kSongRowHeight) * coeff;
-        CGRect progressFrame = CGRectMake(kSongRowHeight, kSongRowHeight - 5, width, 5);
+        double indent = [cell respondsToSelector:@selector(separatorInset)] ? 30 : 0;
         
+        double coeff = song.played ? 1.0 : (position / duration);
+        CGFloat width = (cell.frame.size.width - kSongRowHeight - indent) * coeff;
+        CGRect progressFrame = CGRectMake(kSongRowHeight + indent, kSongRowHeight - 6, width, 5);
         
         if (cell.backgroundView == nil) {
             cell.backgroundView = [[UIView alloc] init];
