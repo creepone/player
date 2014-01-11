@@ -55,6 +55,13 @@
     self.tableView.dataSource = self;
     self.tableView.delegate = self;
     self.tableView.allowsSelectionDuringEditing = YES;
+    
+    if ([self respondsToSelector:@selector(edgesForExtendedLayout)])
+    {
+        self.edgesForExtendedLayout = UIRectEdgeNone;
+        self.extendedLayoutIncludesOpaqueBars = YES;
+        self.automaticallyAdjustsScrollViewInsets = NO;
+    }
 }
 
 - (void)viewDidAppear:(BOOL)animated {
