@@ -64,7 +64,7 @@
 		C343756C166BE661006EC87D /* jbl_confirm.aiff */ = {isa = PBXFileReference; lastKnownFileType = audio.aiff; path = jbl_confirm.aiff; sourceTree = "<group>"; };
 		C354484E165922C80083D703 /* SliderCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SliderCell.h; sourceTree = "<group>"; };
 		C354484F165922C80083D703 /* SliderCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SliderCell.m; sourceTree = "<group>"; };
-		C3BC5A271656B772002DA837 /* Player 2.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Player 2.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		C3BC5A271656B772002DA837 /* Player.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Player.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C3BC5A2B1656B772002DA837 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		C3BC5A2D1656B772002DA837 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		C3BC5A2F1656B772002DA837 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -173,7 +173,7 @@
 		C3BC5A281656B772002DA837 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				C3BC5A271656B772002DA837 /* Player 2.app */,
+				C3BC5A271656B772002DA837 /* Player.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -384,7 +384,7 @@
 			);
 			name = Player;
 			productName = Player;
-			productReference = C3BC5A271656B772002DA837 /* Player 2.app */;
+			productReference = C3BC5A271656B772002DA837 /* Player.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -549,7 +549,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Player/Player-Prefix.pch";
 				INFOPLIST_FILE = "Player/Player-Info.plist";
-				PRODUCT_NAME = "$(TARGET_NAME) 2";
+				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -561,7 +561,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Player/Player-Prefix.pch";
 				INFOPLIST_FILE = "Player/Player-Info.plist";
-				PRODUCT_NAME = "$(TARGET_NAME) 2";
+				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;

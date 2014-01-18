@@ -43,6 +43,8 @@
         self.tabBarItem.image = [UIImage imageNamed:@"list"];
         
         _singleMode = YES;
+        
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reloadData) name:UIApplicationDidBecomeActiveNotification object:nil];
     }
     return self;
 }
@@ -443,6 +445,7 @@
 
 
 - (void)dealloc {
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
     [_playlistsFetchedResultsController setDelegate:nil];
 }
 
