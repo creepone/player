@@ -157,8 +157,39 @@ void audioRouteChangeListenerCallback (void *inUserData, AudioSessionPropertyID 
     
     if (_audioPlayer != nil) {
         double position = _audioPlayer.currentTime;        
-        position = MAX(position - delay, 0.0);        
-        _audioPlayer.currentTime = position;
+        position = position - delay;
+        
+        if (position >= 0) {
+            _audioPlayer.currentTime = position;
+            return;
+        }
+        
+        [self stop];
+        
+        PLPlaylist *playlist = [[PLDataAccess sharedDataAccess] selectedPlaylist];
+        
+        PLPlaylistSong *song = playlist.currentSong;
+        song.position = @0;
+        [playlist moveToPreviousSong];
+
+        while (playlist.currentSong != song) {
+            NSTimeInterval duration = [[playlist.currentSong.mediaItem valueForProperty:MPMediaItemPropertyPlaybackDuration] doubleValue];
+            position += duration;
+            
+            if (position >= 0) {
+                playlist.currentSong.position = @(position);
+                break;
+            }
+            
+            song = playlist.currentSong;
+            song.position = @0;
+            [playlist moveToPreviousSong];
+        }
+        
+        [[NSNotificationCenter defaultCenter] postNotificationName:kPLPlayerSongChange object:nil];
+        [self save];
+        
+        [self play];
     }
 }
 

@@ -77,6 +77,12 @@
     NSLog(@"found the next song %d", [self.position intValue]);
 }
 
+- (void)moveToPreviousSong {
+    PLPlaylistSong *previousSong = [self findPreviousSong];
+    if (previousSong != nil)
+        self.position = previousSong.order;
+}
+
 - (PLPlaylistSong *)currentSong {
     NSInteger position = [self.position intValue];
     
@@ -119,6 +125,25 @@
         if (songIndex > currentIndex && songIndex < minIndex) {
             result = song;
             minIndex = songIndex;
+        }
+    }
+    
+    return result;
+}
+
+- (PLPlaylistSong *)findPreviousSong {
+    NSInteger currentIndex = [self.position intValue];
+    NSInteger maxIndex = INT16_MIN;
+    PLPlaylistSong *result = nil;
+    
+    NSLog(@"Current index = %d", currentIndex);
+    
+    for (PLPlaylistSong *song in self.songs) {
+        NSInteger songIndex = [song.order intValue];
+        
+        if (songIndex < currentIndex && songIndex > maxIndex) {
+            result = song;
+            maxIndex = songIndex;
         }
     }
     

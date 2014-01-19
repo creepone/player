@@ -31,5 +31,6 @@
 - (void)renumberSongsOrder:(NSArray *)allSongs;
 - (PLPlaylistSong *)currentSong;
 - (void)moveToNextSong;
+- (void)moveToPreviousSong;
 
 @end

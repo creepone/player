@@ -261,20 +261,23 @@
             position = [player currentPosition];
         
         double indent = [cell respondsToSelector:@selector(separatorInset)] ? 30 : 0;
+        BOOL isPlayed = song.played && position == 0.0;
         
-        double coeff = song.played ? 1.0 : (position / duration);
+        double coeff = isPlayed ? 1.0 : (position / duration);
+        UIColor *backgroundColor = isPlayed ? [UIColor grayColor] : [UIColor orangeColor];
         CGFloat width = (cell.frame.size.width - kSongRowHeight - indent) * coeff;
         CGRect progressFrame = CGRectMake(kSongRowHeight + indent, kSongRowHeight - 6, width, 5);
         
         if (cell.backgroundView == nil) {
             cell.backgroundView = [[UIView alloc] init];
             UIView *progressView = [[UIView alloc] initWithFrame:progressFrame];
-            [progressView setBackgroundColor:[UIColor orangeColor]];
+            [progressView setBackgroundColor:backgroundColor];
             [cell.backgroundView addSubview:progressView];
         }
         else {
             UIView *progressView = [[cell.backgroundView subviews] objectAtIndex:0];
             [progressView setFrame:progressFrame];
+            [progressView setBackgroundColor:backgroundColor];
         }
     }
     else {
