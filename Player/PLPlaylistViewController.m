@@ -359,7 +359,9 @@
         
         [player play];
         
-        [self.tableView performSelector:@selector(reloadData) withObject:nil afterDelay:0.5];
+        // switch to the player view
+        [self.tabBarController setSelectedIndex:1];
+        // [self.tableView performSelector:@selector(reloadData) withObject:nil afterDelay:0.5];
     }
     else {
         PLPlaylist *playlist = [_playlistsFetchedResultsController objectAtIndexPath:indexPath];

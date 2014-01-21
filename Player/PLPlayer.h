@@ -9,6 +9,7 @@
 #import <Foundation/Foundation.h>
 
 static NSString *kPLPlayerSongChange = @"PLPlayerSongChange";
+static NSString *kPLPlayerIsPlayingChange = @"PLPlayerIsPlayingChange";
 
 @class PLPlaylistSong;
 
@@ -19,6 +20,7 @@ static NSString *kPLPlayerSongChange = @"PLPlayerSongChange";
 
 @property (nonatomic) NSTimeInterval currentPosition;
 
+- (BOOL)isPlaying;
 - (void)playPause;
 - (void)stop;
 - (void)play;

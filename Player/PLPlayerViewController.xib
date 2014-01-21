@@ -7,6 +7,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="PLPlayerViewController">
             <connections>
+                <outlet property="btnPlayPause" destination="128" id="yCe-qC-qtT"/>
                 <outlet property="imgArtwork" destination="4" id="116"/>
                 <outlet property="labelArtist" destination="96" id="120"/>
                 <outlet property="labelCurrent" destination="63" id="118"/>

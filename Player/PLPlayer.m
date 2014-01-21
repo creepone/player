@@ -91,6 +91,10 @@ void audioRouteChangeListenerCallback (void *inUserData, AudioSessionPropertyID 
 }
 
 
+- (BOOL)isPlaying {
+    return [_audioPlayer isPlaying];
+}
+
 - (void)playPause {
     if ([_audioPlayer isPlaying])
         [self pause];
@@ -122,6 +126,8 @@ void audioRouteChangeListenerCallback (void *inUserData, AudioSessionPropertyID 
     
     _audioPlayer.currentTime = [song.position doubleValue];
     [_audioPlayer play];
+    
+    [[NSNotificationCenter defaultCenter] postNotificationName:kPLPlayerIsPlayingChange object:nil];
 }
 
 - (void)stop {
@@ -133,6 +139,8 @@ void audioRouteChangeListenerCallback (void *inUserData, AudioSessionPropertyID 
         [_audioPlayer setDelegate:nil];
         _audioPlayer = nil;
         
+        [[NSNotificationCenter defaultCenter] postNotificationName:kPLPlayerIsPlayingChange object:nil];
+        
         [self save];
     }
 }
@@ -142,6 +150,8 @@ void audioRouteChangeListenerCallback (void *inUserData, AudioSessionPropertyID 
     song.position = [NSNumber numberWithDouble:_audioPlayer.currentTime];
 
     [_audioPlayer pause];
+    
+    [[NSNotificationCenter defaultCenter] postNotificationName:kPLPlayerIsPlayingChange object:nil];
 
     [self save];
 }

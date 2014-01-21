@@ -16,6 +16,7 @@
 @property (strong, nonatomic) IBOutlet UILabel *labelTitle;
 @property (strong, nonatomic) IBOutlet UILabel *labelArtist;
 @property (strong, nonatomic) IBOutlet UISlider *sliderTimeline;
+@property (strong, nonatomic) IBOutlet UIButton *btnPlayPause;
 
 - (IBAction)timelineChange:(id)sender;
 - (IBAction)clickedPlayPause:(id)sender;

@@ -40,12 +40,14 @@
     // Do any additional setup after loading the view from its nib.
     
     self.sliderTimeline.continuous = NO;
+    self.btnPlayPause.titleLabel.textAlignment = NSTextAlignmentCenter;
 }
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(changeSong) name:kPLPlayerSongChange object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reloadData) name:kPLPlayerSongChange object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reloadData) name:kPLPlayerIsPlayingChange object:nil];
     
     _isShown = YES;
     [self reloadData];
@@ -65,12 +67,9 @@
     // Dispose of any resources that can be recreated.
 }
 
-- (void)changeSong {
-    [self reloadData];
-}
-
 - (void)reloadData {
-    PLPlaylistSong *currentSong = [[PLPlayer sharedPlayer] currentSong];
+    PLPlayer *player = [PLPlayer sharedPlayer];
+    PLPlaylistSong *currentSong = [player currentSong];
     
     if (currentSong == nil) {
         self.labelArtist.text = @"";
@@ -78,6 +77,7 @@
         self.labelTotal.text = @"";
         self.labelCurrent.text = @"";
         self.sliderTimeline.hidden = YES;
+        [self.btnPlayPause setTitle:@"Play" forState:UIControlStateNormal];
         
         self.imgArtwork.image = [UIImage imageNamed:@"default_artwork.jpg"];
     }
@@ -105,6 +105,9 @@
         else {
             self.imgArtwork.image = [UIImage imageNamed:@"default_artwork.jpg"];
         }
+        
+        NSString *titleForButton = [player isPlaying] ? @"Pause" : @"Play";
+        [self.btnPlayPause setTitle:titleForButton forState:UIControlStateNormal];
     }
 }
 
