@@ -15,6 +15,7 @@
 @property (strong, nonatomic) IBOutlet UILabel *labelCurrent;
 @property (strong, nonatomic) IBOutlet UILabel *labelTitle;
 @property (strong, nonatomic) IBOutlet UILabel *labelArtist;
+@property (strong, nonatomic) IBOutlet UILabel *labelTrackNumber;
 @property (strong, nonatomic) IBOutlet UISlider *sliderTimeline;
 @property (strong, nonatomic) IBOutlet UIButton *btnPlayPause;
 

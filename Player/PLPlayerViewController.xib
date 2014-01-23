@@ -13,6 +13,7 @@
                 <outlet property="labelCurrent" destination="63" id="118"/>
                 <outlet property="labelTitle" destination="88" id="119"/>
                 <outlet property="labelTotal" destination="72" id="117"/>
+                <outlet property="labelTrackNumber" destination="PXX-hD-UaP" id="G2I-tn-bN4"/>
                 <outlet property="sliderTimeline" destination="48" id="121"/>
                 <outlet property="view" destination="1" id="3"/>
             </connections>
@@ -43,6 +44,13 @@
                 </label>
                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="123:20" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="72">
                     <rect key="frame" x="228" y="132" width="72" height="28"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="123:20" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="PXX-hD-UaP">
+                    <rect key="frame" x="228" y="37" width="72" height="28"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>

@@ -76,6 +76,7 @@
         self.labelTitle.text = @"";
         self.labelTotal.text = @"";
         self.labelCurrent.text = @"";
+        self.labelTrackNumber.text = @"";
         self.sliderTimeline.hidden = YES;
         [self.btnPlayPause setTitle:@"Play" forState:UIControlStateNormal];
         
@@ -108,6 +109,17 @@
         
         NSString *titleForButton = [player isPlaying] ? @"Pause" : @"Play";
         [self.btnPlayPause setTitle:titleForButton forState:UIControlStateNormal];
+        
+        NSUInteger trackNo = [[mediaItem valueForProperty:MPMediaItemPropertyAlbumTrackNumber] integerValue];
+        NSUInteger trackCount = [[mediaItem valueForProperty:MPMediaItemPropertyAlbumTrackCount] integerValue];
+        NSString *trackString = @"";
+        
+        if (trackCount > 0 && trackNo > 0)
+            trackString = [NSString stringWithFormat:@"%d/%d", trackNo, trackCount];
+        else if (trackNo > 0)
+            trackString = [NSString stringWithFormat:@"#%d", trackNo];
+        
+        self.labelTrackNumber.text = trackString;
     }
 }
 
