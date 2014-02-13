@@ -146,8 +146,10 @@
             [[PLPlayer sharedPlayer] playPause];
             break;
         case UIEventSubtypeRemoteControlPlay:
+            [[PLPlayer sharedPlayer] playPause];
             break;
         case UIEventSubtypeRemoteControlPause:
+            [[PLPlayer sharedPlayer] playPause];
             break;
         case UIEventSubtypeRemoteControlStop:
             break;
