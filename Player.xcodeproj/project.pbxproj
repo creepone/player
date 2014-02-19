@@ -128,6 +128,9 @@
 		C3BC5B151659146E002DA837 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		C3BC5B1716591AF8002DA837 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		C3BC5B1F165921AD002DA837 /* SliderCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SliderCell.xib; sourceTree = "<group>"; };
+		C3CF9FD418B52EF4004EE4A1 /* revision.prefix */ = {isa = PBXFileReference; lastKnownFileType = text; path = revision.prefix; sourceTree = "<group>"; };
+		C3CF9FD518B52EF4004EE4A1 /* prebuild.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = prebuild.sh; sourceTree = "<group>"; };
+		C3CF9FD618B52EF4004EE4A1 /* deploy.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = deploy.sh; sourceTree = "<group>"; };
 		C3D1A65816CFC337006D3E5F /* PLPlaylistSelectViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PLPlaylistSelectViewController.h; sourceTree = "<group>"; };
 		C3D1A65916CFC337006D3E5F /* PLPlaylistSelectViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PLPlaylistSelectViewController.m; sourceTree = "<group>"; };
 		C3FCEC2C16FF0AD3008CD497 /* PLPlaylistSongViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PLPlaylistSongViewController.h; sourceTree = "<group>"; };
@@ -208,6 +211,7 @@
 		C3BC5A321656B772002DA837 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				C3CF9FD318B52EE3004EE4A1 /* Build */,
 				C343756C166BE661006EC87D /* jbl_confirm.aiff */,
 				C343756A166BE5ED006EC87D /* jbl_confirm.caf */,
 				C3437568166BE531006EC87D /* jbl_confirm.mp3 */,
@@ -365,6 +369,16 @@
 				C3BC5B001658DE07002DA837 /* PLAlerts.m */,
 			);
 			name = Utilities;
+			sourceTree = "<group>";
+		};
+		C3CF9FD318B52EE3004EE4A1 /* Build */ = {
+			isa = PBXGroup;
+			children = (
+				C3CF9FD418B52EF4004EE4A1 /* revision.prefix */,
+				C3CF9FD518B52EF4004EE4A1 /* prebuild.sh */,
+				C3CF9FD618B52EF4004EE4A1 /* deploy.sh */,
+			);
+			name = Build;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -549,6 +563,8 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Player/Player-Prefix.pch";
 				INFOPLIST_FILE = "Player/Player-Info.plist";
+				INFOPLIST_PREFIX_HEADER = revision.prefix;
+				INFOPLIST_PREPROCESS = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -561,6 +577,8 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Player/Player-Prefix.pch";
 				INFOPLIST_FILE = "Player/Player-Info.plist";
+				INFOPLIST_PREFIX_HEADER = revision.prefix;
+				INFOPLIST_PREPROCESS = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};

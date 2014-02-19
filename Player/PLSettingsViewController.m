@@ -104,6 +104,23 @@
     else
         return 45.0;
 }
+    
+- (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section {
+    UIView *footerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 40)];
+    
+    UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(15, 10, 290, 23)];
+    label.textColor = [UIColor blackColor];
+    label.backgroundColor = [UIColor clearColor];
+    label.font = [UIFont systemFontOfSize:14.0];
+    label.textAlignment = NSTextAlignmentCenter;
+    
+    NSDictionary *infoDictionary = [[NSBundle mainBundle] infoDictionary];
+    NSString *version = [infoDictionary objectForKey:@"CFBundleVersion"];
+    label.text = [NSString stringWithFormat:@"Build %@", version];
+    
+    [footerView addSubview:label];
+    return footerView;
+}
 
 - (void)sliderValueChanged:(id)sender {
     UISlider *slider = sender;
