@@ -135,6 +135,7 @@
 		C3D1A65816CFC337006D3E5F /* PLPlaylistSelectViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PLPlaylistSelectViewController.h; sourceTree = "<group>"; };
 		C3D1A65916CFC337006D3E5F /* PLPlaylistSelectViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PLPlaylistSelectViewController.m; sourceTree = "<group>"; };
 		C3F1A13418E83F6F00A82EAC /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		C3F1A13618E842C300A82EAC /* player.psd */ = {isa = PBXFileReference; lastKnownFileType = file; path = player.psd; sourceTree = "<group>"; };
 		C3FCEC2C16FF0AD3008CD497 /* PLPlaylistSongViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PLPlaylistSongViewController.h; sourceTree = "<group>"; };
 		C3FCEC2D16FF0AD3008CD497 /* PLPlaylistSongViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PLPlaylistSongViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -214,6 +215,7 @@
 		C3BC5A321656B772002DA837 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				C3F1A13618E842C300A82EAC /* player.psd */,
 				C3CF9FD318B52EE3004EE4A1 /* Build */,
 				C343756C166BE661006EC87D /* jbl_confirm.aiff */,
 				C343756A166BE5ED006EC87D /* jbl_confirm.caf */,
