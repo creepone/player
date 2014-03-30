@@ -55,6 +55,7 @@
 		C3BC5B1816591AF8002DA837 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C3BC5B1716591AF8002DA837 /* AudioToolbox.framework */; };
 		C3BC5B20165921AD002DA837 /* SliderCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C3BC5B1F165921AD002DA837 /* SliderCell.xib */; };
 		C3D1A65A16CFC337006D3E5F /* PLPlaylistSelectViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C3D1A65916CFC337006D3E5F /* PLPlaylistSelectViewController.m */; };
+		C3F1A13518E83F6F00A82EAC /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C3F1A13418E83F6F00A82EAC /* Images.xcassets */; };
 		C3FCEC2E16FF0AD3008CD497 /* PLPlaylistSongViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C3FCEC2D16FF0AD3008CD497 /* PLPlaylistSongViewController.m */; };
 /* End PBXBuildFile section */
 
@@ -133,6 +134,7 @@
 		C3CF9FD618B52EF4004EE4A1 /* deploy.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = deploy.sh; sourceTree = "<group>"; };
 		C3D1A65816CFC337006D3E5F /* PLPlaylistSelectViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PLPlaylistSelectViewController.h; sourceTree = "<group>"; };
 		C3D1A65916CFC337006D3E5F /* PLPlaylistSelectViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PLPlaylistSelectViewController.m; sourceTree = "<group>"; };
+		C3F1A13418E83F6F00A82EAC /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		C3FCEC2C16FF0AD3008CD497 /* PLPlaylistSongViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PLPlaylistSongViewController.h; sourceTree = "<group>"; };
 		C3FCEC2D16FF0AD3008CD497 /* PLPlaylistSongViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PLPlaylistSongViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -203,6 +205,7 @@
 				C3BC5AAC1656C24D002DA837 /* ViewControllers */,
 				C3BC5A3A1656B772002DA837 /* PLAppDelegate.h */,
 				C3BC5A3B1656B772002DA837 /* PLAppDelegate.m */,
+				C3F1A13418E83F6F00A82EAC /* Images.xcassets */,
 				C3BC5A321656B772002DA837 /* Supporting Files */,
 			);
 			path = Player;
@@ -439,6 +442,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C3BC5A361656B772002DA837 /* InfoPlist.strings in Resources */,
+				C3F1A13518E83F6F00A82EAC /* Images.xcassets in Resources */,
 				C3BC5A3E1656B772002DA837 /* Default.png in Resources */,
 				C3BC5A401656B772002DA837 /* Default@2x.png in Resources */,
 				C3BC5A421656B772002DA837 /* Default-568h@2x.png in Resources */,
@@ -559,6 +563,8 @@
 		C3BC5A4C1656B772002DA837 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Player/Player-Prefix.pch";
@@ -573,6 +579,8 @@
 		C3BC5A4D1656B772002DA837 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Player/Player-Prefix.pch";

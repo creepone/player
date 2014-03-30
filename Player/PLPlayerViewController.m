@@ -115,9 +115,9 @@
         NSString *trackString = @"";
         
         if (trackCount > 0 && trackNo > 0)
-            trackString = [NSString stringWithFormat:@"%d/%d", trackNo, trackCount];
+            trackString = [NSString stringWithFormat:@"%ld/%ld", trackNo, trackCount];
         else if (trackNo > 0)
-            trackString = [NSString stringWithFormat:@"#%d", trackNo];
+            trackString = [NSString stringWithFormat:@"#%ld", trackNo];
         
         self.labelTrackNumber.text = trackString;
     }
@@ -153,7 +153,10 @@
         return;
     
     NSTimeInterval duration = [[currentSong.mediaItem valueForProperty:MPMediaItemPropertyPlaybackDuration] doubleValue];
-    [player setCurrentPosition:duration * value];
+    double updatedPosition = duration * value;
+    if (updatedPosition > duration - 1.0)
+        updatedPosition = duration - 1.0;
+    [player setCurrentPosition:updatedPosition];
 }
 
 - (IBAction)clickedPlayPause:(id)sender {
