@@ -56,15 +56,17 @@
 		C3D1A65A16CFC337006D3E5F /* PLPlaylistSelectViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C3D1A65916CFC337006D3E5F /* PLPlaylistSelectViewController.m */; };
 		C3F1A13518E83F6F00A82EAC /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C3F1A13418E83F6F00A82EAC /* Images.xcassets */; };
 		C3FCEC2E16FF0AD3008CD497 /* PLPlaylistSongViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C3FCEC2D16FF0AD3008CD497 /* PLPlaylistSongViewController.m */; };
+		C9C79EB53A7F4DF38B0DC6E7 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2F7BD0A371C24EA3853F30EA /* libPods.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		2F7BD0A371C24EA3853F30EA /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		C3437568166BE531006EC87D /* jbl_confirm.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = jbl_confirm.mp3; sourceTree = "<group>"; };
 		C343756A166BE5ED006EC87D /* jbl_confirm.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = jbl_confirm.caf; sourceTree = "<group>"; };
 		C343756C166BE661006EC87D /* jbl_confirm.aiff */ = {isa = PBXFileReference; lastKnownFileType = audio.aiff; path = jbl_confirm.aiff; sourceTree = "<group>"; };
 		C354484E165922C80083D703 /* SliderCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SliderCell.h; sourceTree = "<group>"; };
 		C354484F165922C80083D703 /* SliderCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SliderCell.m; sourceTree = "<group>"; };
-		C3BC5A271656B772002DA837 /* Player.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Player.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		C3BC5A271656B772002DA837 /* Baladeur.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Baladeur.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C3BC5A2B1656B772002DA837 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		C3BC5A2D1656B772002DA837 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		C3BC5A2F1656B772002DA837 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -133,9 +135,9 @@
 		C3D1A65816CFC337006D3E5F /* PLPlaylistSelectViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PLPlaylistSelectViewController.h; sourceTree = "<group>"; };
 		C3D1A65916CFC337006D3E5F /* PLPlaylistSelectViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PLPlaylistSelectViewController.m; sourceTree = "<group>"; };
 		C3F1A13418E83F6F00A82EAC /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
-		C3F1A13618E842C300A82EAC /* player.psd */ = {isa = PBXFileReference; lastKnownFileType = file; path = player.psd; sourceTree = "<group>"; };
 		C3FCEC2C16FF0AD3008CD497 /* PLPlaylistSongViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PLPlaylistSongViewController.h; sourceTree = "<group>"; };
 		C3FCEC2D16FF0AD3008CD497 /* PLPlaylistSongViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PLPlaylistSongViewController.m; sourceTree = "<group>"; };
+		F6B73325E5724C3CA11B6803 /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -150,6 +152,7 @@
 				C3BC5A2C1656B772002DA837 /* UIKit.framework in Frameworks */,
 				C3BC5A2E1656B772002DA837 /* Foundation.framework in Frameworks */,
 				C3BC5A301656B772002DA837 /* CoreGraphics.framework in Frameworks */,
+				C9C79EB53A7F4DF38B0DC6E7 /* libPods.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -171,13 +174,14 @@
 				C3BC5A311656B772002DA837 /* Player */,
 				C3BC5A2A1656B772002DA837 /* Frameworks */,
 				C3BC5A281656B772002DA837 /* Products */,
+				F6B73325E5724C3CA11B6803 /* Pods.xcconfig */,
 			);
 			sourceTree = "<group>";
 		};
 		C3BC5A281656B772002DA837 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				C3BC5A271656B772002DA837 /* Player.app */,
+				C3BC5A271656B772002DA837 /* Baladeur.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -192,6 +196,7 @@
 				C3BC5A2B1656B772002DA837 /* UIKit.framework */,
 				C3BC5A2D1656B772002DA837 /* Foundation.framework */,
 				C3BC5A2F1656B772002DA837 /* CoreGraphics.framework */,
+				2F7BD0A371C24EA3853F30EA /* libPods.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -213,7 +218,6 @@
 		C3BC5A321656B772002DA837 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				C3F1A13618E842C300A82EAC /* player.psd */,
 				C3CF9FD318B52EE3004EE4A1 /* Build */,
 				C343756C166BE661006EC87D /* jbl_confirm.aiff */,
 				C343756A166BE5ED006EC87D /* jbl_confirm.caf */,
@@ -390,9 +394,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = C3BC5A4B1656B772002DA837 /* Build configuration list for PBXNativeTarget "Player" */;
 			buildPhases = (
+				25A2695E373D4EAA92DCA1C9 /* Check Pods Manifest.lock */,
 				C3BC5A231656B772002DA837 /* Sources */,
 				C3BC5A241656B772002DA837 /* Frameworks */,
 				C3BC5A251656B772002DA837 /* Resources */,
+				F0CABAB3F387423BBD882EEE /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -400,7 +406,7 @@
 			);
 			name = Player;
 			productName = Player;
-			productReference = C3BC5A271656B772002DA837 /* Player.app */;
+			productReference = C3BC5A271656B772002DA837 /* Baladeur.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -463,6 +469,39 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		25A2695E373D4EAA92DCA1C9 /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		F0CABAB3F387423BBD882EEE /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Pods-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		C3BC5A231656B772002DA837 /* Sources */ = {
@@ -560,6 +599,7 @@
 		};
 		C3BC5A4C1656B772002DA837 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = F6B73325E5724C3CA11B6803 /* Pods.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
@@ -569,13 +609,14 @@
 				INFOPLIST_FILE = "Player/Player-Info.plist";
 				INFOPLIST_PREFIX_HEADER = revision.prefix;
 				INFOPLIST_PREPROCESS = YES;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = Baladeur;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
 		};
 		C3BC5A4D1656B772002DA837 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = F6B73325E5724C3CA11B6803 /* Pods.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
@@ -585,7 +626,7 @@
 				INFOPLIST_FILE = "Player/Player-Info.plist";
 				INFOPLIST_PREFIX_HEADER = revision.prefix;
 				INFOPLIST_PREPROCESS = YES;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = Baladeur;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;

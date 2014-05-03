@@ -15,7 +15,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "C3BC5A261656B772002DA837"
-               BuildableName = "Player.app"
+               BuildableName = "Baladeur.app"
                BlueprintName = "Player"
                ReferencedContainer = "container:Player.xcodeproj">
             </BuildableReference>
@@ -33,7 +33,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "C3BC5A261656B772002DA837"
-            BuildableName = "Player.app"
+            BuildableName = "Baladeur.app"
             BlueprintName = "Player"
             ReferencedContainer = "container:Player.xcodeproj">
          </BuildableReference>
@@ -52,7 +52,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "C3BC5A261656B772002DA837"
-            BuildableName = "Player.app"
+            BuildableName = "Baladeur.app"
             BlueprintName = "Player"
             ReferencedContainer = "container:Player.xcodeproj">
          </BuildableReference>
@@ -70,7 +70,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "C3BC5A261656B772002DA837"
-            BuildableName = "Player.app"
+            BuildableName = "Baladeur.app"
             BlueprintName = "Player"
             ReferencedContainer = "container:Player.xcodeproj">
          </BuildableReference>
