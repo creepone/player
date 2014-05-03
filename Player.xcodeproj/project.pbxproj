@@ -11,9 +11,6 @@
 		C343756B166BE5ED006EC87D /* jbl_confirm.caf in Resources */ = {isa = PBXBuildFile; fileRef = C343756A166BE5ED006EC87D /* jbl_confirm.caf */; };
 		C343756D166BE661006EC87D /* jbl_confirm.aiff in Resources */ = {isa = PBXBuildFile; fileRef = C343756C166BE661006EC87D /* jbl_confirm.aiff */; };
 		C3544850165922C80083D703 /* SliderCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C354484F165922C80083D703 /* SliderCell.m */; };
-		C3BC5A2C1656B772002DA837 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C3BC5A2B1656B772002DA837 /* UIKit.framework */; };
-		C3BC5A2E1656B772002DA837 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C3BC5A2D1656B772002DA837 /* Foundation.framework */; };
-		C3BC5A301656B772002DA837 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C3BC5A2F1656B772002DA837 /* CoreGraphics.framework */; };
 		C3BC5A361656B772002DA837 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = C3BC5A341656B772002DA837 /* InfoPlist.strings */; };
 		C3BC5A381656B772002DA837 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = C3BC5A371656B772002DA837 /* main.m */; };
 		C3BC5A3C1656B772002DA837 /* PLAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = C3BC5A3B1656B772002DA837 /* PLAppDelegate.m */; };
@@ -39,19 +36,15 @@
 		C3BC5ADC1656CA4E002DA837 /* PLPlaylistSong.m in Sources */ = {isa = PBXBuildFile; fileRef = C3BC5ADB1656CA4E002DA837 /* PLPlaylistSong.m */; };
 		C3BC5ADF1656CA73002DA837 /* PLCoreDataStack.m in Sources */ = {isa = PBXBuildFile; fileRef = C3BC5ADE1656CA73002DA837 /* PLCoreDataStack.m */; };
 		C3BC5AE21656CACC002DA837 /* PLDataAccess.m in Sources */ = {isa = PBXBuildFile; fileRef = C3BC5AE11656CABF002DA837 /* PLDataAccess.m */; };
-		C3BC5AE41656CBDD002DA837 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C3BC5AE31656CBDD002DA837 /* CoreData.framework */; };
 		C3BC5AE71656CC24002DA837 /* PLMigrationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = C3BC5AE61656CC24002DA837 /* PLMigrationManager.m */; };
 		C3BC5AEB1656CCC9002DA837 /* PLDefaultsManager.m in Sources */ = {isa = PBXBuildFile; fileRef = C3BC5AEA1656CCC9002DA837 /* PLDefaultsManager.m */; };
 		C3BC5AEF1656CD35002DA837 /* PLUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = C3BC5AEE1656CD35002DA837 /* PLUtils.m */; };
 		C3BC5AF41656CFA6002DA837 /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = C3BC5AF31656CFA6002DA837 /* MBProgressHUD.m */; };
 		C3BC5B011658DE07002DA837 /* PLAlerts.m in Sources */ = {isa = PBXBuildFile; fileRef = C3BC5B001658DE07002DA837 /* PLAlerts.m */; };
 		C3BC5B041658E76A002DA837 /* NSString+Extensions.m in Sources */ = {isa = PBXBuildFile; fileRef = C3BC5B031658E76A002DA837 /* NSString+Extensions.m */; };
-		C3BC5B0A1658F334002DA837 /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C3BC5B091658F333002DA837 /* MediaPlayer.framework */; };
 		C3BC5B0C1658FC0E002DA837 /* default_artwork.jpg in Resources */ = {isa = PBXBuildFile; fileRef = C3BC5B0B1658FC0E002DA837 /* default_artwork.jpg */; };
 		C3BC5B0E1659002C002DA837 /* todo.txt in Resources */ = {isa = PBXBuildFile; fileRef = C3BC5B0D1659002C002DA837 /* todo.txt */; };
 		C3BC5B14165912F6002DA837 /* PLPlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = C3BC5B13165912F5002DA837 /* PLPlayer.m */; };
-		C3BC5B161659146F002DA837 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C3BC5B151659146E002DA837 /* AVFoundation.framework */; };
-		C3BC5B1816591AF8002DA837 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C3BC5B1716591AF8002DA837 /* AudioToolbox.framework */; };
 		C3BC5B20165921AD002DA837 /* SliderCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C3BC5B1F165921AD002DA837 /* SliderCell.xib */; };
 		C3D1A65A16CFC337006D3E5F /* PLPlaylistSelectViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C3D1A65916CFC337006D3E5F /* PLPlaylistSelectViewController.m */; };
 		C3F1A13518E83F6F00A82EAC /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C3F1A13418E83F6F00A82EAC /* Images.xcassets */; };
@@ -67,9 +60,6 @@
 		C354484E165922C80083D703 /* SliderCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SliderCell.h; sourceTree = "<group>"; };
 		C354484F165922C80083D703 /* SliderCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SliderCell.m; sourceTree = "<group>"; };
 		C3BC5A271656B772002DA837 /* Baladeur.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Baladeur.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		C3BC5A2B1656B772002DA837 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
-		C3BC5A2D1656B772002DA837 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
-		C3BC5A2F1656B772002DA837 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		C3BC5A331656B772002DA837 /* Player-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Player-Info.plist"; sourceTree = "<group>"; };
 		C3BC5A351656B772002DA837 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		C3BC5A371656B772002DA837 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -108,7 +98,6 @@
 		C3BC5ADE1656CA73002DA837 /* PLCoreDataStack.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PLCoreDataStack.m; sourceTree = "<group>"; };
 		C3BC5AE01656CABF002DA837 /* PLDataAccess.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PLDataAccess.h; sourceTree = "<group>"; };
 		C3BC5AE11656CABF002DA837 /* PLDataAccess.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PLDataAccess.m; sourceTree = "<group>"; };
-		C3BC5AE31656CBDD002DA837 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		C3BC5AE51656CC24002DA837 /* PLMigrationManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PLMigrationManager.h; sourceTree = "<group>"; };
 		C3BC5AE61656CC24002DA837 /* PLMigrationManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PLMigrationManager.m; sourceTree = "<group>"; };
 		C3BC5AE91656CCC9002DA837 /* PLDefaultsManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PLDefaultsManager.h; sourceTree = "<group>"; };
@@ -121,13 +110,10 @@
 		C3BC5B001658DE07002DA837 /* PLAlerts.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PLAlerts.m; sourceTree = "<group>"; };
 		C3BC5B021658E76A002DA837 /* NSString+Extensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+Extensions.h"; sourceTree = "<group>"; };
 		C3BC5B031658E76A002DA837 /* NSString+Extensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+Extensions.m"; sourceTree = "<group>"; };
-		C3BC5B091658F333002DA837 /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
 		C3BC5B0B1658FC0E002DA837 /* default_artwork.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = default_artwork.jpg; sourceTree = "<group>"; };
 		C3BC5B0D1659002C002DA837 /* todo.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = todo.txt; sourceTree = "<group>"; };
 		C3BC5B12165912F4002DA837 /* PLPlayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PLPlayer.h; sourceTree = "<group>"; };
 		C3BC5B13165912F5002DA837 /* PLPlayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PLPlayer.m; sourceTree = "<group>"; };
-		C3BC5B151659146E002DA837 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
-		C3BC5B1716591AF8002DA837 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		C3BC5B1F165921AD002DA837 /* SliderCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SliderCell.xib; sourceTree = "<group>"; };
 		C3CF9FD418B52EF4004EE4A1 /* revision.prefix */ = {isa = PBXFileReference; lastKnownFileType = text; path = revision.prefix; sourceTree = "<group>"; };
 		C3CF9FD518B52EF4004EE4A1 /* prebuild.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = prebuild.sh; sourceTree = "<group>"; };
@@ -145,13 +131,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C3BC5B1816591AF8002DA837 /* AudioToolbox.framework in Frameworks */,
-				C3BC5B161659146F002DA837 /* AVFoundation.framework in Frameworks */,
-				C3BC5B0A1658F334002DA837 /* MediaPlayer.framework in Frameworks */,
-				C3BC5AE41656CBDD002DA837 /* CoreData.framework in Frameworks */,
-				C3BC5A2C1656B772002DA837 /* UIKit.framework in Frameworks */,
-				C3BC5A2E1656B772002DA837 /* Foundation.framework in Frameworks */,
-				C3BC5A301656B772002DA837 /* CoreGraphics.framework in Frameworks */,
 				C9C79EB53A7F4DF38B0DC6E7 /* libPods.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -189,13 +168,6 @@
 		C3BC5A2A1656B772002DA837 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				C3BC5B1716591AF8002DA837 /* AudioToolbox.framework */,
-				C3BC5B151659146E002DA837 /* AVFoundation.framework */,
-				C3BC5B091658F333002DA837 /* MediaPlayer.framework */,
-				C3BC5AE31656CBDD002DA837 /* CoreData.framework */,
-				C3BC5A2B1656B772002DA837 /* UIKit.framework */,
-				C3BC5A2D1656B772002DA837 /* Foundation.framework */,
-				C3BC5A2F1656B772002DA837 /* CoreGraphics.framework */,
 				2F7BD0A371C24EA3853F30EA /* libPods.a */,
 			);
 			name = Frameworks;
@@ -416,7 +388,7 @@
 			isa = PBXProject;
 			attributes = {
 				CLASSPREFIX = PL;
-				LastUpgradeCheck = 0450;
+				LastUpgradeCheck = 0510;
 				ORGANIZATIONNAME = "Tomas Vana";
 				TargetAttributes = {
 					C3BC5A261656B772002DA837 = {
@@ -571,6 +543,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
 			};
 			name = Debug;
@@ -603,12 +576,15 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_MODULES_AUTOLINK = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Player/Player-Prefix.pch";
 				INFOPLIST_FILE = "Player/Player-Info.plist";
 				INFOPLIST_PREFIX_HEADER = revision.prefix;
 				INFOPLIST_PREPROCESS = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				PRODUCT_NAME = Baladeur;
 				WRAPPER_EXTENSION = app;
 			};
@@ -620,12 +596,15 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_MODULES_AUTOLINK = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Player/Player-Prefix.pch";
 				INFOPLIST_FILE = "Player/Player-Info.plist";
 				INFOPLIST_PREFIX_HEADER = revision.prefix;
 				INFOPLIST_PREPROCESS = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				PRODUCT_NAME = Baladeur;
 				WRAPPER_EXTENSION = app;
 			};
