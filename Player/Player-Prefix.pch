@@ -11,4 +11,10 @@
 #ifdef __OBJC__
     #import <UIKit/UIKit.h>
     #import <Foundation/Foundation.h>
+    #import <extobjc.h>
+#endif
+
+#ifdef __APPCODE__objc_arc
+    #define weakify(X) (0);
+    #define strongify(X) (0);
 #endif

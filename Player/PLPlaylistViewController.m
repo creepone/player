@@ -15,6 +15,8 @@
 #import "PLPlayer.h"
 #import "PLUtils.h"
 #import "NSString+Extensions.h"
+#import "PLActivityViewController.h"
+#import "PLPromise.h"
 
 #define kSongRowHeight 75.0
 
@@ -23,6 +25,8 @@
     NSFetchedResultsController *_songsFetchedResultsController;
     NSFetchedResultsController *_playlistsFetchedResultsController;
     PLPlaylist *_selectedPlaylist;
+    
+    PLActivityViewController *_activityViewController;
     
     BOOL _inReorderingOperation;
 }
@@ -41,7 +45,6 @@
     if (self) {
         self.title = @"Playlists";
         self.tabBarItem.image = [UIImage imageNamed:@"list"];
-        
         _singleMode = YES;
         
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reloadData) name:UIApplicationDidBecomeActiveNotification object:nil];
@@ -57,6 +60,7 @@
     self.tableView.dataSource = self;
     self.tableView.delegate = self;
     self.tableView.allowsSelectionDuringEditing = YES;
+    self.tableView.backgroundColor = [UIColor greenColor];
     
     if ([self respondsToSelector:@selector(edgesForExtendedLayout)])
     {
@@ -89,7 +93,17 @@
     }
 }
 
-- (IBAction)addObject:(id)sender {
+- (IBAction)addObject:(id)sender
+{
+    _activityViewController = [[PLActivityViewController alloc] initWithActivities:nil appActivities:nil];
+
+    [_activityViewController presentFromRootViewController].then(^(id result) {
+        NSLog(@"dismissed");
+        return (id)nil;
+    }, nil);
+    
+    return;
+    
     if (_singleMode) {
         MPMediaPickerController *picker = [[MPMediaPickerController alloc] initWithMediaTypes:MPMediaTypeAnyAudio];
         [picker setDelegate: self];

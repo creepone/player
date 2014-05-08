@@ -37,7 +37,6 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
-        
     [PLDefaultsManager registerDefaults];
 
     // temporary VC for the progress hud
