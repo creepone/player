@@ -1,6 +1,6 @@
 #import <Foundation/Foundation.h>
 
-@class PLPromise;
+@class RXPromise;
 
 @protocol PLActivity <NSObject>
 
@@ -17,7 +17,7 @@
 /**
 * Asynchronously performs whatever logic this activity entails.
 */
-- (PLPromise *)performActivity;
+- (RXPromise *)performActivity;
 
 @optional
 

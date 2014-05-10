@@ -1,0 +1,20 @@
+// Common
+"Common.OK" = "OK";
+"Common.Cancel" = "Zrušiť";
+"Common.Next" = "Ďalej";
+"Common.Skip" = "Preskočiť";
+"Common.Retry" = "Znovu";
+
+// Messages
+"Messages.GeneralError" = "Nastala chyba.";
+"Messages.ConnectionLost" = "Nastal problém s vašim internetovým pripojením.";
+
+// Activities
+"Activities.Dropbox" = "Dropbox";
+"Activities.GDrive" = "Google Drive";
+"Activities.ICloud" = "iCloud";
+"Activities.Podcasts" = "Podcasty";
+"Activities.Download" = "Stiahnuť\nURL";
+"Activities.FileSharing" = "iTunes File\nSharing";
+"Activities.Music" = "Hudba";
+

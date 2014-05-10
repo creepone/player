@@ -1,12 +1,11 @@
+#import <RXPromise/RXPromise.h>
 #import "PLDownloadFromICloudActivity.h"
-#import "PLPromise.h"
 
 @implementation PLDownloadFromICloudActivity
 
 - (NSString *)title
 {
-    // todo: localize this
-    return @"iCloud";
+    return NSLocalizedString(@"Activities.ICloud", nil);
 }
 
 - (UIImage *)image
@@ -14,9 +13,9 @@
     return [UIImage imageNamed:@"ICloudIcon"];
 }
 
-- (PLPromise *)performActivity
+- (RXPromise *)performActivity
 {
-    return [PLPromise promiseWithResult:nil];
+    return [RXPromise promiseWithResult:nil];
 }
 
 @end

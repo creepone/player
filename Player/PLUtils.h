@@ -1,16 +1,20 @@
-#import <Foundation/Foundation.h>
-
 @class MPMediaItem;
 
 @interface PLUtils : NSObject
 
+/**
+ Returns YES if the given object is either nil or equal to [NSNull null].
+ */
++ (BOOL)isNilOrNull:(NSObject *)object;
+
+/**
+ Attempts to dismiss keyboard if being shown currently.
+ */
++ (void)dismissKeyboard;
+
 + (NSString *)documentDirectoryPath;
 
 + (NSString *)libraryDirectoryPath;
-
-+ (CGFloat)roundCoordinate:(CGFloat)coordinate;
-
-+ (NSString *)generateUuid;
 
 + (NSString *)formatDuration:(NSTimeInterval)duration;
 

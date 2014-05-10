@@ -1,12 +1,11 @@
+#import <RXPromise/RXPromise.h>
 #import "PLSelectFromMusicLibraryActivity.h"
-#import "PLPromise.h"
 
 @implementation PLSelectFromMusicLibraryActivity
 
 - (NSString *)title
 {
-    // todo: localize this
-    return @"Music";
+    return NSLocalizedString(@"Activities.Music", nil);
 }
 
 - (UIImage *)image
@@ -14,9 +13,9 @@
     return [UIImage imageNamed:@"MusicIcon"];
 }
 
-- (PLPromise *)performActivity
+- (RXPromise *)performActivity
 {
-    return [PLPromise promiseWithResult:nil];
+    return [RXPromise promiseWithResult:nil];
 }
 
 @end

@@ -1,12 +1,11 @@
+#import <RXPromise/RXPromise.h>
 #import "PLFileSharingActivity.h"
-#import "PLPromise.h"
 
 @implementation PLFileSharingActivity
 
 - (NSString *)title
 {
-    // todo: localize this
-    return @"iTunes File\nSharing";
+    return NSLocalizedString(@"Activities.FileSharing", nil);
 }
 
 - (UIImage *)image
@@ -19,9 +18,9 @@
     return [UIImage imageNamed:@"FileSharingIconHighlighted"];
 }
 
-- (PLPromise *)performActivity
+- (RXPromise *)performActivity
 {
-    return [PLPromise promiseWithResult:nil];
+    return [RXPromise promiseWithResult:nil];
 }
 
 @end

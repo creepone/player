@@ -1,6 +1,6 @@
 #import <UIKit/UIKit.h>
 
-@class PLPromise;
+@class RXPromise;
 
 @interface PLActivityViewController : NSObject
 
@@ -14,12 +14,12 @@
 * Presents this view controller under the view of the application's root view controller.
 * Delivers a promise that will be resolved as soon as it has performed all the work and was dismissed.
 */
-- (PLPromise *)presentFromRootViewController;
+- (RXPromise *)presentFromRootViewController;
 
 /**
 * Presents this view controller under the view of the given view controller.
 * Delivers a promise that will be resolved as soon as it has performed all the work and was dismissed.
 */
-- (PLPromise *)presentFromViewController:(UIViewController *)controller;
+- (RXPromise *)presentFromViewController:(UIViewController *)controller;
 
 @end

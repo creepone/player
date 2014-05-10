@@ -1,0 +1,20 @@
+// Common
+"Common.OK" = "OK";
+"Common.Cancel" = "Abbrechen";
+"Common.Next" = "Weiter";
+"Common.Skip" = "Überspringen";
+"Common.Retry" = "Wiederholen";
+
+// Messages
+"Messages.GeneralError" = "Ein Fehler ist aufgetreten.";
+"Messages.ConnectionLost" = "Es gibt ein Problem mit Ihrer Internetverbindung.";
+
+// Activities
+"Activities.Dropbox" = "Dropbox";
+"Activities.GDrive" = "Google Drive";
+"Activities.ICloud" = "iCloud";
+"Activities.Podcasts" = "Podcasts";
+"Activities.Download" = "Download\nURL";
+"Activities.FileSharing" = "iTunes File\nSharing";
+"Activities.Music" = "Musik";
+

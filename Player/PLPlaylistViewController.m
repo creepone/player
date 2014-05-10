@@ -7,6 +7,7 @@
 //
 
 #import <MediaPlayer/MediaPlayer.h>
+#import <RXPromise/RXPromise.h>
 
 #import "PLPlaylistViewController.h"
 #import "PLPlaylistSongViewController.h"
@@ -16,7 +17,6 @@
 #import "PLUtils.h"
 #import "NSString+Extensions.h"
 #import "PLActivityViewController.h"
-#import "PLPromise.h"
 #import "PLSelectFromMusicLibraryActivity.h"
 #import "PLDownloadFromDropboxActivity.h"
 #import "PLDownloadFromGDriveActivity.h"

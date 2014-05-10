@@ -1,6 +1,6 @@
 #import "JCRBlurView.h"
 
-@class PLPromise;
+@class RXPromise;
 
 @interface PLActivityView : JCRBlurView
 
@@ -14,6 +14,6 @@
 * Once an activity (@see PLActivity) is selected in this view, the given promise will be resolved with it.
 * If the view is dismissed without selecting an activity, the promise will resolve to nil.
 */
-- (PLPromise *)selectedActivity;
+- (RXPromise *)selectedActivity;
 
 @end

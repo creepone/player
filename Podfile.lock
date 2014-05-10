@@ -18,6 +18,12 @@ PODS:
   - AFNetworking/UIKit (2.2.3):
     - AFNetworking/NSURLConnection
     - AFNetworking/NSURLSession
+  - CocoaLumberjack (1.8.1):
+    - CocoaLumberjack/Extensions
+  - CocoaLumberjack/Core (1.8.1)
+  - CocoaLumberjack/Extensions (1.8.1):
+    - CocoaLumberjack/Core
+  - HexColors (2.2.1)
   - iOS-blur (0.0.5)
   - libextobjc (0.4):
     - libextobjc/EXTADT
@@ -55,12 +61,18 @@ PODS:
   - libextobjc/RuntimeExtensions (0.4)
   - libextobjc/UmbrellaHeader (0.4)
   - RXPromise (0.12.0)
+  - SSZipArchive (0.3.1)
+  - TSMessages (0.9.9):
+    - HexColors
 
 DEPENDENCIES:
   - AFNetworking (~> 2.0)
+  - CocoaLumberjack (~> 1.8)
   - iOS-blur (~> 0.0.5)
   - libextobjc (~> 0.4)
   - RXPromise (from `https://github.com/creepone/RXPromise.git`, branch `master`)
+  - SSZipArchive (~> 0.3)
+  - TSMessages (~> 0.9.9)
 
 EXTERNAL SOURCES:
   RXPromise:
@@ -69,8 +81,12 @@ EXTERNAL SOURCES:
 
 SPEC CHECKSUMS:
   AFNetworking: ae513199cca79e9d7af2708ccabe2ed075550c42
+  CocoaLumberjack: 020378ec400d658923bf5887178394f65f052c90
+  HexColors: 99211502e17904af7891fc8f687d0e4958a6d66e
   iOS-blur: 2610bc818831fa4eec051a7193e47639d480fb32
   libextobjc: 2c9fc8226f0f38e562587f65172f93f0c9b4a47a
   RXPromise: d5b80b17dee7c9360e7be2ec140f74667855f7ac
+  SSZipArchive: 5479ec96c412904a987a3ae3180d65234aa46b6e
+  TSMessages: 49f9083df41d320b34e8d66c5ed3ef147e543187
 
 COCOAPODS: 0.32.1

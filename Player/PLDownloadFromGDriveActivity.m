@@ -1,12 +1,11 @@
+#import <RXPromise/RXPromise.h>
 #import "PLDownloadFromGDriveActivity.h"
-#import "PLPromise.h"
 
 @implementation PLDownloadFromGDriveActivity
 
 - (NSString *)title
 {
-    // todo: localize this
-    return @"Google Drive";
+    return NSLocalizedString(@"Activities.GDrive", nil);
 }
 
 - (UIImage *)image
@@ -14,9 +13,9 @@
     return [UIImage imageNamed:@"GDriveIcon"];
 }
 
-- (PLPromise *)performActivity
+- (RXPromise *)performActivity
 {
-    return [PLPromise promiseWithResult:nil];
+    return [RXPromise promiseWithResult:nil];
 }
 
 @end

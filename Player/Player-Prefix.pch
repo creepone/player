@@ -12,6 +12,7 @@
     #import <UIKit/UIKit.h>
     #import <Foundation/Foundation.h>
     #import <extobjc.h>
+    #import "PLLogging.h"
 #endif
 
 #ifdef __APPCODE__objc_arc

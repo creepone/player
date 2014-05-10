@@ -1,12 +1,11 @@
+#import <RXPromise/RXPromise.h>
 #import "PLDownloadFromDropboxActivity.h"
-#import "PLPromise.h"
 
 @implementation PLDownloadFromDropboxActivity
 
 - (NSString *)title
 {
-    // todo: localize this
-    return @"Dropbox";
+    return NSLocalizedString(@"Activities.Dropbox", nil);
 }
 
 - (UIImage *)image
@@ -14,9 +13,9 @@
     return [UIImage imageNamed:@"DropboxIcon"];
 }
 
-- (PLPromise *)performActivity
+- (RXPromise *)performActivity
 {
-    return [PLPromise promiseWithResult:nil];
+    return [RXPromise promiseWithResult:nil];
 }
 
 @end

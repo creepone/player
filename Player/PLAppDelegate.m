@@ -30,6 +30,8 @@
 
 - (void)startDataInitialization;
 
+static void onUncaughtException(NSException* exception);
+
 @end
 
 
@@ -37,6 +39,9 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+    [PLLogging setupLogging];
+    NSSetUncaughtExceptionHandler(&onUncaughtException);
+
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     self.window.tintColor = [PLColors themeColor];
     [PLDefaultsManager registerDefaults];
@@ -165,5 +170,9 @@
     }
 }
 
+static void onUncaughtException(NSException* exception)
+{
+    DDLogCError(@"Uncaught exception:\n%@\n%@\n%@", exception.name, exception.reason, exception.userInfo);
+}
 
 @end

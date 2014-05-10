@@ -1,12 +1,11 @@
+#import <RXPromise/RXPromise.h>
 #import "PLDownloadPodcastActivity.h"
-#import "PLPromise.h"
 
 @implementation PLDownloadPodcastActivity
 
 - (NSString *)title
 {
-    // todo: localize this
-    return @"Podcasts";
+    return NSLocalizedString(@"Activities.Podcasts", nil);
 }
 
 - (UIImage *)image
@@ -19,9 +18,9 @@
     return [UIImage imageNamed:@"PodcastsIconHighlighted"];
 }
 
-- (PLPromise *)performActivity
+- (RXPromise *)performActivity
 {
-    return [PLPromise promiseWithResult:nil];
+    return [RXPromise promiseWithResult:nil];
 }
 
 @end

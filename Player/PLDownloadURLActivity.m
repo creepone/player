@@ -1,12 +1,11 @@
+#import <RXPromise/RXPromise.h>
 #import "PLDownloadURLActivity.h"
-#import "PLPromise.h"
 
 @implementation PLDownloadURLActivity
 
 - (NSString *)title
 {
-    // todo: localize this
-    return @"Download\nURL";
+    return NSLocalizedString(@"Activities.Download", nil);
 }
 
 - (UIImage *)image
@@ -19,9 +18,9 @@
     return [UIImage imageNamed:@"DownloadIconHighlighted"];
 }
 
-- (PLPromise *)performActivity
+- (RXPromise *)performActivity
 {
-    return [PLPromise promiseWithResult:nil];
+    return [RXPromise promiseWithResult:nil];
 }
 
 @end

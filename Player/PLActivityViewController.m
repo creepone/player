@@ -1,8 +1,8 @@
 #import <JCRBlurView.h>
+#import <RXPromise/RXPromise.h>
 #import "PLActivityViewController.h"
 #import "PLActivityView.h"
 #import "PLActivity.h"
-#import "PLPromise.h"
 
 @interface PLActivityViewController () {
     UIView *_backgroundView;
@@ -10,7 +10,7 @@
     NSLayoutConstraint *_constraintActivityHidden;
     NSLayoutConstraint *_constraintActivityShown;
 
-    PLPromise *_completionPromise;
+    RXPromise *_completionPromise;
 }
 
 @property (strong, nonatomic) UIView *view;
@@ -89,15 +89,15 @@
     }];
 }
 
-- (PLPromise *)presentFromRootViewController
+- (RXPromise *)presentFromRootViewController
 {
     UIViewController *rootViewController = [UIApplication sharedApplication].delegate.window.rootViewController;
     return [self presentFromViewController:rootViewController];
 }
 
-- (PLPromise *)presentFromViewController:(UIViewController *)controller
+- (RXPromise *)presentFromViewController:(UIViewController *)controller
 {
-    _completionPromise = [[PLPromise alloc] init];
+    _completionPromise = [[RXPromise alloc] init];
 
     [controller.view addSubview:self.view];
     [self addSuperviewConstraints];

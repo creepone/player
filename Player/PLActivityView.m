@@ -1,6 +1,6 @@
+#import <RXPromise/RXPromise.h>
 #import "PLActivityView.h"
 #import "PLButton.h"
-#import "PLPromise.h"
 #import "PLColors.h"
 #import "PLActivity.h"
 #import "UIView+PLExtensions.h"
@@ -12,7 +12,7 @@ static CGFloat kButtonHeight = 52;
 
 @interface PLActivityView() {
     NSArray *_activities, *_appActivities;
-    PLPromise *_selectedActivityPromise;
+    RXPromise *_selectedActivityPromise;
 }
 @end
 
@@ -25,14 +25,14 @@ static CGFloat kButtonHeight = 52;
     if (self) {
         _activities = activities;
         _appActivities = appActivities;
-        _selectedActivityPromise = [[PLPromise alloc] init];
+        _selectedActivityPromise = [[RXPromise alloc] init];
 
         [self setupViews];
     }
     return self;
 }
 
-- (PLPromise *)selectedActivity
+- (RXPromise *)selectedActivity
 {
     return _selectedActivityPromise;
 }
@@ -43,7 +43,7 @@ static CGFloat kButtonHeight = 52;
     [self addSubview:buttonCancel];
     [buttonCancel setTranslatesAutoresizingMaskIntoConstraints:NO];
     [buttonCancel.titleLabel setFont:[UIFont systemFontOfSize:23.f]];
-    [buttonCancel setTitle:@"Cancel" forState:UIControlStateNormal]; // todo: localize
+    [buttonCancel setTitle:NSLocalizedString(@"Common.Cancel", nil) forState:UIControlStateNormal];
     [buttonCancel setHighlightedBackgroundColor:[PLColors shadeOfGrey:229]];
     [buttonCancel addTarget:self action:@selector(tappedCancel:) forControlEvents:UIControlEventTouchUpInside];
     [buttonCancel pl_addHeightConstraint:kButtonHeight];
