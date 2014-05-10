@@ -60,7 +60,12 @@ DEPENDENCIES:
   - AFNetworking (~> 2.0)
   - iOS-blur (~> 0.0.5)
   - libextobjc (~> 0.4)
-  - RXPromise (~> 0.12.0)
+  - RXPromise (from `https://github.com/creepone/RXPromise.git`, branch `master`)
+
+EXTERNAL SOURCES:
+  RXPromise:
+    :branch: master
+    :git: https://github.com/creepone/RXPromise.git
 
 SPEC CHECKSUMS:
   AFNetworking: ae513199cca79e9d7af2708ccabe2ed075550c42

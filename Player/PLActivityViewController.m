@@ -1,11 +1,3 @@
-//
-//  PLActivityViewController.m
-//  Player
-//
-//  Created by Tomas Vana on 04/05/14.
-//  Copyright (c) 2014 Tomas Vana. All rights reserved.
-//
-
 #import <JCRBlurView.h>
 #import "PLActivityViewController.h"
 #import "PLActivityView.h"
@@ -53,7 +45,7 @@
         swipeRecognizer.direction = UISwipeGestureRecognizerDirectionDown;
         [_activityView addGestureRecognizer:swipeRecognizer];
         
-        _activityView.selectedActivity.thenOnMain(^(PLActivity *activity) {
+        _activityView.selectedActivity.thenOnMain(^(id<PLActivity> activity) {
             [self dismiss:activity];
             return (id)nil;
         }, nil);
@@ -73,7 +65,7 @@
     [self dismiss:nil];
 }
 
-- (void)dismiss:(PLActivity *)activity
+- (void)dismiss:(id<PLActivity>)activity
 {
     [self.view removeConstraint:_constraintActivityShown];
     [self.view addConstraint:_constraintActivityHidden];
@@ -129,9 +121,9 @@
 - (void)addSuperviewConstraints
 {
     UIView *superview = self.view.superview;
-    NSDictionary *viewMap = @{ @"view": self.view };
-    [superview addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[view]|" options:0 metrics:nil views:viewMap]];
-    [superview addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|[view]|" options:0 metrics:nil views:viewMap]];
+    NSDictionary *viewMap = NSDictionaryOfVariableBindings(_view);
+    [superview addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[_view]|" options:0 metrics:nil views:viewMap]];
+    [superview addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|[_view]|" options:0 metrics:nil views:viewMap]];
     [superview layoutIfNeeded];
 }
 
@@ -139,15 +131,15 @@
 {
     // add backgroundView constraints
     {
-        NSDictionary *viewMap = @{ @"backgroundView": _backgroundView };
-        [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[backgroundView]|" options:0 metrics:nil views:viewMap]];
-        [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|[backgroundView]|" options:0 metrics:nil views:viewMap]];
+        NSDictionary *viewMap = NSDictionaryOfVariableBindings(_backgroundView);
+        [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[_backgroundView]|" options:0 metrics:nil views:viewMap]];
+        [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|[_backgroundView]|" options:0 metrics:nil views:viewMap]];
     }
     
     // add activityView constraints
     {
-        NSDictionary *viewMap = @{ @"activityView": _activityView };
-        [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[activityView]|" options:0 metrics:nil views:viewMap]];
+        NSDictionary *viewMap = NSDictionaryOfVariableBindings(_activityView);
+        [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[_activityView]|" options:0 metrics:nil views:viewMap]];
         
         _constraintActivityHidden = [NSLayoutConstraint constraintWithItem:_activityView attribute:NSLayoutAttributeTop relatedBy:NSLayoutRelationEqual toItem:self.view attribute:NSLayoutAttributeBottom multiplier:1.f constant:0.f];
         _constraintActivityShown = [NSLayoutConstraint constraintWithItem:_activityView attribute:NSLayoutAttributeBottom relatedBy:NSLayoutRelationEqual toItem:self.view attribute:NSLayoutAttributeBottom multiplier:1.f constant:0.f];

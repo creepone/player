@@ -18,6 +18,7 @@
 #import "PLPlayerViewController.h"
 #import "PLBookmarksViewController.h"
 #import "PLSettingsViewController.h"
+#import "PLColors.h"
 
 #define MigrationErrorAlertTag 44
 
@@ -37,6 +38,7 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+    self.window.tintColor = [PLColors themeColor];
     [PLDefaultsManager registerDefaults];
 
     // temporary VC for the progress hud

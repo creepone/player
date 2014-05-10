@@ -17,6 +17,13 @@
 #import "NSString+Extensions.h"
 #import "PLActivityViewController.h"
 #import "PLPromise.h"
+#import "PLSelectFromMusicLibraryActivity.h"
+#import "PLDownloadFromDropboxActivity.h"
+#import "PLDownloadFromGDriveActivity.h"
+#import "PLDownloadFromICloudActivity.h"
+#import "PLDownloadURLActivity.h"
+#import "PLDownloadPodcastActivity.h"
+#import "PLFileSharingActivity.h"
 
 #define kSongRowHeight 75.0
 
@@ -95,13 +102,14 @@
 
 - (IBAction)addObject:(id)sender
 {
-    _activityViewController = [[PLActivityViewController alloc] initWithActivities:nil appActivities:nil];
+    _activityViewController = [[PLActivityViewController alloc] initWithActivities:@[[PLDownloadURLActivity new], [PLFileSharingActivity new], [PLDownloadPodcastActivity new]]
+                                                                     appActivities:@[[PLSelectFromMusicLibraryActivity new], [PLDownloadFromDropboxActivity new], [PLDownloadFromGDriveActivity new], [PLDownloadFromICloudActivity new]]];
 
     [_activityViewController presentFromRootViewController].then(^(id result) {
         NSLog(@"dismissed");
         return (id)nil;
     }, nil);
-    
+
     return;
     
     if (_singleMode) {

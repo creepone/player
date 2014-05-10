@@ -1,11 +1,3 @@
-//
-//  PLButton.m
-//  Player
-//
-//  Created by Tomas Vana on 07/05/14.
-//  Copyright (c) 2014 Tomas Vana. All rights reserved.
-//
-
 #import "PLButton.h"
 
 @interface PLButton() {
@@ -30,6 +22,12 @@
     else {
         self.backgroundColor = _originalBackgroundColor;
     }
+}
+
+- (void)tintColorDidChange
+{
+    [self setTitleColor:self.tintColor forState:UIControlStateNormal];
+    [super tintColorDidChange];
 }
 
 @end
