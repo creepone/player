@@ -23,6 +23,7 @@ PODS:
   - CocoaLumberjack/Core (1.8.1)
   - CocoaLumberjack/Extensions (1.8.1):
     - CocoaLumberjack/Core
+  - FastImageCache (1.3)
   - HexColors (2.2.1)
   - iOS-blur (0.0.5)
   - libextobjc (0.4):
@@ -68,6 +69,7 @@ PODS:
 DEPENDENCIES:
   - AFNetworking (~> 2.0)
   - CocoaLumberjack (~> 1.8)
+  - FastImageCache (~> 1.3)
   - iOS-blur (~> 0.0.5)
   - libextobjc (~> 0.4)
   - RXPromise (from `https://github.com/creepone/RXPromise.git`, branch `master`)
@@ -82,6 +84,7 @@ EXTERNAL SOURCES:
 SPEC CHECKSUMS:
   AFNetworking: ae513199cca79e9d7af2708ccabe2ed075550c42
   CocoaLumberjack: 020378ec400d658923bf5887178394f65f052c90
+  FastImageCache: cad57e40626d657f0471695fde73dc852972e7ee
   HexColors: 99211502e17904af7891fc8f687d0e4958a6d66e
   iOS-blur: 2610bc818831fa4eec051a7193e47639d480fb32
   libextobjc: 2c9fc8226f0f38e562587f65172f93f0c9b4a47a

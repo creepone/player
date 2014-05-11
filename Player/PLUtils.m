@@ -47,6 +47,7 @@
     return [[NSString alloc] initWithFormat:@"%02ld:%02ld", min, sec];
 }
 
+// todo: replace this with PLMediaLibrarySearch method calls
 + (MPMediaItem *)mediaItemForPersistentID:(NSNumber *)persistentId
 {
     MPMediaPropertyPredicate *predicate = [MPMediaPropertyPredicate predicateWithValue:persistentId forProperty:MPMediaItemPropertyPersistentID];
