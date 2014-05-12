@@ -1,5 +1,4 @@
 #import <RXPromise/RXPromise.h>
-#import <MediaPlayer/MediaPlayer.h>
 #import "PLMediaLibrarySearch.h"
 #import "PLTrack.h"
 #import "NSArray+PLExtensions.h"
@@ -41,12 +40,30 @@
         MPMediaQuery *query = [MPMediaQuery audiobooksQuery];
 
         NSArray *results = [query.collections pl_map:^(MPMediaItemCollection *audiobook) {
-            return [[PLTrackGroup alloc] initWithType:MPMediaTypeAudioBook collection:audiobook];
+            return [[PLTrackGroup alloc] initWithType:PLTrackGroupTypeAudiobooks collection:audiobook];
         }];
 
         [promise fulfillWithValue:results];
     });
 
+    return promise;
+}
+
++ (RXPromise *)allAlbums
+{
+    RXPromise *promise = [[RXPromise alloc] init];
+    
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        
+        MPMediaQuery *query = [MPMediaQuery albumsQuery];
+        
+        NSArray *results = [query.collections pl_map:^(MPMediaItemCollection *album) {
+            return [[PLTrackGroup alloc] initWithType:PLTrackGroupTypeAlbums collection:album];
+        }];
+        
+        [promise fulfillWithValue:results];
+    });
+    
     return promise;
 }
 

@@ -4,7 +4,6 @@
 #import "PLMediaLibrarySearch.h"
 #import "PLTrackGroupTableViewCell.h"
 #import "PLTrackGroupTableViewCellController.h"
-#import "PLTrackGroup.h"
 #import "NSObject+PLExtensions.h"
 
 @interface PLTrackGroupViewController () {
@@ -24,11 +23,17 @@
     
     RXPromise *promise;
     
-    switch (self.mediaType) {
-        case MPMediaTypeAudioBook:
+    switch (self.trackGroupType) {
+        case PLTrackGroupTypeAudiobooks:
         {
             self.title = @"Audiobooks"; // todo: localize
             promise = [PLMediaLibrarySearch allAudiobooks];
+            break;
+        }
+        case PLTrackGroupTypeAlbums:
+        {
+            self.title = @"Albums"; // todo: localize
+            promise = [PLMediaLibrarySearch allAlbums];
             break;
         }
         default:

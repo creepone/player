@@ -37,8 +37,32 @@
                         <sections>
                             <tableViewSection id="cD7-5x-dJK">
                                 <cells>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" textLabel="IHk-lO-gOm" imageView="CHE-Qi-15z" style="IBUITableViewCellStyleDefault" id="Yaf-uI-I9v">
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" textLabel="LbJ-5o-bFU" imageView="qb9-1H-lCR" style="IBUITableViewCellStyleDefault" id="s3d-Pq-QPt">
                                         <rect key="frame" x="0.0" y="108" width="320" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="s3d-Pq-QPt" id="zjX-y6-3Mx">
+                                            <rect key="frame" x="0.0" y="0.0" width="287" height="43"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="Albums" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="LbJ-5o-bFU">
+                                                    <rect key="frame" x="50" y="0.0" width="235" height="43"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" image="AlbumsIcon" id="qb9-1H-lCR">
+                                                    <rect key="frame" x="15" y="10" width="20" height="23"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                </imageView>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <segue destination="1Sq-yp-9l8" kind="push" identifier="albums" id="pqU-vJ-VhY"/>
+                                        </connections>
+                                    </tableViewCell>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" textLabel="IHk-lO-gOm" imageView="CHE-Qi-15z" style="IBUITableViewCellStyleDefault" id="Yaf-uI-I9v">
+                                        <rect key="frame" x="0.0" y="152" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Yaf-uI-I9v" id="izg-Xf-NCO">
                                             <rect key="frame" x="0.0" y="0.0" width="287" height="43"/>
@@ -60,14 +84,6 @@
                                         <connections>
                                             <segue destination="1Sq-yp-9l8" kind="push" identifier="audiobooks" id="bMu-bw-F6S"/>
                                         </connections>
-                                    </tableViewCell>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="s3d-Pq-QPt">
-                                        <rect key="frame" x="0.0" y="152" width="320" height="44"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="s3d-Pq-QPt" id="zjX-y6-3Mx">
-                                            <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                        </tableViewCellContentView>
                                     </tableViewCell>
                                 </cells>
                             </tableViewSection>
@@ -407,6 +423,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="AlbumsIcon" width="20" height="23"/>
         <image name="AudiobooksIcon" width="19" height="24"/>
         <image name="ButtonAdd" width="25" height="25"/>
         <image name="DefaultArtwork" width="88" height="88"/>
@@ -416,4 +433,7 @@
         <simulatedOrientationMetrics key="orientation"/>
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
+    <inferredMetricsTieBreakers>
+        <segue reference="pqU-vJ-VhY"/>
+    </inferredMetricsTieBreakers>
 </document>

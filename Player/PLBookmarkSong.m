@@ -7,10 +7,8 @@
 //
 
 #import <MediaPlayer/MediaPlayer.h>
-
+#import "PLMediaLibrarySearch.h"
 #import "PLBookmarkSong.h"
-#import "PLBookmark.h"
-#import "PLUtils.h"
 
 @interface PLBookmarkSong() {
     MPMediaItem *_mediaItem;
@@ -28,7 +26,7 @@
 
 - (MPMediaItem *)mediaItem {
     if (_mediaItem == nil) {
-        _mediaItem = [PLUtils mediaItemForPersistentID:self.persistentId];
+        _mediaItem = [PLMediaLibrarySearch mediaItemWithPersistentId:self.persistentId];
     }
     return _mediaItem;
 }

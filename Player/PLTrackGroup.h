@@ -2,9 +2,14 @@
 
 @class RXPromise;
 
+typedef NS_ENUM(NSInteger, PLTrackGroupType) {
+    PLTrackGroupTypeAudiobooks,
+    PLTrackGroupTypeAlbums
+};
+
 @interface PLTrackGroup : NSObject
 
-- (instancetype)initWithType:(MPMediaType)type collection:(MPMediaItemCollection *)collection;
+- (instancetype)initWithType:(PLTrackGroupType)type collection:(MPMediaItemCollection *)collection;
 
 @property (nonatomic, readonly) NSString *artist;
 @property (nonatomic, readonly) NSString *title;

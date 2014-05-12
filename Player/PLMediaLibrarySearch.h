@@ -1,5 +1,7 @@
 #import <MediaPlayer/MediaPlayer.h>
 
+@class RXPromise;
+
 @interface PLMediaLibrarySearch : NSObject
 
 /**
@@ -16,5 +18,10 @@
 * Resolves to an array of PLTrackGroups corresponding to each audiobook found in the media library.
 */
 + (RXPromise *)allAudiobooks;
+
+/**
+ * Resolves to an array of PLTrackGroups corresponding to each album found in the media library.
+ */
++ (RXPromise *)allAlbums;
 
 @end

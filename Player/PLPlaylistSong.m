@@ -9,8 +9,7 @@
 #import <MediaPlayer/MediaPlayer.h>
 
 #import "PLPlaylistSong.h"
-#import "PLPlaylist.h"
-#import "PLUtils.h"
+#import "PLMediaLibrarySearch.h"
 
 @interface PLPlaylistSong() {
     MPMediaItem *_mediaItem;
@@ -31,7 +30,7 @@
 
 - (MPMediaItem *)mediaItem {
     if (_mediaItem == nil)
-        _mediaItem = [PLUtils mediaItemForPersistentID:self.persistentId];
+        _mediaItem = [PLMediaLibrarySearch mediaItemWithPersistentId:self.persistentId];
     return _mediaItem;
 }
 

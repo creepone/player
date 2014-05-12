@@ -28,7 +28,11 @@
 {
     if ([segue.identifier isEqualToString:@"audiobooks"]) {
         PLTrackGroupViewController *trackGroupVc = [segue destinationViewController];
-        trackGroupVc.mediaType = MPMediaTypeAudioBook;
+        trackGroupVc.trackGroupType = PLTrackGroupTypeAudiobooks;
+    }
+    else if ([segue.identifier isEqualToString:@"albums"]) {
+        PLTrackGroupViewController *trackGroupVc = [segue destinationViewController];
+        trackGroupVc.trackGroupType = PLTrackGroupTypeAlbums;
     }
 }
 
