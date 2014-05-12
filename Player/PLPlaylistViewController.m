@@ -67,7 +67,6 @@
     self.tableView.dataSource = self;
     self.tableView.delegate = self;
     self.tableView.allowsSelectionDuringEditing = YES;
-    self.tableView.backgroundColor = [UIColor greenColor];
     
     if ([self respondsToSelector:@selector(edgesForExtendedLayout)])
     {
@@ -101,24 +100,22 @@
 }
 
 - (IBAction)addObject:(id)sender
-{
-    _activityViewController = [[PLActivityViewController alloc] initWithActivities:@[[PLDownloadURLActivity new], [PLFileSharingActivity new], [PLDownloadPodcastActivity new]]
-                                                                     appActivities:@[[PLSelectFromMusicLibraryActivity new], [PLDownloadFromDropboxActivity new], [PLDownloadFromGDriveActivity new], [PLDownloadFromICloudActivity new]]];
-
-    [_activityViewController presentFromRootViewController].then(^(id result) {
-        NSLog(@"dismissed");
-        return (id)nil;
-    }, nil);
-
-    return;
-    
+{    
     if (_singleMode) {
-        MPMediaPickerController *picker = [[MPMediaPickerController alloc] initWithMediaTypes:MPMediaTypeAnyAudio];
+        
+        _activityViewController = [[PLActivityViewController alloc] initWithActivities:@[[PLDownloadURLActivity new], [PLFileSharingActivity new], [PLDownloadPodcastActivity new]]
+                                                                         appActivities:@[[[PLSelectFromMusicLibraryActivity alloc] initWithPlaylist:_selectedPlaylist], [PLDownloadFromDropboxActivity new], [PLDownloadFromGDriveActivity new], [PLDownloadFromICloudActivity new]]];
+        
+        [_activityViewController presentFromRootViewController].then(^(id result) {
+            return (id)nil;
+        }, nil);
+        
+        /*MPMediaPickerController *picker = [[MPMediaPickerController alloc] initWithMediaTypes:MPMediaTypeAnyAudio];
         [picker setDelegate: self];
         [picker setAllowsPickingMultipleItems:YES];
         picker.prompt = @"Add songs to playlist";
         
-        [self presentViewController:picker animated:YES completion:nil];        
+        [self presentViewController:picker animated:YES completion:nil];*/
     }
     else {
         UIAlertView * alert = [[UIAlertView alloc] initWithTitle:@"New playlist" message:@"Enter a name for the new playlist" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:@"Cancel", nil];
