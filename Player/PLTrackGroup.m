@@ -5,8 +5,7 @@
 
 @interface PLTrackGroup() {
     NSNumber *_persistentId;
-    NSNumber *_albumPersistentId;
-    NSNumber *_podcastPersistentId;
+    NSNumber *_parentPersistentId;
     PLTrackGroupType _trackGroupType;
 }
 @end
@@ -25,13 +24,12 @@
         _trackCount = [collection  count];
         _duration = [self calculateDuration:collection];
 
-        _albumPersistentId = [representativeItem valueForProperty:MPMediaItemPropertyAlbumPersistentID];
+        _parentPersistentId = [representativeItem valueForProperty:MPMediaItemPropertyAlbumPersistentID];
 
         switch (type)
         {
             case PLTrackGroupTypeAlbums:
             case PLTrackGroupTypeAudiobooks:
-            case PLTrackGroupTypeITunesU:
             {
                 _artist = [representativeItem valueForProperty:MPMediaItemPropertyAlbumArtist];
                 _title = [representativeItem valueForProperty:MPMediaItemPropertyAlbumTitle];
@@ -40,12 +38,18 @@
             case PLTrackGroupTypePlaylists:
             {
                 _title = [collection valueForProperty:MPMediaPlaylistPropertyName];
+                _parentPersistentId = [collection valueForProperty:MPMediaPlaylistPropertyPersistentID];
+                break;
+            }
+            case PLTrackGroupTypeITunesU:
+            {
+                _title = [representativeItem valueForProperty:MPMediaItemPropertyAlbumTitle];
                 break;
             }
             case PLTrackGroupTypePodcasts:
             {
                 _title = [representativeItem valueForProperty:MPMediaItemPropertyPodcastTitle];
-                _podcastPersistentId = [representativeItem valueForProperty:MPMediaItemPropertyPodcastPersistentID];
+                _parentPersistentId = [representativeItem valueForProperty:MPMediaItemPropertyPodcastPersistentID];
                 break;
             }
         }
@@ -81,31 +85,32 @@
 {
     if (_trackGroupType == PLTrackGroupTypeAudiobooks) {
         MPMediaQuery *query = [MPMediaQuery audiobooksQuery];
-        MPMediaPropertyPredicate *predicate = [MPMediaPropertyPredicate predicateWithValue:_albumPersistentId forProperty:MPMediaItemPropertyAlbumPersistentID];
+        MPMediaPropertyPredicate *predicate = [MPMediaPropertyPredicate predicateWithValue:_parentPersistentId forProperty:MPMediaItemPropertyAlbumPersistentID];
         [query addFilterPredicate:predicate];
         return [PLMediaLibrarySearch tracksForMediaQuery:query];
     }
     else if (_trackGroupType == PLTrackGroupTypeAlbums) {
         MPMediaQuery *query = [MPMediaQuery albumsQuery];
-        MPMediaPropertyPredicate *predicate = [MPMediaPropertyPredicate predicateWithValue:_albumPersistentId forProperty:MPMediaItemPropertyAlbumPersistentID];
+        MPMediaPropertyPredicate *predicate = [MPMediaPropertyPredicate predicateWithValue:_parentPersistentId forProperty:MPMediaItemPropertyAlbumPersistentID];
         [query addFilterPredicate:predicate];
         return [PLMediaLibrarySearch tracksForMediaQuery:query];
     }
     else if (_trackGroupType == PLTrackGroupTypePlaylists) {
         MPMediaQuery *query = [MPMediaQuery playlistsQuery];
-        MPMediaPropertyPredicate *predicate = [MPMediaPropertyPredicate predicateWithValue:_albumPersistentId forProperty:MPMediaItemPropertyAlbumPersistentID];
-        [query addFilterPredicate:predicate];
-        return [PLMediaLibrarySearch tracksForMediaQuery:query];
+        for (MPMediaPlaylist *playlist in query.collections) {
+            if ([[playlist valueForProperty:MPMediaPlaylistPropertyPersistentID] isEqual:_parentPersistentId])
+                return [PLMediaLibrarySearch tracksForCollection:playlist];
+        }
     }
     else if (_trackGroupType == PLTrackGroupTypePodcasts) {
         MPMediaQuery *query = [MPMediaQuery podcastsQuery];
-        MPMediaPropertyPredicate *predicate = [MPMediaPropertyPredicate predicateWithValue:_podcastPersistentId forProperty:MPMediaItemPropertyPodcastPersistentID];
+        MPMediaPropertyPredicate *predicate = [MPMediaPropertyPredicate predicateWithValue:_parentPersistentId forProperty:MPMediaItemPropertyPodcastPersistentID];
         [query addFilterPredicate:predicate];
         return [PLMediaLibrarySearch tracksForMediaQuery:query];
     }
     else if (_trackGroupType == PLTrackGroupTypeITunesU) {
         MPMediaQuery *query = [[MPMediaQuery alloc] init];
-        MPMediaPropertyPredicate *predicate = [MPMediaPropertyPredicate predicateWithValue:_albumPersistentId forProperty:MPMediaItemPropertyAlbumPersistentID];
+        MPMediaPropertyPredicate *predicate = [MPMediaPropertyPredicate predicateWithValue:_parentPersistentId forProperty:MPMediaItemPropertyAlbumPersistentID];
         [query addFilterPredicate:predicate];
         return [PLMediaLibrarySearch tracksForMediaQuery:query];
     }

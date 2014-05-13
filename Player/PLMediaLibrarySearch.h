@@ -15,6 +15,11 @@
 + (RXPromise *)tracksForMediaQuery:(MPMediaQuery *)mediaQuery;
 
 /**
+* Resolves to an array of all the PLTracks in the given collection.
+*/
++ (RXPromise *)tracksForCollection:(MPMediaItemCollection *)collection;
+
+/**
 * Resolves to an array of PLTrackGroups corresponding to each audiobook found in the media library.
 */
 + (RXPromise *)allAudiobooks;

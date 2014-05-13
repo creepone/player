@@ -25,6 +25,15 @@
     }];
 }
 
++ (RXPromise *)tracksForCollection:(MPMediaItemCollection *)collection
+{
+    return [RXPromise pl_runInBackground:^{
+        return [collection.items pl_map:^(MPMediaItem *mediaItem) {
+            return [[PLTrack alloc] initWithMediaItem:mediaItem];
+        }];
+    }];
+}
+
 + (RXPromise *)allAudiobooks
 {
     return [RXPromise pl_runInBackground:^{
