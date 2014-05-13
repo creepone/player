@@ -36,6 +36,24 @@
             promise = [PLMediaLibrarySearch allAlbums];
             break;
         }
+        case PLTrackGroupTypePlaylists:
+        {
+            self.title = @"Playlists"; // todo: localize
+            promise = [PLMediaLibrarySearch allPlaylists];
+            break;
+        }
+        case PLTrackGroupTypePodcasts:
+        {
+            self.title = @"Podcasts"; // todo: localize
+            promise = [PLMediaLibrarySearch allPodcasts];
+            break;
+        }
+        case PLTrackGroupTypeITunesU:
+        {
+            self.title = @"iTunes U"; // todo: localize
+            promise = [PLMediaLibrarySearch allITunesU];
+            break;
+        }
         default:
         {
             self.title = nil;

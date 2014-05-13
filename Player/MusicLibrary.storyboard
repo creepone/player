@@ -12,7 +12,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <inset key="separatorInset" minX="47" minY="0.0" maxX="0.0" maxY="0.0"/>
+                        <inset key="separatorInset" minX="54" minY="0.0" maxX="0.0" maxY="0.0"/>
                         <view key="tableHeaderView" contentMode="scaleToFill" id="bIp-eo-F8R">
                             <rect key="frame" x="0.0" y="64" width="320" height="44"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -37,52 +37,229 @@
                         <sections>
                             <tableViewSection id="cD7-5x-dJK">
                                 <cells>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" textLabel="LbJ-5o-bFU" imageView="qb9-1H-lCR" style="IBUITableViewCellStyleDefault" id="s3d-Pq-QPt">
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="Vz7-6d-ew7">
                                         <rect key="frame" x="0.0" y="108" width="320" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Vz7-6d-ew7" id="mW7-3M-ePp">
+                                            <rect key="frame" x="0.0" y="0.0" width="287" height="43"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="PlaylistsIcon" translatesAutoresizingMaskIntoConstraints="NO" id="PxG-od-aQP">
+                                                    <rect key="frame" x="0.0" y="0.0" width="50" height="43"/>
+                                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="50" id="3vI-j4-an6"/>
+                                                    </constraints>
+                                                </imageView>
+                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Playlists" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="K6h-Ux-GFf">
+                                                    <rect key="frame" x="58" y="11" width="66" height="22"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="PxG-od-aQP" firstAttribute="top" secondItem="mW7-3M-ePp" secondAttribute="top" id="H3k-7n-OYO"/>
+                                                <constraint firstAttribute="bottom" secondItem="PxG-od-aQP" secondAttribute="bottom" id="HL6-hk-FsV"/>
+                                                <constraint firstAttribute="centerY" secondItem="K6h-Ux-GFf" secondAttribute="centerY" id="gpa-fg-CrW"/>
+                                                <constraint firstItem="K6h-Ux-GFf" firstAttribute="leading" secondItem="PxG-od-aQP" secondAttribute="trailing" constant="8" id="qsJ-iY-5pd"/>
+                                                <constraint firstItem="PxG-od-aQP" firstAttribute="leading" secondItem="mW7-3M-ePp" secondAttribute="leading" id="rPe-SY-a1V"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <segue destination="1Sq-yp-9l8" kind="push" identifier="playlists" id="ygh-yT-CBY"/>
+                                        </connections>
+                                    </tableViewCell>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="xSQ-aN-vFp">
+                                        <rect key="frame" x="0.0" y="152" width="320" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="xSQ-aN-vFp" id="s1u-7E-1Me">
+                                            <rect key="frame" x="0.0" y="0.0" width="287" height="43"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ArtistsIcon" translatesAutoresizingMaskIntoConstraints="NO" id="MPv-1c-1dG">
+                                                    <rect key="frame" x="0.0" y="0.0" width="50" height="43"/>
+                                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="50" id="lhp-fc-H5C"/>
+                                                    </constraints>
+                                                </imageView>
+                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Artists" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LuE-fh-JWd">
+                                                    <rect key="frame" x="58" y="11" width="51" height="22"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="centerY" secondItem="LuE-fh-JWd" secondAttribute="centerY" id="4Kv-Mo-Nlg"/>
+                                                <constraint firstItem="MPv-1c-1dG" firstAttribute="leading" secondItem="s1u-7E-1Me" secondAttribute="leading" id="VFb-lY-9Cu"/>
+                                                <constraint firstAttribute="bottom" secondItem="MPv-1c-1dG" secondAttribute="bottom" id="WZT-bN-WDq"/>
+                                                <constraint firstItem="MPv-1c-1dG" firstAttribute="top" secondItem="s1u-7E-1Me" secondAttribute="top" id="gFY-mV-Yoq"/>
+                                                <constraint firstItem="LuE-fh-JWd" firstAttribute="leading" secondItem="MPv-1c-1dG" secondAttribute="trailing" constant="8" id="zjl-tY-sad"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="s3d-Pq-QPt">
+                                        <rect key="frame" x="0.0" y="196" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="s3d-Pq-QPt" id="zjX-y6-3Mx">
                                             <rect key="frame" x="0.0" y="0.0" width="287" height="43"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="Albums" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="LbJ-5o-bFU">
-                                                    <rect key="frame" x="50" y="0.0" width="235" height="43"/>
-                                                    <autoresizingMask key="autoresizingMask"/>
+                                                <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="AlbumsIcon" translatesAutoresizingMaskIntoConstraints="NO" id="nM1-Zl-epH">
+                                                    <rect key="frame" x="0.0" y="0.0" width="50" height="43"/>
+                                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="50" id="WRp-Er-s0c"/>
+                                                    </constraints>
+                                                </imageView>
+                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Albums" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fUt-VB-ACz">
+                                                    <rect key="frame" x="58" y="11" width="61" height="22"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="18"/>
-                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" image="AlbumsIcon" id="qb9-1H-lCR">
-                                                    <rect key="frame" x="15" y="10" width="20" height="23"/>
-                                                    <autoresizingMask key="autoresizingMask"/>
-                                                </imageView>
                                             </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="centerY" secondItem="fUt-VB-ACz" secondAttribute="centerY" id="3T5-m3-7MQ"/>
+                                                <constraint firstItem="nM1-Zl-epH" firstAttribute="top" secondItem="zjX-y6-3Mx" secondAttribute="top" id="HIX-5Y-5Bf"/>
+                                                <constraint firstItem="fUt-VB-ACz" firstAttribute="leading" secondItem="nM1-Zl-epH" secondAttribute="trailing" constant="8" id="IWQ-01-87P"/>
+                                                <constraint firstItem="nM1-Zl-epH" firstAttribute="leading" secondItem="zjX-y6-3Mx" secondAttribute="leading" id="lBm-0j-Xve"/>
+                                                <constraint firstAttribute="bottom" secondItem="nM1-Zl-epH" secondAttribute="bottom" id="yl0-6F-38Q"/>
+                                            </constraints>
                                         </tableViewCellContentView>
                                         <connections>
                                             <segue destination="1Sq-yp-9l8" kind="push" identifier="albums" id="pqU-vJ-VhY"/>
                                         </connections>
                                     </tableViewCell>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" textLabel="IHk-lO-gOm" imageView="CHE-Qi-15z" style="IBUITableViewCellStyleDefault" id="Yaf-uI-I9v">
-                                        <rect key="frame" x="0.0" y="152" width="320" height="44"/>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="Ad7-3W-sfK">
+                                        <rect key="frame" x="0.0" y="240" width="320" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Ad7-3W-sfK" id="yQc-Z4-M1L">
+                                            <rect key="frame" x="0.0" y="0.0" width="287" height="43"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="SongsIcon" translatesAutoresizingMaskIntoConstraints="NO" id="bjC-I3-kVE">
+                                                    <rect key="frame" x="0.0" y="0.0" width="50" height="43"/>
+                                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="50" id="WcR-ge-ymA"/>
+                                                    </constraints>
+                                                </imageView>
+                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Songs" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aTd-Oc-1vt">
+                                                    <rect key="frame" x="58" y="11" width="52" height="21"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="18"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="bottom" secondItem="bjC-I3-kVE" secondAttribute="bottom" id="Drr-xd-zBd"/>
+                                                <constraint firstItem="aTd-Oc-1vt" firstAttribute="leading" secondItem="bjC-I3-kVE" secondAttribute="trailing" constant="8" id="F6H-CR-39D"/>
+                                                <constraint firstAttribute="centerY" secondItem="aTd-Oc-1vt" secondAttribute="centerY" id="IaU-dd-NAv"/>
+                                                <constraint firstItem="bjC-I3-kVE" firstAttribute="top" secondItem="yQc-Z4-M1L" secondAttribute="top" id="U7m-vE-XsD"/>
+                                                <constraint firstItem="bjC-I3-kVE" firstAttribute="leading" secondItem="yQc-Z4-M1L" secondAttribute="leading" id="ed1-zT-Npe"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="Yaf-uI-I9v">
+                                        <rect key="frame" x="0.0" y="284" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Yaf-uI-I9v" id="izg-Xf-NCO">
                                             <rect key="frame" x="0.0" y="0.0" width="287" height="43"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="Audiobooks" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="IHk-lO-gOm">
-                                                    <rect key="frame" x="49" y="0.0" width="236" height="43"/>
-                                                    <autoresizingMask key="autoresizingMask"/>
+                                                <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="AudiobooksIcon" translatesAutoresizingMaskIntoConstraints="NO" id="xvN-1v-mha">
+                                                    <rect key="frame" x="0.0" y="0.0" width="50" height="43"/>
+                                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="50" id="UjX-sY-Sds"/>
+                                                    </constraints>
+                                                </imageView>
+                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Audiobooks" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qiX-Xe-GB5">
+                                                    <rect key="frame" x="58" y="11" width="97" height="22"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="18"/>
-                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" image="AudiobooksIcon" id="CHE-Qi-15z">
-                                                    <rect key="frame" x="15" y="9" width="19" height="24"/>
-                                                    <autoresizingMask key="autoresizingMask"/>
-                                                </imageView>
                                             </subviews>
+                                            <constraints>
+                                                <constraint firstItem="qiX-Xe-GB5" firstAttribute="leading" secondItem="xvN-1v-mha" secondAttribute="trailing" constant="8" id="47S-4t-eum"/>
+                                                <constraint firstAttribute="bottom" secondItem="xvN-1v-mha" secondAttribute="bottom" id="HJa-L0-sc9"/>
+                                                <constraint firstAttribute="centerY" secondItem="qiX-Xe-GB5" secondAttribute="centerY" id="IhC-nh-tgA"/>
+                                                <constraint firstItem="xvN-1v-mha" firstAttribute="leading" secondItem="izg-Xf-NCO" secondAttribute="leading" id="K2S-VO-TOR"/>
+                                                <constraint firstItem="xvN-1v-mha" firstAttribute="top" secondItem="izg-Xf-NCO" secondAttribute="top" id="WGS-oB-ZK0"/>
+                                            </constraints>
                                         </tableViewCellContentView>
                                         <connections>
                                             <segue destination="1Sq-yp-9l8" kind="push" identifier="audiobooks" id="bMu-bw-F6S"/>
+                                        </connections>
+                                    </tableViewCell>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="pAc-gC-6oB">
+                                        <rect key="frame" x="0.0" y="328" width="320" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="pAc-gC-6oB" id="hax-kj-c8f">
+                                            <rect key="frame" x="0.0" y="0.0" width="287" height="43"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="PodcastsLibraryIcon" translatesAutoresizingMaskIntoConstraints="NO" id="ajC-sa-iw0">
+                                                    <rect key="frame" x="0.0" y="0.0" width="50" height="43"/>
+                                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="50" id="foL-4t-u2x"/>
+                                                    </constraints>
+                                                </imageView>
+                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Podcasts" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qL3-Fd-jkE">
+                                                    <rect key="frame" x="58" y="11" width="76" height="22"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="ajC-sa-iw0" firstAttribute="top" secondItem="hax-kj-c8f" secondAttribute="top" id="OZo-d8-8A7"/>
+                                                <constraint firstAttribute="centerY" secondItem="qL3-Fd-jkE" secondAttribute="centerY" id="U4c-4V-JVU"/>
+                                                <constraint firstItem="qL3-Fd-jkE" firstAttribute="leading" secondItem="ajC-sa-iw0" secondAttribute="trailing" constant="8" id="ebM-rY-Scm"/>
+                                                <constraint firstAttribute="bottom" secondItem="ajC-sa-iw0" secondAttribute="bottom" id="h5F-8B-x5j"/>
+                                                <constraint firstItem="ajC-sa-iw0" firstAttribute="leading" secondItem="hax-kj-c8f" secondAttribute="leading" id="mMT-V4-PG5"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <segue destination="1Sq-yp-9l8" kind="push" identifier="podcasts" id="Dot-Xc-Ayl"/>
+                                        </connections>
+                                    </tableViewCell>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="oPu-6A-lYz">
+                                        <rect key="frame" x="0.0" y="372" width="320" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="oPu-6A-lYz" id="oy4-w7-iQO">
+                                            <rect key="frame" x="0.0" y="0.0" width="287" height="43"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="iTunes U" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bzX-af-Kzf">
+                                                    <rect key="frame" x="58" y="11" width="70" height="22"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="iTunesUIcon" translatesAutoresizingMaskIntoConstraints="NO" id="lRh-lh-M30">
+                                                    <rect key="frame" x="0.0" y="0.0" width="50" height="43"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="50" id="cU9-eT-O3j"/>
+                                                    </constraints>
+                                                </imageView>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="lRh-lh-M30" firstAttribute="leading" secondItem="oy4-w7-iQO" secondAttribute="leading" id="99t-e8-AFP"/>
+                                                <constraint firstItem="lRh-lh-M30" firstAttribute="top" secondItem="oy4-w7-iQO" secondAttribute="top" id="WyP-zY-Wpr"/>
+                                                <constraint firstItem="bzX-af-Kzf" firstAttribute="leading" secondItem="lRh-lh-M30" secondAttribute="trailing" constant="8" id="g9O-aQ-DI1"/>
+                                                <constraint firstAttribute="bottom" secondItem="lRh-lh-M30" secondAttribute="bottom" id="gP1-ya-yLU"/>
+                                                <constraint firstAttribute="centerY" secondItem="bzX-af-Kzf" secondAttribute="centerY" id="lhG-v2-deS"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <segue destination="1Sq-yp-9l8" kind="push" identifier="itunesu" id="e4O-Zm-MxZ"/>
                                         </connections>
                                     </tableViewCell>
                                 </cells>
@@ -424,9 +601,14 @@
     </scenes>
     <resources>
         <image name="AlbumsIcon" width="20" height="23"/>
+        <image name="ArtistsIcon" width="32" height="24"/>
         <image name="AudiobooksIcon" width="19" height="24"/>
         <image name="ButtonAdd" width="25" height="25"/>
         <image name="DefaultArtwork" width="88" height="88"/>
+        <image name="PlaylistsIcon" width="23" height="23"/>
+        <image name="PodcastsLibraryIcon" width="25" height="25"/>
+        <image name="SongsIcon" width="14" height="23"/>
+        <image name="iTunesUIcon" width="35" height="22"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
@@ -434,6 +616,6 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="pqU-vJ-VhY"/>
+        <segue reference="e4O-Zm-MxZ"/>
     </inferredMetricsTieBreakers>
 </document>

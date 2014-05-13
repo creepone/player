@@ -4,7 +4,10 @@
 
 typedef NS_ENUM(NSInteger, PLTrackGroupType) {
     PLTrackGroupTypeAudiobooks,
-    PLTrackGroupTypeAlbums
+    PLTrackGroupTypeAlbums,
+    PLTrackGroupTypePlaylists,
+    PLTrackGroupTypeITunesU,
+    PLTrackGroupTypePodcasts
 };
 
 @interface PLTrackGroup : NSObject

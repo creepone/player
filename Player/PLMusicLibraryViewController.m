@@ -34,6 +34,19 @@
         PLTrackGroupViewController *trackGroupVc = [segue destinationViewController];
         trackGroupVc.trackGroupType = PLTrackGroupTypeAlbums;
     }
+    else if ([segue.identifier isEqualToString:@"playlists"]) {
+        PLTrackGroupViewController *trackGroupVc = [segue destinationViewController];
+        trackGroupVc.trackGroupType = PLTrackGroupTypePlaylists;
+    }
+    else if ([segue.identifier isEqualToString:@"itunesu"]) {
+        PLTrackGroupViewController *trackGroupVc = [segue destinationViewController];
+        trackGroupVc.trackGroupType = PLTrackGroupTypeITunesU;
+    }
+    else if ([segue.identifier isEqualToString:@"podcasts"]) {
+        PLTrackGroupViewController *trackGroupVc = [segue destinationViewController];
+        trackGroupVc.trackGroupType = PLTrackGroupTypePodcasts;
+    }
+    
 }
 
 @end

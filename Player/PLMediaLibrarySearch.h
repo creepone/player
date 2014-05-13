@@ -24,4 +24,19 @@
  */
 + (RXPromise *)allAlbums;
 
+/**
+ * Resolves to an array of PLTrackGroups corresponding to each playlist found in the media library.
+ */
++ (RXPromise *)allPlaylists;
+
+/**
+ * Resolves to an array of PLTrackGroups corresponding to each podcast found in the media library.
+ */
++ (RXPromise *)allPodcasts;
+
+/**
+ * Resolves to an array of PLTrackGroups corresponding to each iTunes U album found in the media library.
+ */
++ (RXPromise *)allITunesU;
+
 @end

@@ -18,6 +18,4 @@
 
 + (NSString *)formatDuration:(NSTimeInterval)duration;
 
-+ (MPMediaItem *)mediaItemForPersistentID:(NSNumber *)persistentId;
-
 @end
