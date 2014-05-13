@@ -49,6 +49,9 @@ static void onUncaughtException(NSException* exception);
     // temporary VC for the progress hud
     self.window.rootViewController = [[UIViewController alloc] init];
     [self startDataInitialization];
+    
+    // todo: if started with a file, import the file into the db, ask user "Add to playlist" ?
+    DDLogInfo(@"launch options = %@", launchOptions);
 
     [self.window makeKeyAndVisible];
     return YES;
@@ -80,6 +83,13 @@ static void onUncaughtException(NSException* exception);
 {
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     [application endReceivingRemoteControlEvents];
+}
+
+- (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation
+{
+    // todo: import the file into the db, ask user "Add to playlist" ?
+    DDLogInfo(@"file URL to open = %@", url);
+    return YES;
 }
 
 #pragma mark - Data initialization on startup

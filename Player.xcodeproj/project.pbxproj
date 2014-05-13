@@ -82,6 +82,7 @@
 		C3CC18D0191FADDF0026E681 /* PLTrackGroupTableViewCellController.m in Sources */ = {isa = PBXBuildFile; fileRef = C3CC18CF191FADDF0026E681 /* PLTrackGroupTableViewCellController.m */; };
 		C3CC18D3191FC5990026E681 /* PLTrackTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C3CC18D2191FC5990026E681 /* PLTrackTableViewCell.m */; };
 		C3CC18D6191FC63E0026E681 /* PLTrackTableViewCellController.m in Sources */ = {isa = PBXBuildFile; fileRef = C3CC18D5191FC63E0026E681 /* PLTrackTableViewCellController.m */; };
+		C3CC18DB19227CD30026E681 /* icon.png in Resources */ = {isa = PBXBuildFile; fileRef = C3CC18DA19227CD20026E681 /* icon.png */; };
 		C3D1A65A16CFC337006D3E5F /* PLPlaylistSelectViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C3D1A65916CFC337006D3E5F /* PLPlaylistSelectViewController.m */; };
 		C3F1A13518E83F6F00A82EAC /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C3F1A13418E83F6F00A82EAC /* Images.xcassets */; };
 		C3FCEC2E16FF0AD3008CD497 /* PLPlaylistSongViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C3FCEC2D16FF0AD3008CD497 /* PLPlaylistSongViewController.m */; };
@@ -224,6 +225,7 @@
 		C3CC18D2191FC5990026E681 /* PLTrackTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PLTrackTableViewCell.m; sourceTree = "<group>"; };
 		C3CC18D4191FC63E0026E681 /* PLTrackTableViewCellController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PLTrackTableViewCellController.h; sourceTree = "<group>"; };
 		C3CC18D5191FC63E0026E681 /* PLTrackTableViewCellController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PLTrackTableViewCellController.m; sourceTree = "<group>"; };
+		C3CC18DA19227CD20026E681 /* icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = icon.png; path = Images.xcassets/AppIcon.appiconset/icon.png; sourceTree = "<group>"; };
 		C3CF9FD418B52EF4004EE4A1 /* revision.prefix */ = {isa = PBXFileReference; lastKnownFileType = text; path = revision.prefix; sourceTree = "<group>"; };
 		C3CF9FD518B52EF4004EE4A1 /* prebuild.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = prebuild.sh; sourceTree = "<group>"; };
 		C3CF9FD618B52EF4004EE4A1 /* deploy.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = deploy.sh; sourceTree = "<group>"; };
@@ -630,6 +632,7 @@
 		C3CC18B5191E430D0026E681 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				C3CC18DA19227CD20026E681 /* icon.png */,
 				C3CC18BA191E43300026E681 /* Localizable.strings */,
 			);
 			name = Resources;
@@ -749,6 +752,7 @@
 				C3BC5A3E1656B772002DA837 /* Default.png in Resources */,
 				C3BC5A401656B772002DA837 /* Default@2x.png in Resources */,
 				C3BC5A421656B772002DA837 /* Default-568h@2x.png in Resources */,
+				C3CC18DB19227CD30026E681 /* icon.png in Resources */,
 				C3CC18BF191F60EC0026E681 /* MusicLibrary.storyboard in Resources */,
 				C3CC18B8191E43300026E681 /* Localizable.strings in Resources */,
 				C3BC5A9A1656B959002DA837 /* PLPlaylistViewController.xib in Resources */,
