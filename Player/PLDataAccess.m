@@ -1,11 +1,3 @@
-//
-//  DataAccess.m
-//  EnergyTracker
-//
-//  Created by Tomas Vana on 3/17/12.
-//  Copyright (c) 2012 iOS Apps Austria. All rights reserved.
-//
-
 #import <MediaPlayer/MediaPlayer.h>
 
 #import "PLDataAccess.h"

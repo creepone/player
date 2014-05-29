@@ -1,34 +1,21 @@
-//
-//  PLAppDelegate.m
-//  Player
-//
-//  Created by Tomas Vana on 11/16/12.
-//  Copyright (c) 2012 Tomas Vana. All rights reserved.
-//
+#import <SVProgressHUD.h>
+#import <RXPromise.h>
 
 #import "PLAppDelegate.h"
 #import "PLCoreDataStack.h"
 #import "PLMigrationManager.h"
 #import "PLDefaultsManager.h"
-
-#import "MBProgressHUD.h"
-
 #import "PLPlayer.h"
 #import "PLPlaylistViewController.h"
 #import "PLPlayerViewController.h"
 #import "PLBookmarksViewController.h"
 #import "PLSettingsViewController.h"
 #import "PLColors.h"
+#import "PLErrorManager.h"
 
-#define MigrationErrorAlertTag 44
+static const int kMigrationErrorAlertTag = 44;
 
-
-@interface PLAppDelegate() <MBProgressHUDDelegate> {
-    NSError *_migrationError;
-    MBProgressHUD *_progressHud;
-}
-
-- (void)startDataInitialization;
+@interface PLAppDelegate() <UIAlertViewDelegate>
 
 static void onUncaughtException(NSException* exception);
 
@@ -48,7 +35,7 @@ static void onUncaughtException(NSException* exception);
 
     // temporary VC for the progress hud
     self.window.rootViewController = [[UIViewController alloc] init];
-    [self startDataInitialization];
+    [self initializeData];
     
     // todo: if started with a file, import the file into the db, ask user "Add to playlist" ?
     DDLogInfo(@"launch options = %@", launchOptions);
@@ -94,48 +81,45 @@ static void onUncaughtException(NSException* exception);
 
 #pragma mark - Data initialization on startup
 
-- (void)startDataInitialization {
-    _progressHud = [[MBProgressHUD alloc] initWithWindow:self.window];
-    
-    [self.window.rootViewController.view addSubview:_progressHud];
-    _progressHud.delegate = self;
-    _progressHud.graceTime = 1.0;
-    _progressHud.labelText = @"Initializing...";
-    [_progressHud showWhileExecuting:@selector(performDataInitialization) onTarget:self withObject:nil animated:YES];
-}
+- (void)initializeData
+{
+    [SVProgressHUD showWithStatus:NSLocalizedString(@"Messages.InitializingData", nil) maskType:SVProgressHUDMaskTypeBlack];
 
-- (void)performDataInitialization {
-    @autoreleasepool {
-        NSError *error;
-        self.coreDataStack = [PLMigrationManager coreDataStack:&error];
-        
-        if(error != nil) {
-            _migrationError = error;
-        }
-    }
-}
+    // todo: grace time for the hud
 
-- (void)hudWasHidden:(MBProgressHUD *)hud {
-    [_progressHud removeFromSuperview];
-    _progressHud.delegate = nil;
-    _progressHud = nil;
-    
-    if(self.coreDataStack == nil || _migrationError != nil) {
-        NSLog(@"Data initialization error: %@", [_migrationError localizedDescription]);
-        
+    @weakify(self);
+    [PLMigrationManager coreDataStack].thenOnMain(^(PLCoreDataStack *coreDataStack) {
+        @strongify(self);
+
+        self.coreDataStack = coreDataStack;
+        [SVProgressHUD dismiss];
+        [self showMainUi];
+
+        return coreDataStack;
+    },
+    ^(NSError *error) {
+        @strongify(self);
+
+        [PLErrorManager logError:error];
+        [SVProgressHUD dismiss];
+
+        // todo: localize
         UIAlertView *alert = [[UIAlertView alloc]
-                              initWithTitle:@"Error"
-                              message:@"There was an error migrating the data."
-                              delegate:self
-                              cancelButtonTitle:@"OK"
-                              otherButtonTitles:nil];
-        
-        [alert setTag:MigrationErrorAlertTag];
+                initWithTitle:@"Error"
+                      message:@"There was an error migrating the data."
+                     delegate:self
+            cancelButtonTitle:@"OK"
+            otherButtonTitles:nil];
+
+        [alert setTag:kMigrationErrorAlertTag];
         [alert show];
-        
-        return;
-    }
-    
+
+        return (id)nil;
+    });
+}
+
+- (void)showMainUi
+{
     UIViewController *playlistViewController = [[PLPlaylistViewController alloc] initWithNibName:@"PLPlaylistViewController" bundle:nil];
     UIViewController *playerViewController = [[PLPlayerViewController alloc] initWithNibName:@"PLPlayerViewController" bundle:nil];
     UIViewController *settingsViewController = [[PLSettingsViewController alloc] initWithNibName:@"PLSettingsViewController" bundle:nil];
@@ -150,13 +134,15 @@ static void onUncaughtException(NSException* exception);
     [[UIApplication sharedApplication] beginReceivingRemoteControlEvents];
 }
 
-- (void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex {
-    if(alertView.tag == MigrationErrorAlertTag) {
+- (void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex
+{
+    if(alertView.tag == kMigrationErrorAlertTag) {
         exit(1);
     }
 }
 
-- (void)remoteControlReceivedWithEvent:(UIEvent *)event {
+- (void)remoteControlReceivedWithEvent:(UIEvent *)event
+{
     switch (event.subtype) {
         case UIEventSubtypeRemoteControlTogglePlayPause:
             [[PLPlayer sharedPlayer] playPause];

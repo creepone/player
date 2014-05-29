@@ -1,11 +1,3 @@
-//
-//  PLPlaylistSong.m
-//  Player
-//
-//  Created by Tomas Vana on 11/16/12.
-//  Copyright (c) 2012 Tomas Vana. All rights reserved.
-//
-
 #import <MediaPlayer/MediaPlayer.h>
 
 #import "PLPlaylistSong.h"
@@ -25,6 +17,8 @@
 @dynamic playlist;
 @dynamic playbackRate;
 @dynamic played;
+@dynamic downloadURL;
+@dynamic fileURL;
 
 #pragma mark -- Derived properties
 

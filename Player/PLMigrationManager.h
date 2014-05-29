@@ -1,9 +1,9 @@
 #import <Foundation/Foundation.h>
 #import <CoreData/CoreData.h>
 
-#define PLCurrentDataStoreVersion 1
+@class PLCoreDataStack, RXPromise;
 
-@class PLCoreDataStack;
+extern long PLCurrentDataStoreVersion;
 
 @interface PLMigrationManager : NSObject
 
@@ -24,23 +24,23 @@
 + (NSString *)dataStorePathVersion:(NSInteger)version;
 
 /**
- todo : doc, just the name without path
+ Delivers the file name of the data store for the given version.
  */
 + (NSString *)dataStoreNameVersion:(NSInteger)version;
 
 /**
- Returns a core data stack ready to be used by the application. It takes care about
+ Resolves to a core data stack ready to be used by the application. It takes care about
  ensuring that it uses the latest model and migrates the persistent data store if necessary.
  In case the data store doesn't exist, it is created and filled with default set of objects.
  In case of failure, non-nil error is set that occured.
  */
-+ (PLCoreDataStack *)coreDataStack:(NSError **)error;
++ (RXPromise *)coreDataStack;
 
 /**
- Returns a core data stack from a specific version of the model. The data store must
+ Resolves to a core data stack from a specific version of the model. The data store must
  exist in this version as no migration or initialization will be performed.
  In case of failure, non-nil error is set that occured.
  */
-+ (PLCoreDataStack *)coreDataStackForModelVersion:(NSInteger)version error:(NSError **)error;
++ (RXPromise *)coreDataStackForModelVersion:(NSInteger)version;
 
 @end

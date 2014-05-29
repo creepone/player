@@ -67,7 +67,6 @@
 		C3BC5AE21656CACC002DA837 /* PLDataAccess.m in Sources */ = {isa = PBXBuildFile; fileRef = C3BC5AE11656CABF002DA837 /* PLDataAccess.m */; };
 		C3BC5AE71656CC24002DA837 /* PLMigrationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = C3BC5AE61656CC24002DA837 /* PLMigrationManager.m */; };
 		C3BC5AEB1656CCC9002DA837 /* PLDefaultsManager.m in Sources */ = {isa = PBXBuildFile; fileRef = C3BC5AEA1656CCC9002DA837 /* PLDefaultsManager.m */; };
-		C3BC5AF41656CFA6002DA837 /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = C3BC5AF31656CFA6002DA837 /* MBProgressHUD.m */; };
 		C3BC5B011658DE07002DA837 /* PLAlerts.m in Sources */ = {isa = PBXBuildFile; fileRef = C3BC5B001658DE07002DA837 /* PLAlerts.m */; };
 		C3BC5B041658E76A002DA837 /* NSString+Extensions.m in Sources */ = {isa = PBXBuildFile; fileRef = C3BC5B031658E76A002DA837 /* NSString+Extensions.m */; };
 		C3BC5B0C1658FC0E002DA837 /* default_artwork.jpg in Resources */ = {isa = PBXBuildFile; fileRef = C3BC5B0B1658FC0E002DA837 /* default_artwork.jpg */; };
@@ -199,8 +198,6 @@
 		C3BC5AE61656CC24002DA837 /* PLMigrationManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PLMigrationManager.m; sourceTree = "<group>"; };
 		C3BC5AE91656CCC9002DA837 /* PLDefaultsManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PLDefaultsManager.h; sourceTree = "<group>"; };
 		C3BC5AEA1656CCC9002DA837 /* PLDefaultsManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PLDefaultsManager.m; sourceTree = "<group>"; };
-		C3BC5AF21656CFA6002DA837 /* MBProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBProgressHUD.h; sourceTree = "<group>"; };
-		C3BC5AF31656CFA6002DA837 /* MBProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBProgressHUD.m; sourceTree = "<group>"; };
 		C3BC5AFF1658DE07002DA837 /* PLAlerts.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PLAlerts.h; sourceTree = "<group>"; };
 		C3BC5B001658DE07002DA837 /* PLAlerts.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PLAlerts.m; sourceTree = "<group>"; };
 		C3BC5B021658E76A002DA837 /* NSString+Extensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+Extensions.h"; sourceTree = "<group>"; };
@@ -268,6 +265,7 @@
 		696C12B61F74CFF8A095DFE4 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				C38400981937662000D6A930 /* CoreData */,
 				696C1A30A16BABDC7CEF1C08 /* Utils */,
 				696C1395B365206751788C68 /* Activities */,
 			);
@@ -353,6 +351,7 @@
 		696C1A30A16BABDC7CEF1C08 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
+				C3BC5AE81656CCBB002DA837 /* Settings */,
 				C3CC18BD191E98D50026E681 /* Media */,
 				696C1726DE7EC4DA536D552A /* Network */,
 				696C1A104295D194D43F4BE6 /* Logging */,
@@ -440,6 +439,21 @@
 				C354484F165922C80083D703 /* SliderCell.m */,
 			);
 			name = Cells;
+			sourceTree = "<group>";
+		};
+		C38400981937662000D6A930 /* CoreData */ = {
+			isa = PBXGroup;
+			children = (
+				C3BC5ACB1656C81C002DA837 /* Model.xcdatamodeld */,
+				C3BC5ACA1656C808002DA837 /* Entities */,
+				C3BC5AE51656CC24002DA837 /* PLMigrationManager.h */,
+				C3BC5AE61656CC24002DA837 /* PLMigrationManager.m */,
+				C3BC5AE01656CABF002DA837 /* PLDataAccess.h */,
+				C3BC5AE11656CABF002DA837 /* PLDataAccess.m */,
+				C3BC5ADD1656CA73002DA837 /* PLCoreDataStack.h */,
+				C3BC5ADE1656CA73002DA837 /* PLCoreDataStack.m */,
+			);
+			name = CoreData;
 			sourceTree = "<group>";
 		};
 		C3BC5A1C1656B772002DA837 = {
@@ -559,27 +573,10 @@
 			isa = PBXGroup;
 			children = (
 				C3BC5AEC1656CD2D002DA837 /* Utilities */,
-				C3BC5AE81656CCBB002DA837 /* AppSettings */,
-				C3BC5AC91656C801002DA837 /* CoreDataModel */,
 				C3BC5B12165912F4002DA837 /* PLPlayer.h */,
 				C3BC5B13165912F5002DA837 /* PLPlayer.m */,
 			);
 			name = Model;
-			sourceTree = "<group>";
-		};
-		C3BC5AC91656C801002DA837 /* CoreDataModel */ = {
-			isa = PBXGroup;
-			children = (
-				C3BC5AE01656CABF002DA837 /* PLDataAccess.h */,
-				C3BC5AE11656CABF002DA837 /* PLDataAccess.m */,
-				C3BC5ADD1656CA73002DA837 /* PLCoreDataStack.h */,
-				C3BC5ADE1656CA73002DA837 /* PLCoreDataStack.m */,
-				C3BC5AE51656CC24002DA837 /* PLMigrationManager.h */,
-				C3BC5AE61656CC24002DA837 /* PLMigrationManager.m */,
-				C3BC5ACA1656C808002DA837 /* Entities */,
-				C3BC5ACB1656C81C002DA837 /* Model.xcdatamodeld */,
-			);
-			name = CoreDataModel;
 			sourceTree = "<group>";
 		};
 		C3BC5ACA1656C808002DA837 /* Entities */ = {
@@ -597,13 +594,13 @@
 			name = Entities;
 			sourceTree = "<group>";
 		};
-		C3BC5AE81656CCBB002DA837 /* AppSettings */ = {
+		C3BC5AE81656CCBB002DA837 /* Settings */ = {
 			isa = PBXGroup;
 			children = (
 				C3BC5AE91656CCC9002DA837 /* PLDefaultsManager.h */,
 				C3BC5AEA1656CCC9002DA837 /* PLDefaultsManager.m */,
 			);
-			name = AppSettings;
+			name = Settings;
 			sourceTree = "<group>";
 		};
 		C3BC5AEC1656CD2D002DA837 /* Utilities */ = {
@@ -619,18 +616,8 @@
 			isa = PBXGroup;
 			children = (
 				C354484C165922B90083D703 /* Cells */,
-				C3BC5AF11656CF9C002DA837 /* Lib */,
 			);
 			name = "Custom views";
-			sourceTree = "<group>";
-		};
-		C3BC5AF11656CF9C002DA837 /* Lib */ = {
-			isa = PBXGroup;
-			children = (
-				C3BC5AF21656CFA6002DA837 /* MBProgressHUD.h */,
-				C3BC5AF31656CFA6002DA837 /* MBProgressHUD.m */,
-			);
-			name = Lib;
 			sourceTree = "<group>";
 		};
 		C3BC5AFD1658DDF7002DA837 /* Utilities */ = {
@@ -842,7 +829,6 @@
 				C3BC5AE21656CACC002DA837 /* PLDataAccess.m in Sources */,
 				C3BC5AE71656CC24002DA837 /* PLMigrationManager.m in Sources */,
 				C3BC5AEB1656CCC9002DA837 /* PLDefaultsManager.m in Sources */,
-				C3BC5AF41656CFA6002DA837 /* MBProgressHUD.m in Sources */,
 				C3BC5B011658DE07002DA837 /* PLAlerts.m in Sources */,
 				C3BC5B041658E76A002DA837 /* NSString+Extensions.m in Sources */,
 				C3BC5B14165912F6002DA837 /* PLPlayer.m in Sources */,

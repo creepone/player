@@ -8,6 +8,7 @@
 // Messages
 "Messages.GeneralError" = "An error occured.";
 "Messages.ConnectionLost" = "There has been a problem with the network connection.";
+"Messages.InitializingData" = "Initializing data.";
 
 // Activities
 "Activities.Dropbox" = "Dropbox";
@@ -17,3 +18,4 @@
 "Activities.Download" = "Download\nURL";
 "Activities.FileSharing" = "iTunes File\nSharing";
 "Activities.Music" = "Music";
+

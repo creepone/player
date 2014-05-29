@@ -1,3 +1,7 @@
+typedef NS_ENUM(NSInteger, MGErrorCodes) {
+    PLErrorMappingModelNotFound = 1
+};
+
 typedef id(^PLErrorHandler)(NSError *);
 
 /**

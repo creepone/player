@@ -63,6 +63,7 @@ PODS:
   - libextobjc/UmbrellaHeader (0.4)
   - RXPromise (0.12.0)
   - SSZipArchive (0.3.1)
+  - SVProgressHUD (1.0)
   - TSMessages (0.9.9):
     - HexColors
 
@@ -74,6 +75,7 @@ DEPENDENCIES:
   - libextobjc (~> 0.4)
   - RXPromise (from `https://github.com/creepone/RXPromise.git`, branch `master`)
   - SSZipArchive (~> 0.3)
+  - SVProgressHUD (~> 1.0)
   - TSMessages (~> 0.9.9)
 
 EXTERNAL SOURCES:
@@ -82,14 +84,15 @@ EXTERNAL SOURCES:
     :git: https://github.com/creepone/RXPromise.git
 
 SPEC CHECKSUMS:
-  AFNetworking: ae513199cca79e9d7af2708ccabe2ed075550c42
-  CocoaLumberjack: 020378ec400d658923bf5887178394f65f052c90
-  FastImageCache: cad57e40626d657f0471695fde73dc852972e7ee
-  HexColors: 99211502e17904af7891fc8f687d0e4958a6d66e
-  iOS-blur: 2610bc818831fa4eec051a7193e47639d480fb32
-  libextobjc: 2c9fc8226f0f38e562587f65172f93f0c9b4a47a
+  AFNetworking: 47947303319594706f48a55185ea95a95159ab94
+  CocoaLumberjack: 9d198d6e19909b3b113a38c5f06f7bb8eedd0427
+  FastImageCache: f0897a850a1479a95b1415eb88ed1fdce708353a
+  HexColors: 01384d2bbe8dc4ffa43c3b4135db6e976952d153
+  iOS-blur: 5ec57b4a72e57a4f8f5f47ff3f59e56c0690b761
+  libextobjc: ba42e4111f433273a886cd54f0ddaddb7f62f82f
   RXPromise: d5b80b17dee7c9360e7be2ec140f74667855f7ac
-  SSZipArchive: 5479ec96c412904a987a3ae3180d65234aa46b6e
-  TSMessages: 49f9083df41d320b34e8d66c5ed3ef147e543187
+  SSZipArchive: 6dc0ea3fe4b55574bee23c9f01d7c0f8437d59ef
+  SVProgressHUD: 5034c6e22b8c2ca3e09402e48d41ed0340aa1c50
+  TSMessages: 2999ef55e532378692e9d14d32da2bb60e285129
 
 COCOAPODS: 0.32.1
