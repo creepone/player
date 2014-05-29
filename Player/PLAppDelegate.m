@@ -12,6 +12,7 @@
 #import "PLSettingsViewController.h"
 #import "PLColors.h"
 #import "PLErrorManager.h"
+#import "PLUtils.h"
 
 static const int kMigrationErrorAlertTag = 44;
 
@@ -35,12 +36,14 @@ static void onUncaughtException(NSException* exception);
 
     // temporary VC for the progress hud
     self.window.rootViewController = [[UIViewController alloc] init];
+    [self.window makeKeyAndVisible];
+
+    [self.window.rootViewController.view setBackgroundColor:[UIColor colorWithPatternImage:[PLUtils launchImage]]];
     [self initializeData];
     
     // todo: if started with a file, import the file into the db, ask user "Add to playlist" ?
     DDLogInfo(@"launch options = %@", launchOptions);
 
-    [self.window makeKeyAndVisible];
     return YES;
 }
 

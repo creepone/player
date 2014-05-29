@@ -18,4 +18,11 @@
 
 + (NSString *)formatDuration:(NSTimeInterval)duration;
 
+/**
+ Uses a workaround to deliver the launch image of the application without duplicating it in the asset catalog.
+ For dubious reasons, the launch image does not behave in the same way as ordinary images and requesting it with
+ imageNamed: doesn't take the resolution and screen size into account.
+ */
++ (UIImage *)launchImage;
+
 @end

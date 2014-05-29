@@ -46,4 +46,13 @@
     return [[NSString alloc] initWithFormat:@"%02ld:%02ld", min, sec];
 }
 
++ (UIImage *)launchImage
+{
+    CGRect bounds = [[UIScreen mainScreen] bounds];
+    if (MAX(bounds.size.width, bounds.size.height) == 568.f)
+        return [UIImage imageNamed:@"LaunchImage-568h"];
+    else
+        return [UIImage imageNamed:@"LaunchImage"];
+}
+
 @end
