@@ -1,9 +1,9 @@
 #import <RXPromise/RXPromise.h>
 #import "PLMediaLibrarySearch.h"
-#import "PLTrack.h"
+#import "PLMediaItemTrack.h"
 #import "NSArray+PLExtensions.h"
 #import "RXPromise+PLExtensions.h"
-#import "PLTrackGroup.h"
+#import "PLMediaItemTrackGroup.h"
 
 @implementation PLMediaLibrarySearch
 
@@ -20,7 +20,7 @@
 {
     return [RXPromise pl_runInBackground:^{
         return [mediaQuery.items pl_map:^(MPMediaItem *mediaItem) {
-            return [[PLTrack alloc] initWithMediaItem:mediaItem];
+            return [[PLMediaItemTrack alloc] initWithMediaItem:mediaItem];
         }];
     }];
 }
@@ -29,7 +29,7 @@
 {
     return [RXPromise pl_runInBackground:^{
         return [collection.items pl_map:^(MPMediaItem *mediaItem) {
-            return [[PLTrack alloc] initWithMediaItem:mediaItem];
+            return [[PLMediaItemTrack alloc] initWithMediaItem:mediaItem];
         }];
     }];
 }
@@ -40,7 +40,7 @@
         MPMediaQuery *query = [MPMediaQuery audiobooksQuery];
 
         return [query.collections pl_map:^(MPMediaItemCollection *audiobook) {
-            return [[PLTrackGroup alloc] initWithType:PLTrackGroupTypeAudiobooks collection:audiobook];
+            return [[PLMediaItemTrackGroup alloc] initWithType:PLTrackGroupTypeAudiobooks collection:audiobook];
         }];
     }];
 }
@@ -51,7 +51,7 @@
         MPMediaQuery *query = [MPMediaQuery albumsQuery];
 
         return [query.collections pl_map:^(MPMediaItemCollection *album) {
-            return [[PLTrackGroup alloc] initWithType:PLTrackGroupTypeAlbums collection:album];
+            return [[PLMediaItemTrackGroup alloc] initWithType:PLTrackGroupTypeAlbums collection:album];
         }];
     }];
 }
@@ -62,7 +62,7 @@
         MPMediaQuery *query = [MPMediaQuery playlistsQuery];
 
         return [query.collections pl_map:^(MPMediaItemCollection *album) {
-            return [[PLTrackGroup alloc] initWithType:PLTrackGroupTypePlaylists collection:album];
+            return [[PLMediaItemTrackGroup alloc] initWithType:PLTrackGroupTypePlaylists collection:album];
         }];
     }];
 }
@@ -73,7 +73,7 @@
         MPMediaQuery *query = [MPMediaQuery podcastsQuery];
 
         return [query.collections pl_map:^(MPMediaItemCollection *podcast) {
-            return [[PLTrackGroup alloc] initWithType:PLTrackGroupTypePodcasts collection:podcast];
+            return [[PLMediaItemTrackGroup alloc] initWithType:PLTrackGroupTypePodcasts collection:podcast];
         }];
     }];
 }
@@ -87,7 +87,7 @@
         query.groupingType = MPMediaGroupingAlbum;
 
         return [query.collections pl_map:^(MPMediaItemCollection *itunesu) {
-            return [[PLTrackGroup alloc] initWithType:PLTrackGroupTypeITunesU collection:itunesu];
+            return [[PLMediaItemTrackGroup alloc] initWithType:PLTrackGroupTypeITunesU collection:itunesu];
         }];
     }];
 }

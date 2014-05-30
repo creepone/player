@@ -1,7 +1,7 @@
-@class PLTrack, PLTrackTableViewCell;
+@class PLMediaItemTrack, PLTrackTableViewCell;
 
 @interface PLTrackTableViewCellController : NSObject
 
-+ (void)configureCell:(PLTrackTableViewCell *)cell withTrack:(PLTrack *)track selected:(BOOL)selected;
++ (void)configureCell:(PLTrackTableViewCell *)cell withTrack:(PLMediaItemTrack *)track selected:(BOOL)selected;
 
 @end

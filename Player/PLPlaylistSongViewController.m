@@ -109,16 +109,8 @@
 {
     if (indexPath.row == 0) {
         UITableViewCell *cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:@"Cell1"];
-        
-        MPMediaItem *mediaItem = _song.mediaItem;
-        
-        cell.textLabel.text = [mediaItem valueForProperty:MPMediaItemPropertyTitle];
-        NSString *artist = [mediaItem valueForProperty:MPMediaItemPropertyArtist];
-        
-        if ([artist pl_isEmptyOrWhitespace])
-            artist = [mediaItem valueForProperty:MPMediaItemPropertyPodcastTitle];
-        
-        cell.detailTextLabel.text = artist;
+        cell.textLabel.text = _song.title;
+        cell.detailTextLabel.text = _song.artist;
         return cell;
     }
     else if (indexPath.row == 1) {

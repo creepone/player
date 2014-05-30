@@ -27,7 +27,7 @@
 
 #define kSongRowHeight 75.0
 
-@interface PLPlaylistViewController () <UITableViewDataSource, UITableViewDelegate, NSFetchedResultsControllerDelegate, MPMediaPickerControllerDelegate> {
+@interface PLPlaylistViewController () <UITableViewDataSource, UITableViewDelegate, NSFetchedResultsControllerDelegate> {
     BOOL _singleMode;   // YES = single playlist, NO = all playlists
     NSFetchedResultsController *_songsFetchedResultsController;
     NSFetchedResultsController *_playlistsFetchedResultsController;
@@ -102,20 +102,12 @@
 - (IBAction)addObject:(id)sender
 {    
     if (_singleMode) {
-        
         _activityViewController = [[PLActivityViewController alloc] initWithActivities:@[[PLDownloadURLActivity new], [PLFileSharingActivity new], [PLDownloadPodcastActivity new]]
                                                                          appActivities:@[[[PLSelectFromMusicLibraryActivity alloc] initWithPlaylist:_selectedPlaylist], [PLDownloadFromDropboxActivity new], [PLDownloadFromGDriveActivity new], [PLDownloadFromICloudActivity new]]];
         
         [_activityViewController presentFromRootViewController].then(^(id result) {
             return (id)nil;
         }, nil);
-        
-        /*MPMediaPickerController *picker = [[MPMediaPickerController alloc] initWithMediaTypes:MPMediaTypeAnyAudio];
-        [picker setDelegate: self];
-        [picker setAllowsPickingMultipleItems:YES];
-        picker.prompt = @"Add songs to playlist";
-        
-        [self presentViewController:picker animated:YES completion:nil];*/
     }
     else {
         UIAlertView * alert = [[UIAlertView alloc] initWithTitle:@"New playlist" message:@"Enter a name for the new playlist" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:@"Cancel", nil];
@@ -244,27 +236,13 @@
     
     if (_singleMode) {
         PLPlaylistSong *song = [_songsFetchedResultsController objectAtIndexPath:indexPath];
-        MPMediaItem *mediaItem = song.mediaItem;
-        
-        cell.textLabel.text = [mediaItem valueForProperty:MPMediaItemPropertyTitle];
-        NSString *artist = [mediaItem valueForProperty:MPMediaItemPropertyArtist];
-        
-        if ([artist pl_isEmptyOrWhitespace])
-            artist = [mediaItem valueForProperty:MPMediaItemPropertyPodcastTitle];
-        
-        NSTimeInterval duration = [[mediaItem valueForProperty:MPMediaItemPropertyPlaybackDuration] doubleValue];
+
+        cell.textLabel.text = song.title;
+        NSTimeInterval duration = song.duration;
     
         cell.detailTextLabel.numberOfLines = 2;
-        cell.detailTextLabel.text = [NSString stringWithFormat:@"%@\n%@", artist, [PLUtils formatDuration:duration]];
-        
-        MPMediaItemArtwork *itemArtwork = [mediaItem valueForProperty:MPMediaItemPropertyArtwork];
-        UIImage *imageArtwork = [itemArtwork imageWithSize:CGSizeMake(kSongRowHeight, kSongRowHeight)];
-        if (imageArtwork != nil) {
-            cell.imageView.image = imageArtwork;
-        }
-        else {
-            cell.imageView.image = [UIImage imageNamed:@"default_artwork.jpg"];
-        }
+        cell.detailTextLabel.text = [NSString stringWithFormat:@"%@\n%@", song.artist, [PLUtils formatDuration:duration]];
+        cell.imageView.image = [song artworkWithSize:CGSizeMake(kSongRowHeight, kSongRowHeight)];
         
         if ([_selectedPlaylist.position intValue] == [song.order intValue]) {
             cell.textLabel.textColor = [UIColor orangeColor];
@@ -282,7 +260,10 @@
         double indent = [cell respondsToSelector:@selector(separatorInset)] ? 30 : 0;
         BOOL isPlayed = song.played && position == 0.0;
         
-        double coeff = isPlayed ? 1.0 : (position / duration);
+        double coeff = 1.0;
+        if (!isPlayed && duration > 0.0) {
+            coeff = position / duration;
+        }
         UIColor *backgroundColor = isPlayed ? [UIColor grayColor] : [UIColor orangeColor];
         CGFloat width = (cell.frame.size.width - kSongRowHeight - indent) * coeff;
         CGRect progressFrame = CGRectMake(kSongRowHeight + indent, kSongRowHeight - 6, width, 5);
@@ -442,33 +423,8 @@
 }
 
 
-#pragma mark - Media picker controller delegate
-
-- (void) mediaPicker:(MPMediaPickerController *)mediaPicker didPickMediaItems:(MPMediaItemCollection *)collection {
-    [self dismissViewControllerAnimated:YES completion:nil];
-    
-    PLDataAccess *dataAccess = [PLDataAccess sharedDataAccess];
-        
-    for (MPMediaItem *item in [collection items]) {
-        NSNumber *persistentId = [item valueForProperty:MPMediaItemPropertyPersistentID];
-        
-        PLPlaylistSong *playlistSong = [dataAccess findSongWithPersistentID:persistentId onPlaylist:_selectedPlaylist];
-        if (playlistSong == nil)
-            [dataAccess addSong:item toPlaylist:_selectedPlaylist];
-    }
-    
-    NSError *error;
-    [dataAccess saveChanges:&error];
-    [PLAlerts checkForDataStoreError:error];
-}
-
-- (void) mediaPickerDidCancel: (MPMediaPickerController *) mediaPicker {
-    [self dismissViewControllerAnimated:YES completion:nil];
-}
-
-
-
-- (void)dealloc {
+- (void)dealloc
+{
     [[NSNotificationCenter defaultCenter] removeObserver:self];
     [_playlistsFetchedResultsController setDelegate:nil];
 }

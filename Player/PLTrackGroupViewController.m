@@ -88,7 +88,7 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     PLTrackGroupTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"trackGroupCell" forIndexPath:indexPath];
-    PLTrackGroup *trackGroup = [_groups objectAtIndex:indexPath.row];
+    PLMediaItemTrackGroup *trackGroup = [_groups objectAtIndex:indexPath.row];
     [PLTrackGroupTableViewCellController configureCell:cell withTrackGroup:trackGroup];
     return cell;
 }

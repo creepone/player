@@ -1,9 +1,9 @@
 #import <RXPromise/RXPromise.h>
-#import "PLTrackGroup.h"
+#import "PLMediaItemTrackGroup.h"
 #import "PLImageCache.h"
 #import "PLMediaLibrarySearch.h"
 
-@interface PLTrackGroup() {
+@interface PLMediaItemTrackGroup () {
     NSNumber *_persistentId;
     NSNumber *_parentPersistentId;
     PLTrackGroupType _trackGroupType;
@@ -11,7 +11,7 @@
 @end
 
 
-@implementation PLTrackGroup
+@implementation PLMediaItemTrackGroup
 
 - (instancetype)initWithType:(PLTrackGroupType)type collection:(MPMediaItemCollection *)collection
 {

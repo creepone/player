@@ -1,14 +1,7 @@
-//
-//  PLPlaylist.m
-//  Player
-//
-//  Created by Tomas Vana on 11/16/12.
-//  Copyright (c) 2012 Tomas Vana. All rights reserved.
-//
-
 #import "PLPlaylist.h"
 #import "PLPlaylistSong.h"
 #import "PLDataAccess.h"
+#import "PLTrack.h"
 
 @interface PLPlaylist()
 
@@ -23,7 +16,8 @@
 @dynamic songs;
 
 
-- (void)addNewSong:(PLPlaylistSong *)song {
+- (NSInteger)indexForNewSong
+{
     NSInteger index = 0;
     for (PLPlaylistSong *oldSong in self.songs) {
         NSInteger songIndex = [oldSong.order intValue];
@@ -31,11 +25,22 @@
             index = songIndex;
         }
     }
-    
+
     index++;
-    [song setOrder:[NSNumber numberWithInt:index]];
-    [song setPlaylist:self];
+    return index;
 }
+
+- (PLPlaylistSong *)addTrack:(PLTrack *)track
+{
+    PLPlaylistSong *playlistSong = [NSEntityDescription insertNewObjectForEntityForName:@"PLPlaylistSong" inManagedObjectContext:self.managedObjectContext];
+    playlistSong.position = [NSNumber numberWithDouble:0.0];
+    playlistSong.track = track;
+    playlistSong.playlist = self;
+    playlistSong.order = @(self.indexForNewSong);
+
+    return playlistSong;
+}
+
 
 - (void)removeSong:(PLPlaylistSong *)song {
     PLDataAccess *dataAccess = [PLDataAccess sharedDataAccess];

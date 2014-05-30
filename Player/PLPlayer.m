@@ -109,8 +109,11 @@ void audioRouteChangeListenerCallback (void *inUserData, AudioSessionPropertyID 
     
     if (_audioPlayer == nil) {
         NSError *error;
-        NSURL *songURL = [song.mediaItem valueForProperty:MPMediaItemPropertyAssetURL];        
-        _audioPlayer = [[AVAudioPlayer alloc] initWithContentsOfURL:songURL error:&error];
+        NSURL *assetURL = song.assetURL;
+
+        // todo: if the assetURL is nil, switch to the next song
+
+        _audioPlayer = [[AVAudioPlayer alloc] initWithContentsOfURL:assetURL error:&error];
         _audioPlayer.enableRate = YES;
         
         double customRate = [song.playbackRate doubleValue];
@@ -183,7 +186,7 @@ void audioRouteChangeListenerCallback (void *inUserData, AudioSessionPropertyID 
         [playlist moveToPreviousSong];
 
         while (playlist.currentSong != song) {
-            NSTimeInterval duration = [[playlist.currentSong.mediaItem valueForProperty:MPMediaItemPropertyPlaybackDuration] doubleValue];
+            NSTimeInterval duration = playlist.currentSong.duration;
             position += duration;
             
             if (position >= 0) {
@@ -205,17 +208,9 @@ void audioRouteChangeListenerCallback (void *inUserData, AudioSessionPropertyID 
 
 - (void)makeBookmark {
     PLDataAccess *dataAccess = [PLDataAccess sharedDataAccess];
-    PLPlaylistSong *song = self.currentSong;
-    
-    NSError *error;
-    PLBookmarkSong *bookmarkSong = [dataAccess bookmarkSongForSong:song.mediaItem error:&error];
-    if (![PLAlerts checkForDataStoreError:error])
-        return;
-    
-    [dataAccess addBookmarkAtPosition:self.currentPosition forSong:bookmarkSong];
+    [dataAccess addBookmarkAtPosition:self.currentPosition forTrack:self.currentSong.track];
     [self save];
-    
-    
+
     // ivar
     SystemSoundID mBeep;
     

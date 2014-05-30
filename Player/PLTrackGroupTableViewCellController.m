@@ -1,11 +1,11 @@
 #import "PLTrackGroupTableViewCellController.h"
 #import "PLTrackGroupTableViewCell.h"
-#import "PLTrackGroup.h"
+#import "PLMediaItemTrackGroup.h"
 #import "NSObject+PLExtensions.h"
 
 @implementation PLTrackGroupTableViewCellController
 
-+ (void)configureCell:(PLTrackGroupTableViewCell *)cell withTrackGroup:(PLTrackGroup *)trackGroup
++ (void)configureCell:(PLTrackGroupTableViewCell *)cell withTrackGroup:(PLMediaItemTrackGroup *)trackGroup
 {
     cell.labelTitle.text = trackGroup.title;
     cell.labelArtist.text = trackGroup.artist;
@@ -13,7 +13,7 @@
     [cell pl_setValueForKeyPath:@"imageArtwork" fromPromise:trackGroup.artwork];
 }
 
-+ (void)configureCell:(PLTrackGroupTableViewCell *)cell withTrackGroup:(PLTrackGroup *)trackGroup selected:(BOOL)selected
++ (void)configureCell:(PLTrackGroupTableViewCell *)cell withTrackGroup:(PLMediaItemTrackGroup *)trackGroup selected:(BOOL)selected
 {
     [self configureCell:cell withTrackGroup:trackGroup];
     [self setSelected:selected forCell:cell];
@@ -35,7 +35,7 @@
     }
 }
 
-+ (NSAttributedString *)infoTextForTrackGroup:(PLTrackGroup *)trackGroup
++ (NSAttributedString *)infoTextForTrackGroup:(PLMediaItemTrackGroup *)trackGroup
 {
     NSMutableAttributedString *infoText = [[NSMutableAttributedString alloc] init];
     NSDictionary *boldAttributes = @{ NSFontAttributeName : [UIFont boldSystemFontOfSize:13.] };

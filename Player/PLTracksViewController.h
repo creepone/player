@@ -1,7 +1,7 @@
-@class PLTrackGroup;
+@class PLMediaItemTrackGroup;
 
 @interface PLTracksViewController : UITableViewController
 
-@property (nonatomic, strong) PLTrackGroup *trackGroup;
+@property (nonatomic, strong) PLMediaItemTrackGroup *trackGroup;
 
 @end

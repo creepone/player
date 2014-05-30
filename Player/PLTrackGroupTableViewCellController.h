@@ -1,8 +1,8 @@
-@class PLTrackGroup, PLTrackGroupTableViewCell;
+@class PLMediaItemTrackGroup, PLTrackGroupTableViewCell;
 
 @interface PLTrackGroupTableViewCellController : NSObject
 
-+ (void)configureCell:(PLTrackGroupTableViewCell *)cell withTrackGroup:(PLTrackGroup *)trackGroup;
-+ (void)configureCell:(PLTrackGroupTableViewCell *)cell withTrackGroup:(PLTrackGroup *)trackGroup selected:(BOOL)selected;
++ (void)configureCell:(PLTrackGroupTableViewCell *)cell withTrackGroup:(PLMediaItemTrackGroup *)trackGroup;
++ (void)configureCell:(PLTrackGroupTableViewCell *)cell withTrackGroup:(PLMediaItemTrackGroup *)trackGroup selected:(BOOL)selected;
 
 @end

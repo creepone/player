@@ -3,7 +3,7 @@
 #import "PLSelectFromMusicLibraryActivity.h"
 #import "PLMediaLibrarySearch.h"
 #import "PLMusicLibraryViewController.h"
-#import "PLTrackGroup.h"
+#import "PLMediaItemTrackGroup.h"
 #import "PLDataAccess.h"
 #import "PLErrorManager.h"
 
@@ -62,11 +62,11 @@
     PLDataAccess *dataAccess = [PLDataAccess sharedDataAccess];
     
     for (NSNumber *persistentId in persistentIds) {
-        PLPlaylistSong *playlistSong = [dataAccess findSongWithPersistentID:persistentId onPlaylist:_playlist];
-        MPMediaItem *item = [PLMediaLibrarySearch mediaItemWithPersistentId:persistentId];
-        
-        if (playlistSong == nil)
-            [dataAccess addSong:item toPlaylist:_playlist];
+        PLTrack *track = [dataAccess trackWithPersistentId:persistentId];
+        PLPlaylistSong *playlistSong = [dataAccess songWithTrack:track onPlaylist:_playlist];
+
+        if (!playlistSong)
+            [_playlist addTrack:track];
     }
     
     NSError *error;

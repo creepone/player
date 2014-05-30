@@ -10,7 +10,7 @@ typedef NS_ENUM(NSInteger, PLTrackGroupType) {
     PLTrackGroupTypePodcasts
 };
 
-@interface PLTrackGroup : NSObject
+@interface PLMediaItemTrackGroup : NSObject
 
 - (instancetype)initWithType:(PLTrackGroupType)type collection:(MPMediaItemCollection *)collection;
 
@@ -25,7 +25,7 @@ typedef NS_ENUM(NSInteger, PLTrackGroupType) {
 - (RXPromise *)artwork;
 
 /**
-* Resolves to an NSArray of the tracks (instances of PLTrack) from this group.
+* Resolves to an NSArray of the tracks (instances of PLMediaItemTrack) from this group.
 */
 - (RXPromise *)tracks;
 

@@ -1,11 +1,3 @@
-//
-//  PLPlayerViewController.m
-//  Player
-//
-//  Created by Tomas Vana on 11/16/12.
-//  Copyright (c) 2012 Tomas Vana. All rights reserved.
-//
-
 #import <MediaPlayer/MediaPlayer.h>
 
 #import "PLPlayerViewController.h"
@@ -83,34 +75,23 @@
         self.imgArtwork.image = [UIImage imageNamed:@"default_artwork.jpg"];
     }
     else {
-        MPMediaItem *mediaItem = currentSong.mediaItem;
+        self.labelTitle.text = currentSong.title;
+        self.labelArtist.text = currentSong.artist;
         
-        NSString *artist = [mediaItem valueForProperty:MPMediaItemPropertyArtist];
-        if ([artist pl_isEmptyOrWhitespace])
-            artist = [mediaItem valueForProperty:MPMediaItemPropertyPodcastTitle];
-        
-        self.labelTitle.text = [mediaItem valueForProperty:MPMediaItemPropertyTitle];
-        self.labelArtist.text = artist;
-        
-        NSTimeInterval duration = [[mediaItem valueForProperty:MPMediaItemPropertyPlaybackDuration] doubleValue];
+        NSTimeInterval duration = currentSong.duration;
         self.labelTotal.text = [PLUtils formatDuration:duration];
         
         self.sliderTimeline.hidden = NO;
-        
-        MPMediaItemArtwork *itemArtwork = [mediaItem valueForProperty:MPMediaItemPropertyArtwork];
-        UIImage *imageArtwork = [itemArtwork imageWithSize:CGSizeMake(self.imgArtwork.bounds.size.width, self.imgArtwork.bounds.size.height)];
-    
-        if (imageArtwork != nil) {
-            self.imgArtwork.image = imageArtwork;
-        }
-        else {
-            self.imgArtwork.image = [UIImage imageNamed:@"default_artwork.jpg"];
-        }
-        
+        self.imgArtwork.image = [currentSong artworkWithSize:CGSizeMake(self.imgArtwork.bounds.size.width, self.imgArtwork.bounds.size.height)];
+
         NSString *titleForButton = [player isPlaying] ? @"Pause" : @"Play";
         [self.btnPlayPause setTitle:titleForButton forState:UIControlStateNormal];
+
+        // note: we will have to solve this in a different way, e.g. by showing the position within the playlist
         
-        NSUInteger trackNo = [[mediaItem valueForProperty:MPMediaItemPropertyAlbumTrackNumber] integerValue];
+        self.labelTrackNumber.text = nil;
+
+        /*NSUInteger trackNo = [[mediaItem valueForProperty:MPMediaItemPropertyAlbumTrackNumber] integerValue];
         NSUInteger trackCount = [[mediaItem valueForProperty:MPMediaItemPropertyAlbumTrackCount] integerValue];
         NSString *trackString = @"";
         
@@ -119,7 +100,7 @@
         else if (trackNo > 0)
             trackString = [NSString stringWithFormat:@"#%ld", trackNo];
         
-        self.labelTrackNumber.text = trackString;
+        self.labelTrackNumber.text = trackString;*/
     }
 }
 
@@ -131,7 +112,7 @@
         return;
     }
     
-    NSTimeInterval duration = [[currentSong.mediaItem valueForProperty:MPMediaItemPropertyPlaybackDuration] doubleValue];
+    NSTimeInterval duration = currentSong.duration;
     NSTimeInterval currentPosition = [player currentPosition];
     
     self.labelCurrent.text = [PLUtils formatDuration:currentPosition];
@@ -152,7 +133,7 @@
     if (currentSong == nil)
         return;
     
-    NSTimeInterval duration = [[currentSong.mediaItem valueForProperty:MPMediaItemPropertyPlaybackDuration] doubleValue];
+    NSTimeInterval duration = currentSong.duration;
     double updatedPosition = duration * value;
     if (updatedPosition > duration - 1.0)
         updatedPosition = duration - 1.0;

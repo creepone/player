@@ -1,8 +1,7 @@
-#import <Foundation/Foundation.h>
 #import "PLPlaylist.h"
 #import "PLPlaylistSong.h"
 #import "PLBookmark.h"
-#import "PLBookmarkSong.h"
+#import "PLTrack.h"
 
 @interface PLDataAccess : NSObject
 
@@ -26,6 +25,22 @@
 + (PLDataAccess *)sharedDataAccess;
 
 
+/**
+ Delivers a track with the given persistent id. If it already exists, it is simply returned, otherwise a new one is created.
+ */
+- (PLTrack *)trackWithPersistentId:(NSNumber *)persistentId;
+
+/**
+ Delivers a playlist song with the given track on the given playlist, if one exists. Otherwise, nil is returned.
+ */
+- (PLPlaylistSong *)songWithTrack:(PLTrack *)track onPlaylist:(PLPlaylist *)playlist;
+
+/**
+ Adds a new bookmark at the given position of the track.
+ */
+- (PLBookmark *)addBookmarkAtPosition:(NSTimeInterval)position forTrack:(PLTrack *)track;
+
+
 - (void)deleteObject:(NSManagedObject *)object;
 - (BOOL)deleteObject:(NSManagedObject *)object error:(NSError **)error;
 - (BOOL)saveChanges:(NSError **)error;
@@ -37,11 +52,6 @@
 - (void)selectPlaylist:(PLPlaylist *)playlist;
 - (PLPlaylist *)bookmarkPlaylist;
 - (void)setBookmarkPlaylist:(PLPlaylist *)playlist;
-- (PLPlaylistSong *)addSong:(MPMediaItem *)song toPlaylist:(PLPlaylist *)playlist;
-- (PLPlaylistSong *)findSongWithPersistentID:(NSNumber *)persistentID onPlaylist:(PLPlaylist *)playlist;
-
-- (PLBookmarkSong *)bookmarkSongForSong:(MPMediaItem *)song error:(NSError **)error;
-- (void)addBookmarkAtPosition:(NSTimeInterval)position forSong:(PLBookmarkSong *)song;
 
 - (NSFetchedResultsController *)fetchedResultsControllerForAllPlaylists;
 - (NSFetchedResultsController *)fetchedResultsControllerForAllBookmarks;

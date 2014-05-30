@@ -5,8 +5,8 @@
 #import "PLTrackGroupTableViewCellController.h"
 #import "PLTrackTableViewCell.h"
 #import "PLTrackTableViewCellController.h"
-#import "PLTrackGroup.h"
-#import "PLTrack.h"
+#import "PLMediaItemTrackGroup.h"
+#import "PLMediaItemTrack.h"
 #import "NSArray+PLExtensions.h"
 
 @interface PLTracksViewController () {
@@ -74,7 +74,7 @@
     }
     else if (indexPath.section == 1) {
         PLTrackTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"trackCell" forIndexPath:indexPath];
-        PLTrack *track = _tracks[indexPath.row];
+        PLMediaItemTrack *track = _tracks[indexPath.row];
         [PLTrackTableViewCellController configureCell:cell withTrack:track selected:[self isTrackSelected:track]];
         return cell;
     }
@@ -97,7 +97,7 @@
         }
     }
     else if (indexPath.section == 1) {
-        PLTrack *track = _tracks[indexPath.row];
+        PLMediaItemTrack *track = _tracks[indexPath.row];
         NSNumber *persistentId = track.persistentId;
 
         if ([self isTrackSelected:track]) {
@@ -117,7 +117,7 @@
     return [_tracks count] > 0 && [_selection count] == [_tracks count];
 }
 
-- (BOOL)isTrackSelected:(PLTrack *)track
+- (BOOL)isTrackSelected:(PLMediaItemTrack *)track
 {
     return [_selection containsObject:track.persistentId];
 }
@@ -132,7 +132,7 @@
 
 - (NSArray *)trackPersistentIds
 {
-    return [_tracks pl_map:^(PLTrack *track) { return track.persistentId; }];
+    return [_tracks pl_map:^(PLMediaItemTrack *track) { return track.persistentId; }];
 }
 
 @end

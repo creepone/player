@@ -1,6 +1,6 @@
 #import <MediaPlayer/MediaPlayer.h>
 
-@interface PLTrack : NSObject
+@interface PLMediaItemTrack : NSObject
 
 - (instancetype)initWithMediaItem:(MPMediaItem *)mediaItem;
 

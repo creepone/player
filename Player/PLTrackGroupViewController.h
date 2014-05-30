@@ -1,5 +1,5 @@
 #import <MediaPlayer/MediaPlayer.h>
-#import "PLTrackGroup.h"
+#import "PLMediaItemTrackGroup.h"
 
 @interface PLTrackGroupViewController : UITableViewController
 

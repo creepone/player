@@ -1,31 +1,52 @@
-#import <MediaPlayer/MediaPlayer.h>
-
 #import "PLPlaylistSong.h"
-#import "PLMediaLibrarySearch.h"
+#import "PLTrack.h"
 
-@interface PLPlaylistSong() {
-    MPMediaItem *_mediaItem;
-}
+@interface PLPlaylistSong()
 @end
-
 
 @implementation PLPlaylistSong
 
-@dynamic persistentId;
 @dynamic order;
 @dynamic position;
 @dynamic playlist;
 @dynamic playbackRate;
-@dynamic played;
-@dynamic downloadURL;
-@dynamic fileURL;
+@dynamic track;
 
 #pragma mark -- Derived properties
 
-- (MPMediaItem *)mediaItem {
-    if (_mediaItem == nil)
-        _mediaItem = [PLMediaLibrarySearch mediaItemWithPersistentId:self.persistentId];
-    return _mediaItem;
+- (BOOL)played
+{
+    return self.track.played;
+}
+
+- (void)setPlayed:(BOOL)played
+{
+    self.track.played = played;
+}
+
+- (NSURL *)assetURL
+{
+    return self.track.assetURL;
+}
+
+- (NSTimeInterval)duration
+{
+    return self.track.duration;
+}
+
+- (NSString *)artist
+{
+    return self.track.artist;
+}
+
+- (NSString *)title
+{
+    return self.track.title;
+}
+
+- (UIImage *)artworkWithSize:(CGSize)size
+{
+    return [self.track artworkWithSize:size];
 }
 
 @end

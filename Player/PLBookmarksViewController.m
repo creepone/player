@@ -15,6 +15,7 @@
 #import "PLPlayer.h"
 
 #import "NSString+Extensions.h"
+#import "PLTrack.h"
 
 @interface PLBookmarksViewController () <UITableViewDataSource, UITableViewDelegate, NSFetchedResultsControllerDelegate> {
     NSFetchedResultsController *_fetchedResultsController;
@@ -96,12 +97,11 @@
     
     PLBookmark *bookmark = [_fetchedResultsController objectAtIndexPath:indexPath];
         
-    cell.textLabel.text = bookmark.song.title;
-
+    cell.textLabel.text = bookmark.track.title;
     NSTimeInterval position = [bookmark.position doubleValue];
         
     cell.detailTextLabel.numberOfLines = 2;
-    cell.detailTextLabel.text = [NSString stringWithFormat:@"%@\n%@", bookmark.song.artist, [PLUtils formatDuration:position]];
+    cell.detailTextLabel.text = [NSString stringWithFormat:@"%@\n%@", bookmark.track.artist, [PLUtils formatDuration:position]];
         
     return cell;
 }
@@ -126,14 +126,14 @@
     PLBookmark *bookmark = [_fetchedResultsController objectAtIndexPath:indexPath];
     
     // nothing to play
-    if (bookmarkPlaylist == nil || bookmark.song.mediaItem == nil)
+    if (bookmarkPlaylist == nil || bookmark.track == nil)
         return;
     
     // add the song to the playlist if it's not there
-    PLPlaylistSong *playlistSong = [dataAccess findSongWithPersistentID:bookmark.song.persistentId onPlaylist:bookmarkPlaylist];
-    if (playlistSong == nil)
-        playlistSong = [dataAccess addSong:bookmark.song.mediaItem toPlaylist:bookmarkPlaylist];
-    
+    PLPlaylistSong *playlistSong = [dataAccess songWithTrack:bookmark.track onPlaylist:bookmarkPlaylist];
+    if (!playlistSong)
+        playlistSong = [bookmarkPlaylist addTrack:bookmark.track];
+
     // select it and advance to the right position
     playlistSong.position = bookmark.position;
     bookmarkPlaylist.position = playlistSong.order;

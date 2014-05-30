@@ -1,6 +1,6 @@
-#import "PLTrack.h"
+#import "PLMediaItemTrack.h"
 
-@implementation PLTrack
+@implementation PLMediaItemTrack
 
 - (instancetype)initWithMediaItem:(MPMediaItem *)mediaItem
 {

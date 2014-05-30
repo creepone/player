@@ -18,7 +18,7 @@
 		696C159390EB7A51269C2399 /* NSString+PLExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 696C1B78075493A42466C4A8 /* NSString+PLExtensions.m */; };
 		696C15F960FE4C012828606D /* PLActivityViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 696C1C1CFEA94557045A202E /* PLActivityViewController.m */; };
 		696C1688959910200C8E162E /* PLSelectFromMusicLibraryActivity.m in Sources */ = {isa = PBXBuildFile; fileRef = 696C1A380A19FBA5F3A9D4E3 /* PLSelectFromMusicLibraryActivity.m */; };
-		696C177E0F2230FE3DDA991B /* PLTrackGroup.m in Sources */ = {isa = PBXBuildFile; fileRef = 696C1F2107FF194F73B00CA7 /* PLTrackGroup.m */; };
+		696C177E0F2230FE3DDA991B /* PLMediaItemTrackGroup.m in Sources */ = {isa = PBXBuildFile; fileRef = 696C1F2107FF194F73B00CA7 /* PLMediaItemTrackGroup.m */; };
 		696C17BF00FEF79DF2FCB485 /* PLRequestManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 696C160375147E63C52A1806 /* PLRequestManager.m */; };
 		696C196244DD64E0DD03976E /* UIViewController+PLErrorExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 696C12C9DF1F34B0D5963EEC /* UIViewController+PLErrorExtensions.m */; };
 		696C197C7FC7F02EAB520C14 /* PLUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 696C182AEF78B538772A01FD /* PLUtils.m */; };
@@ -26,7 +26,7 @@
 		696C1A5C34970937DA5E0A3B /* PLLogging.m in Sources */ = {isa = PBXBuildFile; fileRef = 696C19A6848C7EB377AF58C5 /* PLLogging.m */; };
 		696C1A663DCC44EB31B19B46 /* PLDownloadFromICloudActivity.m in Sources */ = {isa = PBXBuildFile; fileRef = 696C1A8B85B56C770FB7BEC0 /* PLDownloadFromICloudActivity.m */; };
 		696C1ADFA4D617995455F30F /* PLDownloadFromDropboxActivity.m in Sources */ = {isa = PBXBuildFile; fileRef = 696C123B1E65E488D94DD4A8 /* PLDownloadFromDropboxActivity.m */; };
-		696C1B378A7D2749C756064C /* PLTrack.m in Sources */ = {isa = PBXBuildFile; fileRef = 696C1EEB72AA7536F82ED55D /* PLTrack.m */; };
+		696C1B378A7D2749C756064C /* PLMediaItemTrack.m in Sources */ = {isa = PBXBuildFile; fileRef = 696C1EEB72AA7536F82ED55D /* PLMediaItemTrack.m */; };
 		696C1B8D690CECA9499F257E /* PLMediaLibrarySearch.m in Sources */ = {isa = PBXBuildFile; fileRef = 696C1A1B2AD9708890647B5D /* PLMediaLibrarySearch.m */; };
 		696C1C17D8D7CEA11E7A5928 /* PLDownloadFromGDriveActivity.m in Sources */ = {isa = PBXBuildFile; fileRef = 696C1D4C6FF0251EBF444798 /* PLDownloadFromGDriveActivity.m */; };
 		696C1C38A95357371CFEE558 /* PLDownloadURLActivity.m in Sources */ = {isa = PBXBuildFile; fileRef = 696C1AD27942A80B8A9896C5 /* PLDownloadURLActivity.m */; };
@@ -40,6 +40,7 @@
 		C343756B166BE5ED006EC87D /* jbl_confirm.caf in Resources */ = {isa = PBXBuildFile; fileRef = C343756A166BE5ED006EC87D /* jbl_confirm.caf */; };
 		C343756D166BE661006EC87D /* jbl_confirm.aiff in Resources */ = {isa = PBXBuildFile; fileRef = C343756C166BE661006EC87D /* jbl_confirm.aiff */; };
 		C3544850165922C80083D703 /* SliderCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C354484F165922C80083D703 /* SliderCell.m */; };
+		C384009B193879E600D6A930 /* PLTrack.m in Sources */ = {isa = PBXBuildFile; fileRef = C384009A193879E600D6A930 /* PLTrack.m */; };
 		C3BC5A361656B772002DA837 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = C3BC5A341656B772002DA837 /* InfoPlist.strings */; };
 		C3BC5A381656B772002DA837 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = C3BC5A371656B772002DA837 /* main.m */; };
 		C3BC5A3C1656B772002DA837 /* PLAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = C3BC5A3B1656B772002DA837 /* PLAppDelegate.m */; };
@@ -61,7 +62,6 @@
 		C3BC5ACD1656C81C002DA837 /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = C3BC5ACB1656C81C002DA837 /* Model.xcdatamodeld */; };
 		C3BC5AD31656CA4D002DA837 /* PLBookmark.m in Sources */ = {isa = PBXBuildFile; fileRef = C3BC5AD21656CA4D002DA837 /* PLBookmark.m */; };
 		C3BC5AD61656CA4E002DA837 /* PLPlaylist.m in Sources */ = {isa = PBXBuildFile; fileRef = C3BC5AD51656CA4E002DA837 /* PLPlaylist.m */; };
-		C3BC5AD91656CA4E002DA837 /* PLBookmarkSong.m in Sources */ = {isa = PBXBuildFile; fileRef = C3BC5AD81656CA4E002DA837 /* PLBookmarkSong.m */; };
 		C3BC5ADC1656CA4E002DA837 /* PLPlaylistSong.m in Sources */ = {isa = PBXBuildFile; fileRef = C3BC5ADB1656CA4E002DA837 /* PLPlaylistSong.m */; };
 		C3BC5ADF1656CA73002DA837 /* PLCoreDataStack.m in Sources */ = {isa = PBXBuildFile; fileRef = C3BC5ADE1656CA73002DA837 /* PLCoreDataStack.m */; };
 		C3BC5AE21656CACC002DA837 /* PLDataAccess.m in Sources */ = {isa = PBXBuildFile; fileRef = C3BC5AE11656CABF002DA837 /* PLDataAccess.m */; };
@@ -119,13 +119,13 @@
 		696C182AEF78B538772A01FD /* PLUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PLUtils.m; sourceTree = "<group>"; };
 		696C18A46ED3C43F5DF25C0F /* PLSelectFromMusicLibraryActivity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PLSelectFromMusicLibraryActivity.h; sourceTree = "<group>"; };
 		696C1931BF56608A412ACF33 /* NSString+PLExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+PLExtensions.h"; sourceTree = "<group>"; };
-		696C19563B0CAE9008642F75 /* PLTrackGroup.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PLTrackGroup.h; sourceTree = "<group>"; };
+		696C19563B0CAE9008642F75 /* PLMediaItemTrackGroup.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PLMediaItemTrackGroup.h; sourceTree = "<group>"; };
 		696C1960628953871BEA02C3 /* UIView+PLExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+PLExtensions.h"; sourceTree = "<group>"; };
 		696C19A6848C7EB377AF58C5 /* PLLogging.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PLLogging.m; sourceTree = "<group>"; };
 		696C19B02B8C2610D58EAA58 /* PLMediaItemArtwork.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PLMediaItemArtwork.h; sourceTree = "<group>"; };
 		696C1A1B2AD9708890647B5D /* PLMediaLibrarySearch.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PLMediaLibrarySearch.m; sourceTree = "<group>"; };
 		696C1A380A19FBA5F3A9D4E3 /* PLSelectFromMusicLibraryActivity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PLSelectFromMusicLibraryActivity.m; sourceTree = "<group>"; };
-		696C1A801C481849E5EC42B5 /* PLTrack.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PLTrack.h; sourceTree = "<group>"; };
+		696C1A801C481849E5EC42B5 /* PLMediaItemTrack.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PLMediaItemTrack.h; sourceTree = "<group>"; };
 		696C1A8B85B56C770FB7BEC0 /* PLDownloadFromICloudActivity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PLDownloadFromICloudActivity.m; sourceTree = "<group>"; };
 		696C1AA53C9864939BB01191 /* PLImageCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PLImageCache.h; sourceTree = "<group>"; };
 		696C1AD27942A80B8A9896C5 /* PLDownloadURLActivity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PLDownloadURLActivity.m; sourceTree = "<group>"; };
@@ -143,8 +143,8 @@
 		696C1E7C20B9B213E7843DEF /* PLFileSharingActivity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PLFileSharingActivity.h; sourceTree = "<group>"; };
 		696C1EADB9F92F456BBFD2EE /* NSObject+PLExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+PLExtensions.h"; sourceTree = "<group>"; };
 		696C1EE652F22078B91B6C56 /* PLDownloadFromICloudActivity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PLDownloadFromICloudActivity.h; sourceTree = "<group>"; };
-		696C1EEB72AA7536F82ED55D /* PLTrack.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PLTrack.m; sourceTree = "<group>"; };
-		696C1F2107FF194F73B00CA7 /* PLTrackGroup.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PLTrackGroup.m; sourceTree = "<group>"; };
+		696C1EEB72AA7536F82ED55D /* PLMediaItemTrack.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PLMediaItemTrack.m; sourceTree = "<group>"; };
+		696C1F2107FF194F73B00CA7 /* PLMediaItemTrackGroup.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PLMediaItemTrackGroup.m; sourceTree = "<group>"; };
 		696C1F36F1EB35D1A794B4FE /* PLColors.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PLColors.m; sourceTree = "<group>"; };
 		696C1F806E065E1941BA78DA /* RXPromise+PLExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "RXPromise+PLExtensions.m"; sourceTree = "<group>"; };
 		696C1F83AD3337B20894E1D9 /* PLPromise.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PLPromise.m; sourceTree = "<group>"; };
@@ -155,6 +155,8 @@
 		C343756C166BE661006EC87D /* jbl_confirm.aiff */ = {isa = PBXFileReference; lastKnownFileType = audio.aiff; path = jbl_confirm.aiff; sourceTree = "<group>"; };
 		C354484E165922C80083D703 /* SliderCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SliderCell.h; sourceTree = "<group>"; };
 		C354484F165922C80083D703 /* SliderCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SliderCell.m; sourceTree = "<group>"; };
+		C3840099193879E600D6A930 /* PLTrack.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PLTrack.h; path = ../PLTrack.h; sourceTree = "<group>"; };
+		C384009A193879E600D6A930 /* PLTrack.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PLTrack.m; path = ../PLTrack.m; sourceTree = "<group>"; };
 		C3BC5A271656B772002DA837 /* Baladeur.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Baladeur.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C3BC5A331656B772002DA837 /* Player-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Player-Info.plist"; sourceTree = "<group>"; };
 		C3BC5A351656B772002DA837 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
@@ -186,8 +188,6 @@
 		C3BC5AD21656CA4D002DA837 /* PLBookmark.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PLBookmark.m; sourceTree = "<group>"; };
 		C3BC5AD41656CA4E002DA837 /* PLPlaylist.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PLPlaylist.h; sourceTree = "<group>"; };
 		C3BC5AD51656CA4E002DA837 /* PLPlaylist.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PLPlaylist.m; sourceTree = "<group>"; };
-		C3BC5AD71656CA4E002DA837 /* PLBookmarkSong.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PLBookmarkSong.h; sourceTree = "<group>"; };
-		C3BC5AD81656CA4E002DA837 /* PLBookmarkSong.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PLBookmarkSong.m; sourceTree = "<group>"; };
 		C3BC5ADA1656CA4E002DA837 /* PLPlaylistSong.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PLPlaylistSong.h; sourceTree = "<group>"; };
 		C3BC5ADB1656CA4E002DA837 /* PLPlaylistSong.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PLPlaylistSong.m; sourceTree = "<group>"; };
 		C3BC5ADD1656CA73002DA837 /* PLCoreDataStack.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PLCoreDataStack.h; sourceTree = "<group>"; };
@@ -582,10 +582,10 @@
 		C3BC5ACA1656C808002DA837 /* Entities */ = {
 			isa = PBXGroup;
 			children = (
+				C3840099193879E600D6A930 /* PLTrack.h */,
+				C384009A193879E600D6A930 /* PLTrack.m */,
 				C3BC5ADA1656CA4E002DA837 /* PLPlaylistSong.h */,
 				C3BC5ADB1656CA4E002DA837 /* PLPlaylistSong.m */,
-				C3BC5AD71656CA4E002DA837 /* PLBookmarkSong.h */,
-				C3BC5AD81656CA4E002DA837 /* PLBookmarkSong.m */,
 				C3BC5AD41656CA4E002DA837 /* PLPlaylist.h */,
 				C3BC5AD51656CA4E002DA837 /* PLPlaylist.m */,
 				C3BC5AD11656CA4D002DA837 /* PLBookmark.h */,
@@ -643,10 +643,10 @@
 			children = (
 				696C125EC4796E70CFB25276 /* PLMediaLibrarySearch.h */,
 				696C1A1B2AD9708890647B5D /* PLMediaLibrarySearch.m */,
-				696C19563B0CAE9008642F75 /* PLTrackGroup.h */,
-				696C1F2107FF194F73B00CA7 /* PLTrackGroup.m */,
-				696C1A801C481849E5EC42B5 /* PLTrack.h */,
-				696C1EEB72AA7536F82ED55D /* PLTrack.m */,
+				696C19563B0CAE9008642F75 /* PLMediaItemTrackGroup.h */,
+				696C1F2107FF194F73B00CA7 /* PLMediaItemTrackGroup.m */,
+				696C1A801C481849E5EC42B5 /* PLMediaItemTrack.h */,
+				696C1EEB72AA7536F82ED55D /* PLMediaItemTrack.m */,
 			);
 			name = Media;
 			sourceTree = "<group>";
@@ -822,7 +822,6 @@
 				C3BC5ACD1656C81C002DA837 /* Model.xcdatamodeld in Sources */,
 				C3BC5AD31656CA4D002DA837 /* PLBookmark.m in Sources */,
 				C3BC5AD61656CA4E002DA837 /* PLPlaylist.m in Sources */,
-				C3BC5AD91656CA4E002DA837 /* PLBookmarkSong.m in Sources */,
 				C3CC18D6191FC63E0026E681 /* PLTrackTableViewCellController.m in Sources */,
 				C3BC5ADC1656CA4E002DA837 /* PLPlaylistSong.m in Sources */,
 				C3BC5ADF1656CA73002DA837 /* PLCoreDataStack.m in Sources */,
@@ -847,6 +846,7 @@
 				696C1ADFA4D617995455F30F /* PLDownloadFromDropboxActivity.m in Sources */,
 				696C1C17D8D7CEA11E7A5928 /* PLDownloadFromGDriveActivity.m in Sources */,
 				696C1A663DCC44EB31B19B46 /* PLDownloadFromICloudActivity.m in Sources */,
+				C384009B193879E600D6A930 /* PLTrack.m in Sources */,
 				696C1C38A95357371CFEE558 /* PLDownloadURLActivity.m in Sources */,
 				696C1F9C8C8A7886A8530949 /* PLDownloadPodcastActivity.m in Sources */,
 				696C1CC618F99813793E6F46 /* PLFileSharingActivity.m in Sources */,
@@ -858,10 +858,10 @@
 				C3CC18D0191FADDF0026E681 /* PLTrackGroupTableViewCellController.m in Sources */,
 				696C19D6E20C154C20D0DC68 /* PLRequestOptions.m in Sources */,
 				696C1B8D690CECA9499F257E /* PLMediaLibrarySearch.m in Sources */,
-				696C177E0F2230FE3DDA991B /* PLTrackGroup.m in Sources */,
+				696C177E0F2230FE3DDA991B /* PLMediaItemTrackGroup.m in Sources */,
 				696C13068CF01B07191595AB /* PLImageCache.m in Sources */,
 				696C153A17367E75E95611F2 /* PLMediaItemArtwork.m in Sources */,
-				696C1B378A7D2749C756064C /* PLTrack.m in Sources */,
+				696C1B378A7D2749C756064C /* PLMediaItemTrack.m in Sources */,
 				696C1F292F5CDB0A7156E3AD /* NSObject+PLExtensions.m in Sources */,
 				C3CC18CA191F7B850026E681 /* PLTrackGroupTableViewCell.m in Sources */,
 				C3CC18D3191FC5990026E681 /* PLTrackTableViewCell.m in Sources */,

@@ -1,22 +1,11 @@
-#import <MediaPlayer/MediaPlayer.h>
-
 #import "PLDataAccess.h"
 #import "PLCoreDataStack.h"
 #import "PLAppDelegate.h"
 #import "PLDefaultsManager.h"
 
-#import "NSString+Extensions.h"
-
 @interface PLDataAccess() {
     NSManagedObjectContext *_context;
 }
-
-- (void)setupQueryForAllPlaylists:(NSFetchRequest *)fetchRequest;
-- (void)setupQueryForAllBookmarks:(NSFetchRequest *)fetchRequest;
-- (void)setupQueryForSongsOfPlaylist:(PLPlaylist *)playlist fetchRequest:(NSFetchRequest *)fetchRequest;
-- (void)setupQueryForBookmarkSongOfSong:(MPMediaItem *)song fetchRequest:(NSFetchRequest *)fetchRequest;
-- (void)setupQueryForSongWithPersistentID:(NSNumber *)persistentID onPlaylist:(PLPlaylist *)playlist fetchRequest:(NSFetchRequest *)fetchRequest;
-
 @end
 
 @implementation PLDataAccess
@@ -116,61 +105,41 @@
     [PLDefaultsManager setBookmarkPlaylist:[objectID URIRepresentation]];
 }
 
-- (PLBookmarkSong *)bookmarkSongForSong:(MPMediaItem *)song error:(NSError **)error {
-	NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
-    
-    [self setupQueryForBookmarkSongOfSong:song fetchRequest:fetchRequest];
-    
-    NSArray *result = [self.context executeFetchRequest:fetchRequest error:error];
-    if (*error != nil)
-        return nil;
-    
-    if ([result count] > 0)
-        return [result lastObject];
-    
-    
-    PLBookmarkSong *bookmarkSong = [NSEntityDescription insertNewObjectForEntityForName:@"PLBookmarkSong" inManagedObjectContext:self.context];
-    bookmarkSong.persistentId = [song valueForProperty:MPMediaItemPropertyPersistentID];
-    bookmarkSong.title = [song valueForProperty:MPMediaItemPropertyTitle];
-    
-    NSString *artist = [song valueForProperty:MPMediaItemPropertyArtist];
-    
-    if ([artist pl_isEmptyOrWhitespace])
-        artist = [song valueForProperty:MPMediaItemPropertyPodcastTitle];
-    
-    bookmarkSong.artist = artist;
-    
-    return bookmarkSong;
+- (PLTrack *)trackWithPersistentId:(NSNumber *)persistentId
+{
+    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+    [self setupQueryForTrackWithPersistentID:persistentId fetchRequest:fetchRequest];
+
+    NSError *error;
+    NSArray *result = [self.context executeFetchRequest:fetchRequest error:&error];
+    if ([result count] == 1)
+        return result[0];
+
+    PLTrack *track = [NSEntityDescription insertNewObjectForEntityForName:@"PLTrack" inManagedObjectContext:self.context];
+    track.persistentId = [persistentId longLongValue];
+    return track;
 }
 
-- (void)addBookmarkAtPosition:(NSTimeInterval)position forSong:(PLBookmarkSong *)song {
+- (PLBookmark *)addBookmarkAtPosition:(NSTimeInterval)position forTrack:(PLTrack *)track
+{
     PLBookmark *bookmark = [NSEntityDescription insertNewObjectForEntityForName:@"PLBookmark" inManagedObjectContext:self.context];
     bookmark.position = [NSNumber numberWithDouble:position];
-    bookmark.song = song;
+    bookmark.track = track;
     bookmark.timestamp = [NSDate date];
+    return bookmark;
 }
 
-- (PLPlaylistSong *)findSongWithPersistentID:(NSNumber *)persistentID onPlaylist:(PLPlaylist *)playlist {
+- (PLPlaylistSong *)songWithTrack:(PLTrack *)track onPlaylist:(PLPlaylist *)playlist
+{
     NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+    [self setupQueryForSongWithTrack:track onPlaylist:playlist fetchRequest:fetchRequest];
 
-    [self setupQueryForSongWithPersistentID:persistentID onPlaylist:playlist fetchRequest:fetchRequest];
-    
     NSError *error;
     NSArray *result = [self.context executeFetchRequest:fetchRequest error:&error];
     if (error != nil || [result count] == 0)
         return nil;
-    
+
     return [result lastObject];
-}
-
-
-- (PLPlaylistSong *)addSong:(MPMediaItem *)song toPlaylist:(PLPlaylist *)playlist {
-    PLPlaylistSong *playlistSong = [NSEntityDescription insertNewObjectForEntityForName:@"PLPlaylistSong" inManagedObjectContext:self.context];
-    playlistSong.position = [NSNumber numberWithDouble:0.0];
-    playlistSong.persistentId = [song valueForProperty:MPMediaItemPropertyPersistentID];
-    
-    [playlist addNewSong:playlistSong];
-    return playlistSong;
 }
 
 - (NSFetchedResultsController *)fetchedResultsControllerForAllPlaylists {
@@ -239,17 +208,19 @@
     [fetchRequest setSortDescriptors:sortDescriptors];
 }
 
-- (void)setupQueryForBookmarkSongOfSong:(MPMediaItem *)song fetchRequest:(NSFetchRequest *)fetchRequest {
-    [fetchRequest setEntity:[NSEntityDescription entityForName:@"PLBookmarkSong" inManagedObjectContext:self.context]];
-    
-    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"persistentId=%@", [song valueForProperty:MPMediaItemPropertyPersistentID]];
+- (void)setupQueryForTrackWithPersistentID:(NSNumber *)persistentID fetchRequest:(NSFetchRequest *)fetchRequest
+{
+    [fetchRequest setEntity:[NSEntityDescription entityForName:@"PLTrack" inManagedObjectContext:self.context]];
+
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"persistentId=%@", persistentID];
     [fetchRequest setPredicate:predicate];
 }
 
-- (void)setupQueryForSongWithPersistentID:(NSNumber *)persistentID onPlaylist:(PLPlaylist *)playlist fetchRequest:(NSFetchRequest *)fetchRequest {
+- (void)setupQueryForSongWithTrack:(PLTrack *)track onPlaylist:(PLPlaylist *)playlist fetchRequest:(NSFetchRequest *)fetchRequest
+{
     [fetchRequest setEntity:[NSEntityDescription entityForName:@"PLPlaylistSong" inManagedObjectContext:self.context]];
-    
-    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"persistentId=%@ AND playlist=%@", persistentID, playlist];
+
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"track=%@ AND playlist=%@", track, playlist];
     [fetchRequest setPredicate:predicate];
 }
 
