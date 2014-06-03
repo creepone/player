@@ -120,6 +120,21 @@
     return track;
 }
 
+- (PLTrack *)trackWithFileURL:(NSString *)fileURL
+{
+    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+    [self setupQueryForTrackWithFileURL:fileURL fetchRequest:fetchRequest];
+
+    NSError *error;
+    NSArray *result = [self.context executeFetchRequest:fetchRequest error:&error];
+    if ([result count] == 1)
+        return result[0];
+
+    PLTrack *track = [NSEntityDescription insertNewObjectForEntityForName:@"PLTrack" inManagedObjectContext:self.context];
+    track.fileURL = fileURL;
+    return track;
+}
+
 - (PLBookmark *)addBookmarkAtPosition:(NSTimeInterval)position forTrack:(PLTrack *)track
 {
     PLBookmark *bookmark = [NSEntityDescription insertNewObjectForEntityForName:@"PLBookmark" inManagedObjectContext:self.context];
@@ -213,6 +228,14 @@
     [fetchRequest setEntity:[NSEntityDescription entityForName:@"PLTrack" inManagedObjectContext:self.context]];
 
     NSPredicate *predicate = [NSPredicate predicateWithFormat:@"persistentId=%@", persistentID];
+    [fetchRequest setPredicate:predicate];
+}
+
+- (void)setupQueryForTrackWithFileURL:(NSString *)fileURL fetchRequest:(NSFetchRequest *)fetchRequest
+{
+    [fetchRequest setEntity:[NSEntityDescription entityForName:@"PLTrack" inManagedObjectContext:self.context]];
+
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"fileURL=%@", fileURL];
     [fetchRequest setPredicate:predicate];
 }
 

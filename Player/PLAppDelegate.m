@@ -12,6 +12,7 @@
 #import "PLSettingsViewController.h"
 #import "PLColors.h"
 #import "PLErrorManager.h"
+#import "PLFileImport.h"
 #import "PLUtils.h"
 
 static const int kMigrationErrorAlertTag = 44;
@@ -39,10 +40,14 @@ static void onUncaughtException(NSException* exception);
     [self.window makeKeyAndVisible];
 
     [self.window.rootViewController.view setBackgroundColor:[UIColor colorWithPatternImage:[PLUtils launchImage]]];
-    [self initializeData];
     
-    // todo: if started with a file, import the file into the db, ask user "Add to playlist" ?
-    DDLogInfo(@"launch options = %@", launchOptions);
+    [self initializeData].then(^(id result){
+        NSURL *fileToImport = launchOptions[UIApplicationLaunchOptionsURLKey];
+        if (fileToImport)
+            [PLFileImport importFile:fileToImport];
+        return (id)nil;
+    }, nil);
+    
 
     return YES;
 }
@@ -77,21 +82,20 @@ static void onUncaughtException(NSException* exception);
 
 - (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation
 {
-    // todo: import the file into the db, ask user "Add to playlist" ?
-    DDLogInfo(@"file URL to open = %@", url);
+    [PLFileImport importFile:url];
     return YES;
 }
 
 #pragma mark - Data initialization on startup
 
-- (void)initializeData
+- (RXPromise *)initializeData
 {
     [SVProgressHUD showWithStatus:NSLocalizedString(@"Messages.InitializingData", nil) maskType:SVProgressHUDMaskTypeBlack];
 
     // todo: grace time for the hud
 
     @weakify(self);
-    [PLMigrationManager coreDataStack].thenOnMain(^(PLCoreDataStack *coreDataStack) {
+    return [PLMigrationManager coreDataStack].thenOnMain(^(PLCoreDataStack *coreDataStack) {
         @strongify(self);
 
         self.coreDataStack = coreDataStack;

@@ -31,6 +31,11 @@
 - (PLTrack *)trackWithPersistentId:(NSNumber *)persistentId;
 
 /**
+ Delivers a track with the given file URL. If it already exists, it is simply returned, otherwise a new one is created.
+ */
+- (PLTrack *)trackWithFileURL:(NSString *)fileURL;
+
+/**
  Delivers a playlist song with the given track on the given playlist, if one exists. Otherwise, nil is returned.
  */
 - (PLPlaylistSong *)songWithTrack:(PLTrack *)track onPlaylist:(PLPlaylist *)playlist;
