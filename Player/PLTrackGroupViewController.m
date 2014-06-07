@@ -5,9 +5,11 @@
 #import "PLTrackGroupTableViewCell.h"
 #import "PLTrackGroupTableViewCellController.h"
 #import "NSObject+PLExtensions.h"
+#import "PLTableViewProgress.h"
 
 @interface PLTrackGroupViewController () {
     NSArray *_groups;
+    PLTableViewProgress *_tableViewProgress;
 }
 
 @end
@@ -60,13 +62,17 @@
             return;
         }
     }
+
+    _tableViewProgress = [PLTableViewProgress showInTableView:self.tableView];
     
     @weakify(self);
     promise.thenOnMain(^id(NSArray *groups) {
         @strongify(self);
         if (!self)
             return nil;
-        
+
+        self->_tableViewProgress = nil;
+
         self->_groups = groups;
         [self.tableView reloadData];
         return nil;

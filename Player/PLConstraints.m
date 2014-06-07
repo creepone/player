@@ -3,7 +3,7 @@
 
 @implementation PLConstraints
 
-+ (void)distributeViews:(NSArray *)views padding:(CGFloat)padding spacing:(CGFloat)spacing direction:(NSString *)direction;
++ (void)distributeViews:(NSArray *)views padding:(CGFloat)padding spacing:(CGFloat)spacing direction:(NSString *)direction
 {
     if (![views count])
         return;

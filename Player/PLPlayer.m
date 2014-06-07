@@ -1,11 +1,3 @@
-//
-//  PLPlayer.m
-//  Player
-//
-//  Created by Tomas Vana on 11/18/12.
-//  Copyright (c) 2012 Tomas Vana. All rights reserved.
-//
-
 #import <AVFoundation/AVFoundation.h>
 #import <MediaPlayer/MediaPlayer.h>
 

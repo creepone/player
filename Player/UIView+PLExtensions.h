@@ -8,4 +8,14 @@
 - (void)pl_addHorizontalStretchConstraint;
 - (void)pl_addVerticalStretchConstraint;
 
+/**
+Adds a constraint to the view's superview so that it is centered vertically within it.
+*/
+- (void)pl_addHorizontalCenterConstraint;
+
+/**
+Adds a constraint to the view's superview so that it is centered vertically within it.
+*/
+- (void)pl_addVerticalCenterConstraint;
+
 @end

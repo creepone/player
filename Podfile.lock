@@ -24,6 +24,7 @@ PODS:
   - CocoaLumberjack/Extensions (1.8.1):
     - CocoaLumberjack/Core
   - FastImageCache (1.3)
+  - FFCircularProgressView (0.4)
   - HexColors (2.2.1)
   - iOS-blur (0.0.5)
   - libextobjc (0.4):
@@ -71,6 +72,7 @@ DEPENDENCIES:
   - AFNetworking (~> 2.0)
   - CocoaLumberjack (~> 1.8)
   - FastImageCache (~> 1.3)
+  - FFCircularProgressView (~> 0.3)
   - iOS-blur (~> 0.0.5)
   - libextobjc (~> 0.4)
   - RXPromise (from `https://github.com/creepone/RXPromise.git`, branch `master`)
@@ -87,6 +89,7 @@ SPEC CHECKSUMS:
   AFNetworking: 47947303319594706f48a55185ea95a95159ab94
   CocoaLumberjack: 9d198d6e19909b3b113a38c5f06f7bb8eedd0427
   FastImageCache: f0897a850a1479a95b1415eb88ed1fdce708353a
+  FFCircularProgressView: 8b1def13f3eb58916162867c5cea79c242679b96
   HexColors: 01384d2bbe8dc4ffa43c3b4135db6e976952d153
   iOS-blur: 5ec57b4a72e57a4f8f5f47ff3f59e56c0690b761
   libextobjc: ba42e4111f433273a886cd54f0ddaddb7f62f82f
@@ -95,4 +98,4 @@ SPEC CHECKSUMS:
   SVProgressHUD: 5034c6e22b8c2ca3e09402e48d41ed0340aa1c50
   TSMessages: 2999ef55e532378692e9d14d32da2bb60e285129
 
-COCOAPODS: 0.32.1
+COCOAPODS: 0.33.1
