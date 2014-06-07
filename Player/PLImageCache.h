@@ -7,19 +7,27 @@ extern NSString * const PLImageFormatNameSmallArtwork;
 + (PLImageCache *)sharedCache;
 
 /**
- Delivers a promise that will be resolved with an UIImage instance containing the media item's artwork
+ Delivers a promise that will be resolved with an UIImage instance containing the small artwork of a media item
  with the given persistent id.
  */
-- (RXPromise *)mediaItemArtworkWithPersistentId:(NSNumber *)persistentId;
+- (RXPromise *)smallArtworkForMediaItemWithPersistentId:(NSNumber *)persistentId;
 
 /**
- Stores the given (source) image as the artwork under the given persistent id.
- */
-- (void)storeMediaItemArtwork:(UIImage *)image forPersistentId:(NSNumber *)persistentId;
-
-/**
-* Returns the image size for the format with the given name.
+ Delivers a promise that will be resolved with an UIImage instance containing the small artwork of a file stored
+ at the given URL.
 */
-- (CGSize)sizeForImageFormat:(NSString *)imageFormat;
+- (RXPromise *)smallArtworkForFileWithURL:(NSURL *)fileURL;
+
+/**
+Delivers a promise that will be resolved with an UIImage instance containing the large artwork of a media item
+with the given persistent id.
+*/
+- (RXPromise *)largeArtworkForMediaItemWithPersistentId:(NSNumber *)persistentId;
+
+/**
+Delivers a promise that will be resolved with an UIImage instance containing the large artwork of a file stored
+at the given URL.
+*/
+- (RXPromise *)largeArtworkForFileWithURL:(NSURL *)fileURL;
 
 @end

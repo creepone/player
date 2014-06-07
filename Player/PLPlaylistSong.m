@@ -1,3 +1,4 @@
+#import <RXPromise/RXPromise.h>
 #import "PLPlaylistSong.h"
 #import "PLTrack.h"
 
@@ -44,9 +45,14 @@
     return self.track.title;
 }
 
-- (UIImage *)artworkWithSize:(CGSize)size
+- (RXPromise *)smallArtwork
 {
-    return [self.track artworkWithSize:size];
+    return self.track.smallArtwork;
+}
+
+- (RXPromise *)largeArtwork
+{
+    return self.track.largeArtwork;
 }
 
 @end

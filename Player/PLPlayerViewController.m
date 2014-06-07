@@ -5,6 +5,7 @@
 #import "PLPlayer.h"
 #import "PLUtils.h"
 #import "NSString+Extensions.h"
+#import "NSObject+PLExtensions.h"
 
 
 @interface PLPlayerViewController () {
@@ -62,7 +63,10 @@
 - (void)reloadData {
     PLPlayer *player = [PLPlayer sharedPlayer];
     PLPlaylistSong *currentSong = [player currentSong];
-    
+
+    [self pl_removeAllPromises];
+    self.artworkImage = [UIImage imageNamed:@"DefaultArtwork"];
+
     if (currentSong == nil) {
         self.labelArtist.text = @"";
         self.labelTitle.text = @"";
@@ -71,8 +75,6 @@
         self.labelTrackNumber.text = @"";
         self.sliderTimeline.hidden = YES;
         [self.btnPlayPause setTitle:@"Play" forState:UIControlStateNormal];
-        
-        self.imgArtwork.image = [UIImage imageNamed:@"default_artwork.jpg"];
     }
     else {
         self.labelTitle.text = currentSong.title;
@@ -82,7 +84,8 @@
         self.labelTotal.text = [PLUtils formatDuration:duration];
         
         self.sliderTimeline.hidden = NO;
-        self.imgArtwork.image = [currentSong artworkWithSize:CGSizeMake(self.imgArtwork.bounds.size.width, self.imgArtwork.bounds.size.height)];
+
+        [self pl_setValueForKeyPath:@"artworkImage" fromPromise:currentSong.largeArtwork];
 
         NSString *titleForButton = [player isPlaying] ? @"Pause" : @"Play";
         [self.btnPlayPause setTitle:titleForButton forState:UIControlStateNormal];
@@ -120,6 +123,18 @@
     
     // update again in a second
     [self performSelector:@selector(updateTimeline) withObject:self afterDelay:1.0];
+}
+
+- (UIImage *)artworkImage
+{
+    return self.imgArtwork.image;
+}
+
+- (void)setArtworkImage:(UIImage *)image
+{
+    if (image) {
+        self.imgArtwork.image = image;
+    }
 }
 
 

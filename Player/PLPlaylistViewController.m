@@ -24,6 +24,8 @@
 #import "PLDownloadURLActivity.h"
 #import "PLDownloadPodcastActivity.h"
 #import "PLFileSharingActivity.h"
+#import "NSObject+PLExtensions.h"
+#import "PLLegacySongTableViewCell.h"
 
 #define kSongRowHeight 75.0
 
@@ -230,10 +232,10 @@
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIndentifier];
     if (cell == nil) {
         cell =  _singleMode ?
-        [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:kSongCellIdentifier]
+        [[PLLegacySongTableViewCell alloc] initWithReuseIdentifier:kSongCellIdentifier]
         : [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:kPlaylistCellIdentifier];
     }
-    
+
     if (_singleMode) {
         PLPlaylistSong *song = [_songsFetchedResultsController objectAtIndexPath:indexPath];
 
@@ -242,7 +244,12 @@
     
         cell.detailTextLabel.numberOfLines = 2;
         cell.detailTextLabel.text = [NSString stringWithFormat:@"%@\n%@", song.artist, [PLUtils formatDuration:duration]];
-        cell.imageView.image = [song artworkWithSize:CGSizeMake(kSongRowHeight, kSongRowHeight)];
+
+        cell.imageView.bounds = CGRectMake(0, 0, 60, 60);
+        ((PLLegacySongTableViewCell *)cell).artworkImage = [UIImage imageNamed:@"DefaultArtwork"];
+        [cell pl_setValueForKeyPath:@"artworkImage" fromPromise:song.smallArtwork];
+
+        // cell.imageView.image = [song artworkWithSize:CGSizeMake(kSongRowHeight, kSongRowHeight)];
         
         if ([_selectedPlaylist.position intValue] == [song.order intValue]) {
             cell.textLabel.textColor = [UIColor orangeColor];
@@ -292,6 +299,11 @@
     }
     
     return cell;
+}
+
+- (void)tableView:(UITableView *)tableView didEndDisplayingCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    [cell pl_removeAllPromises];
 }
 
 - (UITableViewCellEditingStyle)tableView:(UITableView *)tableView editingStyleForRowAtIndexPath:(NSIndexPath *)indexPath {

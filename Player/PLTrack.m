@@ -1,7 +1,10 @@
 @import AVFoundation;
+
+#import <RXPromise/RXPromise.h>
 #import "PLTrack.h"
 #import "PLMediaLibrarySearch.h"
 #import "NSString+Extensions.h"
+#import "PLImageCache.h"
 
 @implementation PLTrack
 
@@ -10,7 +13,6 @@
 @dynamic downloadURL;
 @dynamic played;
 @dynamic playlistSongs;
-
 
 - (MPMediaItem *)mediaItem
 {
@@ -98,31 +100,27 @@
     return nil;
 }
 
-- (UIImage *)artworkWithSize:(CGSize)size
+
+- (RXPromise *)smallArtwork
 {
-    MPMediaItem *mediaItem = self.mediaItem;
-    if (mediaItem) {
-        MPMediaItemArtwork *itemArtwork = [mediaItem valueForProperty:MPMediaItemPropertyArtwork];
-        UIImage *imageArtwork = [itemArtwork imageWithSize:size];
-        if (imageArtwork)
-            return imageArtwork;
-    }
+    if (self.persistentId)
+        return [[PLImageCache sharedCache] smallArtworkForMediaItemWithPersistentId:@(self.persistentId)];
 
-    AVURLAsset *asset = self.asset;
-    if (asset) {
-        NSArray *artworks = [AVMetadataItem metadataItemsFromArray:asset.commonMetadata withKey:AVMetadataCommonKeyArtwork keySpace:AVMetadataKeySpaceCommon];
-        for (AVMetadataItem *artworkItem in artworks) {
-            if ([artworkItem.keySpace isEqualToString:AVMetadataKeySpaceID3]) {
-                NSDictionary *itemMap = (NSDictionary *)[artworkItem.value copyWithZone:nil];
-                return [UIImage imageWithData:itemMap[@"data"]];
-            } else if ([artworkItem.keySpace isEqualToString:AVMetadataKeySpaceiTunes]) {
-                NSData *itemData = (NSData *)[artworkItem.value copyWithZone:nil];
-                return [UIImage imageWithData:itemData];
-            }
-        }
-    }
+    if (self.fileURL)
+        return [[PLImageCache sharedCache] smallArtworkForFileWithURL:[NSURL URLWithString:self.fileURL]];
 
-    return [UIImage imageNamed:@"default_artwork.jpg"];
+    return [RXPromise promiseWithResult:nil];
+}
+
+- (RXPromise *)largeArtwork
+{
+    if (self.persistentId)
+        return [[PLImageCache sharedCache] largeArtworkForMediaItemWithPersistentId:@(self.persistentId)];
+
+    if (self.fileURL)
+        return [[PLImageCache sharedCache] largeArtworkForFileWithURL:[NSURL URLWithString:self.fileURL]];
+
+    return [RXPromise promiseWithResult:nil];
 }
 
 @end

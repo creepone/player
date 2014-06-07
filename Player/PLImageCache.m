@@ -1,9 +1,11 @@
 #import <FICImageCache.h>
 #import <RXPromise/RXPromise.h>
 #import "PLImageCache.h"
-#import "PLMediaItemArtwork.h"
+#import "PLCachedArtwork.h"
 
 NSString * const PLImageFormatNameSmallArtwork = @"PLImageFormatNameSmallArtwork";
+NSString * const PLImageFormatNameLargeArtwork = @"PLImageFormatNameLargeArtwork";
+
 
 @interface PLImageCache() <FICImageCacheDelegate> {
 
@@ -38,16 +40,24 @@ NSString * const PLImageFormatNameSmallArtwork = @"PLImageFormatNameSmallArtwork
     smallArtworkFormat.maximumCount = 250;
     smallArtworkFormat.devices = FICImageFormatDevicePhone;
     smallArtworkFormat.protectionMode = FICImageFormatProtectionModeNone;
+    
+    FICImageFormat *largeArtworkFormat = [[FICImageFormat alloc] init];
+    largeArtworkFormat.name = PLImageFormatNameLargeArtwork;
+    largeArtworkFormat.style = FICImageFormatStyle32BitBGRA;
+    largeArtworkFormat.imageSize = CGSizeMake(200.f, 200.f);
+    largeArtworkFormat.maximumCount = 100;
+    largeArtworkFormat.devices = FICImageFormatDevicePhone;
+    largeArtworkFormat.protectionMode = FICImageFormatProtectionModeNone;
 
     FICImageCache *cache = [FICImageCache sharedImageCache];
     cache.delegate = self;
-    cache.formats = @[smallArtworkFormat];
+    cache.formats = @[smallArtworkFormat, largeArtworkFormat];
 }
 
-- (RXPromise *)mediaItemArtworkWithPersistentId:(NSNumber *)persistentId
+- (RXPromise *)smallArtworkForMediaItemWithPersistentId:(NSNumber *)persistentId
 {
     FICImageCache *cache = [FICImageCache sharedImageCache];
-    PLMediaItemArtwork *entity = [[PLMediaItemArtwork alloc] initWithPersistentId:persistentId];
+    PLCachedArtwork *entity = [[PLCachedArtwork alloc] initWithPersistentId:persistentId];
 
     RXPromise *promise = [[RXPromise alloc] init];
 
@@ -59,19 +69,58 @@ NSString * const PLImageFormatNameSmallArtwork = @"PLImageFormatNameSmallArtwork
     return promise;
 }
 
-- (void)storeMediaItemArtwork:(UIImage *)image forPersistentId:(NSNumber *)persistentId
+- (RXPromise *)smallArtworkForFileWithURL:(NSURL *)fileURL
 {
     FICImageCache *cache = [FICImageCache sharedImageCache];
-    PLMediaItemArtwork *entity = [[PLMediaItemArtwork alloc] initWithPersistentId:persistentId];
-    [cache setImage:image forEntity:entity withFormatName:PLImageFormatNameSmallArtwork completionBlock:nil];
+    PLCachedArtwork *entity = [[PLCachedArtwork alloc] initWithFileURL:fileURL];
+
+    RXPromise *promise = [[RXPromise alloc] init];
+
+    RXPromise * __weak weakPromise = promise;
+    [cache retrieveImageForEntity:entity withFormatName:PLImageFormatNameSmallArtwork completionBlock:^(id <FICEntity> entity, NSString *formatName, UIImage *image) {
+        [weakPromise resolveWithResult:image];
+    }];
+
+    return promise;
+}
+
+- (RXPromise *)largeArtworkForMediaItemWithPersistentId:(NSNumber *)persistentId
+{
+    FICImageCache *cache = [FICImageCache sharedImageCache];
+    PLCachedArtwork *entity = [[PLCachedArtwork alloc] initWithPersistentId:persistentId];
+
+    RXPromise *promise = [[RXPromise alloc] init];
+
+    RXPromise * __weak weakPromise = promise;
+    [cache retrieveImageForEntity:entity withFormatName:PLImageFormatNameLargeArtwork completionBlock:^(id <FICEntity> entity, NSString *formatName, UIImage *image) {
+        [weakPromise resolveWithResult:image];
+    }];
+
+    return promise;
+}
+
+- (RXPromise *)largeArtworkForFileWithURL:(NSURL *)fileURL
+{
+    FICImageCache *cache = [FICImageCache sharedImageCache];
+    PLCachedArtwork *entity = [[PLCachedArtwork alloc] initWithFileURL:fileURL];
+
+    RXPromise *promise = [[RXPromise alloc] init];
+
+    RXPromise * __weak weakPromise = promise;
+    [cache retrieveImageForEntity:entity withFormatName:PLImageFormatNameLargeArtwork completionBlock:^(id <FICEntity> entity, NSString *formatName, UIImage *image) {
+        [weakPromise resolveWithResult:image];
+    }];
+
+    return promise;
 }
 
 - (void)imageCache:(FICImageCache *)imageCache wantsSourceImageForEntity:(id <FICEntity>)entity withFormatName:(NSString *)formatName completionBlock:(FICImageRequestCompletionBlock)completionBlock
 {
     NSURL *imageURL = [entity sourceImageURLWithFormatName:formatName];
+    CGSize size = [self sizeForImageFormat:formatName];
 
-    if ([imageURL.scheme isEqualToString:@"artwork"]) {
-        UIImage *image = [PLMediaItemArtwork imageForURL:imageURL];
+    if ([entity isKindOfClass:[PLCachedArtwork class]]) {
+        UIImage *image = [PLCachedArtwork imageForURL:imageURL size:size];
         completionBlock(image);
     }
 }

@@ -1,9 +1,9 @@
-#import <Foundation/Foundation.h>
-#import <CoreData/CoreData.h>
+#import "PLEntity.h"
 
 @class PLPlaylist, PLTrack, MPMediaItem;
+@class RXPromise;
 
-@interface PLPlaylistSong : NSManagedObject
+@interface PLPlaylistSong : PLEntity
 
 @property (nonatomic, retain) NSNumber * order;
 @property (nonatomic, retain) NSNumber * position;
@@ -38,9 +38,13 @@
 - (NSString *)title;
 
 /**
- Delivers the artwork image for this song. The size is a hint, i.e. the delivered image might have a different size
- depending on the track metadata format.
+* If available, resolves to a UIImage containing the track's small artwork.
 */
-- (UIImage *)artworkWithSize:(CGSize)size;
+- (RXPromise *)smallArtwork;
+
+/**
+* If available, resolves to a UIImage containing the track's large artwork.
+*/
+- (RXPromise *)largeArtwork;
 
 @end

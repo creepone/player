@@ -53,8 +53,6 @@
                 break;
             }
         }
-
-        [self cacheArtwork:[representativeItem valueForProperty:MPMediaItemPropertyArtwork]];
     }
     return self;
 }
@@ -68,17 +66,9 @@
     return result;
 }
 
-- (void)cacheArtwork:(MPMediaItemArtwork *)artwork
-{
-    if (artwork) {
-        UIImage *artworkImage = [artwork imageWithSize:[[PLImageCache sharedCache] sizeForImageFormat:PLImageFormatNameSmallArtwork]];
-        [[PLImageCache sharedCache] storeMediaItemArtwork:artworkImage forPersistentId:_persistentId];
-    }
-}
-
 - (RXPromise *)artwork
 {
-    return [[PLImageCache sharedCache] mediaItemArtworkWithPersistentId:_persistentId];
+    return [[PLImageCache sharedCache] smallArtworkForMediaItemWithPersistentId:_persistentId];
 }
 
 - (RXPromise *)tracks

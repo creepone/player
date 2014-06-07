@@ -1,11 +1,10 @@
-#import <Foundation/Foundation.h>
-#import <CoreData/CoreData.h>
+#import "PLEntity.h"
 
 @class PLPlaylistSong;
 @class PLTrack;
 
 
-@interface PLPlaylist : NSManagedObject
+@interface PLPlaylist : PLEntity
 
 @property (nonatomic, retain) NSString * name;
 @property (nonatomic, retain) NSNumber * position;

@@ -1,7 +1,8 @@
-#import <Foundation/Foundation.h>
-#import <CoreData/CoreData.h>
+#import "PLEntity.h"
 
-@interface PLTrack : NSManagedObject
+@class RXPromise;
+
+@interface PLTrack : PLEntity
 
 @property (nonatomic) int64_t persistentId;
 @property (nonatomic, retain) NSString *fileURL;
@@ -30,9 +31,13 @@
 - (NSString *)title;
 
 /**
- Delivers the artwork image for this track. The size is a hint, i.e. the delivered image might have a different size
- depending on the track metadata format.
- */
-- (UIImage *)artworkWithSize:(CGSize)size;
+* If available, resolves to a UIImage containing the track's small artwork.
+*/
+- (RXPromise *)smallArtwork;
+
+/**
+* If available, resolves to a UIImage containing the track's large artwork.
+*/
+- (RXPromise *)largeArtwork;
 
 @end

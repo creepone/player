@@ -1,9 +1,10 @@
 #import <Foundation/Foundation.h>
 #import <CoreData/CoreData.h>
+#import "PLEntity.h"
 
 @class PLTrack;
 
-@interface PLBookmark : NSManagedObject
+@interface PLBookmark : PLEntity
 
 @property (nonatomic, retain) NSDate *timestamp;
 @property (nonatomic, retain) NSNumber *position;
