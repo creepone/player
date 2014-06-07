@@ -41,7 +41,10 @@ static void onUncaughtException(NSException* exception);
 
     [self.window.rootViewController.view setBackgroundColor:[UIColor colorWithPatternImage:[PLUtils launchImage]]];
     
-    [self initializeData].then(^(id result){
+    [self initializeData].thenOnMain(^(id result){
+        
+        // todo: do this on a background thread with a separate context
+        
         NSURL *fileToImport = launchOptions[UIApplicationLaunchOptionsURLKey];
         if (fileToImport)
             [PLFileImport importFile:fileToImport];

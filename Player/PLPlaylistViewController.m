@@ -248,8 +248,6 @@
         cell.imageView.bounds = CGRectMake(0, 0, 60, 60);
         ((PLLegacySongTableViewCell *)cell).artworkImage = [UIImage imageNamed:@"DefaultArtwork"];
         [cell pl_setValueForKeyPath:@"artworkImage" fromPromise:song.smallArtwork];
-
-        // cell.imageView.image = [song artworkWithSize:CGSizeMake(kSongRowHeight, kSongRowHeight)];
         
         if ([_selectedPlaylist.position intValue] == [song.order intValue]) {
             cell.textLabel.textColor = [UIColor orangeColor];

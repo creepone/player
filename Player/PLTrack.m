@@ -111,6 +111,11 @@
             AVMetadataItem *titleItem = titles[0];
             self.title = titleItem.stringValue;
         }
+        
+        if (!self.title) {
+            NSURL *fileURL = [NSURL URLWithString:self.fileURL];
+            self.title = [[fileURL.path lastPathComponent] stringByDeletingPathExtension];
+        }
     }
 }
 
