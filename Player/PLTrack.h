@@ -10,25 +10,17 @@
 @property (nonatomic) BOOL played;
 @property (nonatomic, retain) NSSet *playlistSongs;
 
+@property (nonatomic, readonly) NSTimeInterval duration;
+@property (nonatomic, readonly) NSString *artist;
+@property (nonatomic, readonly) NSString *title;
+
++ (PLTrack *)trackWithPersistentId:(NSNumber *)persistentId inContext:(NSManagedObjectContext *)context;
++ (PLTrack *)trackWithFileURL:(NSString *)fileURL inContext:(NSManagedObjectContext *)context;
+
 /**
  Delivers the URL of the asset that this track represents. Can be used with the audio player to play the track.
  */
 - (NSURL *)assetURL;
-
-/**
- Delivers the total duration (in seconds) of the track.
- */
-- (NSTimeInterval)duration;
-
-/**
- Delivers the name of the artist for this track (if available).
- */
-- (NSString *)artist;
-
-/**
- Delivers the title of this track (if available).
- */
-- (NSString *)title;
 
 /**
 * If available, resolves to a UIImage containing the track's small artwork.

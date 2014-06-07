@@ -115,9 +115,7 @@
     if ([result count] == 1)
         return result[0];
 
-    PLTrack *track = [NSEntityDescription insertNewObjectForEntityForName:@"PLTrack" inManagedObjectContext:self.context];
-    track.persistentId = [persistentId longLongValue];
-    return track;
+    return [PLTrack trackWithPersistentId:persistentId inContext:self.context];
 }
 
 - (PLTrack *)trackWithFileURL:(NSString *)fileURL
@@ -130,9 +128,7 @@
     if ([result count] == 1)
         return result[0];
 
-    PLTrack *track = [NSEntityDescription insertNewObjectForEntityForName:@"PLTrack" inManagedObjectContext:self.context];
-    track.fileURL = fileURL;
-    return track;
+    return [PLTrack trackWithFileURL:fileURL inContext:self.context];
 }
 
 - (PLBookmark *)addBookmarkAtPosition:(NSTimeInterval)position forTrack:(PLTrack *)track

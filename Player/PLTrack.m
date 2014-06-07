@@ -6,6 +6,14 @@
 #import "NSString+Extensions.h"
 #import "PLImageCache.h"
 
+@interface PLTrack()
+
+@property (nonatomic) NSTimeInterval duration;
+@property (nonatomic, retain) NSString *artist;
+@property (nonatomic, retain) NSString *title;
+
+@end
+
 @implementation PLTrack
 
 @dynamic persistentId;
@@ -13,6 +21,26 @@
 @dynamic downloadURL;
 @dynamic played;
 @dynamic playlistSongs;
+@dynamic duration;
+@dynamic artist;
+@dynamic title;
+
++ (PLTrack *)trackWithPersistentId:(NSNumber *)persistentId inContext:(NSManagedObjectContext *)context
+{
+    PLTrack *track = [NSEntityDescription insertNewObjectForEntityForName:[self entityName] inManagedObjectContext:context];
+    track.persistentId = [persistentId longLongValue];
+    [track setMetadataFromMediaItem];
+    return track;
+}
+
++ (PLTrack *)trackWithFileURL:(NSString *)fileURL inContext:(NSManagedObjectContext *)context
+{
+    PLTrack *track = [NSEntityDescription insertNewObjectForEntityForName:[self entityName] inManagedObjectContext:context];
+    track.fileURL = fileURL;
+    [track setMetadataFromAsset];
+    return track;
+}
+
 
 - (MPMediaItem *)mediaItem
 {
@@ -27,9 +55,13 @@
     if (!self.fileURL)
         return nil;
 
-    return [AVURLAsset assetWithURL:[NSURL URLWithString:self.fileURL]];
-}
+    NSURL *fileURL = [NSURL URLWithString:self.fileURL];
+    
+    if (![[NSFileManager defaultManager] fileExistsAtPath:fileURL.path])
+        return nil;
 
+    return [AVURLAsset assetWithURL:fileURL];
+}
 
 - (NSURL *)assetURL
 {
@@ -43,61 +75,43 @@
     return nil;
 }
 
-- (NSTimeInterval)duration
+
+- (void)setMetadataFromMediaItem
 {
     MPMediaItem *mediaItem = self.mediaItem;
-    if (mediaItem)
-        return [[mediaItem valueForProperty:MPMediaItemPropertyPlaybackDuration] doubleValue];
 
-    AVURLAsset *asset = self.asset;
-    if (asset) {
-        CMTime duration = asset.duration;
-        if (duration.timescale > 0)
-            return duration.value / duration.timescale;
-    }
-
-    return 0;
-}
-
-- (NSString *)artist
-{
-    MPMediaItem *mediaItem = self.mediaItem;
     if (mediaItem) {
+        self.duration = [[mediaItem valueForProperty:MPMediaItemPropertyPlaybackDuration] doubleValue];
+        self.title = [mediaItem valueForProperty:MPMediaItemPropertyTitle];
+
         NSString *artist = [mediaItem valueForProperty:MPMediaItemPropertyArtist];
         if ([artist pl_isEmptyOrWhitespace])
             artist = [mediaItem valueForProperty:MPMediaItemPropertyPodcastTitle];
-        return artist;
+        self.artist = artist;
     }
+}
 
+- (void)setMetadataFromAsset
+{
     AVURLAsset *asset = self.asset;
+
     if (asset) {
+        CMTime duration = asset.duration;
+        if (duration.timescale > 0)
+            self.duration = duration.value / duration.timescale;
+
         NSArray *artists = [AVMetadataItem metadataItemsFromArray:asset.commonMetadata withKey:AVMetadataCommonKeyArtist keySpace:AVMetadataKeySpaceCommon];
         if ([artists count] > 0) {
             AVMetadataItem *artistItem = artists[0];
-            return artistItem.stringValue;
+            self.artist = artistItem.stringValue;
         }
-    }
 
-    return nil;
-}
-
-- (NSString *)title
-{
-    MPMediaItem *mediaItem = self.mediaItem;
-    if (mediaItem) {
-        return [mediaItem valueForProperty:MPMediaItemPropertyTitle];
-    }
-
-    AVURLAsset *asset = self.asset;
-    if (asset) {
         NSArray *titles = [AVMetadataItem metadataItemsFromArray:asset.commonMetadata withKey:AVMetadataCommonKeyTitle keySpace:AVMetadataKeySpaceCommon];
         if ([titles count] > 0) {
             AVMetadataItem *titleItem = titles[0];
-            return titleItem.stringValue;
+            self.title = titleItem.stringValue;
         }
     }
-
-    return nil;
 }
 
 

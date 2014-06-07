@@ -82,7 +82,8 @@ static void onUncaughtException(NSException* exception);
 
 - (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation
 {
-    [PLFileImport importFile:url];
+    if (self.coreDataStack)
+        [PLFileImport importFile:url];
     return YES;
 }
 

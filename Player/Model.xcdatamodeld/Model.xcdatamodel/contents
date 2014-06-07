@@ -18,10 +18,13 @@
         <relationship name="track" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="PLTrack" inverseName="playlistSongs" inverseEntity="PLTrack" syncable="YES"/>
     </entity>
     <entity name="PLTrack" representedClassName="PLTrack" syncable="YES">
+        <attribute name="artist" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="downloadURL" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="duration" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
         <attribute name="fileURL" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="persistentId" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
         <attribute name="played" optional="YES" attributeType="Boolean" syncable="YES"/>
+        <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="bookmarks" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="PLBookmark" inverseName="track" inverseEntity="PLBookmark" syncable="YES"/>
         <relationship name="playlistSongs" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="PLPlaylistSong" inverseName="track" inverseEntity="PLPlaylistSong" syncable="YES"/>
     </entity>
@@ -29,6 +32,6 @@
         <element name="PLBookmark" positionX="0" positionY="0" width="128" height="88"/>
         <element name="PLPlaylist" positionX="0" positionY="0" width="128" height="90"/>
         <element name="PLPlaylistSong" positionX="0" positionY="0" width="128" height="118"/>
-        <element name="PLTrack" positionX="9" positionY="72" width="128" height="133"/>
+        <element name="PLTrack" positionX="9" positionY="72" width="128" height="180"/>
     </elements>
 </model>
