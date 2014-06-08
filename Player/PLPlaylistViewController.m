@@ -184,8 +184,10 @@
         PLPlaylist *playlist = [_playlistsFetchedResultsController objectAtIndexPath:indexPath];
         if (playlist == _selectedPlaylist)
             selectFirst = YES;
-        
-        [dataAccess deleteObject:playlist error:&error];
+
+        [playlist remove];
+
+        [dataAccess saveChanges:&error];
         [PLAlerts checkForDataStoreError:error];
         
         if (selectFirst) {

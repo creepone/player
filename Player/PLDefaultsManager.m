@@ -3,11 +3,13 @@
 
 @implementation PLDefaultsManager
 
-NSString *kDataStoreVersion = @"DataStoreVersion";
-NSString *kSelectedPlaylist = @"SelectedPlaylist";
-NSString *kBookmarkPlaylist = @"BookmarkPlaylist";
-NSString *kPlaybackRate = @"PlaybackRate";
-NSString *kGoBackTime = @"GoBackTime";
+static NSString *kDataStoreVersion = @"DataStoreVersion";
+static NSString *kSelectedPlaylist = @"SelectedPlaylist";
+static NSString *kBookmarkPlaylist = @"BookmarkPlaylist";
+static NSString *kPlaybackRate = @"PlaybackRate";
+static NSString *kGoBackTime = @"GoBackTime";
+static NSString *kMirrorTracks = @"MirrorTracks";
+static NSString *kShouldRemoveUnusedTracks = @"ShouldRemoveUnusedTracks";
 
 #pragma mark -- since 1.0
 
@@ -63,6 +65,33 @@ NSString *kGoBackTime = @"GoBackTime";
 + (void)setBookmarkPlaylist:(NSURL *)playlist {
     NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
     [userDefaults setURL:playlist forKey:kBookmarkPlaylist];
+    [userDefaults synchronize];
+}
+
+
++ (BOOL)mirrorTracks
+{
+    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+    return [userDefaults boolForKey:kMirrorTracks];
+}
+
++ (void)setMirrorTracks:(BOOL)mirrorTracks
+{
+    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+    [userDefaults setBool:mirrorTracks forKey:kMirrorTracks];
+    [userDefaults synchronize];
+}
+
++ (BOOL)shouldRemoveUnusedTracks
+{
+    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+    return [userDefaults boolForKey:kShouldRemoveUnusedTracks];
+}
+
++ (void)setShouldRemoveUnusedTracks:(BOOL)shouldRemoveUnusedTracks
+{
+    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+    [userDefaults setBool:shouldRemoveUnusedTracks forKey:kShouldRemoveUnusedTracks];
     [userDefaults synchronize];
 }
 

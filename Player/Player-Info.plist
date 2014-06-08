@@ -54,6 +54,8 @@
 	<array>
 		<string>audio</string>
 	</array>
+	<key>UIFileSharingEnabled</key>
+	<true/>
 	<key>UIPrerenderedIcon</key>
 	<true/>
 	<key>UIRequiredDeviceCapabilities</key>

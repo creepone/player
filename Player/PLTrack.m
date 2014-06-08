@@ -5,6 +5,7 @@
 #import "PLMediaLibrarySearch.h"
 #import "NSString+Extensions.h"
 #import "PLImageCache.h"
+#import "PLErrorManager.h"
 
 @interface PLTrack()
 
@@ -39,6 +40,20 @@
     track.fileURL = fileURL;
     [track setMetadataFromAsset];
     return track;
+}
+
+- (void)remove
+{
+    if (self.fileURL) {
+        NSURL *fileURL = [NSURL URLWithString:self.fileURL];
+
+        NSError *error;
+        [[NSFileManager defaultManager] removeItemAtURL:fileURL error:&error];
+        if (error)
+            [PLErrorManager logError:error];
+    }
+
+    [self.managedObjectContext deleteObject:self];
 }
 
 

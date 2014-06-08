@@ -10,4 +10,6 @@
 @property (nonatomic, retain) NSNumber *position;
 @property (nonatomic, retain) PLTrack *track;
 
+- (void)remove;
+
 @end

@@ -15,6 +15,29 @@
 @dynamic position;
 @dynamic songs;
 
+- (void)remove
+{
+    // iterating like this makes sure we also remove associated objects (e.g. tracks)
+    for (PLPlaylistSong *song in self.songs) {
+        [song remove];
+        [self removeSongsObject:song];
+    }
+
+    [self.managedObjectContext deleteObject:self];
+}
+
+- (void)removeSong:(PLPlaylistSong *)song
+{
+    NSInteger order = [song.order intValue];
+
+    [song remove];
+    [self removeSongsObject:song];
+
+    // if the song we deleted was the current one, reset the current order
+    if (order == [self.position intValue])
+        self.position = @(0);
+}
+
 
 - (NSInteger)indexForNewSong
 {
@@ -41,17 +64,6 @@
     return playlistSong;
 }
 
-
-- (void)removeSong:(PLPlaylistSong *)song {
-    PLDataAccess *dataAccess = [PLDataAccess sharedDataAccess];
-    NSInteger order = [song.order intValue];
-    [dataAccess deleteObject:song];
-    [self removeSongsObject:song];
-    
-    // if the song we deleted was the current one, reset the current order
-    if (order == [self.position intValue])
-        self.position = 0;
-}
 
 - (void)renumberSongsOrder:(NSArray *)allSongs {
     

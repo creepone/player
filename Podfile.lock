@@ -62,6 +62,13 @@ PODS:
     - libextobjc/RuntimeExtensions
   - libextobjc/RuntimeExtensions (0.4)
   - libextobjc/UmbrellaHeader (0.4)
+  - ReactiveCocoa (2.3.1):
+    - ReactiveCocoa/UI
+  - ReactiveCocoa/Core (2.3.1):
+    - ReactiveCocoa/no-arc
+  - ReactiveCocoa/no-arc (2.3.1)
+  - ReactiveCocoa/UI (2.3.1):
+    - ReactiveCocoa/Core
   - RXPromise (0.12.0)
   - SSZipArchive (0.3.1)
   - SVProgressHUD (1.0)
@@ -75,6 +82,7 @@ DEPENDENCIES:
   - FFCircularProgressView (~> 0.3)
   - iOS-blur (~> 0.0.5)
   - libextobjc (~> 0.4)
+  - ReactiveCocoa (~> 2.3.1)
   - RXPromise (from `https://github.com/creepone/RXPromise.git`, branch `master`)
   - SSZipArchive (~> 0.3)
   - SVProgressHUD (~> 1.0)
@@ -93,6 +101,7 @@ SPEC CHECKSUMS:
   HexColors: 01384d2bbe8dc4ffa43c3b4135db6e976952d153
   iOS-blur: 5ec57b4a72e57a4f8f5f47ff3f59e56c0690b761
   libextobjc: ba42e4111f433273a886cd54f0ddaddb7f62f82f
+  ReactiveCocoa: dca75777b9d18990c8714a3a6f2149f29b4d1462
   RXPromise: d5b80b17dee7c9360e7be2ec140f74667855f7ac
   SSZipArchive: 6dc0ea3fe4b55574bee23c9f01d7c0f8437d59ef
   SVProgressHUD: 5034c6e22b8c2ca3e09402e48d41ed0340aa1c50

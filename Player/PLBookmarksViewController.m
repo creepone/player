@@ -161,7 +161,9 @@
     PLDataAccess *dataAccess = [PLDataAccess sharedDataAccess];
     
     PLBookmark *bookmark = [_fetchedResultsController objectAtIndexPath:indexPath];
-    [dataAccess deleteObject:bookmark error:&error];
+    [bookmark remove];
+
+    [dataAccess saveChanges:&error];
     [PLAlerts checkForDataStoreError:error];
 }
 

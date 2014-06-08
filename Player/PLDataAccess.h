@@ -46,8 +46,6 @@
 - (PLBookmark *)addBookmarkAtPosition:(NSTimeInterval)position forTrack:(PLTrack *)track;
 
 
-- (void)deleteObject:(NSManagedObject *)object;
-- (BOOL)deleteObject:(NSManagedObject *)object error:(NSError **)error;
 - (BOOL)saveChanges:(NSError **)error;
 - (void)rollbackChanges;
 - (void)processChanges;

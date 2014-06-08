@@ -17,6 +17,8 @@
 + (PLTrack *)trackWithPersistentId:(NSNumber *)persistentId inContext:(NSManagedObjectContext *)context;
 + (PLTrack *)trackWithFileURL:(NSString *)fileURL inContext:(NSManagedObjectContext *)context;
 
+- (void)remove;
+
 /**
  Delivers the URL of the asset that this track represents. Can be used with the audio player to play the track.
  */

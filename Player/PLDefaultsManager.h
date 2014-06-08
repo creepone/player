@@ -21,6 +21,13 @@
 + (double)goBackTime;
 + (void)setGoBackTime:(double)goBackTime;
 
++ (BOOL)mirrorTracks;
++ (void)setMirrorTracks:(BOOL)mirrorTracks;
+
++ (BOOL)shouldRemoveUnusedTracks;
++ (void)setShouldRemoveUnusedTracks:(BOOL)shouldRemoveUnusedTracks;
+
+
 + (NSString *)preferencesPath;
 + (NSString *)preferencesName;
 

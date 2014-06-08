@@ -7,4 +7,9 @@
 @dynamic position;
 @dynamic track;
 
+- (void)remove
+{
+    [self.managedObjectContext deleteObject:self];
+}
+
 @end

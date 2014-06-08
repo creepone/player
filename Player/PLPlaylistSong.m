@@ -1,6 +1,7 @@
 #import <RXPromise/RXPromise.h>
 #import "PLPlaylistSong.h"
 #import "PLTrack.h"
+#import "PLDefaultsManager.h"
 
 @interface PLPlaylistSong()
 @end
@@ -12,6 +13,28 @@
 @dynamic playlist;
 @dynamic playbackRate;
 @dynamic track;
+
+- (void)remove
+{
+    BOOL shouldRemoveTrack = NO;
+
+    // is this a track exclusively owned by this playlist song ?
+    if ([self.track.playlistSongs count] == 1) {
+
+        if ([PLDefaultsManager shouldRemoveUnusedTracks])
+            shouldRemoveTrack = YES;
+
+        // is this a track that we share with the iTunes Library without mirroring it ?
+        if (![PLDefaultsManager mirrorTracks] && self.track.persistentId && !self.track.fileURL)
+            shouldRemoveTrack = YES;
+    }
+
+    if (shouldRemoveTrack) {
+        [self.track remove];
+    }
+
+    [self.managedObjectContext deleteObject:self];
+}
 
 #pragma mark -- Derived properties
 

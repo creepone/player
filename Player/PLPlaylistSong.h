@@ -13,6 +13,12 @@
 @property (nonatomic, retain) PLTrack *track;
 
 
+/**
+* Removes this and all the related objects from the data store.
+* Especially, it removes the associated track in situations where it's no longer necessary to keep it.
+*/
+- (void)remove;
+
 #pragma mark -- Derived properties
 
 @property (nonatomic, assign) BOOL played;

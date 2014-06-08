@@ -15,6 +15,18 @@
  */
 - (PLPlaylistSong *)addTrack:(PLTrack *)track;
 
+/**
+* Removes this and all the related objects from the data store.
+* Especially, it removes the associated tracks in situations where it's no longer necessary to keep it.
+*/
+- (void)remove;
+
+/**
+* Removes the given song from this playlist.
+* Also removes all the related objects from the data store.
+*/
+- (void)removeSong:(PLPlaylistSong *)song;
+
 @end
 
 @interface PLPlaylist (CoreDataGeneratedAccessors)
@@ -24,7 +36,6 @@
 - (void)addSongs:(NSSet *)values;
 - (void)removeSongs:(NSSet *)values;
 
-- (void)removeSong:(PLPlaylistSong *)song;
 - (void)renumberSongsOrder:(NSArray *)allSongs;
 - (PLPlaylistSong *)currentSong;
 - (void)moveToNextSong;

@@ -15,13 +15,11 @@
     NSError *error;
 
     NSFileManager *fileManager = [NSFileManager defaultManager];
-    [fileManager copyItemAtURL:fileURL toURL:targetFileURL error:&error];
-
+    [fileManager moveItemAtURL:fileURL toURL:targetFileURL error:&error];
+    
     if (error)
         return [RXPromise promiseWithResult:error];
     
-    // todo: delete from the source location (inbox)
-
     // todo: handle edge cases: file already exists at this location
 
     PLDataAccess *dataAccess = [PLDataAccess sharedDataAccess];

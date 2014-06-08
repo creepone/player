@@ -52,16 +52,6 @@
     }
 }
 
-
-- (void)deleteObject:(NSManagedObject *)object {
-    [self.context deleteObject:object];
-}
-
-- (BOOL)deleteObject:(NSManagedObject *)object error:(NSError **)error {
-    [self.context deleteObject:object];
-    return [self saveChanges:error];
-}
-
 - (BOOL)saveChanges:(NSError **)error {
 	return [self.context save:error];
 }

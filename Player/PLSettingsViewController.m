@@ -1,10 +1,4 @@
-//
-//  PLSettingsViewController.m
-//  Player
-//
-//  Created by Tomas Vana on 11/16/12.
-//  Copyright (c) 2012 Tomas Vana. All rights reserved.
-//
+#import <ReactiveCocoa.h>
 
 #import "PLSettingsViewController.h"
 #import "PLDefaultsManager.h"
@@ -54,7 +48,7 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return 3;
+    return 4;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -90,6 +84,18 @@
             cell.textLabel.text = @"Go back time";
             cell.detailTextLabel.text = [NSString stringWithFormat:@"%.0f", [PLDefaultsManager goBackTime]];
             cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+        }
+        else if (indexPath.row == 3) {
+            cell.textLabel.text = @"Delete unused tracks";
+            
+            UISwitch *switchUnusedTracks = [[UISwitch alloc] init];
+            switchUnusedTracks.on = [PLDefaultsManager shouldRemoveUnusedTracks];
+            
+            [[switchUnusedTracks rac_signalForControlEvents:UIControlEventValueChanged] subscribeNext:^(UISwitch *switchUnusedTracks) {
+                [PLDefaultsManager setShouldRemoveUnusedTracks:switchUnusedTracks.on];
+            }];
+
+            cell.accessoryView = switchUnusedTracks;
         }
         
         return cell;
