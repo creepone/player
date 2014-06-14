@@ -48,14 +48,13 @@
 
     _modelView = modelView;
 
-    RAC(self.imageViewArtwork, image, [UIImage imageNamed:@"DefaultArtwork"]) = RACObserve(modelView, imageArtwork);
-    RAC(self.labelTitle, text) = RACObserve(modelView, titleText);
-    RAC(self.labelArtist, text) = RACObserve(modelView, artistText);
-    RAC(self.labelDuration, text) = RACObserve(modelView, durationText);
-    RAC(self, backgroundColor) = RACObserve(modelView, backgroundColor);
+    RAC(self.imageViewArtwork, image, [UIImage imageNamed:@"DefaultArtwork"]) = [RACObserve(modelView, imageArtwork) takeUntil:self.rac_prepareForReuseSignal];
+    RAC(self.labelTitle, text) = [RACObserve(modelView, titleText) takeUntil:self.rac_prepareForReuseSignal];
+    RAC(self.labelArtist, text) = [RACObserve(modelView, artistText) takeUntil:self.rac_prepareForReuseSignal];
+    RAC(self.labelDuration, text) = [RACObserve(modelView, durationText) takeUntil:self.rac_prepareForReuseSignal];
+    RAC(self, backgroundColor) = [RACObserve(modelView, backgroundColor) takeUntil:self.rac_prepareForReuseSignal];
 
-    [RACObserve(modelView, progress) subscribeNext:^(NSNumber *progress) {
-        @strongify(self);
+    [[RACObserve(modelView, progress) takeUntil:self.rac_prepareForReuseSignal] subscribeNext:^(NSNumber *progress) {
         [self setProgress:progress];
     }];
 
@@ -63,8 +62,9 @@
     [self setViewPlaceholderVisible:NO];
 }
 
-- (void)removeBindings
+- (void)prepareForReuse
 {
+    [super prepareForReuse];
     _modelView = nil;
 }
 

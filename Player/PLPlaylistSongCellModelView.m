@@ -28,9 +28,10 @@
 
         @weakify(self);
 
-        playlistSong.smallArtwork.then(^(UIImage *artworkImage) {
+        playlistSong.smallArtwork.thenOnMain(^(UIImage *artworkImage) {
             @strongify(self);
             if (!self) return (id)nil;
+
             self.imageArtwork = artworkImage;
             return (id)nil;
         }, nil);

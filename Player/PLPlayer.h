@@ -16,8 +16,8 @@ static NSString *kPLPlayerIsPlayingChange = @"PLPlayerIsPlayingChange";
 @interface PLPlayer : NSObject
 
 + (PLPlayer *)sharedPlayer;
-- (PLPlaylistSong *)currentSong;
 
+@property (nonatomic) PLPlaylistSong *currentSong;
 @property (nonatomic) NSTimeInterval currentPosition;
 
 - (BOOL)isPlaying;

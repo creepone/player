@@ -52,7 +52,6 @@
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fzu-VJ-lFb">
                                             <rect key="frame" x="287" y="17" width="25" height="25"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                            <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="25" id="PaV-LS-uXN"/>
                                                 <constraint firstAttribute="width" constant="25" id="b17-Nv-d3e"/>
@@ -116,10 +115,17 @@
                             <outlet property="delegate" destination="bzV-l1-pgC" id="Rsh-Xn-XKE"/>
                         </connections>
                     </tableView>
+                    <toolbarItems>
+                        <barButtonItem systemItem="add" id="mAw-Xn-PPv">
+                            <connections>
+                                <action selector="tappedAdd:" destination="bzV-l1-pgC" id="Jhb-DS-vCs"/>
+                            </connections>
+                        </barButtonItem>
+                    </toolbarItems>
                     <navigationItem key="navigationItem" title="Baladeur" id="Pcg-1r-op0">
                         <barButtonItem key="leftBarButtonItem" systemItem="refresh" id="9gJ-RS-IEs">
                             <connections>
-                                <action selector="clickedSwitch:" destination="bzV-l1-pgC" id="gxX-3a-Nqn"/>
+                                <action selector="tappedSwitch:" destination="bzV-l1-pgC" id="ilP-6r-9av"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -131,10 +137,14 @@
         <!--Navigation Controller-->
         <scene sceneID="QPW-ZN-TdA">
             <objects>
-                <navigationController definesPresentationContext="YES" id="iPj-9g-1K8" sceneMemberID="viewController">
+                <navigationController definesPresentationContext="YES" toolbarHidden="NO" id="iPj-9g-1K8" sceneMemberID="viewController">
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="UyL-rs-YpA">
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
+                    <toolbar key="toolbar" opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="kn1-ho-BSD">
+                        <rect key="frame" x="0.0" y="524" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </toolbar>
                     <connections>
                         <segue destination="bzV-l1-pgC" kind="relationship" relationship="rootViewController" id="55U-8B-tih"/>
                     </connections>

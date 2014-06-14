@@ -6,6 +6,4 @@
 
 - (void)setupBindings:(PLPlaylistSongCellModelView *)modelView;
 
-- (void)removeBindings;
-
 @end

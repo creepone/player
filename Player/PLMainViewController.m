@@ -1,12 +1,17 @@
+#import <RXPromise/RXPromise.h>
 #import "PLMainViewController.h"
 #import "PLMainUI.h"
 #import "PLPlaylistSongsDelegate.h"
+#import "PLActivityViewController.h"
+#import "PLImportActivityViewController.h"
 
 @interface PLMainViewController () {
     PLPlaylistSongsDelegate *_dataSource;
+    PLImportActivityViewController *_activityViewController;
 }
 
-- (IBAction)clickedSwitch:(id)sender;
+- (IBAction)tappedSwitch:(id)sender;
+- (IBAction)tappedAdd:(id)sender;
 
 @end
 
@@ -18,15 +23,18 @@
     _dataSource = [[PLPlaylistSongsDelegate alloc] initWithTableView:self.tableView];
 }
 
-- (void)viewWillDisappear:(BOOL)animated
-{
-    [super viewWillDisappear:animated];
-    DDLogVerbose(@"view will disappear");
-}
-
-- (IBAction)clickedSwitch:(id)sender
+- (IBAction)tappedSwitch:(id)sender
 {
     [PLMainUI showLegacy];
+}
+
+- (IBAction)tappedAdd:(id)sender
+{
+    _activityViewController = [[PLImportActivityViewController alloc] init];
+    [_activityViewController presentFromRootViewController].then(^(id result) {
+        DDLogVerbose(@"completed activity");
+        return (id)nil;
+    }, nil);
 }
 
 @end

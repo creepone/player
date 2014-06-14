@@ -65,6 +65,23 @@ void audioRouteChangeListenerCallback (void *inUserData, AudioSessionPropertyID 
     return playlist.currentSong;
 }
 
+- (void)setCurrentSong:(PLPlaylistSong *)song
+{
+    // todo: this only works if the song's playlist is currently selected. that is probably ok but later we have to deal with cases like there is no playlist etc.
+    if (song.playlist.currentSong == song)
+        return;
+
+    [self stop];
+
+    song.playlist.position = song.order;
+
+    [self save];
+
+    [[NSNotificationCenter defaultCenter] postNotificationName:kPLPlayerSongChange object:nil];
+
+    [self play];
+}
+
 - (NSTimeInterval)currentPosition {
     if (_audioPlayer != nil)
         return _audioPlayer.currentTime;

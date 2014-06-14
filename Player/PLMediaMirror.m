@@ -130,8 +130,10 @@ NSString * const PLMediaMirrorFinishedTrackNotification = @"PLMediaMirrorFinishe
 
         return [self exportTrack:track withArtwork:artworkData].thenOnMain(^(NSURL *fileURL){
 
+            if (!track.managedObjectContext)
+                return @(YES);
+
             track.fileURL = [fileURL absoluteString];
-            track.persistentId = 0;
 
             NSError *error;
             if (![dataAccess saveChanges:&error])

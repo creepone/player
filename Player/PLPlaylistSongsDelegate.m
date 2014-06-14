@@ -3,6 +3,7 @@
 #import "PLErrorManager.h"
 #import "PLPlaylistSongCell.h"
 #import "PLPlaylistSongCellModelView.h"
+#import "PLPlayer.h"
 
 @interface PLPlaylistSongsDelegate () <NSFetchedResultsControllerDelegate> {
     UITableView * _tableView;
@@ -52,10 +53,38 @@
     return cell;
 }
 
-- (void)tableView:(UITableView *)tableView didEndDisplayingCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath
+- (UITableViewCellEditingStyle)tableView:(UITableView *)tableView editingStyleForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    PLPlaylistSongCell *playlistSongCell = (PLPlaylistSongCell *)cell;
-    [playlistSongCell removeBindings];
+    return UITableViewCellEditingStyleDelete;
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    PLPlaylistSong *playlistSong = [_fetchedResultsController objectAtIndexPath:indexPath];
+    PLPlayer *player = [PLPlayer sharedPlayer];
+
+    player.currentSong = playlistSong;
+
+    if (!player.isPlaying)
+        [player play];
+}
+
+- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if (editingStyle == UITableViewCellEditingStyleDelete) {
+        PLPlaylistSong *song = [_fetchedResultsController objectAtIndexPath:indexPath];
+        PLPlayer *player = [PLPlayer sharedPlayer];
+
+        if ([player isPlaying] && player.currentSong == song)
+            [player stop];
+
+        [song.playlist removeSong:song];
+
+        NSError *error;
+        [[PLDataAccess sharedDataAccess] saveChanges:&error];
+        if (error)
+            [PLErrorManager logError:error];
+    }
 }
 
 
