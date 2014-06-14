@@ -23,4 +23,15 @@
 */
 - (void)pl_removeAllPromises;
 
+/**
+* Calls both will.. and didChangeValueForKey methods for the given key, thereby notifying the KVO listeners of the change.
+* Useful when the notification should happen without calling the setter.
+*/
+- (void)pl_notifyKvoForKey:(NSString *)key;
+
+/**
+* Calls the pl_notifyKvoForKey: method for all the given keys.
+*/
+- (void)pl_notifyKvoForKeys:(NSArray *)keys;
+
 @end

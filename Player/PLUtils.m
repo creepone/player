@@ -43,7 +43,16 @@
 {
     long min = (long)duration / 60;
     long sec = (long)duration % 60;
-    return [[NSString alloc] initWithFormat:@"%02ld:%02ld", min, sec];
+
+    if (min >= 60)
+    {
+        long hrs = min / 60;
+        min = min % 60;
+
+        return [NSString stringWithFormat:@"%ld:%02ld:%02ld", hrs, min, sec];
+    }
+
+    return [NSString stringWithFormat:@"%02ld:%02ld", min, sec];
 }
 
 + (UIImage *)launchImage

@@ -65,4 +65,17 @@ static const char* kPromisesKey = "PLPromises";
     objc_setAssociatedObject(self, kPromisesKey, nil, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
 }
 
+- (void)pl_notifyKvoForKey:(NSString *)key
+{
+    [self willChangeValueForKey:key];
+    [self didChangeValueForKey:key];
+}
+
+- (void)pl_notifyKvoForKeys:(NSArray *)keys
+{
+    for (NSString *key in keys) {
+        [self pl_notifyKvoForKey:key];
+    }
+}
+
 @end
