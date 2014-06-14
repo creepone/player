@@ -48,7 +48,7 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return 4;
+    return 5;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -57,7 +57,7 @@
         SliderCell *sliderCell = [loadedControls objectAtIndex:0];
         [sliderCell.slider addTarget:self action:@selector(sliderValueChanged:) forControlEvents:UIControlEventValueChanged];
         
-        double playbackRate = [PLDefaultsManager playbackRate];
+        double playbackRate = [[PLDefaultsManager sharedManager] playbackRate];
         sliderCell.slider.value = playbackRate;
         sliderCell.labelValue.text = [NSString stringWithFormat:@"%.2f", playbackRate];
         
@@ -82,20 +82,32 @@
         }
         else if (indexPath.row == 2) {
             cell.textLabel.text = @"Go back time";
-            cell.detailTextLabel.text = [NSString stringWithFormat:@"%.0f", [PLDefaultsManager goBackTime]];
+            cell.detailTextLabel.text = [NSString stringWithFormat:@"%.0f", [[PLDefaultsManager sharedManager] goBackTime]];
             cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
         }
         else if (indexPath.row == 3) {
             cell.textLabel.text = @"Delete unused tracks";
             
             UISwitch *switchUnusedTracks = [[UISwitch alloc] init];
-            switchUnusedTracks.on = [PLDefaultsManager shouldRemoveUnusedTracks];
+            switchUnusedTracks.on = [[PLDefaultsManager sharedManager] removeUnusedTracks];
             
             [[switchUnusedTracks rac_signalForControlEvents:UIControlEventValueChanged] subscribeNext:^(UISwitch *switchUnusedTracks) {
-                [PLDefaultsManager setShouldRemoveUnusedTracks:switchUnusedTracks.on];
+                [[PLDefaultsManager sharedManager] setRemoveUnusedTracks:switchUnusedTracks.on];
             }];
 
             cell.accessoryView = switchUnusedTracks;
+        }
+        else if (indexPath.row == 4) {
+            cell.textLabel.text = @"Mirror iTunes tracks";
+
+            UISwitch *switchMirrorTracks = [[UISwitch alloc] init];
+            switchMirrorTracks.on = [[PLDefaultsManager sharedManager] mirrorTracks];
+
+            [[switchMirrorTracks rac_signalForControlEvents:UIControlEventValueChanged] subscribeNext:^(UISwitch *switchMirrorTracks) {
+                [[PLDefaultsManager sharedManager] setMirrorTracks:switchMirrorTracks.on];
+            }];
+
+            cell.accessoryView = switchMirrorTracks;
         }
         
         return cell;
@@ -134,7 +146,7 @@
     SliderCell *sliderCell = (SliderCell *)[self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0]];
     sliderCell.labelValue.text = [NSString stringWithFormat:@"%.2f", slider.value];
 
-    [PLDefaultsManager setPlaybackRate:slider.value];
+    [[PLDefaultsManager sharedManager] setPlaybackRate:slider.value];
     
     PLPlayer *player = [PLPlayer sharedPlayer];
     if ([player.currentSong.playbackRate doubleValue] < 0.01)
@@ -166,7 +178,7 @@
         
         // ignore absurd values
         if (goBackTime > 0 && goBackTime < 120) {
-            [PLDefaultsManager setGoBackTime:goBackTime];
+            [[PLDefaultsManager sharedManager] setGoBackTime:goBackTime];
             [self.tableView reloadData];
         }
     }

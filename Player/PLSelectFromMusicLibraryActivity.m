@@ -6,6 +6,7 @@
 #import "PLMediaItemTrackGroup.h"
 #import "PLDataAccess.h"
 #import "PLErrorManager.h"
+#import "PLMediaMirror.h"
 
 @interface PLSelectFromMusicLibraryActivity() {
     PLPlaylist *_playlist;
@@ -71,6 +72,9 @@
     
     NSError *error;
     [dataAccess saveChanges:&error];
+
+    [[PLMediaMirror sharedInstance] ensureActive];
+
     return [RXPromise promiseWithResult:error];
 }
 

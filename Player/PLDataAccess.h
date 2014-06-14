@@ -36,6 +36,11 @@
 - (PLTrack *)trackWithFileURL:(NSString *)fileURL;
 
 /**
+ Returns the first found track (or nil if none found) with a persistentId without a file URL (i.e. a track yet to be mirrored)
+ */
+- (PLTrack *)nextTrackToMirror;
+
+/**
  Delivers a playlist song with the given track on the given playlist, if one exists. Otherwise, nil is returned.
  */
 - (PLPlaylistSong *)songWithTrack:(PLTrack *)track onPlaylist:(PLPlaylist *)playlist;

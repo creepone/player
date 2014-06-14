@@ -75,7 +75,7 @@
     }
     else {
         if (player.currentSong == _song)
-            [player setPlaybackRate:[PLDefaultsManager playbackRate]];
+            [player setPlaybackRate:[[PLDefaultsManager sharedManager] playbackRate]];
         
         _song.playbackRate = [NSNumber numberWithDouble:0.0];;
     }

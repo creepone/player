@@ -21,11 +21,13 @@
     // is this a track exclusively owned by this playlist song ?
     if ([self.track.playlistSongs count] == 1) {
 
-        if ([PLDefaultsManager shouldRemoveUnusedTracks])
+        PLDefaultsManager *defaultsManager = [PLDefaultsManager sharedManager];
+
+        if ([defaultsManager removeUnusedTracks])
             shouldRemoveTrack = YES;
 
         // is this a track that we share with the iTunes Library without mirroring it ?
-        if (![PLDefaultsManager mirrorTracks] && self.track.persistentId && !self.track.fileURL)
+        if (![defaultsManager mirrorTracks] && self.track.persistentId && !self.track.fileURL)
             shouldRemoveTrack = YES;
     }
 

@@ -72,17 +72,17 @@
 }
 
 - (PLPlaylist *)selectedPlaylist {
-    NSManagedObjectID *objectID = [self.context.persistentStoreCoordinator managedObjectIDForURIRepresentation:[PLDefaultsManager selectedPlaylist]];
+    NSManagedObjectID *objectID = [self.context.persistentStoreCoordinator managedObjectIDForURIRepresentation:[[PLDefaultsManager sharedManager] selectedPlaylist]];
     return (PLPlaylist *)[self.context objectWithID:objectID];
 }
 
 - (void)selectPlaylist:(PLPlaylist *)playlist {
     NSManagedObjectID *objectID = [playlist objectID];
-    [PLDefaultsManager setSelectedPlaylist:[objectID URIRepresentation]];
+    [[PLDefaultsManager sharedManager] setSelectedPlaylist:[objectID URIRepresentation]];
 }
 
 - (PLPlaylist *)bookmarkPlaylist {
-    NSURL *playlistUrl = [PLDefaultsManager bookmarkPlaylist];
+    NSURL *playlistUrl = [[PLDefaultsManager sharedManager] bookmarkPlaylist];
     if (playlistUrl == nil)
         return nil;
     
@@ -92,7 +92,7 @@
 
 - (void)setBookmarkPlaylist:(PLPlaylist *)playlist {
     NSManagedObjectID *objectID = [playlist objectID];
-    [PLDefaultsManager setBookmarkPlaylist:[objectID URIRepresentation]];
+    [[PLDefaultsManager sharedManager] setBookmarkPlaylist:[objectID URIRepresentation]];
 }
 
 - (PLTrack *)trackWithPersistentId:(NSNumber *)persistentId
@@ -119,6 +119,19 @@
         return result[0];
 
     return [PLTrack trackWithFileURL:fileURL inContext:self.context];
+}
+
+- (PLTrack *)nextTrackToMirror
+{
+    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+    [self setupQueryForTrackToMirror:fetchRequest];
+
+    NSError *error;
+    NSArray *result = [self.context executeFetchRequest:fetchRequest error:&error];
+    if ([result count] >= 1)
+        return result[0];
+
+    return nil;
 }
 
 - (PLBookmark *)addBookmarkAtPosition:(NSTimeInterval)position forTrack:(PLTrack *)track
@@ -222,6 +235,14 @@
     [fetchRequest setEntity:[NSEntityDescription entityForName:@"PLTrack" inManagedObjectContext:self.context]];
 
     NSPredicate *predicate = [NSPredicate predicateWithFormat:@"fileURL=%@", fileURL];
+    [fetchRequest setPredicate:predicate];
+}
+
+- (void)setupQueryForTrackToMirror:(NSFetchRequest *)fetchRequest
+{
+    [fetchRequest setEntity:[NSEntityDescription entityForName:@"PLTrack" inManagedObjectContext:self.context]];
+
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"persistentId != nil AND fileURL = nil"];
     [fetchRequest setPredicate:predicate];
 }
 

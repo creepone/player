@@ -13,7 +13,8 @@ long PLCurrentDataStoreVersion = 1;
 
 + (RXPromise *)coreDataStack
 {
-    long lastInstalledVersion = [PLDefaultsManager dataStoreVersion];
+    PLDefaultsManager *defaultsManager = [PLDefaultsManager sharedManager];
+    long lastInstalledVersion = [defaultsManager dataStoreVersion];
 
     if (lastInstalledVersion == PLCurrentDataStoreVersion) {
         return [self coreDataStackForModelVersion:PLCurrentDataStoreVersion];
@@ -21,7 +22,7 @@ long PLCurrentDataStoreVersion = 1;
     else if(lastInstalledVersion == 0) {
         return [self coreDataStackForModelVersion:PLCurrentDataStoreVersion].thenOnMain(^(PLCoreDataStack *coreDataStack) {
             return [self createDefaultObjectsInContext:coreDataStack.managedObjectContext].thenOnMain(^(id result) {
-                [PLDefaultsManager setDataStoreVersion:PLCurrentDataStoreVersion];
+                [defaultsManager setDataStoreVersion:PLCurrentDataStoreVersion];
                 return coreDataStack;
             }, nil);
         }, nil);
@@ -29,7 +30,7 @@ long PLCurrentDataStoreVersion = 1;
 
     return [self migrateFromVersion:lastInstalledVersion].thenOnMain(^(id result) {
         return [self coreDataStackForModelVersion:PLCurrentDataStoreVersion].thenOnMain(^(PLCoreDataStack *coreDataStack) {
-            [PLDefaultsManager setDataStoreVersion:PLCurrentDataStoreVersion];
+            [defaultsManager setDataStoreVersion:PLCurrentDataStoreVersion];
             return coreDataStack;
         }, nil);
     }, nil);

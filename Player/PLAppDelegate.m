@@ -14,6 +14,7 @@
 #import "PLErrorManager.h"
 #import "PLFileImport.h"
 #import "PLUtils.h"
+#import "PLMediaMirror.h"
 
 static const int kMigrationErrorAlertTag = 44;
 
@@ -48,6 +49,9 @@ static void onUncaughtException(NSException* exception);
         NSURL *fileToImport = launchOptions[UIApplicationLaunchOptionsURLKey];
         if (fileToImport)
             [PLFileImport importFile:fileToImport];
+        
+        [[PLMediaMirror sharedInstance] ensureActive];
+        
         return (id)nil;
     }, nil);
     
@@ -65,6 +69,21 @@ static void onUncaughtException(NSException* exception);
 {
     // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later. 
     // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
+    
+    if (![[PLMediaMirror sharedInstance] isActive])
+        return;
+    
+    __block UIBackgroundTaskIdentifier backgroundTask;
+    backgroundTask = [application beginBackgroundTaskWithExpirationHandler:^{
+        [application endBackgroundTask:backgroundTask];
+    }];
+    
+    __block id observer;
+    observer = [[NSNotificationCenter defaultCenter] addObserverForName:PLMediaMirrorFinishedTrackNofitication object:nil queue:nil usingBlock:^(NSNotification *note) {
+        [[PLMediaMirror sharedInstance] suspend];
+        [[NSNotificationCenter defaultCenter] removeObserver:observer];
+        [application endBackgroundTask:backgroundTask];
+    }];
 }
 
 - (void)applicationWillEnterForeground:(UIApplication *)application
@@ -74,7 +93,8 @@ static void onUncaughtException(NSException* exception);
 
 - (void)applicationDidBecomeActive:(UIApplication *)application
 {
-    // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
+    if (self.coreDataStack)
+        [[PLMediaMirror sharedInstance] ensureActive];
 }
 
 - (void)applicationWillTerminate:(UIApplication *)application

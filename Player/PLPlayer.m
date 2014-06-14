@@ -113,7 +113,7 @@ void audioRouteChangeListenerCallback (void *inUserData, AudioSessionPropertyID 
             _audioPlayer.rate = customRate;
         }
         else {
-            _audioPlayer.rate = [PLDefaultsManager playbackRate];
+            _audioPlayer.rate = [[PLDefaultsManager sharedManager] playbackRate];
         }
 
         [_audioPlayer setDelegate:self];
@@ -158,7 +158,7 @@ void audioRouteChangeListenerCallback (void *inUserData, AudioSessionPropertyID 
 }
 
 - (void)goBack {
-    double delay = [PLDefaultsManager goBackTime];
+    double delay = [[PLDefaultsManager sharedManager] goBackTime];
     
     if (_audioPlayer != nil) {
         double position = _audioPlayer.currentTime;        
