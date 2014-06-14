@@ -9,6 +9,7 @@
 "Messages.GeneralError" = "Nastala chyba.";
 "Messages.ConnectionLost" = "Nastal problém s vašim internetovým pripojením.";
 "Messages.InitializingData" = "Inicializácia dát";
+"Messages.CouldNotSendEmail" = "Nepodarilo sa poslať e-mail.";
 
 // Activities
 "Activities.Dropbox" = "Dropbox";
@@ -19,4 +20,7 @@
 "Activities.FileSharing" = "iTunes File\nSharing";
 "Activities.Music" = "Hudba";
 
+// Errors
+"ErrorReport.Subject" = "Mingel report chyby";
+"ErrorReport.Body" = "V prílohe nájdete log súbory z Mingelu.";
 

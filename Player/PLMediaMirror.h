@@ -1,6 +1,6 @@
 #import <Foundation/Foundation.h>
 
-extern NSString * const PLMediaMirrorFinishedTrackNofitication;
+extern NSString * const PLMediaMirrorFinishedTrackNotification;
 
 @interface PLMediaMirror : NSObject
 

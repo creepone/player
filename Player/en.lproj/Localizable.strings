@@ -9,6 +9,7 @@
 "Messages.GeneralError" = "An error occured.";
 "Messages.ConnectionLost" = "There has been a problem with the network connection.";
 "Messages.InitializingData" = "Initializing data.";
+"Messages.CouldNotSendEmail" = "Could not send the email.";
 
 // Activities
 "Activities.Dropbox" = "Dropbox";
@@ -19,3 +20,6 @@
 "Activities.FileSharing" = "iTunes File\nSharing";
 "Activities.Music" = "Music";
 
+// Errors
+"ErrorReport.Subject" = "Baladeur error report";
+"ErrorReport.Body" = "Attached you'll find the log files from Baladeur.";

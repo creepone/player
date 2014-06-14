@@ -7,7 +7,7 @@
 #import "PLErrorManager.h"
 #import "PLUtils.h"
 
-NSString * const PLMediaMirrorFinishedTrackNofitication = @"PLMediaMirrorFinishedTrackNofitication";
+NSString * const PLMediaMirrorFinishedTrackNotification = @"PLMediaMirrorFinishedTrackNotification";
 
 @interface PLMediaMirror() {
     BOOL _active, _suspended;
@@ -58,7 +58,6 @@ NSString * const PLMediaMirrorFinishedTrackNofitication = @"PLMediaMirrorFinishe
         return;
     
     DDLogVerbose(@"Activating the mirror process");
-
     _suspended = NO;
     
     // make sure we're always peeking from the main queue
@@ -103,7 +102,7 @@ NSString * const PLMediaMirrorFinishedTrackNofitication = @"PLMediaMirrorFinishe
         if (!self)
             return (id)nil;
         
-        [[NSNotificationCenter defaultCenter] postNotificationName:PLMediaMirrorFinishedTrackNofitication object:self];
+        [[NSNotificationCenter defaultCenter] postNotificationName:PLMediaMirrorFinishedTrackNotification object:self];
 
         if ([result boolValue])
             [self peek];

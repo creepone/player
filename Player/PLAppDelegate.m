@@ -15,6 +15,7 @@
 #import "PLFileImport.h"
 #import "PLUtils.h"
 #import "PLMediaMirror.h"
+#import "PLMainUI.h"
 
 static const int kMigrationErrorAlertTag = 44;
 
@@ -43,9 +44,10 @@ static void onUncaughtException(NSException* exception);
     [self.window.rootViewController.view setBackgroundColor:[UIColor colorWithPatternImage:[PLUtils launchImage]]];
     
     [self initializeData].thenOnMain(^(id result){
-        
-        // todo: do this on a background thread with a separate context
-        
+
+        [PLMainUI showLegacy];
+        [[UIApplication sharedApplication] beginReceivingRemoteControlEvents];
+
         NSURL *fileToImport = launchOptions[UIApplicationLaunchOptionsURLKey];
         if (fileToImport)
             [PLFileImport importFile:fileToImport];
@@ -79,7 +81,7 @@ static void onUncaughtException(NSException* exception);
     }];
     
     __block id observer;
-    observer = [[NSNotificationCenter defaultCenter] addObserverForName:PLMediaMirrorFinishedTrackNofitication object:nil queue:nil usingBlock:^(NSNotification *note) {
+    observer = [[NSNotificationCenter defaultCenter] addObserverForName:PLMediaMirrorFinishedTrackNotification object:nil queue:nil usingBlock:^(NSNotification *note) {
         [[PLMediaMirror sharedInstance] suspend];
         [[NSNotificationCenter defaultCenter] removeObserver:observer];
         [application endBackgroundTask:backgroundTask];
@@ -124,8 +126,6 @@ static void onUncaughtException(NSException* exception);
 
         self.coreDataStack = coreDataStack;
         [SVProgressHUD dismiss];
-        [self showMainUi];
-
         return coreDataStack;
     },
     ^(NSError *error) {
@@ -147,22 +147,6 @@ static void onUncaughtException(NSException* exception);
 
         return (id)nil;
     });
-}
-
-- (void)showMainUi
-{
-    UIViewController *playlistViewController = [[PLPlaylistViewController alloc] initWithNibName:@"PLPlaylistViewController" bundle:nil];
-    UIViewController *playerViewController = [[PLPlayerViewController alloc] initWithNibName:@"PLPlayerViewController" bundle:nil];
-    UIViewController *settingsViewController = [[PLSettingsViewController alloc] initWithNibName:@"PLSettingsViewController" bundle:nil];
-    UIViewController *bookmarksViewController = [[PLBookmarksViewController alloc] initWithNibName:@"PLBookmarksViewController" bundle:nil];
-    
-    
-    self.tabBarController = [[UITabBarController alloc] init];
-    self.tabBarController.viewControllers = @[playlistViewController, playerViewController, bookmarksViewController, settingsViewController];
-    
-    self.window.rootViewController = self.tabBarController;
-    
-    [[UIApplication sharedApplication] beginReceivingRemoteControlEvents];
 }
 
 - (void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex

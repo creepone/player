@@ -1,4 +1,5 @@
 #import <ReactiveCocoa.h>
+#import <MessageUI/MessageUI.h>
 
 #import "PLSettingsViewController.h"
 #import "PLDefaultsManager.h"
@@ -6,12 +7,15 @@
 #import "PLPlayer.h"
 #import "PLDataAccess.h"
 #import "PLAlerts.h"
+#import "PLColors.h"
 #import "SliderCell.h"
 #import "NSString+Extensions.h"
+#import "UIViewController+PLErrorExtensions.h"
+#import "PLMainUI.h"
 
 #define GoBackAlert 22
 
-@interface PLSettingsViewController () <UITableViewDataSource, UITableViewDelegate, UIAlertViewDelegate, PLPlaylistSelectViewControllerDelegate>
+@interface PLSettingsViewController () <UITableViewDataSource, UITableViewDelegate, UIAlertViewDelegate, PLPlaylistSelectViewControllerDelegate, MFMailComposeViewControllerDelegate>
 
 @end
 
@@ -47,11 +51,16 @@
     return 1;
 }
 
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return 5;
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+    NSInteger rows = 7;
+    if (![MFMailComposeViewController canSendMail])
+        rows--;
+    return rows;
 }
 
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
     if (indexPath.section == 0 && indexPath.row == 0) {
         NSArray *loadedControls = [[NSBundle mainBundle] loadNibNamed:@"SliderCell" owner:nil options:nil];
         SliderCell *sliderCell = [loadedControls objectAtIndex:0];
@@ -108,6 +117,14 @@
             }];
 
             cell.accessoryView = switchMirrorTracks;
+        }
+        else if (indexPath.row == 5) {
+            cell.textLabel.text = @"Switch to new";
+            cell.accessoryType = UITableViewCellAccessoryNone;
+        }
+        else if (indexPath.row == 6) {
+            cell.textLabel.text = @"Send logs";
+            cell.accessoryType = UITableViewCellAccessoryNone;
         }
         
         return cell;
@@ -169,6 +186,34 @@
         alert.tag = GoBackAlert;
         [alert show];
     }
+    else if (indexPath.row == 5) {
+        [PLMainUI showNew];
+    }
+    else if (indexPath.row == 6) {
+        NSString *archivePath = [PLLogging archiveLogs];
+        NSData *archiveData = [NSData dataWithContentsOfFile:archivePath];
+        
+        MFMailComposeViewController *picker = [[MFMailComposeViewController alloc] init];
+        picker.mailComposeDelegate = self;
+        picker.view.tintColor = [PLColors themeColor];
+        
+        [picker setToRecipients:@[@"support@iosapps.at"]];
+        [picker setSubject:NSLocalizedString(@"ErrorReport.Subject", nil)];
+        [picker addAttachmentData:archiveData mimeType:@"application/zip" fileName:@"log.zip"];
+        
+        NSString *emailBody = NSLocalizedString(@"ErrorReport.Body", nil);
+        [picker setMessageBody:emailBody isHTML:YES];
+        
+        [self presentViewController:picker animated:YES completion:nil];
+    }
+}
+
+- (void)mailComposeController:(MFMailComposeViewController *)controller didFinishWithResult:(MFMailComposeResult)result error:(NSError *)error
+{
+    [self dismissViewControllerAnimated:YES completion:nil];
+    
+    if (result == MFMailComposeResultFailed)
+        [self pl_presentError:error defaultMessage:NSLocalizedString(@"Messages.CouldNotSendEmail", nil)];
 }
 
 - (void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex {

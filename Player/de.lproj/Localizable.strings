@@ -9,6 +9,7 @@
 "Messages.GeneralError" = "Ein Fehler ist aufgetreten.";
 "Messages.ConnectionLost" = "Es gibt ein Problem mit Ihrer Internetverbindung.";
 "Messages.InitializingData" = "Dateninitialisierung";
+"Messages.CouldNotSendEmail" = "Die E-mail konnte nicht gesendet werden.";
 
 // Activities
 "Activities.Dropbox" = "Dropbox";
@@ -19,4 +20,6 @@
 "Activities.FileSharing" = "iTunes File\nSharing";
 "Activities.Music" = "Musik";
 
-
+// Error report
+"ErrorReport.Subject" = "Mingel Fehlerreport";
+"ErrorReport.Body" = "Anbei finden Sie die Log Dateien aus der Mingel App.";
