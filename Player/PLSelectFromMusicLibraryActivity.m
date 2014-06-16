@@ -1,11 +1,7 @@
 #import <RXPromise/RXPromise.h>
-#import <MediaPlayer/MediaPlayer.h>
 #import "PLSelectFromMusicLibraryActivity.h"
-#import "PLMediaLibrarySearch.h"
 #import "PLMusicLibraryViewController.h"
-#import "PLMediaItemTrackGroup.h"
 #import "PLDataAccess.h"
-#import "PLErrorManager.h"
 #import "PLMediaMirror.h"
 
 @interface PLSelectFromMusicLibraryActivity() {
@@ -73,7 +69,7 @@
     NSError *error;
     [dataAccess saveChanges:&error];
 
-    [[PLMediaMirror sharedInstance] ensureActive];
+    [[PLMediaMirror sharedInstance] ensureRunning];
 
     return [RXPromise promiseWithResult:error];
 }

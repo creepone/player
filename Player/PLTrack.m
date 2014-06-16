@@ -1,5 +1,6 @@
 @import AVFoundation;
 #import <RXPromise/RXPromise.h>
+#import <ReactiveCocoa/ReactiveCocoa.h>
 #import "PLTrack.h"
 #import "PLMediaLibrarySearch.h"
 #import "NSString+Extensions.h"
@@ -134,7 +135,7 @@
 }
 
 
-- (RXPromise *)smallArtwork
+- (RACSignal *)smallArtwork
 {
     if (self.persistentId)
         return [[PLImageCache sharedCache] smallArtworkForMediaItemWithPersistentId:@(self.persistentId)];
@@ -142,10 +143,10 @@
     if (self.fileURL)
         return [[PLImageCache sharedCache] smallArtworkForFileWithURL:[NSURL URLWithString:self.fileURL]];
 
-    return [RXPromise promiseWithResult:nil];
+    return [RACSignal empty];
 }
 
-- (RXPromise *)largeArtwork
+- (RACSignal *)largeArtwork
 {
     if (self.persistentId)
         return [[PLImageCache sharedCache] largeArtworkForMediaItemWithPersistentId:@(self.persistentId)];
@@ -153,7 +154,7 @@
     if (self.fileURL)
         return [[PLImageCache sharedCache] largeArtworkForFileWithURL:[NSURL URLWithString:self.fileURL]];
 
-    return [RXPromise promiseWithResult:nil];
+    return [RACSignal empty];
 }
 
 @end

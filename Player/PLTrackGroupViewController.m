@@ -3,9 +3,8 @@
 #import "PLTracksViewController.h"
 #import "PLMediaLibrarySearch.h"
 #import "PLTrackGroupTableViewCell.h"
-#import "PLTrackGroupTableViewCellController.h"
-#import "NSObject+PLExtensions.h"
 #import "PLTableViewProgress.h"
+#import "PLTrackGroupCellModelView.h"
 
 @interface PLTrackGroupViewController () {
     NSArray *_groups;
@@ -95,13 +94,11 @@
 {
     PLTrackGroupTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"trackGroupCell" forIndexPath:indexPath];
     PLMediaItemTrackGroup *trackGroup = [_groups objectAtIndex:indexPath.row];
-    [PLTrackGroupTableViewCellController configureCell:cell withTrackGroup:trackGroup];
-    return cell;
-}
 
-- (void)tableView:(UITableView *)tableView didEndDisplayingCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    [cell pl_removeAllPromises];
+    PLTrackGroupCellModelView *modelView = [[PLTrackGroupCellModelView alloc] initWithTrackGroup:trackGroup selected:NO];
+    [cell setupBindings:modelView];
+
+    return cell;
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender

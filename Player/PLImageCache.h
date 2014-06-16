@@ -1,4 +1,4 @@
-@class RXPromise;
+@class RACSignal;
 
 extern NSString * const PLImageFormatNameSmallArtwork;
 
@@ -7,27 +7,23 @@ extern NSString * const PLImageFormatNameSmallArtwork;
 + (PLImageCache *)sharedCache;
 
 /**
- Delivers a promise that will be resolved with an UIImage instance containing the small artwork of a media item
- with the given persistent id.
+ Delivers a single UIImage instance containing the small artwork of a media item with the given persistent id, then completes.
  */
-- (RXPromise *)smallArtworkForMediaItemWithPersistentId:(NSNumber *)persistentId;
+- (RACSignal *)smallArtworkForMediaItemWithPersistentId:(NSNumber *)persistentId;
 
 /**
- Delivers a promise that will be resolved with an UIImage instance containing the small artwork of a file stored
- at the given URL.
+ Delivers a single UIImage instance containing the small artwork of a file stored at the given URL, then completes.
 */
-- (RXPromise *)smallArtworkForFileWithURL:(NSURL *)fileURL;
+- (RACSignal *)smallArtworkForFileWithURL:(NSURL *)fileURL;
 
 /**
-Delivers a promise that will be resolved with an UIImage instance containing the large artwork of a media item
-with the given persistent id.
+ Delivers a single UIImage instance containing the large artwork of a media item with the given persistent id, then completes.
 */
-- (RXPromise *)largeArtworkForMediaItemWithPersistentId:(NSNumber *)persistentId;
+- (RACSignal *)largeArtworkForMediaItemWithPersistentId:(NSNumber *)persistentId;
 
 /**
-Delivers a promise that will be resolved with an UIImage instance containing the large artwork of a file stored
-at the given URL.
+ Delivers a single UIImage instance containing the large artwork of a file stored at the given URL, then completes.
 */
-- (RXPromise *)largeArtworkForFileWithURL:(NSURL *)fileURL;
+- (RACSignal *)largeArtworkForFileWithURL:(NSURL *)fileURL;
 
 @end

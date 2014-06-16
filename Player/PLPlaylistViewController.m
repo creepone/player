@@ -8,6 +8,7 @@
 
 #import <MediaPlayer/MediaPlayer.h>
 #import <RXPromise/RXPromise.h>
+#import <ReactiveCocoa/ReactiveCocoa.h>
 
 #import "PLPlaylistViewController.h"
 #import "PLPlaylistSongViewController.h"
@@ -248,8 +249,8 @@
         cell.detailTextLabel.text = [NSString stringWithFormat:@"%@\n%@", song.artist, [PLUtils formatDuration:duration]];
 
         cell.imageView.bounds = CGRectMake(0, 0, 60, 60);
-        ((PLLegacySongTableViewCell *)cell).artworkImage = [UIImage imageNamed:@"DefaultArtwork"];
-        [cell pl_setValueForKeyPath:@"artworkImage" fromPromise:song.smallArtwork];
+
+        RAC(((PLLegacySongTableViewCell *)cell), artworkImage, [UIImage imageNamed:@"DefaultArtwork"]) = [song.smallArtwork takeUntil:cell.rac_prepareForReuseSignal];
         
         if ([_selectedPlaylist.position intValue] == [song.order intValue]) {
             cell.textLabel.textColor = [UIColor orangeColor];
@@ -299,11 +300,6 @@
     }
     
     return cell;
-}
-
-- (void)tableView:(UITableView *)tableView didEndDisplayingCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    [cell pl_removeAllPromises];
 }
 
 - (UITableViewCellEditingStyle)tableView:(UITableView *)tableView editingStyleForRowAtIndexPath:(NSIndexPath *)indexPath {

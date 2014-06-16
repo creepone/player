@@ -3,6 +3,8 @@ typedef NS_ENUM(NSInteger, MGErrorCodes) {
 };
 
 typedef id(^PLErrorHandler)(NSError *);
+typedef void(^PLVoidErrorHandler)(NSError *);
+
 
 /**
  Common error domain for all player errors.
@@ -23,9 +25,14 @@ extern NSString * const PLErrorDomain;
 + (void)logError:(NSError *)error;
 
 /**
- Convenience method returning a block that calls the logError: method.
+ Convenience method returning a block that calls the logError: method and returns nil as id.
  */
 + (PLErrorHandler)logErrorBlock;
+
+/**
+Convenience method returning a block that calls the logError: method and does not return anything.
+*/
++ (PLVoidErrorHandler)logErrorVoidBlock;
 
 /**
  Delivers a new NSError instance whose localizedDescription method returns the given string.

@@ -1,6 +1,6 @@
 #import "PLEntity.h"
 
-@class RXPromise;
+@class RACSignal;
 
 @interface PLTrack : PLEntity
 
@@ -25,13 +25,13 @@
 - (NSURL *)assetURL;
 
 /**
-* If available, resolves to a UIImage containing the track's small artwork.
+* If available, delivers a UIImage containing the track's small artwork, then completes.
 */
-- (RXPromise *)smallArtwork;
+- (RACSignal *)smallArtwork;
 
 /**
-* If available, resolves to a UIImage containing the track's large artwork.
+* If available, delivers a UIImage containing the track's large artwork, then completes.
 */
-- (RXPromise *)largeArtwork;
+- (RACSignal *)largeArtwork;
 
 @end

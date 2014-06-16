@@ -1,4 +1,5 @@
 #import <FICImageCache.h>
+#import <ReactiveCocoa/ReactiveCocoa.h>
 #import <RXPromise/RXPromise.h>
 #import "PLImageCache.h"
 #import "PLCachedArtwork.h"
@@ -54,64 +55,41 @@ NSString * const PLImageFormatNameLargeArtwork = @"PLImageFormatNameLargeArtwork
     cache.formats = @[smallArtworkFormat, largeArtworkFormat];
 }
 
-- (RXPromise *)smallArtworkForMediaItemWithPersistentId:(NSNumber *)persistentId
+- (RACSignal *)imageForEntity:(id <FICEntity>) entity formatName:(NSString *)formatName
 {
     FICImageCache *cache = [FICImageCache sharedImageCache];
+
+    return [RACSignal createSignal:^RACDisposable *(id <RACSubscriber> subscriber) {
+        [cache retrieveImageForEntity:entity withFormatName:formatName completionBlock:^(id <FICEntity> entity, NSString *formatName, UIImage *image) {
+            [subscriber sendNext:image];
+            [subscriber sendCompleted];
+        }];
+        return nil;
+    }];
+}
+
+- (RACSignal *)smallArtworkForMediaItemWithPersistentId:(NSNumber *)persistentId
+{
     PLCachedArtwork *entity = [[PLCachedArtwork alloc] initWithPersistentId:persistentId];
-
-    RXPromise *promise = [[RXPromise alloc] init];
-
-    RXPromise * __weak weakPromise = promise;
-    [cache retrieveImageForEntity:entity withFormatName:PLImageFormatNameSmallArtwork completionBlock:^(id <FICEntity> entity, NSString *formatName, UIImage *image) {
-        [weakPromise resolveWithResult:image];
-    }];
-
-    return promise;
+    return [self imageForEntity:entity formatName:PLImageFormatNameSmallArtwork];
 }
 
-- (RXPromise *)smallArtworkForFileWithURL:(NSURL *)fileURL
+- (RACSignal *)smallArtworkForFileWithURL:(NSURL *)fileURL
 {
-    FICImageCache *cache = [FICImageCache sharedImageCache];
     PLCachedArtwork *entity = [[PLCachedArtwork alloc] initWithFileURL:fileURL];
-
-    RXPromise *promise = [[RXPromise alloc] init];
-
-    RXPromise * __weak weakPromise = promise;
-    [cache retrieveImageForEntity:entity withFormatName:PLImageFormatNameSmallArtwork completionBlock:^(id <FICEntity> entity, NSString *formatName, UIImage *image) {
-        [weakPromise resolveWithResult:image];
-    }];
-
-    return promise;
+    return [self imageForEntity:entity formatName:PLImageFormatNameSmallArtwork];
 }
 
-- (RXPromise *)largeArtworkForMediaItemWithPersistentId:(NSNumber *)persistentId
+- (RACSignal *)largeArtworkForMediaItemWithPersistentId:(NSNumber *)persistentId
 {
-    FICImageCache *cache = [FICImageCache sharedImageCache];
     PLCachedArtwork *entity = [[PLCachedArtwork alloc] initWithPersistentId:persistentId];
-
-    RXPromise *promise = [[RXPromise alloc] init];
-
-    RXPromise * __weak weakPromise = promise;
-    [cache retrieveImageForEntity:entity withFormatName:PLImageFormatNameLargeArtwork completionBlock:^(id <FICEntity> entity, NSString *formatName, UIImage *image) {
-        [weakPromise resolveWithResult:image];
-    }];
-
-    return promise;
+    return [self imageForEntity:entity formatName:PLImageFormatNameLargeArtwork];
 }
 
-- (RXPromise *)largeArtworkForFileWithURL:(NSURL *)fileURL
+- (RACSignal *)largeArtworkForFileWithURL:(NSURL *)fileURL
 {
-    FICImageCache *cache = [FICImageCache sharedImageCache];
     PLCachedArtwork *entity = [[PLCachedArtwork alloc] initWithFileURL:fileURL];
-
-    RXPromise *promise = [[RXPromise alloc] init];
-
-    RXPromise * __weak weakPromise = promise;
-    [cache retrieveImageForEntity:entity withFormatName:PLImageFormatNameLargeArtwork completionBlock:^(id <FICEntity> entity, NSString *formatName, UIImage *image) {
-        [weakPromise resolveWithResult:image];
-    }];
-
-    return promise;
+    return [self imageForEntity:entity formatName:PLImageFormatNameLargeArtwork];
 }
 
 - (void)imageCache:(FICImageCache *)imageCache wantsSourceImageForEntity:(id <FICEntity>)entity withFormatName:(NSString *)formatName completionBlock:(FICImageRequestCompletionBlock)completionBlock

@@ -44,13 +44,12 @@
 
 - (void)setupBindings:(PLPlaylistSongCellModelView *)modelView
 {
-    @weakify(self);
-
     _modelView = modelView;
 
+    self.labelTitle.text = modelView.titleText;
+    self.labelArtist.text = modelView.artistText;
+
     RAC(self.imageViewArtwork, image, [UIImage imageNamed:@"DefaultArtwork"]) = [RACObserve(modelView, imageArtwork) takeUntil:self.rac_prepareForReuseSignal];
-    RAC(self.labelTitle, text) = [RACObserve(modelView, titleText) takeUntil:self.rac_prepareForReuseSignal];
-    RAC(self.labelArtist, text) = [RACObserve(modelView, artistText) takeUntil:self.rac_prepareForReuseSignal];
     RAC(self.labelDuration, text) = [RACObserve(modelView, durationText) takeUntil:self.rac_prepareForReuseSignal];
     RAC(self, backgroundColor) = [RACObserve(modelView, backgroundColor) takeUntil:self.rac_prepareForReuseSignal];
 

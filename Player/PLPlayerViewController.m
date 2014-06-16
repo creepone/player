@@ -1,4 +1,5 @@
 #import <MediaPlayer/MediaPlayer.h>
+#import <ReactiveCocoa/ReactiveCocoa.h>
 
 #import "PLPlayerViewController.h"
 #import "PLDataAccess.h"
@@ -64,7 +65,6 @@
     PLPlayer *player = [PLPlayer sharedPlayer];
     PLPlaylistSong *currentSong = [player currentSong];
 
-    [self pl_removeAllPromises];
     self.artworkImage = [UIImage imageNamed:@"DefaultArtwork"];
 
     if (currentSong == nil) {
@@ -85,7 +85,7 @@
         
         self.sliderTimeline.hidden = NO;
 
-        [self pl_setValueForKeyPath:@"artworkImage" fromPromise:currentSong.largeArtwork];
+        RAC(self, artworkImage) = currentSong.largeArtwork;
 
         NSString *titleForButton = [player isPlaying] ? @"Pause" : @"Play";
         [self.btnPlayPause setTitle:titleForButton forState:UIControlStateNormal];

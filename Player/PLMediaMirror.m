@@ -1,20 +1,36 @@
 @import AVFoundation;
-#import <RXPromise/RXPromise.h>
 #import <ReactiveCocoa/ReactiveCocoa.h>
 #import "PLMediaMirror.h"
+#import "PLTrack.h"
 #import "PLDataAccess.h"
-#import "PLDefaultsManager.h"
-#import "PLErrorManager.h"
 #import "PLUtils.h"
-
-NSString * const PLMediaMirrorFinishedTrackNotification = @"PLMediaMirrorFinishedTrackNotification";
-
-@interface PLMediaMirror() {
-    BOOL _active, _suspended;
-}
-@end
+#import "PLErrorManager.h"
+#import "PLDefaultsManager.h"
+#import "PLBackgroundProcessProgress.h"
 
 @implementation PLMediaMirror
+
+- (instancetype)init
+{
+    self = [super init];
+    if (self) {
+        PLDefaultsManager *defaultsManager = [PLDefaultsManager sharedManager];
+        
+        @weakify(self);
+        [[RACObserve(defaultsManager, mirrorTracks) skip:1] subscribeNext:^(NSNumber *mirrorTracks) {
+            @strongify(self);
+            
+            if ([mirrorTracks boolValue]) {
+                [self ensureRunning];
+            }
+            else {
+                [self suspend];
+            }
+        }];
+        
+    }
+    return self;
+}
 
 + (PLMediaMirror *)sharedInstance
 {
@@ -24,128 +40,64 @@ NSString * const PLMediaMirrorFinishedTrackNotification = @"PLMediaMirrorFinishe
     return sharedInstance;
 }
 
-- (instancetype)init
-{
-    self = [super init];
-    if (self) {
-        PLDefaultsManager *defaultsManager = [PLDefaultsManager sharedManager];
-
-        @weakify(self);
-        [[RACObserve(defaultsManager, mirrorTracks) skip:1] subscribeNext:^(NSNumber *mirrorTracks) {
-            @strongify(self);
-            
-            if ([mirrorTracks boolValue]) {
-                [self ensureActive];
-            }
-            else {
-                [self suspend];
-            }
-        }];
-
-    }
-    return self;
-}
-
-
-- (BOOL)isActive
-{
-    return _active;
-}
-
-- (void)ensureActive
+- (void)ensureRunning
 {
     if (![[PLDefaultsManager sharedManager] mirrorTracks])
         return;
     
-    DDLogVerbose(@"Activating the mirror process");
-    _suspended = NO;
-    
-    // make sure we're always peeking from the main queue
-    dispatch_async(dispatch_get_main_queue(), ^{ [self peek]; });
+    [super ensureRunning];
 }
 
-- (void)suspend
+- (RACSignal *)nextItem
 {
-    DDLogVerbose(@"Suspending the mirror process");
-    _suspended = YES;
+    return [[RACSignal createSignal:^RACDisposable *(id <RACSubscriber> subscriber) {
+
+        PLDataAccess *dataAccess = [PLDataAccess sharedDataAccess];
+        PLTrack *track = [dataAccess nextTrackToMirror];
+
+        if (track)
+            [subscriber sendNext:track];
+
+        [subscriber sendCompleted];
+
+        return nil;
+
+    }] deliverOn:[RACScheduler mainThreadScheduler]];
 }
 
-
-- (void)peek
+- (RACSignal *)processItem:(id)item
 {
-    if (_active || _suspended)
-        return;
-    
-    _active = YES;
+    PLTrack *track = (PLTrack *)item;
 
-    @weakify(self);
-    [self mirrorNext].then(^(NSNumber *result){
-        @strongify(self);
-        if (!self)
-            return @(NO);
-    
-        self->_active = NO;
-        return result;
-        
-    }, ^(NSError *error) {
-        @strongify(self);
-        if (!self)
-            return error;
-        
-        [PLErrorManager logError:error];
-        
-        self->_active = NO;
-        return error;
-        
-    }).thenOnMain(^(NSNumber *result){
-        @strongify(self);
-        if (!self)
-            return (id)nil;
-        
-        [[NSNotificationCenter defaultCenter] postNotificationName:PLMediaMirrorFinishedTrackNotification object:self];
-
-        if ([result boolValue])
-            [self peek];
-
-        return (id)nil;
-        
-    }, nil);
-}
-
-- (RXPromise *)mirrorNext
-{
-    PLDataAccess *dataAccess = [PLDataAccess sharedDataAccess];
-    
-    PLTrack *track = [dataAccess nextTrackToMirror];
-    if (!track)
-        return [RXPromise promiseWithResult:@(NO)];
-    
+    PLBackgroundProcessProgress *progress = [[PLBackgroundProcessProgress alloc] initWithItem:item progressSignal:nil];
     DDLogVerbose(@"Mirroring the track %@", track.assetURL);
 
-    return track.largeArtwork.then(^(UIImage *artworkImage) {
-
+    RACSignal *exportSignal = [[[[track largeArtwork] flattenMap:^RACStream *(UIImage *artworkImage) {
         NSData *artworkData;
         if (artworkImage)
             artworkData = UIImagePNGRepresentation(artworkImage);
 
-        return [self exportTrack:track withArtwork:artworkData].thenOnMain(^(NSURL *fileURL){
+        return [self exportTrack:track withArtwork:artworkData];
+    }]
+    flattenMap:^RACStream *(NSURL *fileURL) {
 
-            if (!track.managedObjectContext)
-                return @(YES);
+        if (!track.managedObjectContext)
+            return nil;
 
-            track.fileURL = [fileURL absoluteString];
+        track.fileURL = [fileURL absoluteString];
 
-            NSError *error;
-            if (![dataAccess saveChanges:&error])
-                [PLErrorManager logError:error];
+        NSError *error;
+        if (![[PLDataAccess sharedDataAccess] saveChanges:&error])
+            [PLErrorManager logError:error];
 
-            return @(YES);
+        return nil;
+    }]
+    deliverOn:[RACScheduler mainThreadScheduler]];
 
-        }, nil);
-    }, nil);
+    return [[RACSignal return:progress] concat:exportSignal];
 }
 
-- (RXPromise *)exportTrack:(PLTrack *)track withArtwork:(NSData *)artwork
+- (RACSignal *)exportTrack:(PLTrack *)track withArtwork:(NSData *)artwork
 {
     NSString *fileName = [NSString stringWithFormat:@"%lld.m4a", track.persistentId];
     NSString *targetFilePath = [NSString pathWithComponents:@[[PLUtils documentDirectoryPath], fileName]];
@@ -156,7 +108,7 @@ NSString * const PLMediaMirrorFinishedTrackNotification = @"PLMediaMirrorFinishe
 
     if([fileManager fileExistsAtPath:filePath])
         [fileManager removeItemAtURL:targetFileURL error:nil];
-    
+
     AVURLAsset *asset = [AVURLAsset URLAssetWithURL:track.assetURL options:nil];
 
     AVMutableMetadataItem *titleMetadataItem = [[AVMutableMetadataItem alloc] init];
@@ -173,23 +125,24 @@ NSString * const PLMediaMirrorFinishedTrackNotification = @"PLMediaMirrorFinishe
     artworkMetadataItem.keySpace = AVMetadataKeySpaceiTunes;
     artworkMetadataItem.key = AVMetadataiTunesMetadataKeyCoverArt;
     artworkMetadataItem.value = artwork;
-    
+
     AVAssetExportSession *exportSession = [[AVAssetExportSession alloc] initWithAsset:asset presetName:AVAssetExportPresetAppleM4A];
     exportSession.outputURL = targetFileURL;
     exportSession.outputFileType = AVFileTypeAppleM4A;
     exportSession.metadata = @[titleMetadataItem, artistMetadataItem, artworkMetadataItem];
 
-    RXPromise *promise = [[RXPromise alloc] init];
-    
-    [exportSession exportAsynchronouslyWithCompletionHandler:^(void)
-    {
-        if (exportSession.status == AVAssetExportSessionStatusCompleted)
-            [promise fulfillWithValue:targetFileURL];
-        else
-            [promise rejectWithReason:exportSession.error];
+    return [RACSignal createSignal:^RACDisposable *(id <RACSubscriber> subscriber) {
+        [exportSession exportAsynchronouslyWithCompletionHandler:^(void)
+        {
+            if (exportSession.status == AVAssetExportSessionStatusCompleted) {
+                [subscriber sendNext:targetFileURL];
+                [subscriber sendCompleted];
+            }
+            else
+                [subscriber sendError:exportSession.error];
+        }];
+        return nil;
     }];
-    
-    return promise;
 }
 
 @end

@@ -134,7 +134,7 @@
     NSInteger minIndex = INT16_MAX;
     PLPlaylistSong *result = nil;
     
-    NSLog(@"Current index = %d", currentIndex);
+    NSLog(@"Current index = %ld", (long)currentIndex);
     
     for (PLPlaylistSong *song in self.songs) {
         NSInteger songIndex = [song.order intValue];
@@ -153,7 +153,7 @@
     NSInteger maxIndex = INT16_MIN;
     PLPlaylistSong *result = nil;
     
-    NSLog(@"Current index = %d", currentIndex);
+    NSLog(@"Current index = %ld", (long)currentIndex);
     
     for (PLPlaylistSong *song in self.songs) {
         NSInteger songIndex = [song.order intValue];

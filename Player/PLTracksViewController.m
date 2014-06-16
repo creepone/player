@@ -2,13 +2,13 @@
 #import "PLTracksViewController.h"
 #import "PLMusicLibraryViewController.h"
 #import "PLTrackGroupTableViewCell.h"
-#import "PLTrackGroupTableViewCellController.h"
 #import "PLTrackTableViewCell.h"
 #import "PLTrackTableViewCellController.h"
 #import "PLMediaItemTrackGroup.h"
 #import "PLMediaItemTrack.h"
 #import "NSArray+PLExtensions.h"
 #import "PLTableViewProgress.h"
+#import "PLTrackGroupCellModelView.h"
 
 @interface PLTracksViewController () {
     NSMutableSet *_selection;
@@ -78,7 +78,10 @@
 {
     if (indexPath.section == 0) {
         PLTrackGroupTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"trackGroupHeaderCell" forIndexPath:indexPath];
-        [PLTrackGroupTableViewCellController configureCell:cell withTrackGroup:self.trackGroup selected:[self isAllSelected]];
+
+        PLTrackGroupCellModelView *modelView = [[PLTrackGroupCellModelView alloc] initWithTrackGroup:self.trackGroup selected:[self isAllSelected]];
+        [cell setupBindings:modelView];
+
         return cell;
     }
     else if (indexPath.section == 1) {

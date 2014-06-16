@@ -1,5 +1,4 @@
 #import <ReactiveCocoa/ReactiveCocoa.h>
-#import <RXPromise/RXPromise.h>
 #import "PLPlaylistSongCellModelView.h"
 #import "PLPlaylistSong.h"
 #import "PLColors.h"
@@ -12,6 +11,11 @@
     PLPlaylistSong *_playlistSong;
     RACDisposable *_progressTimerSubscription;
 }
+
+@property (strong, nonatomic, readwrite) UIImage *imageArtwork;
+@property (strong, nonatomic, readwrite) NSString *titleText;
+@property (strong, nonatomic, readwrite) NSString *artistText;
+
 @end
 
 @implementation PLPlaylistSongCellModelView
@@ -26,15 +30,7 @@
         self.titleText = playlistSong.title;
         [self setupUpdatingProgress];
 
-        @weakify(self);
-
-        playlistSong.smallArtwork.thenOnMain(^(UIImage *artworkImage) {
-            @strongify(self);
-            if (!self) return (id)nil;
-
-            self.imageArtwork = artworkImage;
-            return (id)nil;
-        }, nil);
+        RAC(self, imageArtwork) = playlistSong.smallArtwork;
 
         RACSignal *songChangeSignal = [[[NSNotificationCenter defaultCenter] rac_addObserverForName:kPLPlayerSongChange object:nil] takeUntil:self.rac_willDeallocSignal];
         RACSignal *isPlayingChangeSignal = [[[NSNotificationCenter defaultCenter] rac_addObserverForName:kPLPlayerIsPlayingChange object:nil] takeUntil:self.rac_willDeallocSignal];
@@ -69,7 +65,6 @@
     if (_progressTimerSubscription)
         return;
 
-    @weakify(self);
     _progressTimerSubscription = [[RACSignal interval:1.0 onScheduler:[RACScheduler mainThreadScheduler]] subscribeNext:^(id _) {
         [self pl_notifyKvoForKeys:@[ @"progress", @"durationText" ]];
     }];

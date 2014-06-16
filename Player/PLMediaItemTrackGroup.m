@@ -66,7 +66,7 @@
     return result;
 }
 
-- (RXPromise *)artwork
+- (RACSignal *)artwork
 {
     return [[PLImageCache sharedCache] smallArtworkForMediaItemWithPersistentId:_persistentId];
 }

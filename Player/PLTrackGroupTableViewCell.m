@@ -1,30 +1,35 @@
+#import <ReactiveCocoa/ReactiveCocoa.h>
 #import "PLTrackGroupTableViewCell.h"
+#import "PLTrackGroupCellModelView.h"
 
 @interface PLTrackGroupTableViewCell() {
-    UIImage *_imageArtwork;
+    PLTrackGroupCellModelView *_modelView;
 }
-
-@property (strong, nonatomic) IBOutlet UIImageView *imageViewArtwork;
 
 @end
 
 @implementation PLTrackGroupTableViewCell
 
-- (UIImage *)imageArtwork
+- (void)setupBindings:(PLTrackGroupCellModelView *)modelView
 {
-    return _imageArtwork;
+    _modelView = modelView;
+
+    self.labelTitle.text = modelView.titleText;
+    self.labelArtist.text = modelView.artistText;
+    self.labelInfo.attributedText = modelView.infoText;
+
+    self.labelTitle.alpha = modelView.alpha;
+    self.labelArtist.alpha = modelView.alpha;
+    self.labelInfo.alpha = modelView.alpha;
+    self.imageViewAddState.image = modelView.imageAddState;
+
+    RAC(self.imageViewArtwork, image, [UIImage imageNamed:@"DefaultArtwork"]) = [RACObserve(modelView, imageArtwork) takeUntil:self.rac_prepareForReuseSignal];
 }
 
-- (void)setImageArtwork:(UIImage *)imageArtwork
+- (void)prepareForReuse
 {
-    _imageArtwork = imageArtwork;
-
-    if (imageArtwork) {
-        self.imageViewArtwork.image = imageArtwork;
-    }
-    else {
-        self.imageViewArtwork.image = [UIImage imageNamed:@"DefaultArtwork"];
-    }
+    [super prepareForReuse];
+    _modelView = nil;
 }
 
 @end

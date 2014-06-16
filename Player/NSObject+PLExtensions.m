@@ -1,8 +1,6 @@
 #import <RXPromise/RXPromise.h>
 #import "NSObject+PLExtensions.h"
 
-static const char* kPromisesKey = "PLPromises";
-
 @implementation NSObject (PLExtensions)
 
 - (NSMutableDictionary*)pl_userInfo
@@ -22,47 +20,6 @@ static const char* kPromisesKey = "PLPromises";
 {
     NSData *archivedData = [NSKeyedArchiver archivedDataWithRootObject:self];
     return [NSKeyedUnarchiver unarchiveObjectWithData:archivedData];
-}
-
-
-- (NSMutableArray *)pl_promises
-{
-    NSMutableArray* promises = objc_getAssociatedObject(self, kPromisesKey);
-
-    if (promises == nil) {
-        promises = [NSMutableArray array];
-        objc_setAssociatedObject(self, kPromisesKey, promises, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
-    }
-
-    return promises;
-}
-
-- (void)pl_setValueForKeyPath:(NSString *)keyPath fromPromise:(RXPromise *)promise
-{
-    [self.pl_promises addObject:promise];
-
-    @weakify(self);
-    RXPromise * __weak weakPromise = promise;
-
-    promise.thenOnMain(^id(id value) {
-        @strongify(self);
-        RXPromise *promise = weakPromise;
-
-        if (!self || !promise)
-            return nil;
-
-        if ([self.pl_promises containsObject:promise]) {
-            [self setValue:value forKeyPath:keyPath];
-            [self.pl_promises removeObject:promise];
-        }
-
-        return nil;
-    }, nil);
-}
-
-- (void)pl_removeAllPromises
-{
-    objc_setAssociatedObject(self, kPromisesKey, nil, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
 }
 
 - (void)pl_notifyKvoForKey:(NSString *)key

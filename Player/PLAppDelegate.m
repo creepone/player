@@ -1,21 +1,18 @@
 #import <SVProgressHUD.h>
 #import <RXPromise.h>
+#import <ReactiveCocoa/ReactiveCocoa.h>
 
 #import "PLAppDelegate.h"
 #import "PLCoreDataStack.h"
 #import "PLMigrationManager.h"
 #import "PLDefaultsManager.h"
 #import "PLPlayer.h"
-#import "PLPlaylistViewController.h"
-#import "PLPlayerViewController.h"
-#import "PLBookmarksViewController.h"
-#import "PLSettingsViewController.h"
 #import "PLColors.h"
 #import "PLErrorManager.h"
 #import "PLFileImport.h"
 #import "PLUtils.h"
-#import "PLMediaMirror.h"
 #import "PLMainUI.h"
+#import "PLMediaMirror.h"
 
 static const int kMigrationErrorAlertTag = 44;
 
@@ -52,7 +49,7 @@ static void onUncaughtException(NSException* exception);
         if (fileToImport)
             [PLFileImport importFile:fileToImport];
         
-        [[PLMediaMirror sharedInstance] ensureActive];
+        [[PLMediaMirror sharedInstance] ensureRunning];
         
         return (id)nil;
     }, nil);
@@ -71,21 +68,21 @@ static void onUncaughtException(NSException* exception);
 {
     // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later. 
     // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
-    
-    if (![[PLMediaMirror sharedInstance] isActive])
-        return;
-    
-    __block UIBackgroundTaskIdentifier backgroundTask;
-    backgroundTask = [application beginBackgroundTaskWithExpirationHandler:^{
-        [application endBackgroundTask:backgroundTask];
-    }];
-    
-    __block id observer;
-    observer = [[NSNotificationCenter defaultCenter] addObserverForName:PLMediaMirrorFinishedTrackNotification object:nil queue:nil usingBlock:^(NSNotification *note) {
-        [[PLMediaMirror sharedInstance] suspend];
-        [[NSNotificationCenter defaultCenter] removeObserver:observer];
-        [application endBackgroundTask:backgroundTask];
-    }];
+
+    PLMediaMirror *mediaMirror = [PLMediaMirror sharedInstance];
+    RACSignal *progressSignal = [mediaMirror progressSignal];
+
+    if (progressSignal) {
+        __block UIBackgroundTaskIdentifier backgroundTask;
+        backgroundTask = [application beginBackgroundTaskWithExpirationHandler:^{
+            [application endBackgroundTask:backgroundTask];
+        }];
+
+        [mediaMirror suspend];
+        [progressSignal subscribeCompleted:^{
+            [application endBackgroundTask:backgroundTask];
+        }];
+    }
 }
 
 - (void)applicationWillEnterForeground:(UIApplication *)application
@@ -96,7 +93,7 @@ static void onUncaughtException(NSException* exception);
 - (void)applicationDidBecomeActive:(UIApplication *)application
 {
     if (self.coreDataStack)
-        [[PLMediaMirror sharedInstance] ensureActive];
+        [[PLMediaMirror sharedInstance] ensureRunning];
 }
 
 - (void)applicationWillTerminate:(UIApplication *)application

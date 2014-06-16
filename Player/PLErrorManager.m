@@ -36,6 +36,13 @@ NSString * const PLErrorDomain = @"Player";
     };
 }
 
++ (PLVoidErrorHandler)logErrorVoidBlock
+{
+    return ^(NSError *error) {
+        [self logError:error];
+    };
+}
+
 + (NSError *)errorWithDescription:(NSString *)localizedDescription
 {
     return [self errorWithCode:0 description:localizedDescription];

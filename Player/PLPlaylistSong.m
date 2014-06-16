@@ -1,4 +1,5 @@
 #import <RXPromise/RXPromise.h>
+#import <ReactiveCocoa/ReactiveCocoa.h>
 #import "PLPlaylistSong.h"
 #import "PLTrack.h"
 #import "PLDefaultsManager.h"
@@ -70,12 +71,12 @@
     return self.track.title;
 }
 
-- (RXPromise *)smallArtwork
+- (RACSignal *)smallArtwork
 {
     return self.track.smallArtwork;
 }
 
-- (RXPromise *)largeArtwork
+- (RACSignal *)largeArtwork
 {
     return self.track.largeArtwork;
 }
