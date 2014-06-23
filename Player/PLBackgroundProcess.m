@@ -22,15 +22,21 @@
     DDLogVerbose(@"Activating the process %@", NSStringFromClass([self class]));
     _suspended = NO;
 
-    self.progressSignal = [[[[RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
-        [self doProcess:subscriber];
-        return nil;
+    RACSignal *processSignal = [[self nextItem] flattenMap:^RACStream *(id item) {
+        return [self processItem:item];
+    }];
+
+    self.progressSignal = [[[[processSignal repeatWhileBlock:^BOOL(NSUInteger count) {
+        return count > 0 && !self->_suspended;
     }]
     doCompleted:^{
         self.progressSignal = nil;
         DDLogVerbose(@"Completed the process %@", NSStringFromClass([self class]));
     }]
-    doError:PLErrorManager.logErrorVoidBlock]
+    doError:^(NSError *error){
+        self.progressSignal = nil;
+        [PLErrorManager logError:error];
+    }]
     replayLast];
 }
 
@@ -39,33 +45,6 @@
     DDLogVerbose(@"Suspending the process %@", NSStringFromClass([self class]));
     _suspended = YES;
 }
-
-- (void)doProcess:(id<RACSubscriber>)subscriber
-{
-    @weakify(self);
-
-    RACSignal *processSignal = [[self nextItem] flattenMap:^RACStream *(id item) {
-        return [self processItem:item];
-    }];
-
-    __block BOOL wasEmpty = YES;
-    [processSignal subscribeNext:^(id value) {
-        [subscriber sendNext:value];
-        wasEmpty = NO;
-    }
-    error:^(NSError *error) {
-        [subscriber sendError:error];
-    }
-    completed:^{
-        @strongify(self);
-
-        if (!self || wasEmpty || self->_suspended)
-            [subscriber sendCompleted];
-        else
-            [self doProcess:subscriber];
-    }];
-}
-
 
 #pragma mark -- Abstract methods
 

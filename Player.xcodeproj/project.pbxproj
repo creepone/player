@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		696C105C06830EC156C9A172 /* PLMediaMirror.m in Sources */ = {isa = PBXBuildFile; fileRef = 696C17754F79215F4187E601 /* PLMediaMirror.m */; };
 		696C115BC2254A1EB5EFD122 /* PLPromise.m in Sources */ = {isa = PBXBuildFile; fileRef = 696C1F83AD3337B20894E1D9 /* PLPromise.m */; };
 		696C12295CFEA1F9814E8AC8 /* PLPlaylistSongCellModelView.m in Sources */ = {isa = PBXBuildFile; fileRef = 696C1B64873859724C208B95 /* PLPlaylistSongCellModelView.m */; };
 		696C13068CF01B07191595AB /* PLImageCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 696C1239863912CEC9BDB652 /* PLImageCache.m */; };
@@ -37,11 +36,11 @@
 		696C1C17D8D7CEA11E7A5928 /* PLDownloadFromGDriveActivity.m in Sources */ = {isa = PBXBuildFile; fileRef = 696C1D4C6FF0251EBF444798 /* PLDownloadFromGDriveActivity.m */; };
 		696C1C38A95357371CFEE558 /* PLDownloadURLActivity.m in Sources */ = {isa = PBXBuildFile; fileRef = 696C1AD27942A80B8A9896C5 /* PLDownloadURLActivity.m */; };
 		696C1CC618F99813793E6F46 /* PLFileSharingActivity.m in Sources */ = {isa = PBXBuildFile; fileRef = 696C143FEC9667A8B106C5AE /* PLFileSharingActivity.m */; };
-		696C1D958DBFA827FC09348A /* PLTrackDownload.m in Sources */ = {isa = PBXBuildFile; fileRef = 696C1130A635C44BECDA964F /* PLTrackDownload.m */; };
 		696C1DF8E8A5D182F7F07621 /* PLBackgroundProcess.m in Sources */ = {isa = PBXBuildFile; fileRef = 696C150BD38DBFE750DEEE04 /* PLBackgroundProcess.m */; };
 		696C1E705DB79F2E2990D98A /* UIView+PLExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 696C1AEEA078C2AEA6CA16D1 /* UIView+PLExtensions.m */; };
 		696C1F1FF839CDC5DB90DE97 /* PLButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 696C1CE67D437458210D2DE2 /* PLButton.m */; };
 		696C1F292F5CDB0A7156E3AD /* NSObject+PLExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 696C1DE33AAD9B681D2E03F9 /* NSObject+PLExtensions.m */; };
+		696C1F37827BDCC5942F540F /* PLMediaMirror.m in Sources */ = {isa = PBXBuildFile; fileRef = 696C13B5A2362071AD1BB2C0 /* PLMediaMirror.m */; };
 		696C1F72E45C6A9B4C528C3C /* PLActivityView.m in Sources */ = {isa = PBXBuildFile; fileRef = 696C1046C87A0138396351B9 /* PLActivityView.m */; };
 		696C1F9C8C8A7886A8530949 /* PLDownloadPodcastActivity.m in Sources */ = {isa = PBXBuildFile; fileRef = 696C146AEE2E2953E78DFD15 /* PLDownloadPodcastActivity.m */; };
 		696C1FBF6134FDF5DE3BD2C6 /* PLLegacySongTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 696C17D6C827B6995026B0FA /* PLLegacySongTableViewCell.m */; };
@@ -107,11 +106,9 @@
 
 /* Begin PBXFileReference section */
 		2F7BD0A371C24EA3853F30EA /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
-		696C102EF33B6A8FF6D70038 /* PLMediaMirror.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PLMediaMirror.h; sourceTree = "<group>"; };
 		696C1046C87A0138396351B9 /* PLActivityView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PLActivityView.m; sourceTree = "<group>"; };
 		696C107644FDE533B6B072AE /* PLDownloadURLActivity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PLDownloadURLActivity.h; sourceTree = "<group>"; };
 		696C1086BA744B3A005D70E6 /* PLBackgroundProcess+Protected.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "PLBackgroundProcess+Protected.h"; sourceTree = "<group>"; };
-		696C1130A635C44BECDA964F /* PLTrackDownload.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PLTrackDownload.m; sourceTree = "<group>"; };
 		696C11D9F715B1D1B05EE830 /* PLPlaylistSongsDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PLPlaylistSongsDelegate.h; sourceTree = "<group>"; };
 		696C11DDCC4309F051FE8CCC /* PLRequestManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PLRequestManager.h; sourceTree = "<group>"; };
 		696C1208975D1BCA891A80BA /* PLColors.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PLColors.h; sourceTree = "<group>"; };
@@ -124,6 +121,7 @@
 		696C12FAB54495AF46A2A951 /* PLErrorManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PLErrorManager.m; sourceTree = "<group>"; };
 		696C133478AB46FE4BED85EF /* NSArray+PLExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSArray+PLExtensions.m"; sourceTree = "<group>"; };
 		696C134AABF2AE3C703232D6 /* PLConstraints.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PLConstraints.m; sourceTree = "<group>"; };
+		696C13B5A2362071AD1BB2C0 /* PLMediaMirror.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PLMediaMirror.m; sourceTree = "<group>"; };
 		696C13BD9719AB7EEEAD952D /* PLLogging.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PLLogging.h; sourceTree = "<group>"; };
 		696C13D5FB1650B68AA732BC /* PLLegacySongTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PLLegacySongTableViewCell.h; sourceTree = "<group>"; };
 		696C13ED65045480BDB66BE0 /* PLActivity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PLActivity.h; sourceTree = "<group>"; };
@@ -142,7 +140,6 @@
 		696C1721722D6B0C3765AAA1 /* UIViewController+PLErrorExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+PLErrorExtensions.h"; sourceTree = "<group>"; };
 		696C1729AD0F641AC0C9D8FF /* PLRequestOptions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PLRequestOptions.m; sourceTree = "<group>"; };
 		696C173E18677F6CD43519DF /* PLTrackGroupCellModelView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PLTrackGroupCellModelView.m; sourceTree = "<group>"; };
-		696C17754F79215F4187E601 /* PLMediaMirror.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PLMediaMirror.m; sourceTree = "<group>"; };
 		696C17D4D4786869DE5A11A7 /* PLButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PLButton.h; sourceTree = "<group>"; };
 		696C17D6C827B6995026B0FA /* PLLegacySongTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PLLegacySongTableViewCell.m; sourceTree = "<group>"; };
 		696C182AEF78B538772A01FD /* PLUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PLUtils.m; sourceTree = "<group>"; };
@@ -162,7 +159,6 @@
 		696C1AEEA078C2AEA6CA16D1 /* UIView+PLExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+PLExtensions.m"; sourceTree = "<group>"; };
 		696C1B64873859724C208B95 /* PLPlaylistSongCellModelView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PLPlaylistSongCellModelView.m; sourceTree = "<group>"; };
 		696C1B78075493A42466C4A8 /* NSString+PLExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+PLExtensions.m"; sourceTree = "<group>"; };
-		696C1B8A056934BF0A5E5F30 /* PLTrackDownload.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PLTrackDownload.h; sourceTree = "<group>"; };
 		696C1BC84EFF2E07F8CE0D8D /* PLConstraints.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PLConstraints.h; sourceTree = "<group>"; };
 		696C1BF13C7BEFF1865E8C4A /* PLPlaylistSongsDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PLPlaylistSongsDelegate.m; sourceTree = "<group>"; };
 		696C1C1CFEA94557045A202E /* PLActivityViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PLActivityViewController.m; sourceTree = "<group>"; };
@@ -186,6 +182,7 @@
 		696C1F83AD3337B20894E1D9 /* PLPromise.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PLPromise.m; sourceTree = "<group>"; };
 		696C1F9572FADDE6894E30E4 /* PLPromise.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PLPromise.h; sourceTree = "<group>"; };
 		696C1FC517E0B1E486397B42 /* PLActivityViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PLActivityViewController.h; sourceTree = "<group>"; };
+		696C1FE29357EB7961765F29 /* PLMediaMirror.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PLMediaMirror.h; sourceTree = "<group>"; };
 		696C1FE69CD877A0A21E876F /* PLImportActivityViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PLImportActivityViewController.m; sourceTree = "<group>"; };
 		C3437568166BE531006EC87D /* jbl_confirm.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = jbl_confirm.mp3; sourceTree = "<group>"; };
 		C343756A166BE5ED006EC87D /* jbl_confirm.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = jbl_confirm.caf; sourceTree = "<group>"; };
@@ -305,6 +302,7 @@
 				696C150BD38DBFE750DEEE04 /* PLBackgroundProcess.m */,
 				696C1F6362232CF71408E756 /* PLBackgroundProcessProgress.m */,
 				696C1414B69DC381029EE20D /* PLBackgroundProcessProgress.h */,
+				696C1E146148ABE0A9C766E3 /* Track mirroring */,
 			);
 			name = "Background processes";
 			sourceTree = "<group>";
@@ -386,7 +384,6 @@
 				696C160375147E63C52A1806 /* PLRequestManager.m */,
 				696C1729AD0F641AC0C9D8FF /* PLRequestOptions.m */,
 				696C142E583BE71A04DC1AD3 /* PLRequestOptions.h */,
-				696C1D283E5A1B2798FC2F9F /* Download */,
 			);
 			name = Network;
 			sourceTree = "<group>";
@@ -452,15 +449,6 @@
 			name = Caching;
 			sourceTree = "<group>";
 		};
-		696C1D283E5A1B2798FC2F9F /* Download */ = {
-			isa = PBXGroup;
-			children = (
-				696C1130A635C44BECDA964F /* PLTrackDownload.m */,
-				696C1B8A056934BF0A5E5F30 /* PLTrackDownload.h */,
-			);
-			name = Download;
-			sourceTree = "<group>";
-		};
 		696C1DBD53C08A95E050BBD6 /* Views */ = {
 			isa = PBXGroup;
 			children = (
@@ -486,6 +474,15 @@
 				696C1DFF03B12814A6C12B05 /* PLTrackGroupCellModelView.h */,
 			);
 			name = ViewModels;
+			sourceTree = "<group>";
+		};
+		696C1E146148ABE0A9C766E3 /* Track mirroring */ = {
+			isa = PBXGroup;
+			children = (
+				696C1FE29357EB7961765F29 /* PLMediaMirror.h */,
+				696C13B5A2362071AD1BB2C0 /* PLMediaMirror.m */,
+			);
+			name = "Track mirroring";
 			sourceTree = "<group>";
 		};
 		696C1E7B8412125EAAA18CBA /* Controller */ = {
@@ -595,15 +592,6 @@
 				C3A4D681194343570060B704 /* PLProgressTableViewCell.m */,
 			);
 			name = "Progress in table views";
-			sourceTree = "<group>";
-		};
-		C3A4D684194AD2D20060B704 /* Mirror */ = {
-			isa = PBXGroup;
-			children = (
-				696C17754F79215F4187E601 /* PLMediaMirror.m */,
-				696C102EF33B6A8FF6D70038 /* PLMediaMirror.h */,
-			);
-			name = Mirror;
 			sourceTree = "<group>";
 		};
 		C3BC5A1C1656B772002DA837 = {
@@ -793,7 +781,6 @@
 		C3CC18BD191E98D50026E681 /* Media */ = {
 			isa = PBXGroup;
 			children = (
-				C3A4D684194AD2D20060B704 /* Mirror */,
 				696C125EC4796E70CFB25276 /* PLMediaLibrarySearch.h */,
 				696C1A1B2AD9708890647B5D /* PLMediaLibrarySearch.m */,
 				696C19563B0CAE9008642F75 /* PLMediaItemTrackGroup.h */,
@@ -1032,11 +1019,10 @@
 				696C12295CFEA1F9814E8AC8 /* PLPlaylistSongCellModelView.m in Sources */,
 				696C1B8ADD0FA7E1BD73BBD1 /* PLPlaylistSongsDelegate.m in Sources */,
 				696C16CE03E0D6A5D2CF72AF /* PLImportActivityViewController.m in Sources */,
-				696C1D958DBFA827FC09348A /* PLTrackDownload.m in Sources */,
-				696C105C06830EC156C9A172 /* PLMediaMirror.m in Sources */,
 				696C1DF8E8A5D182F7F07621 /* PLBackgroundProcess.m in Sources */,
 				696C1A7540982F010E4E85CD /* PLTrackGroupCellModelView.m in Sources */,
 				696C1FC71A11624AE1D6F4F6 /* PLBackgroundProcessProgress.m in Sources */,
+				696C1F37827BDCC5942F540F /* PLMediaMirror.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1123,7 +1109,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_MODULES_AUTOLINK = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PRECOMPILE_PREFIX_HEADER = NO;
 				GCC_PREFIX_HEADER = "Player/Player-Prefix.pch";
 				INFOPLIST_FILE = "Player/Player-Info.plist";
 				INFOPLIST_PREFIX_HEADER = revision.prefix;
@@ -1144,7 +1130,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_MODULES_AUTOLINK = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PRECOMPILE_PREFIX_HEADER = NO;
 				GCC_PREFIX_HEADER = "Player/Player-Prefix.pch";
 				INFOPLIST_FILE = "Player/Player-Info.plist";
 				INFOPLIST_PREFIX_HEADER = revision.prefix;

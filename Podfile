@@ -4,7 +4,7 @@ platform :ios, "7.0"
 inhibit_all_warnings!
 
 pod "AFNetworking", "~> 2.0"
-pod "ReactiveCocoa", "~> 2.3.1"
+pod "ReactiveCocoa", :podspec => "https://raw.githubusercontent.com/creepone/ReactiveCocoa/private/ReactiveCocoa.podspec.json"
 pod "libextobjc", "~> 0.4"
 pod "iOS-blur", "~> 0.0.5"
 pod "CocoaLumberjack", "~> 1.8"
