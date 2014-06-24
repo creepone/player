@@ -15,6 +15,7 @@
 @property (strong, nonatomic, readwrite) UIImage *imageArtwork;
 @property (strong, nonatomic, readwrite) NSString *titleText;
 @property (strong, nonatomic, readwrite) NSString *artistText;
+@property (assign, nonatomic, readwrite) CGFloat alpha;
 
 @end
 
@@ -28,6 +29,7 @@
 
         self.artistText = playlistSong.artist;
         self.titleText = playlistSong.title;
+        self.alpha = playlistSong.assetURL ? 1.0 : 0.5;
         [self setupUpdatingProgress];
 
         RAC(self, imageArtwork) = playlistSong.smallArtwork;

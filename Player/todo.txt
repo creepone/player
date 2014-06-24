@@ -1,1 +1,8 @@
-play / pause, stop buttons
+implement adding download tracks as placeholders
+download routine 
+    -> given a track creates the tasks for downloading its URL, stores its persistent identifier so that when the download is complete we can update it (or delete the file if the track no longer exists)
+
+later:
+refactor PLTrackTableViewCellController to viewmodel pattern
+refactor activities to RAC
+refactor all the promise usages to RAC, remove dependency on RXPromise and its extensions

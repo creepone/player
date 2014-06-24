@@ -119,8 +119,11 @@ void audioRouteChangeListenerCallback (void *inUserData, AudioSessionPropertyID 
     if (_audioPlayer == nil) {
         NSError *error;
         NSURL *assetURL = song.assetURL;
-
-        // todo: if the assetURL is nil, switch to the next song
+        
+        if (assetURL == nil) {
+            [self moveToNextAndPlay];
+            return;
+        }
 
         _audioPlayer = [[AVAudioPlayer alloc] initWithContentsOfURL:assetURL error:&error];
         _audioPlayer.enableRate = YES;
@@ -236,11 +239,25 @@ void audioRouteChangeListenerCallback (void *inUserData, AudioSessionPropertyID 
     //AudioServicesDisposeSystemSoundID(mBeep);
 }
 
-
 - (void)save {
     NSError *error;
     [[PLDataAccess sharedDataAccess] saveChanges:&error];
     [PLAlerts checkForDataStoreError:error];
+}
+
+- (void)moveToNextAndPlay
+{
+    PLDataAccess *dataAccess = [PLDataAccess sharedDataAccess];
+    PLPlaylist *playlist = [dataAccess selectedPlaylist];
+    [playlist moveToNextSong];
+    
+    [[NSNotificationCenter defaultCenter] postNotificationName:kPLPlayerSongChange object:nil];
+    
+    [self save];
+    
+    [_audioPlayer setDelegate:nil];
+    _audioPlayer = nil;
+    [self play];
 }
 
 
@@ -253,17 +270,7 @@ void audioRouteChangeListenerCallback (void *inUserData, AudioSessionPropertyID 
     song.position = [NSNumber numberWithDouble:0.0];
     song.played = YES;
     
-    PLDataAccess *dataAccess = [PLDataAccess sharedDataAccess];
-    PLPlaylist *playlist = [dataAccess selectedPlaylist];
-    [playlist moveToNextSong];
-    
-    [[NSNotificationCenter defaultCenter] postNotificationName:kPLPlayerSongChange object:nil];
-    
-    [self save];
-    
-    [_audioPlayer setDelegate:nil];
-    _audioPlayer = nil;
-    [self play];
+    [self moveToNextAndPlay];
 }
 
 - (void)audioPlayerBeginInterruption:(AVAudioPlayer *)player {

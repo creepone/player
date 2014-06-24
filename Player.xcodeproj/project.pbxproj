@@ -468,10 +468,10 @@
 		696C1DEA65728A0008DBF096 /* ViewModels */ = {
 			isa = PBXGroup;
 			children = (
-				696C1B64873859724C208B95 /* PLPlaylistSongCellModelView.m */,
 				696C12E93800D96F5AFEE66A /* PLPlaylistSongCellModelView.h */,
-				696C173E18677F6CD43519DF /* PLTrackGroupCellModelView.m */,
+				696C1B64873859724C208B95 /* PLPlaylistSongCellModelView.m */,
 				696C1DFF03B12814A6C12B05 /* PLTrackGroupCellModelView.h */,
+				696C173E18677F6CD43519DF /* PLTrackGroupCellModelView.m */,
 			);
 			name = ViewModels;
 			sourceTree = "<group>";

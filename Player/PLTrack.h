@@ -21,6 +21,7 @@
 
 /**
  Delivers the URL of the asset that this track represents. Can be used with the audio player to play the track.
+ If the track is no longer available (e.g. if it was deleted), delivers nil.
  */
 - (NSURL *)assetURL;
 

@@ -10,6 +10,7 @@
 @property (strong, nonatomic, readonly) NSString *durationText;
 @property (assign, nonatomic, readonly) double progress;
 @property (assign, nonatomic, readonly) UIColor *backgroundColor;
+@property (assign, nonatomic, readonly) CGFloat alpha;
 
 - (instancetype)initWithPlaylistSong:(PLPlaylistSong *)playlistSong;
 

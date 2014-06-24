@@ -38,7 +38,6 @@
         self.constraintRightViewPlaceholder.constant = 8.f;
     else
         self.constraintRightViewPlaceholder.constant = -25.f;
-
 }
 
 
@@ -48,6 +47,12 @@
 
     self.labelTitle.text = modelView.titleText;
     self.labelArtist.text = modelView.artistText;
+      
+    self.labelTitle.alpha = modelView.alpha;
+    self.labelArtist.alpha = modelView.alpha;
+    self.labelDuration.alpha = modelView.alpha;
+    self.imageViewArtwork.alpha = modelView.alpha;
+    self.viewProgress.alpha = modelView.alpha;
 
     RAC(self.imageViewArtwork, image, [UIImage imageNamed:@"DefaultArtwork"]) = [RACObserve(modelView, imageArtwork) takeUntil:self.rac_prepareForReuseSignal];
     RAC(self.labelDuration, text) = [RACObserve(modelView, durationText) takeUntil:self.rac_prepareForReuseSignal];

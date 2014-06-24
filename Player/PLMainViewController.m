@@ -23,6 +23,12 @@
     _dataSource = [[PLPlaylistSongsDelegate alloc] initWithTableView:self.tableView];
 }
 
+- (void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    [self.tableView reloadData];
+}
+
 - (IBAction)tappedSwitch:(id)sender
 {
     [PLMainUI showLegacy];
