@@ -1,5 +1,7 @@
 @class MPMediaItem;
 
+typedef BOOL (^PLPredicate)(id);
+
 @interface PLUtils : NSObject
 
 /**
@@ -24,5 +26,7 @@
  imageNamed: doesn't take the resolution and screen size into account.
  */
 + (UIImage *)launchImage;
+
++ (PLPredicate)isNotNilPredicate;
 
 @end

@@ -64,4 +64,9 @@
         return [UIImage imageNamed:@"LaunchImage"];
 }
 
++ (PLPredicate)isNotNilPredicate
+{
+    return ^BOOL(id value) { return value != nil; };
+}
+
 @end

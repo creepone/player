@@ -100,6 +100,7 @@
 		C3CC18DB19227CD30026E681 /* icon.png in Resources */ = {isa = PBXBuildFile; fileRef = C3CC18DA19227CD20026E681 /* icon.png */; };
 		C3D1A65A16CFC337006D3E5F /* PLPlaylistSelectViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C3D1A65916CFC337006D3E5F /* PLPlaylistSelectViewController.m */; };
 		C3F1A13518E83F6F00A82EAC /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C3F1A13418E83F6F00A82EAC /* Images.xcassets */; };
+		C3F539F3195A047300409CC4 /* PLDownloadManager.m in Sources */ = {isa = PBXBuildFile; fileRef = C3F539F2195A047300409CC4 /* PLDownloadManager.m */; };
 		C3FCEC2E16FF0AD3008CD497 /* PLPlaylistSongViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C3FCEC2D16FF0AD3008CD497 /* PLPlaylistSongViewController.m */; };
 		C9C79EB53A7F4DF38B0DC6E7 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2F7BD0A371C24EA3853F30EA /* libPods.a */; };
 /* End PBXBuildFile section */
@@ -277,6 +278,8 @@
 		C3D1A65816CFC337006D3E5F /* PLPlaylistSelectViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PLPlaylistSelectViewController.h; sourceTree = "<group>"; };
 		C3D1A65916CFC337006D3E5F /* PLPlaylistSelectViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PLPlaylistSelectViewController.m; sourceTree = "<group>"; };
 		C3F1A13418E83F6F00A82EAC /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		C3F539F1195A047300409CC4 /* PLDownloadManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PLDownloadManager.h; sourceTree = "<group>"; };
+		C3F539F2195A047300409CC4 /* PLDownloadManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PLDownloadManager.m; sourceTree = "<group>"; };
 		C3FCEC2C16FF0AD3008CD497 /* PLPlaylistSongViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PLPlaylistSongViewController.h; sourceTree = "<group>"; };
 		C3FCEC2D16FF0AD3008CD497 /* PLPlaylistSongViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PLPlaylistSongViewController.m; sourceTree = "<group>"; };
 		F6B73325E5724C3CA11B6803 /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
@@ -384,6 +387,8 @@
 				696C160375147E63C52A1806 /* PLRequestManager.m */,
 				696C1729AD0F641AC0C9D8FF /* PLRequestOptions.m */,
 				696C142E583BE71A04DC1AD3 /* PLRequestOptions.h */,
+				C3F539F1195A047300409CC4 /* PLDownloadManager.h */,
+				C3F539F2195A047300409CC4 /* PLDownloadManager.m */,
 			);
 			name = Network;
 			sourceTree = "<group>";
@@ -989,6 +994,7 @@
 				696C1E705DB79F2E2990D98A /* UIView+PLExtensions.m in Sources */,
 				696C150707F3BDB3401223BA /* PLConstraints.m in Sources */,
 				696C1ADFA4D617995455F30F /* PLDownloadFromDropboxActivity.m in Sources */,
+				C3F539F3195A047300409CC4 /* PLDownloadManager.m in Sources */,
 				696C1C17D8D7CEA11E7A5928 /* PLDownloadFromGDriveActivity.m in Sources */,
 				C378CD76194C505A001D0593 /* PLMainUI.m in Sources */,
 				696C1A663DCC44EB31B19B46 /* PLDownloadFromICloudActivity.m in Sources */,

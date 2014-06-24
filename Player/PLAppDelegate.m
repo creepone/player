@@ -13,6 +13,7 @@
 #import "PLUtils.h"
 #import "PLMainUI.h"
 #import "PLMediaMirror.h"
+#import "PLDownloadManager.h"
 
 static const int kMigrationErrorAlertTag = 44;
 
@@ -54,7 +55,6 @@ static void onUncaughtException(NSException* exception);
         return (id)nil;
     }, nil);
     
-
     return YES;
 }
 
@@ -107,6 +107,17 @@ static void onUncaughtException(NSException* exception);
     if (self.coreDataStack)
         [PLFileImport importFile:url];
     return YES;
+}
+
+- (void)application:(UIApplication *)application handleEventsForBackgroundURLSession:(NSString *)identifier completionHandler:(void (^)())completionHandler
+{
+    if (![identifier isEqualToString:PLBackgroundSessionIdentifier])
+        return;
+    
+    // make sure that the coreDataStack is available to the delegate methods of the download manager
+    [[[RACObserve(self, coreDataStack) filter:[PLUtils isNotNilPredicate]] take:1] subscribeNext:^(id _) {
+        [[PLDownloadManager sharedManager] setSessionCompletionHandler:completionHandler];
+    }];
 }
 
 #pragma mark - Data initialization on startup
