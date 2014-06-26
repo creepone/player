@@ -3,7 +3,7 @@
 
 @class PLCoreDataStack, RXPromise;
 
-extern long PLCurrentDataStoreVersion;
+extern const long PLCurrentDataStoreVersion;
 
 @interface PLMigrationManager : NSObject
 

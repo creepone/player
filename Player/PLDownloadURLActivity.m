@@ -1,6 +1,9 @@
 #import <RXPromise/RXPromise.h>
 #import <ReactiveCocoa/ReactiveCocoa.h>
 #import "PLDownloadURLActivity.h"
+#import "PLTrack.h"
+#import "PLDataAccess.h"
+#import "PLDownloadManager.h"
 
 @implementation PLDownloadURLActivity
 
@@ -32,13 +35,23 @@
         if ([buttonIndex intValue] == alertView.cancelButtonIndex)
             return;
 
-        NSString *url = [[alertView textFieldAtIndex:0] text];
+        NSString *downloadURL = [[alertView textFieldAtIndex:0] text];
 
-        // todo: add the track with the download url onto the current playlist, trigger the download queue
+        PLDataAccess *dataAccess = [PLDataAccess sharedDataAccess];
+        PLDownloadManager *downloadManager = [PLDownloadManager sharedManager];
 
-        DDLogVerbose(@"result = %@", url);
+        PLTrack *track = [dataAccess trackWithDownloadURL:downloadURL];
 
-        [promise resolveWithResult:nil];
+        PLPlaylist *playlist = [dataAccess selectedPlaylist];
+        if (playlist)
+            [playlist addTrack:track];
+
+        [[[dataAccess saveChangesSignal] then:^RACSignal *{
+            return [downloadManager enqueueDownloadOfTrack:track];
+        }]
+        subscribeCompleted:^{
+            [promise resolveWithResult:nil];
+        }];
     }];
 
     [alertView show];

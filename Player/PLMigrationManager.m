@@ -7,7 +7,7 @@
 #import "RXPromise+PLExtensions.h"
 #import "PLErrorManager.h"
 
-long PLCurrentDataStoreVersion = 1;
+const long PLCurrentDataStoreVersion = 1;
 
 @implementation PLMigrationManager
 

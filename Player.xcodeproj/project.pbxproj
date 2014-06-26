@@ -733,8 +733,8 @@
 				C3BC5AD51656CA4E002DA837 /* PLPlaylist.m */,
 				C3BC5AD11656CA4D002DA837 /* PLBookmark.h */,
 				C3BC5AD21656CA4D002DA837 /* PLBookmark.m */,
-				696C1E69820AF0DDE12F4252 /* PLEntity.m */,
 				696C154AEE9EE86422D272E3 /* PLEntity.h */,
+				696C1E69820AF0DDE12F4252 /* PLEntity.m */,
 			);
 			name = Entities;
 			sourceTree = "<group>";

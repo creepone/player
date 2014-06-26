@@ -2,9 +2,17 @@
 
 @class RACSignal;
 
+typedef NS_ENUM(int16_t, PLTrackDownloadStatus) {
+    PLTrackDownloadStatusIdle,
+    PLTrackDownloadStatusDownloading,
+    PLTrackDownloadStatusError,
+    PLTrackDownloadStatusDone
+};
+
 @interface PLTrack : PLEntity
 
 @property (nonatomic) int64_t persistentId;
+@property (nonatomic) PLTrackDownloadStatus downloadStatus;
 @property (nonatomic, retain) NSString *fileURL;
 @property (nonatomic, retain) NSString *downloadURL;
 @property (nonatomic) BOOL played;
@@ -14,8 +22,10 @@
 @property (nonatomic, readonly) NSString *artist;
 @property (nonatomic, readonly) NSString *title;
 
+
 + (PLTrack *)trackWithPersistentId:(NSNumber *)persistentId inContext:(NSManagedObjectContext *)context;
 + (PLTrack *)trackWithFileURL:(NSString *)fileURL inContext:(NSManagedObjectContext *)context;
++ (PLTrack *)trackWithDownloadURL:(NSString *)downloadURL inContext:(NSManagedObjectContext *)context;
 
 - (void)remove;
 
@@ -34,5 +44,8 @@
 * If available, delivers a UIImage containing the track's large artwork, then completes.
 */
 - (RACSignal *)largeArtwork;
+
+- (void)loadMetadataFromMediaItem;
+- (void)loadMetadataFromAsset;
 
 @end

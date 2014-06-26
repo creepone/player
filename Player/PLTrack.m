@@ -18,6 +18,7 @@
 @implementation PLTrack
 
 @dynamic persistentId;
+@dynamic downloadStatus;
 @dynamic fileURL;
 @dynamic downloadURL;
 @dynamic played;
@@ -30,7 +31,7 @@
 {
     PLTrack *track = [NSEntityDescription insertNewObjectForEntityForName:[self entityName] inManagedObjectContext:context];
     track.persistentId = [persistentId longLongValue];
-    [track setMetadataFromMediaItem];
+    [track loadMetadataFromMediaItem];
     return track;
 }
 
@@ -38,7 +39,16 @@
 {
     PLTrack *track = [NSEntityDescription insertNewObjectForEntityForName:[self entityName] inManagedObjectContext:context];
     track.fileURL = fileURL;
-    [track setMetadataFromAsset];
+    [track loadMetadataFromAsset];
+    return track;
+}
+
++ (PLTrack *)trackWithDownloadURL:(NSString *)downloadURL inContext:(NSManagedObjectContext *)context
+{
+    PLTrack *track = [NSEntityDescription insertNewObjectForEntityForName:[self entityName] inManagedObjectContext:context];
+    track.downloadStatus = PLTrackDownloadStatusIdle;
+    track.downloadURL = downloadURL;
+    track.title = [[downloadURL lastPathComponent] stringByDeletingPathExtension];
     return track;
 }
 
@@ -97,7 +107,7 @@
 }
 
 
-- (void)setMetadataFromMediaItem
+- (void)loadMetadataFromMediaItem
 {
     MPMediaItem *mediaItem = self.mediaItem;
 
@@ -112,7 +122,7 @@
     }
 }
 
-- (void)setMetadataFromAsset
+- (void)loadMetadataFromAsset
 {
     AVURLAsset *asset = self.asset;
 

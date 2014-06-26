@@ -1,3 +1,4 @@
+#import <ReactiveCocoa/ReactiveCocoa.h>
 #import "PLDataAccess.h"
 #import "PLCoreDataStack.h"
 #import "PLAppDelegate.h"
@@ -56,6 +57,21 @@
 	return [self.context save:error];
 }
 
+- (RACSignal *)saveChangesSignal
+{
+    return [RACSignal createSignal:^RACDisposable *(id <RACSubscriber> subscriber) {
+        NSError *error;
+        [self saveChanges:&error];
+
+        if (error)
+            [subscriber sendError:error];
+        else
+            [subscriber sendCompleted];
+
+        return nil;
+    }];
+}
+
 - (void)rollbackChanges {
     [self.context rollback];
 }
@@ -73,7 +89,7 @@
 
 - (PLPlaylist *)selectedPlaylist {
     NSManagedObjectID *objectID = [self.context.persistentStoreCoordinator managedObjectIDForURIRepresentation:[[PLDefaultsManager sharedManager] selectedPlaylist]];
-    return (PLPlaylist *)[self.context objectWithID:objectID];
+    return objectID ? (PLPlaylist *)[self.context objectWithID:objectID] : nil;
 }
 
 - (void)selectPlaylist:(PLPlaylist *)playlist {
@@ -119,6 +135,29 @@
         return result[0];
 
     return [PLTrack trackWithFileURL:fileURL inContext:self.context];
+}
+
+- (PLTrack *)trackWithDownloadURL:(NSString *)downloadURL
+{
+    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+    [self setupQueryForTrackWithDownloadURL:downloadURL fetchRequest:fetchRequest];
+
+    NSError *error;
+    NSArray *result = [self.context executeFetchRequest:fetchRequest error:&error];
+    if ([result count] == 1)
+        return result[0];
+
+    return [PLTrack trackWithDownloadURL:downloadURL inContext:self.context];
+}
+
+- (PLTrack *)trackWithObjectID:(NSString *)objectID
+{
+    NSURL *objectIDURL = [NSURL URLWithString:objectID];
+    NSManagedObjectID *managedObjectID = [self.context.persistentStoreCoordinator managedObjectIDForURIRepresentation:objectIDURL];
+    if (managedObjectID == nil)
+        return nil;
+
+    return (PLTrack *)[self.context objectWithID:managedObjectID];
 }
 
 - (PLTrack *)nextTrackToMirror
@@ -238,11 +277,19 @@
     [fetchRequest setPredicate:predicate];
 }
 
+- (void)setupQueryForTrackWithDownloadURL:(NSString *)downloadURL fetchRequest:(NSFetchRequest *)fetchRequest
+{
+    [fetchRequest setEntity:[NSEntityDescription entityForName:@"PLTrack" inManagedObjectContext:self.context]];
+
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"downloadURL=%@", downloadURL];
+    [fetchRequest setPredicate:predicate];
+}
+
 - (void)setupQueryForTrackToMirror:(NSFetchRequest *)fetchRequest
 {
     [fetchRequest setEntity:[NSEntityDescription entityForName:@"PLTrack" inManagedObjectContext:self.context]];
 
-    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"persistentId != nil AND fileURL = nil"];
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"persistentId != 0 AND fileURL = nil"];
     [fetchRequest setPredicate:predicate];
 }
 

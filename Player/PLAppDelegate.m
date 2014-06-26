@@ -48,8 +48,8 @@ static void onUncaughtException(NSException* exception);
 
         NSURL *fileToImport = launchOptions[UIApplicationLaunchOptionsURLKey];
         if (fileToImport)
-            [PLFileImport importFile:fileToImport];
-        
+            [[PLFileImport importFile:fileToImport] subscribeError:[PLErrorManager logErrorVoidBlock]];
+
         [[PLMediaMirror sharedInstance] ensureRunning];
         
         return (id)nil;
@@ -105,7 +105,7 @@ static void onUncaughtException(NSException* exception);
 - (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation
 {
     if (self.coreDataStack)
-        [PLFileImport importFile:url];
+        [[PLFileImport importFile:url] subscribeError:[PLErrorManager logErrorVoidBlock]];
     return YES;
 }
 

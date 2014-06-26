@@ -19,6 +19,7 @@
     </entity>
     <entity name="PLTrack" representedClassName="PLTrack" syncable="YES">
         <attribute name="artist" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="downloadStatus" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
         <attribute name="downloadURL" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="duration" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
         <attribute name="fileURL" optional="YES" attributeType="String" syncable="YES"/>
@@ -32,6 +33,6 @@
         <element name="PLBookmark" positionX="0" positionY="0" width="128" height="88"/>
         <element name="PLPlaylist" positionX="0" positionY="0" width="128" height="90"/>
         <element name="PLPlaylistSong" positionX="0" positionY="0" width="128" height="118"/>
-        <element name="PLTrack" positionX="9" positionY="72" width="128" height="180"/>
+        <element name="PLTrack" positionX="9" positionY="72" width="128" height="195"/>
     </elements>
 </model>

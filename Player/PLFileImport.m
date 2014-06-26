@@ -1,38 +1,62 @@
 #import <RXPromise.h>
+#import <ReactiveCocoa/ReactiveCocoa.h>
 #import "PLFileImport.h"
 #import "PLDataAccess.h"
 #import "PLUtils.h"
 
 @implementation PLFileImport
 
-+ (RXPromise *)importFile:(NSURL *)fileURL
++ (RACSignal *)importFile:(NSURL *)fileURL
 {
-    NSString *fileName = [[fileURL path] lastPathComponent];
+    return [[self moveToDocumentsFolder:fileURL] flattenMap:^RACStream *(NSURL *targetFileURL) {
+        PLDataAccess *dataAccess = [PLDataAccess sharedDataAccess];
+        PLTrack *track = [dataAccess trackWithFileURL:[targetFileURL absoluteString]];
 
-    NSString *targetFilePath = [NSString pathWithComponents:@[[PLUtils documentDirectoryPath], fileName]];
-    NSURL *targetFileURL = [NSURL fileURLWithPath:targetFilePath];
+        // todo: show ui to select the playlist(s) where the track should be inserted
 
-    NSError *error;
+        PLPlaylist *playlist = [dataAccess selectedPlaylist];
+        if (playlist)
+            [playlist addTrack:track];
 
-    NSFileManager *fileManager = [NSFileManager defaultManager];
-    [fileManager moveItemAtURL:fileURL toURL:targetFileURL error:&error];
-    
-    if (error)
-        return [RXPromise promiseWithResult:error];
-    
-    // todo: handle edge cases: file already exists at this location
+        return [dataAccess saveChangesSignal];
+    }];
+}
 
-    PLDataAccess *dataAccess = [PLDataAccess sharedDataAccess];
-    PLTrack *track = [dataAccess trackWithFileURL:[targetFileURL absoluteString]];
++ (RACSignal *)moveToDocumentsFolder:(NSURL *)fileURL
+{
+    NSString *originalFileName = [[fileURL path] lastPathComponent];
+    return [self moveToDocumentsFolder:fileURL underFileName:originalFileName];
+}
 
-    // todo: show ui to select the playlist(s) where the track should be inserted
++ (RACSignal *)moveToDocumentsFolder:(NSURL *)fileURL underFileName:(NSString *)fileName
+{
+    return [RACSignal createSignal:^RACDisposable *(id <RACSubscriber> subscriber) {
 
-    PLPlaylist *playlist = [dataAccess selectedPlaylist];
-    if (playlist)
-        [playlist addTrack:track];
+        NSFileManager *fileManager = [NSFileManager defaultManager];
 
-    [dataAccess saveChanges:&error];
-    return [RXPromise promiseWithResult:error];
+        NSString *newFileName = fileName;
+        NSString *documentsPath = [PLUtils documentDirectoryPath];
+        NSString *targetFilePath = [NSString pathWithComponents:@[documentsPath, newFileName]];
+
+        int suffix = 1;
+        while ([fileManager fileExistsAtPath:targetFilePath]) {
+            newFileName = [NSString stringWithFormat:@"%@_%d.%@", [fileName stringByDeletingPathExtension], suffix, [fileName pathExtension]];
+            targetFilePath = [NSString pathWithComponents:@[documentsPath, newFileName]];
+        }
+
+        NSURL *targetFileURL = [NSURL fileURLWithPath:targetFilePath];
+
+        NSError *error;
+        [fileManager moveItemAtURL:fileURL toURL:targetFileURL error:&error];
+
+        if (error)
+            [subscriber sendError:error];
+        else {
+            [subscriber sendNext:targetFileURL];
+            [subscriber sendCompleted];
+        }
+        return nil;
+    }];
 }
 
 @end

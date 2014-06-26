@@ -36,6 +36,17 @@
 - (PLTrack *)trackWithFileURL:(NSString *)fileURL;
 
 /**
+Delivers a track with the given download URL. If it already exists, it is simply returned, otherwise a new one is created.
+*/
+- (PLTrack *)trackWithDownloadURL:(NSString *)downloadURL;
+
+/**
+* Delivers a track with the given managed object ID, if any exists, nil otherwise.
+*/
+- (PLTrack *)trackWithObjectID:(NSString *)objectID;
+
+
+/**
  Returns the first found track (or nil if none found) with a persistentId without a file URL (i.e. a track yet to be mirrored)
  */
 - (PLTrack *)nextTrackToMirror;
@@ -52,6 +63,7 @@
 
 
 - (BOOL)saveChanges:(NSError **)error;
+- (RACSignal *)saveChangesSignal;
 - (void)rollbackChanges;
 - (void)processChanges;
 
