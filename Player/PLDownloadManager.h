@@ -23,14 +23,14 @@ extern NSString * const PLBackgroundSessionIdentifier;
 
 /**
  Cancels the task that is currently downloading the given track, if any.
- Returns a signal that delivers no values but completes when the task has been started.
+ Returns a signal that delivers no values but completes when the task has been cancelled.
  */
 - (RACSignal *)cancelDownloadOfTrack:(PLTrack *)track;
 
 /**
  Returns a signal that delivers the progress values (float between 0. and 1.) of the task that is downloading
  the given track and completes when the track has been downloaded.
- If no tasks exists that is currently downloading the given track, completes immediately.
+ If no task exists that is currently downloading the given track, completes immediately.
  */
 - (RACSignal *)progressSignalForTrack:(PLTrack *)track;
 

@@ -157,11 +157,16 @@ NSString * const PLBackgroundSessionIdentifier = @"at.iosapps.Player.BackgroundS
 
         BOOL wasCancelled = [error.domain isEqualToString:NSURLErrorDomain] && error.code == -999;
         track.downloadStatus = wasCancelled ? PLTrackDownloadStatusIdle : PLTrackDownloadStatusError;
-        
+
         return [[PLDataAccess sharedDataAccess] saveChangesSignal];
     }];
 
     [workSignal subscribeError:[PLErrorManager logErrorVoidBlock]];
+}
+
+- (void)URLSession:(NSURLSession *)session downloadTask:(NSURLSessionDownloadTask *)downloadTask didResumeAtOffset:(int64_t)fileOffset expectedTotalBytes:(int64_t)expectedTotalBytes
+{
+    // nothing at the moment
 }
 
 

@@ -1,4 +1,4 @@
-#import <RXPromise/RXPromise.h>
+#import <ReactiveCocoa/ReactiveCocoa.h>
 #import "PLSelectFromMusicLibraryActivity.h"
 #import "PLMusicLibraryViewController.h"
 #import "PLDataAccess.h"
@@ -30,34 +30,25 @@
     return [UIImage imageNamed:@"MusicIcon"];
 }
 
-- (RXPromise *)performActivity
+- (RACSignal *)performActivity
 {
     UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"MusicLibrary" bundle:nil];
     UIViewController *rootViewController = [UIApplication sharedApplication].delegate.window.rootViewController;
 
-    RXPromise *promise = [[RXPromise alloc] init];
     UINavigationController *navigationController = storyboard.instantiateInitialViewController;
-    
+    [rootViewController presentViewController:navigationController animated:YES completion:nil];
+
     PLMusicLibraryViewController *musicLibraryVc = navigationController.viewControllers[0];
 
-    @weakify(self);
-    musicLibraryVc.doneCallback = ^(NSArray *selection) {
-        @strongify(self);
-        
-        // todo: show a progress with a grace period of a second or so while the import is running
-        [promise bind:[self importSongs:selection]];
-    };
-    
-    [rootViewController presentViewController:navigationController animated:YES completion:nil];
-    return promise;
+    return [musicLibraryVc.doneSignal flattenMap:^RACStream *(NSArray *selection) {
+        return [self importSongs:selection];
+    }];
 }
 
-- (RXPromise *)importSongs:(NSArray *)persistentIds
+- (RACSignal *)importSongs:(NSArray *)persistentIds
 {
-    // todo: do this in the background and merge back into the main context, cause this could be a lot of songs ?
-    
     PLDataAccess *dataAccess = [PLDataAccess sharedDataAccess];
-    
+
     for (NSNumber *persistentId in persistentIds) {
         PLTrack *track = [dataAccess trackWithPersistentId:persistentId];
         PLPlaylistSong *playlistSong = [dataAccess songWithTrack:track onPlaylist:_playlist];
@@ -65,13 +56,11 @@
         if (!playlistSong)
             [_playlist addTrack:track];
     }
-    
-    NSError *error;
-    [dataAccess saveChanges:&error];
 
-    [[PLMediaMirror sharedInstance] ensureRunning];
-
-    return [RXPromise promiseWithResult:error];
+    return [[dataAccess saveChangesSignal] then:^RACSignal *{
+        [[PLMediaMirror sharedInstance] ensureRunning];
+        return [RACSignal empty];
+    }];
 }
 
 @end

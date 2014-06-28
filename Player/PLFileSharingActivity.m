@@ -1,4 +1,4 @@
-#import <RXPromise/RXPromise.h>
+#import <ReactiveCocoa/ReactiveCocoa.h>
 #import "PLFileSharingActivity.h"
 
 @implementation PLFileSharingActivity
@@ -18,9 +18,9 @@
     return [UIImage imageNamed:@"FileSharingIconHighlighted"];
 }
 
-- (RXPromise *)performActivity
+- (RACSignal *)performActivity
 {
-    return [RXPromise promiseWithResult:nil];
+    return [RACSignal empty];
 }
 
 @end

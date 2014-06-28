@@ -1,8 +1,10 @@
 #import <JCRBlurView.h>
 #import <RXPromise/RXPromise.h>
+#import <ReactiveCocoa/ReactiveCocoa/RACSignal.h>
 #import "PLActivityViewController.h"
 #import "PLActivityView.h"
 #import "PLActivity.h"
+#import "PLErrorManager.h"
 
 @interface PLActivityViewController () {
     UIView *_backgroundView;
@@ -82,8 +84,11 @@
         @strongify(self);
         [self.view removeFromSuperview];
         
-        if (activity)
-            [_completionPromise bind:[activity performActivity]];
+        if (activity) {
+            [[activity performActivity] subscribeError:[PLErrorManager logErrorVoidBlock] completed:^{
+                [_completionPromise resolveWithResult:nil];
+            }];
+        }
         else
             [_completionPromise resolveWithResult:nil];
     }];

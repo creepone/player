@@ -1,3 +1,4 @@
+#import <ReactiveCocoa/ReactiveCocoa.h>
 #import "PLMusicLibraryViewController.h"
 #import "PLTrackGroupViewController.h"
 
@@ -15,12 +16,15 @@
     self.selection = [NSMutableArray array];
 }
 
+- (RACSignal *)doneSignal
+{
+    return [[[self rac_signalForSelector:@selector(dismiss:)] take:1] map:^id(id _) {
+        return self.selection;
+    }];
+}
+
 - (IBAction)dismiss:(UIStoryboardSegue *)segue
 {
-    if (self.doneCallback) {
-        self.doneCallback(self.selection);
-    }
-    
     [self.presentingViewController dismissViewControllerAnimated:YES completion:nil];
 }
 

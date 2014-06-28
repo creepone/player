@@ -1,3 +1,4 @@
+#import <ReactiveCocoa/ReactiveCocoa/RACSignal.h>
 #import "RXPromise+PLExtensions.h"
 
 @implementation RXPromise (PLExtensions)

@@ -2,5 +2,4 @@ run the accessory command on the whole row selection if defined ?
 
 later:
 refactor PLTrackTableViewCellController to viewmodel pattern
-refactor activities to RAC
 refactor all the promise usages to RAC, remove dependency on RXPromise and its extensions

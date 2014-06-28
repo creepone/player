@@ -1,8 +1,9 @@
-typedef void (^PLMusicLibrarySelectionHandler)(NSArray *);
+@class RACSignal;
 
 @interface PLMusicLibraryViewController : UITableViewController
 
 @property (nonatomic, strong) NSMutableArray *selection;
-@property (nonatomic, copy) PLMusicLibrarySelectionHandler doneCallback;
+
+- (RACSignal *)doneSignal;
 
 @end

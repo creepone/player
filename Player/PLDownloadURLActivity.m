@@ -1,4 +1,3 @@
-#import <RXPromise/RXPromise.h>
 #import <ReactiveCocoa/ReactiveCocoa.h>
 #import "PLDownloadURLActivity.h"
 #import "PLTrack.h"
@@ -22,18 +21,17 @@
     return [UIImage imageNamed:@"DownloadIconHighlighted"];
 }
 
-- (RXPromise *)performActivity
+- (RACSignal *)performActivity
 {
     // todo: localize
     UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Download" message:@"Enter the URL to download" delegate:self cancelButtonTitle:NSLocalizedString(@"Common.Cancel", nil) otherButtonTitles:NSLocalizedString(@"Common.OK", nil), nil];
     alertView.alertViewStyle = UIAlertViewStylePlainTextInput;
+    [alertView show];
 
-    RXPromise *promise = [[RXPromise alloc] init];
-
-    [[alertView rac_buttonClickedSignal] subscribeNext:^(NSNumber *buttonIndex) {
+    return [[[alertView rac_buttonClickedSignal] take:1] flattenMap:^RACSignal *(NSNumber *buttonIndex) {
 
         if ([buttonIndex intValue] == alertView.cancelButtonIndex)
-            return;
+            return nil;
 
         NSString *downloadURL = [[alertView textFieldAtIndex:0] text];
 
@@ -47,18 +45,11 @@
         if (playlist)
             [playlist addTrack:track];
 
-        [[[dataAccess saveChangesSignal] then:^RACSignal *{
+        return [[dataAccess saveChangesSignal] then:^RACSignal *{
             // do not enqueue the download if the track already existed
             return wasTrackInserted ? [downloadManager enqueueDownloadOfTrack:track] : nil;
-        }]
-        subscribeCompleted:^{
-            [promise resolveWithResult:nil];
         }];
     }];
-
-    [alertView show];
-
-    return promise;
 }
 
 @end

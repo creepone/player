@@ -1,6 +1,6 @@
 #import <Foundation/Foundation.h>
 
-@class RXPromise;
+@class RACSignal;
 
 @protocol PLActivity <NSObject>
 
@@ -16,8 +16,9 @@
 
 /**
 * Asynchronously performs whatever logic this activity entails.
+* Returns a signal that completes when the activity has completed.
 */
-- (RXPromise *)performActivity;
+- (RACSignal *)performActivity;
 
 @optional
 

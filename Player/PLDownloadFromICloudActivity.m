@@ -1,4 +1,4 @@
-#import <RXPromise/RXPromise.h>
+#import <ReactiveCocoa/ReactiveCocoa.h>
 #import "PLDownloadFromICloudActivity.h"
 
 @implementation PLDownloadFromICloudActivity
@@ -13,9 +13,9 @@
     return [UIImage imageNamed:@"ICloudIcon"];
 }
 
-- (RXPromise *)performActivity
+- (RACSignal *)performActivity
 {
-    return [RXPromise promiseWithResult:nil];
+    return [RACSignal empty];
 }
 
 @end
