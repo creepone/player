@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		696C115BC2254A1EB5EFD122 /* PLPromise.m in Sources */ = {isa = PBXBuildFile; fileRef = 696C1F83AD3337B20894E1D9 /* PLPromise.m */; };
 		696C12295CFEA1F9814E8AC8 /* PLPlaylistSongCellModelView.m in Sources */ = {isa = PBXBuildFile; fileRef = 696C1B64873859724C208B95 /* PLPlaylistSongCellModelView.m */; };
 		696C13068CF01B07191595AB /* PLImageCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 696C1239863912CEC9BDB652 /* PLImageCache.m */; };
 		696C13EE5F69A14268974A60 /* PLErrorManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 696C12FAB54495AF46A2A951 /* PLErrorManager.m */; };
@@ -22,10 +21,8 @@
 		696C169A25ECD6B14186B438 /* PLEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = 696C1E69820AF0DDE12F4252 /* PLEntity.m */; };
 		696C16CE03E0D6A5D2CF72AF /* PLImportActivityViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 696C1FE69CD877A0A21E876F /* PLImportActivityViewController.m */; };
 		696C177E0F2230FE3DDA991B /* PLMediaItemTrackGroup.m in Sources */ = {isa = PBXBuildFile; fileRef = 696C1F2107FF194F73B00CA7 /* PLMediaItemTrackGroup.m */; };
-		696C17BF00FEF79DF2FCB485 /* PLRequestManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 696C160375147E63C52A1806 /* PLRequestManager.m */; };
 		696C196244DD64E0DD03976E /* UIViewController+PLErrorExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 696C12C9DF1F34B0D5963EEC /* UIViewController+PLErrorExtensions.m */; };
 		696C197C7FC7F02EAB520C14 /* PLUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 696C182AEF78B538772A01FD /* PLUtils.m */; };
-		696C19D6E20C154C20D0DC68 /* PLRequestOptions.m in Sources */ = {isa = PBXBuildFile; fileRef = 696C1729AD0F641AC0C9D8FF /* PLRequestOptions.m */; };
 		696C1A5C34970937DA5E0A3B /* PLLogging.m in Sources */ = {isa = PBXBuildFile; fileRef = 696C19A6848C7EB377AF58C5 /* PLLogging.m */; };
 		696C1A663DCC44EB31B19B46 /* PLDownloadFromICloudActivity.m in Sources */ = {isa = PBXBuildFile; fileRef = 696C1A8B85B56C770FB7BEC0 /* PLDownloadFromICloudActivity.m */; };
 		696C1A7540982F010E4E85CD /* PLTrackGroupCellModelView.m in Sources */ = {isa = PBXBuildFile; fileRef = 696C173E18677F6CD43519DF /* PLTrackGroupCellModelView.m */; };
@@ -93,9 +90,9 @@
 		C3CC18BF191F60EC0026E681 /* MusicLibrary.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C3CC18BE191F60EC0026E681 /* MusicLibrary.storyboard */; };
 		C3CC18C4191F65350026E681 /* PLMusicLibraryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C3CC18C3191F65350026E681 /* PLMusicLibraryViewController.m */; };
 		C3CC18C7191F73790026E681 /* PLTrackGroupViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C3CC18C6191F73790026E681 /* PLTrackGroupViewController.m */; };
-		C3CC18CA191F7B850026E681 /* PLTrackGroupTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C3CC18C9191F7B850026E681 /* PLTrackGroupTableViewCell.m */; };
+		C3CC18CA191F7B850026E681 /* PLTrackGroupCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C3CC18C9191F7B850026E681 /* PLTrackGroupCell.m */; };
 		C3CC18CD191FABD30026E681 /* PLTracksViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C3CC18CC191FABD30026E681 /* PLTracksViewController.m */; };
-		C3CC18D3191FC5990026E681 /* PLTrackTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C3CC18D2191FC5990026E681 /* PLTrackTableViewCell.m */; };
+		C3CC18D3191FC5990026E681 /* PLTrackCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C3CC18D2191FC5990026E681 /* PLTrackCell.m */; };
 		C3CC18D6191FC63E0026E681 /* PLTrackTableViewCellController.m in Sources */ = {isa = PBXBuildFile; fileRef = C3CC18D5191FC63E0026E681 /* PLTrackTableViewCellController.m */; };
 		C3CC18DB19227CD30026E681 /* icon.png in Resources */ = {isa = PBXBuildFile; fileRef = C3CC18DA19227CD20026E681 /* icon.png */; };
 		C3D1A65A16CFC337006D3E5F /* PLPlaylistSelectViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C3D1A65916CFC337006D3E5F /* PLPlaylistSelectViewController.m */; };
@@ -111,7 +108,6 @@
 		696C107644FDE533B6B072AE /* PLDownloadURLActivity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PLDownloadURLActivity.h; sourceTree = "<group>"; };
 		696C1086BA744B3A005D70E6 /* PLBackgroundProcess+Protected.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "PLBackgroundProcess+Protected.h"; sourceTree = "<group>"; };
 		696C11D9F715B1D1B05EE830 /* PLPlaylistSongsDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PLPlaylistSongsDelegate.h; sourceTree = "<group>"; };
-		696C11DDCC4309F051FE8CCC /* PLRequestManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PLRequestManager.h; sourceTree = "<group>"; };
 		696C1208975D1BCA891A80BA /* PLColors.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PLColors.h; sourceTree = "<group>"; };
 		696C1239863912CEC9BDB652 /* PLImageCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PLImageCache.m; sourceTree = "<group>"; };
 		696C123B1E65E488D94DD4A8 /* PLDownloadFromDropboxActivity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PLDownloadFromDropboxActivity.m; sourceTree = "<group>"; };
@@ -127,7 +123,6 @@
 		696C13D5FB1650B68AA732BC /* PLLegacySongTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PLLegacySongTableViewCell.h; sourceTree = "<group>"; };
 		696C13ED65045480BDB66BE0 /* PLActivity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PLActivity.h; sourceTree = "<group>"; };
 		696C1414B69DC381029EE20D /* PLBackgroundProcessProgress.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PLBackgroundProcessProgress.h; sourceTree = "<group>"; };
-		696C142E583BE71A04DC1AD3 /* PLRequestOptions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PLRequestOptions.h; sourceTree = "<group>"; };
 		696C143FEC9667A8B106C5AE /* PLFileSharingActivity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PLFileSharingActivity.m; sourceTree = "<group>"; };
 		696C14419B3F9D0681D046BE /* RXPromise+PLExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "RXPromise+PLExtensions.h"; sourceTree = "<group>"; };
 		696C146AEE2E2953E78DFD15 /* PLDownloadPodcastActivity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PLDownloadPodcastActivity.m; sourceTree = "<group>"; };
@@ -135,11 +130,9 @@
 		696C150BD38DBFE750DEEE04 /* PLBackgroundProcess.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PLBackgroundProcess.m; sourceTree = "<group>"; };
 		696C154AEE9EE86422D272E3 /* PLEntity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PLEntity.h; sourceTree = "<group>"; };
 		696C154DBBACAD9E008A4737 /* PLImportActivityViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PLImportActivityViewController.h; sourceTree = "<group>"; };
-		696C160375147E63C52A1806 /* PLRequestManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PLRequestManager.m; sourceTree = "<group>"; };
 		696C16A4D226E0A5EC204C36 /* PLErrorManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PLErrorManager.h; sourceTree = "<group>"; };
 		696C16B1CAB1C03543A4485C /* PLDownloadPodcastActivity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PLDownloadPodcastActivity.h; sourceTree = "<group>"; };
 		696C1721722D6B0C3765AAA1 /* UIViewController+PLErrorExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+PLErrorExtensions.h"; sourceTree = "<group>"; };
-		696C1729AD0F641AC0C9D8FF /* PLRequestOptions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PLRequestOptions.m; sourceTree = "<group>"; };
 		696C173E18677F6CD43519DF /* PLTrackGroupCellModelView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PLTrackGroupCellModelView.m; sourceTree = "<group>"; };
 		696C17D4D4786869DE5A11A7 /* PLButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PLButton.h; sourceTree = "<group>"; };
 		696C17D6C827B6995026B0FA /* PLLegacySongTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PLLegacySongTableViewCell.m; sourceTree = "<group>"; };
@@ -180,8 +173,6 @@
 		696C1F36F1EB35D1A794B4FE /* PLColors.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PLColors.m; sourceTree = "<group>"; };
 		696C1F6362232CF71408E756 /* PLBackgroundProcessProgress.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PLBackgroundProcessProgress.m; sourceTree = "<group>"; };
 		696C1F806E065E1941BA78DA /* RXPromise+PLExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "RXPromise+PLExtensions.m"; sourceTree = "<group>"; };
-		696C1F83AD3337B20894E1D9 /* PLPromise.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PLPromise.m; sourceTree = "<group>"; };
-		696C1F9572FADDE6894E30E4 /* PLPromise.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PLPromise.h; sourceTree = "<group>"; };
 		696C1FC517E0B1E486397B42 /* PLActivityViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PLActivityViewController.h; sourceTree = "<group>"; };
 		696C1FE29357EB7961765F29 /* PLMediaMirror.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PLMediaMirror.h; sourceTree = "<group>"; };
 		696C1FE69CD877A0A21E876F /* PLImportActivityViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PLImportActivityViewController.m; sourceTree = "<group>"; };
@@ -263,12 +254,12 @@
 		C3CC18C3191F65350026E681 /* PLMusicLibraryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PLMusicLibraryViewController.m; sourceTree = "<group>"; };
 		C3CC18C5191F73790026E681 /* PLTrackGroupViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PLTrackGroupViewController.h; sourceTree = "<group>"; };
 		C3CC18C6191F73790026E681 /* PLTrackGroupViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PLTrackGroupViewController.m; sourceTree = "<group>"; };
-		C3CC18C8191F7B850026E681 /* PLTrackGroupTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PLTrackGroupTableViewCell.h; sourceTree = "<group>"; };
-		C3CC18C9191F7B850026E681 /* PLTrackGroupTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PLTrackGroupTableViewCell.m; sourceTree = "<group>"; };
+		C3CC18C8191F7B850026E681 /* PLTrackGroupCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PLTrackGroupCell.h; sourceTree = "<group>"; };
+		C3CC18C9191F7B850026E681 /* PLTrackGroupCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PLTrackGroupCell.m; sourceTree = "<group>"; };
 		C3CC18CB191FABD30026E681 /* PLTracksViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PLTracksViewController.h; sourceTree = "<group>"; };
 		C3CC18CC191FABD30026E681 /* PLTracksViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PLTracksViewController.m; sourceTree = "<group>"; };
-		C3CC18D1191FC5990026E681 /* PLTrackTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PLTrackTableViewCell.h; sourceTree = "<group>"; };
-		C3CC18D2191FC5990026E681 /* PLTrackTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PLTrackTableViewCell.m; sourceTree = "<group>"; };
+		C3CC18D1191FC5990026E681 /* PLTrackCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PLTrackCell.h; sourceTree = "<group>"; };
+		C3CC18D2191FC5990026E681 /* PLTrackCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PLTrackCell.m; sourceTree = "<group>"; };
 		C3CC18D4191FC63E0026E681 /* PLTrackTableViewCellController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PLTrackTableViewCellController.h; sourceTree = "<group>"; };
 		C3CC18D5191FC63E0026E681 /* PLTrackTableViewCellController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PLTrackTableViewCellController.m; sourceTree = "<group>"; };
 		C3CC18DA19227CD20026E681 /* icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = icon.png; path = Images.xcassets/AppIcon.appiconset/icon.png; sourceTree = "<group>"; };
@@ -320,6 +311,8 @@
 				696C1960628953871BEA02C3 /* UIView+PLExtensions.h */,
 				696C134AABF2AE3C703232D6 /* PLConstraints.m */,
 				696C1BC84EFF2E07F8CE0D8D /* PLConstraints.h */,
+				C378CD74194C505A001D0593 /* PLMainUI.h */,
+				C378CD75194C505A001D0593 /* PLMainUI.m */,
 			);
 			name = Utils;
 			sourceTree = "<group>";
@@ -329,8 +322,6 @@
 			children = (
 				C38400981937662000D6A930 /* CoreData */,
 				696C1A30A16BABDC7CEF1C08 /* Utils */,
-				696C1395B365206751788C68 /* Activities */,
-				696C18381891B810634C187C /* Main */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -338,42 +329,15 @@
 		696C134E6A39C3EFEE9FE285 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				C3CC18C0191F60F40026E681 /* Storyboards */,
 				696C11DA94AB81B443229DAB /* Utils */,
-				696C1DBD53C08A95E050BBD6 /* Views */,
-				C378CD74194C505A001D0593 /* PLMainUI.h */,
-				C378CD75194C505A001D0593 /* PLMainUI.m */,
+				696C1DBD53C08A95E050BBD6 /* Custom Views */,
 			);
 			name = View;
-			sourceTree = "<group>";
-		};
-		696C1395B365206751788C68 /* Activities */ = {
-			isa = PBXGroup;
-			children = (
-				696C13ED65045480BDB66BE0 /* PLActivity.h */,
-				696C18A46ED3C43F5DF25C0F /* PLSelectFromMusicLibraryActivity.h */,
-				696C1A380A19FBA5F3A9D4E3 /* PLSelectFromMusicLibraryActivity.m */,
-				696C1E25BD897DECFEAFAE74 /* PLDownloadFromDropboxActivity.h */,
-				696C123B1E65E488D94DD4A8 /* PLDownloadFromDropboxActivity.m */,
-				696C12C5B79AE1DFA667B290 /* PLDownloadFromGDriveActivity.h */,
-				696C1D4C6FF0251EBF444798 /* PLDownloadFromGDriveActivity.m */,
-				696C1EE652F22078B91B6C56 /* PLDownloadFromICloudActivity.h */,
-				696C1A8B85B56C770FB7BEC0 /* PLDownloadFromICloudActivity.m */,
-				696C107644FDE533B6B072AE /* PLDownloadURLActivity.h */,
-				696C1AD27942A80B8A9896C5 /* PLDownloadURLActivity.m */,
-				696C16B1CAB1C03543A4485C /* PLDownloadPodcastActivity.h */,
-				696C146AEE2E2953E78DFD15 /* PLDownloadPodcastActivity.m */,
-				696C1E7C20B9B213E7843DEF /* PLFileSharingActivity.h */,
-				696C143FEC9667A8B106C5AE /* PLFileSharingActivity.m */,
-			);
-			name = Activities;
 			sourceTree = "<group>";
 		};
 		696C14DD1BF4F4658D5009EC /* Promises */ = {
 			isa = PBXGroup;
 			children = (
-				696C1F9572FADDE6894E30E4 /* PLPromise.h */,
-				696C1F83AD3337B20894E1D9 /* PLPromise.m */,
 				696C1F806E065E1941BA78DA /* RXPromise+PLExtensions.m */,
 				696C14419B3F9D0681D046BE /* RXPromise+PLExtensions.h */,
 			);
@@ -383,23 +347,10 @@
 		696C1726DE7EC4DA536D552A /* Network */ = {
 			isa = PBXGroup;
 			children = (
-				696C11DDCC4309F051FE8CCC /* PLRequestManager.h */,
-				696C160375147E63C52A1806 /* PLRequestManager.m */,
-				696C1729AD0F641AC0C9D8FF /* PLRequestOptions.m */,
-				696C142E583BE71A04DC1AD3 /* PLRequestOptions.h */,
 				C3F539F1195A047300409CC4 /* PLDownloadManager.h */,
 				C3F539F2195A047300409CC4 /* PLDownloadManager.m */,
 			);
 			name = Network;
-			sourceTree = "<group>";
-		};
-		696C18381891B810634C187C /* Main */ = {
-			isa = PBXGroup;
-			children = (
-				696C1BF13C7BEFF1865E8C4A /* PLPlaylistSongsDelegate.m */,
-				696C11D9F715B1D1B05EE830 /* PLPlaylistSongsDelegate.h */,
-			);
-			name = Main;
 			sourceTree = "<group>";
 		};
 		696C1A0B68A4C7AB83906623 /* Extensions */ = {
@@ -429,16 +380,15 @@
 			children = (
 				C3A4D679193E401B0060B704 /* Import */,
 				C3BC5AE81656CCBB002DA837 /* Settings */,
-				C3CC18BD191E98D50026E681 /* Media */,
 				696C1726DE7EC4DA536D552A /* Network */,
 				696C1A104295D194D43F4BE6 /* Logging */,
 				696C1FFF4599CDF04A92A304 /* Error handling */,
-				696C1ADA62259499028F9F4B /* PLUtils.h */,
-				696C182AEF78B538772A01FD /* PLUtils.m */,
 				696C1AAD96C35E9BF3686E67 /* Caching */,
 				696C1A0B68A4C7AB83906623 /* Extensions */,
 				696C14DD1BF4F4658D5009EC /* Promises */,
 				696C116486C7C451B7194AAE /* Background processes */,
+				696C1ADA62259499028F9F4B /* PLUtils.h */,
+				696C182AEF78B538772A01FD /* PLUtils.m */,
 			);
 			name = Utils;
 			sourceTree = "<group>";
@@ -454,31 +404,13 @@
 			name = Caching;
 			sourceTree = "<group>";
 		};
-		696C1DBD53C08A95E050BBD6 /* Views */ = {
+		696C1DBD53C08A95E050BBD6 /* Custom Views */ = {
 			isa = PBXGroup;
 			children = (
-				C378CD7D194C61A7001D0593 /* Main */,
-				696C1DE1EB61A8AB868243D1 /* PLActivityView.h */,
-				696C1046C87A0138396351B9 /* PLActivityView.m */,
 				696C17D4D4786869DE5A11A7 /* PLButton.h */,
 				696C1CE67D437458210D2DE2 /* PLButton.m */,
-				C3CC18C8191F7B850026E681 /* PLTrackGroupTableViewCell.h */,
-				C3CC18C9191F7B850026E681 /* PLTrackGroupTableViewCell.m */,
-				C3CC18D1191FC5990026E681 /* PLTrackTableViewCell.h */,
-				C3CC18D2191FC5990026E681 /* PLTrackTableViewCell.m */,
 			);
-			name = Views;
-			sourceTree = "<group>";
-		};
-		696C1DEA65728A0008DBF096 /* ViewModels */ = {
-			isa = PBXGroup;
-			children = (
-				696C12E93800D96F5AFEE66A /* PLPlaylistSongCellModelView.h */,
-				696C1B64873859724C208B95 /* PLPlaylistSongCellModelView.m */,
-				696C1DFF03B12814A6C12B05 /* PLTrackGroupCellModelView.h */,
-				696C173E18677F6CD43519DF /* PLTrackGroupCellModelView.m */,
-			);
-			name = ViewModels;
+			name = "Custom Views";
 			sourceTree = "<group>";
 		};
 		696C1E146148ABE0A9C766E3 /* Track mirroring */ = {
@@ -488,16 +420,6 @@
 				696C13B5A2362071AD1BB2C0 /* PLMediaMirror.m */,
 			);
 			name = "Track mirroring";
-			sourceTree = "<group>";
-		};
-		696C1E7B8412125EAAA18CBA /* Controller */ = {
-			isa = PBXGroup;
-			children = (
-				C378CD79194C528A001D0593 /* Activity view */,
-				C378CD7A194C52A6001D0593 /* PLMainViewController.h */,
-				C378CD7B194C52A6001D0593 /* PLMainViewController.m */,
-			);
-			name = Controller;
 			sourceTree = "<group>";
 		};
 		696C1FFF4599CDF04A92A304 /* Error handling */ = {
@@ -521,17 +443,6 @@
 			name = Legacy;
 			sourceTree = "<group>";
 		};
-		C34ADCE21916505200A07EBB /* New */ = {
-			isa = PBXGroup;
-			children = (
-				696C134E6A39C3EFEE9FE285 /* View */,
-				696C12B61F74CFF8A095DFE4 /* Model */,
-				696C1E7B8412125EAAA18CBA /* Controller */,
-				696C1DEA65728A0008DBF096 /* ViewModels */,
-			);
-			name = New;
-			sourceTree = "<group>";
-		};
 		C354484C165922B90083D703 /* Cells */ = {
 			isa = PBXGroup;
 			children = (
@@ -543,25 +454,189 @@
 			name = Cells;
 			sourceTree = "<group>";
 		};
-		C378CD79194C528A001D0593 /* Activity view */ = {
+		C378CDC3195F060A001D0593 /* Music Library Import */ = {
 			isa = PBXGroup;
 			children = (
-				696C1FC517E0B1E486397B42 /* PLActivityViewController.h */,
-				696C1C1CFEA94557045A202E /* PLActivityViewController.m */,
-				C3CC18C1191F65020026E681 /* MusicLibrary */,
-				696C1FE69CD877A0A21E876F /* PLImportActivityViewController.m */,
-				696C154DBBACAD9E008A4737 /* PLImportActivityViewController.h */,
+				C378CDC7195F0710001D0593 /* Model */,
+				C378CDC4195F0661001D0593 /* View */,
+				C378CDCC195F0849001D0593 /* ViewModel */,
 			);
-			name = "Activity view";
+			name = "Music Library Import";
 			sourceTree = "<group>";
 		};
-		C378CD7D194C61A7001D0593 /* Main */ = {
+		C378CDC4195F0661001D0593 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				C3CC18BE191F60EC0026E681 /* MusicLibrary.storyboard */,
+				C378CDC6195F0701001D0593 /* Views */,
+				C378CDC5195F06B7001D0593 /* View controllers */,
+			);
+			name = View;
+			sourceTree = "<group>";
+		};
+		C378CDC5195F06B7001D0593 /* View controllers */ = {
+			isa = PBXGroup;
+			children = (
+				C3CC18C2191F65350026E681 /* PLMusicLibraryViewController.h */,
+				C3CC18C3191F65350026E681 /* PLMusicLibraryViewController.m */,
+				C3CC18C5191F73790026E681 /* PLTrackGroupViewController.h */,
+				C3CC18C6191F73790026E681 /* PLTrackGroupViewController.m */,
+				C3CC18CB191FABD30026E681 /* PLTracksViewController.h */,
+				C3CC18CC191FABD30026E681 /* PLTracksViewController.m */,
+				C3CC18D4191FC63E0026E681 /* PLTrackTableViewCellController.h */,
+				C3CC18D5191FC63E0026E681 /* PLTrackTableViewCellController.m */,
+			);
+			name = "View controllers";
+			sourceTree = "<group>";
+		};
+		C378CDC6195F0701001D0593 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				C3CC18C8191F7B850026E681 /* PLTrackGroupCell.h */,
+				C3CC18C9191F7B850026E681 /* PLTrackGroupCell.m */,
+				C3CC18D1191FC5990026E681 /* PLTrackCell.h */,
+				C3CC18D2191FC5990026E681 /* PLTrackCell.m */,
+			);
+			name = Views;
+			sourceTree = "<group>";
+		};
+		C378CDC7195F0710001D0593 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				696C18A46ED3C43F5DF25C0F /* PLSelectFromMusicLibraryActivity.h */,
+				696C1A380A19FBA5F3A9D4E3 /* PLSelectFromMusicLibraryActivity.m */,
+				696C125EC4796E70CFB25276 /* PLMediaLibrarySearch.h */,
+				696C1A1B2AD9708890647B5D /* PLMediaLibrarySearch.m */,
+				696C19563B0CAE9008642F75 /* PLMediaItemTrackGroup.h */,
+				696C1F2107FF194F73B00CA7 /* PLMediaItemTrackGroup.m */,
+				696C1A801C481849E5EC42B5 /* PLMediaItemTrack.h */,
+				696C1EEB72AA7536F82ED55D /* PLMediaItemTrack.m */,
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
+		C378CDC8195F07DE001D0593 /* Shared */ = {
+			isa = PBXGroup;
+			children = (
+				696C12B61F74CFF8A095DFE4 /* Model */,
+				696C134E6A39C3EFEE9FE285 /* View */,
+			);
+			name = Shared;
+			sourceTree = "<group>";
+		};
+		C378CDC9195F07F0001D0593 /* Main (Playlist) */ = {
+			isa = PBXGroup;
+			children = (
+				C378CDCA195F082F001D0593 /* View */,
+				C378CDCB195F0836001D0593 /* ViewModel */,
+			);
+			name = "Main (Playlist)";
+			sourceTree = "<group>";
+		};
+		C378CDCA195F082F001D0593 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				C378CD77194C51D5001D0593 /* Main.storyboard */,
+				C378CDCD195F08EB001D0593 /* Views */,
+				C378CDD3195F0A65001D0593 /* ViewControllers */,
+			);
+			name = View;
+			sourceTree = "<group>";
+		};
+		C378CDCB195F0836001D0593 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				696C12E93800D96F5AFEE66A /* PLPlaylistSongCellModelView.h */,
+				696C1B64873859724C208B95 /* PLPlaylistSongCellModelView.m */,
+			);
+			name = ViewModel;
+			sourceTree = "<group>";
+		};
+		C378CDCC195F0849001D0593 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				696C1DFF03B12814A6C12B05 /* PLTrackGroupCellModelView.h */,
+				696C173E18677F6CD43519DF /* PLTrackGroupCellModelView.m */,
+			);
+			name = ViewModel;
+			sourceTree = "<group>";
+		};
+		C378CDCD195F08EB001D0593 /* Views */ = {
 			isa = PBXGroup;
 			children = (
 				C378CD7E194C61CF001D0593 /* PLPlaylistSongCell.h */,
 				C378CD7F194C61CF001D0593 /* PLPlaylistSongCell.m */,
 			);
-			name = Main;
+			name = Views;
+			sourceTree = "<group>";
+		};
+		C378CDCE195F09E7001D0593 /* Activity View */ = {
+			isa = PBXGroup;
+			children = (
+				C378CDD1195F0A29001D0593 /* Model */,
+				C378CDCF195F09F4001D0593 /* View */,
+			);
+			name = "Activity View";
+			sourceTree = "<group>";
+		};
+		C378CDCF195F09F4001D0593 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				C378CDD2195F0A4E001D0593 /* Views */,
+				C378CDD0195F09F8001D0593 /* ViewControllers */,
+			);
+			name = View;
+			sourceTree = "<group>";
+		};
+		C378CDD0195F09F8001D0593 /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				696C1FC517E0B1E486397B42 /* PLActivityViewController.h */,
+				696C1C1CFEA94557045A202E /* PLActivityViewController.m */,
+				696C1FE69CD877A0A21E876F /* PLImportActivityViewController.m */,
+				696C154DBBACAD9E008A4737 /* PLImportActivityViewController.h */,
+			);
+			name = ViewControllers;
+			sourceTree = "<group>";
+		};
+		C378CDD1195F0A29001D0593 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				696C13ED65045480BDB66BE0 /* PLActivity.h */,
+				696C1E25BD897DECFEAFAE74 /* PLDownloadFromDropboxActivity.h */,
+				696C123B1E65E488D94DD4A8 /* PLDownloadFromDropboxActivity.m */,
+				696C12C5B79AE1DFA667B290 /* PLDownloadFromGDriveActivity.h */,
+				696C1D4C6FF0251EBF444798 /* PLDownloadFromGDriveActivity.m */,
+				696C1EE652F22078B91B6C56 /* PLDownloadFromICloudActivity.h */,
+				696C1A8B85B56C770FB7BEC0 /* PLDownloadFromICloudActivity.m */,
+				696C107644FDE533B6B072AE /* PLDownloadURLActivity.h */,
+				696C1AD27942A80B8A9896C5 /* PLDownloadURLActivity.m */,
+				696C16B1CAB1C03543A4485C /* PLDownloadPodcastActivity.h */,
+				696C146AEE2E2953E78DFD15 /* PLDownloadPodcastActivity.m */,
+				696C1E7C20B9B213E7843DEF /* PLFileSharingActivity.h */,
+				696C143FEC9667A8B106C5AE /* PLFileSharingActivity.m */,
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
+		C378CDD2195F0A4E001D0593 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				696C1DE1EB61A8AB868243D1 /* PLActivityView.h */,
+				696C1046C87A0138396351B9 /* PLActivityView.m */,
+			);
+			name = Views;
+			sourceTree = "<group>";
+		};
+		C378CDD3195F0A65001D0593 /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				C378CD7A194C52A6001D0593 /* PLMainViewController.h */,
+				C378CD7B194C52A6001D0593 /* PLMainViewController.m */,
+				696C1BF13C7BEFF1865E8C4A /* PLPlaylistSongsDelegate.m */,
+				696C11D9F715B1D1B05EE830 /* PLPlaylistSongsDelegate.h */,
+			);
+			name = ViewControllers;
 			sourceTree = "<group>";
 		};
 		C38400981937662000D6A930 /* CoreData */ = {
@@ -628,7 +703,10 @@
 		C3BC5A311656B772002DA837 /* Player */ = {
 			isa = PBXGroup;
 			children = (
-				C34ADCE21916505200A07EBB /* New */,
+				C378CDC8195F07DE001D0593 /* Shared */,
+				C378CDCE195F09E7001D0593 /* Activity View */,
+				C378CDC9195F07F0001D0593 /* Main (Playlist) */,
+				C378CDC3195F060A001D0593 /* Music Library Import */,
 				C34ADCDC19164CBE00A07EBB /* Legacy */,
 				C3BC5A3A1656B772002DA837 /* PLAppDelegate.h */,
 				C3BC5A3B1656B772002DA837 /* PLAppDelegate.m */,
@@ -781,43 +859,6 @@
 				C3CC18BA191E43300026E681 /* Localizable.strings */,
 			);
 			name = Resources;
-			sourceTree = "<group>";
-		};
-		C3CC18BD191E98D50026E681 /* Media */ = {
-			isa = PBXGroup;
-			children = (
-				696C125EC4796E70CFB25276 /* PLMediaLibrarySearch.h */,
-				696C1A1B2AD9708890647B5D /* PLMediaLibrarySearch.m */,
-				696C19563B0CAE9008642F75 /* PLMediaItemTrackGroup.h */,
-				696C1F2107FF194F73B00CA7 /* PLMediaItemTrackGroup.m */,
-				696C1A801C481849E5EC42B5 /* PLMediaItemTrack.h */,
-				696C1EEB72AA7536F82ED55D /* PLMediaItemTrack.m */,
-			);
-			name = Media;
-			sourceTree = "<group>";
-		};
-		C3CC18C0191F60F40026E681 /* Storyboards */ = {
-			isa = PBXGroup;
-			children = (
-				C3CC18BE191F60EC0026E681 /* MusicLibrary.storyboard */,
-				C378CD77194C51D5001D0593 /* Main.storyboard */,
-			);
-			name = Storyboards;
-			sourceTree = "<group>";
-		};
-		C3CC18C1191F65020026E681 /* MusicLibrary */ = {
-			isa = PBXGroup;
-			children = (
-				C3CC18C2191F65350026E681 /* PLMusicLibraryViewController.h */,
-				C3CC18C3191F65350026E681 /* PLMusicLibraryViewController.m */,
-				C3CC18C5191F73790026E681 /* PLTrackGroupViewController.h */,
-				C3CC18C6191F73790026E681 /* PLTrackGroupViewController.m */,
-				C3CC18CB191FABD30026E681 /* PLTracksViewController.h */,
-				C3CC18CC191FABD30026E681 /* PLTracksViewController.m */,
-				C3CC18D4191FC63E0026E681 /* PLTrackTableViewCellController.h */,
-				C3CC18D5191FC63E0026E681 /* PLTrackTableViewCellController.m */,
-			);
-			name = MusicLibrary;
 			sourceTree = "<group>";
 		};
 		C3CF9FD318B52EE3004EE4A1 /* Build */ = {
@@ -1006,19 +1047,16 @@
 				696C13EE5F69A14268974A60 /* PLErrorManager.m in Sources */,
 				696C196244DD64E0DD03976E /* UIViewController+PLErrorExtensions.m in Sources */,
 				696C197C7FC7F02EAB520C14 /* PLUtils.m in Sources */,
-				696C17BF00FEF79DF2FCB485 /* PLRequestManager.m in Sources */,
-				696C19D6E20C154C20D0DC68 /* PLRequestOptions.m in Sources */,
 				696C1B8D690CECA9499F257E /* PLMediaLibrarySearch.m in Sources */,
 				696C177E0F2230FE3DDA991B /* PLMediaItemTrackGroup.m in Sources */,
 				696C13068CF01B07191595AB /* PLImageCache.m in Sources */,
 				696C153A17367E75E95611F2 /* PLCachedArtwork.m in Sources */,
 				696C1B378A7D2749C756064C /* PLMediaItemTrack.m in Sources */,
 				696C1F292F5CDB0A7156E3AD /* NSObject+PLExtensions.m in Sources */,
-				C3CC18CA191F7B850026E681 /* PLTrackGroupTableViewCell.m in Sources */,
-				C3CC18D3191FC5990026E681 /* PLTrackTableViewCell.m in Sources */,
+				C3CC18CA191F7B850026E681 /* PLTrackGroupCell.m in Sources */,
+				C3CC18D3191FC5990026E681 /* PLTrackCell.m in Sources */,
 				696C1409FF66555E089505A1 /* NSArray+PLExtensions.m in Sources */,
 				696C159390EB7A51269C2399 /* NSString+PLExtensions.m in Sources */,
-				696C115BC2254A1EB5EFD122 /* PLPromise.m in Sources */,
 				696C144E4704B5A5CF53C33D /* RXPromise+PLExtensions.m in Sources */,
 				696C169A25ECD6B14186B438 /* PLEntity.m in Sources */,
 				696C1FBF6134FDF5DE3BD2C6 /* PLLegacySongTableViewCell.m in Sources */,

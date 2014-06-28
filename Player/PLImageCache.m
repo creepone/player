@@ -1,6 +1,5 @@
 #import <FICImageCache.h>
 #import <ReactiveCocoa/ReactiveCocoa.h>
-#import <RXPromise/RXPromise.h>
 #import "PLImageCache.h"
 #import "PLCachedArtwork.h"
 

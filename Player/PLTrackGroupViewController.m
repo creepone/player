@@ -2,7 +2,7 @@
 #import "PLTrackGroupViewController.h"
 #import "PLTracksViewController.h"
 #import "PLMediaLibrarySearch.h"
-#import "PLTrackGroupTableViewCell.h"
+#import "PLTrackGroupCell.h"
 #import "PLTableViewProgress.h"
 #import "PLTrackGroupCellModelView.h"
 
@@ -92,7 +92,7 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    PLTrackGroupTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"trackGroupCell" forIndexPath:indexPath];
+    PLTrackGroupCell *cell = [tableView dequeueReusableCellWithIdentifier:@"trackGroupCell" forIndexPath:indexPath];
     PLMediaItemTrackGroup *trackGroup = [_groups objectAtIndex:indexPath.row];
 
     PLTrackGroupCellModelView *modelView = [[PLTrackGroupCellModelView alloc] initWithTrackGroup:trackGroup selected:NO];

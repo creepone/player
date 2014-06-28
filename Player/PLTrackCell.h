@@ -1,4 +1,4 @@
-@interface PLTrackTableViewCell : UITableViewCell
+@interface PLTrackCell : UITableViewCell
 
 @property (strong, nonatomic) IBOutlet UILabel *labelTitle;
 @property (strong, nonatomic) IBOutlet UILabel *labelDuration;

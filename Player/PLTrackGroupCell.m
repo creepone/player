@@ -1,14 +1,14 @@
 #import <ReactiveCocoa/ReactiveCocoa.h>
-#import "PLTrackGroupTableViewCell.h"
+#import "PLTrackGroupCell.h"
 #import "PLTrackGroupCellModelView.h"
 
-@interface PLTrackGroupTableViewCell() {
+@interface PLTrackGroupCell () {
     PLTrackGroupCellModelView *_modelView;
 }
 
 @end
 
-@implementation PLTrackGroupTableViewCell
+@implementation PLTrackGroupCell
 
 - (void)setupBindings:(PLTrackGroupCellModelView *)modelView
 {

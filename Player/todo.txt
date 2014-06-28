@@ -1,5 +1,9 @@
-run the accessory command on the whole row selection if defined ?
-
-later:
 refactor PLTrackTableViewCellController to viewmodel pattern
+refactor PLActivityViewController to signals
+
+think about the relationship between table view delegates (e.g. PLPlaylistsSongsDelegate) and MVVM - where do they fit into the picture ?
+
+implement reordering of the tracks on the main screen (+ Edit button that triggers it)
+
+long term:
 refactor all the promise usages to RAC, remove dependency on RXPromise and its extensions

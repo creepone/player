@@ -2,7 +2,7 @@
 
 @class PLTrackGroupCellModelView;
 
-@interface PLTrackGroupTableViewCell : UITableViewCell
+@interface PLTrackGroupCell : UITableViewCell
 
 @property (strong, nonatomic) IBOutlet UILabel *labelTitle;
 @property (strong, nonatomic) IBOutlet UILabel *labelArtist;

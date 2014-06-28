@@ -1,8 +1,8 @@
 #import <RXPromise/RXPromise.h>
 #import "PLTracksViewController.h"
 #import "PLMusicLibraryViewController.h"
-#import "PLTrackGroupTableViewCell.h"
-#import "PLTrackTableViewCell.h"
+#import "PLTrackGroupCell.h"
+#import "PLTrackCell.h"
 #import "PLTrackTableViewCellController.h"
 #import "PLMediaItemTrackGroup.h"
 #import "PLMediaItemTrack.h"
@@ -69,15 +69,15 @@
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (indexPath.section == 0)
-        return 96.;
+        return 96.f;
     else
-        return 44.;
+        return 44.f;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (indexPath.section == 0) {
-        PLTrackGroupTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"trackGroupHeaderCell" forIndexPath:indexPath];
+        PLTrackGroupCell *cell = [tableView dequeueReusableCellWithIdentifier:@"trackGroupHeaderCell" forIndexPath:indexPath];
 
         PLTrackGroupCellModelView *modelView = [[PLTrackGroupCellModelView alloc] initWithTrackGroup:self.trackGroup selected:[self isAllSelected]];
         [cell setupBindings:modelView];
@@ -85,7 +85,7 @@
         return cell;
     }
     else if (indexPath.section == 1) {
-        PLTrackTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"trackCell" forIndexPath:indexPath];
+        PLTrackCell *cell = [tableView dequeueReusableCellWithIdentifier:@"trackCell" forIndexPath:indexPath];
         PLMediaItemTrack *track = _tracks[indexPath.row];
         [PLTrackTableViewCellController configureCell:cell withTrack:track selected:[self isTrackSelected:track]];
         return cell;

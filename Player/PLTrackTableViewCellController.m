@@ -1,18 +1,18 @@
 #import "PLTrackTableViewCellController.h"
-#import "PLTrackTableViewCell.h"
+#import "PLTrackCell.h"
 #import "PLMediaItemTrack.h"
 #import "PLUtils.h"
 
 @implementation PLTrackTableViewCellController
 
-+ (void)configureCell:(PLTrackTableViewCell *)cell withTrack:(PLMediaItemTrack *)track selected:(BOOL)selected
++ (void)configureCell:(PLTrackCell *)cell withTrack:(PLMediaItemTrack *)track selected:(BOOL)selected
 {
     cell.labelTitle.text = track.title;
     cell.labelDuration.text = [PLUtils formatDuration:track.duration];
     [self setSelected:selected forCell:cell];
 }
 
-+ (void)setSelected:(BOOL)selected forCell:(PLTrackTableViewCell *)cell
++ (void)setSelected:(BOOL)selected forCell:(PLTrackCell *)cell
 {
     if (selected) {
         cell.labelTitle.alpha = 0.5;
