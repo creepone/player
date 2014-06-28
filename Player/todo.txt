@@ -1,5 +1,4 @@
-refactor PLTrackTableViewCellController to viewmodel pattern
-refactor PLActivityViewController to signals
+think about the signals usage in the PLActivityView(Controller) again, also maybe refactor to MVVM ?
 
 think about the relationship between table view delegates (e.g. PLPlaylistsSongsDelegate) and MVVM - where do they fit into the picture ?
 

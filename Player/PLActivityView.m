@@ -1,4 +1,4 @@
-#import <RXPromise/RXPromise.h>
+#import <ReactiveCocoa/ReactiveCocoa.h>
 #import "PLActivityView.h"
 #import "PLButton.h"
 #import "PLColors.h"
@@ -12,7 +12,7 @@ static CGFloat kButtonHeight = 52;
 
 @interface PLActivityView() {
     NSArray *_activities, *_appActivities;
-    RXPromise *_selectedActivityPromise;
+    RACSubject *_selectedActivitySubject;
 }
 @end
 
@@ -25,16 +25,16 @@ static CGFloat kButtonHeight = 52;
     if (self) {
         _activities = activities;
         _appActivities = appActivities;
-        _selectedActivityPromise = [[RXPromise alloc] init];
+        _selectedActivitySubject = [RACSubject subject];
 
         [self setupViews];
     }
     return self;
 }
 
-- (RXPromise *)selectedActivity
+- (RACSignal *)selectedActivitySignal
 {
-    return _selectedActivityPromise;
+    return _selectedActivitySubject;
 }
 
 - (void)setupViews
@@ -113,12 +113,13 @@ static CGFloat kButtonHeight = 52;
 
 - (void)tappedCancel:(id)sender
 {
-    [_selectedActivityPromise fulfillWithValue:nil];
+    [_selectedActivitySubject sendCompleted];
 }
 
 - (void)tappedButton:(PLButton *)sender
 {
-    [_selectedActivityPromise fulfillWithValue:sender.pl_userInfo[@"activity"]];
+    [_selectedActivitySubject sendNext:sender.pl_userInfo[@"activity"]];
+    [_selectedActivitySubject sendCompleted];
 }
 
 @end

@@ -27,6 +27,7 @@
 #import "PLFileSharingActivity.h"
 #import "NSObject+PLExtensions.h"
 #import "PLLegacySongTableViewCell.h"
+#import "PLImportActivityViewController.h"
 
 #define kSongRowHeight 75.0
 
@@ -105,12 +106,10 @@
 - (IBAction)addObject:(id)sender
 {    
     if (_singleMode) {
-        _activityViewController = [[PLActivityViewController alloc] initWithActivities:@[[PLDownloadURLActivity new], [PLFileSharingActivity new], [PLDownloadPodcastActivity new]]
-                                                                         appActivities:@[[[PLSelectFromMusicLibraryActivity alloc] initWithPlaylist:_selectedPlaylist], [PLDownloadFromDropboxActivity new], [PLDownloadFromGDriveActivity new], [PLDownloadFromICloudActivity new]]];
-        
-        [_activityViewController presentFromRootViewController].then(^(id result) {
-            return (id)nil;
-        }, nil);
+        _activityViewController = [[PLImportActivityViewController alloc] init];
+        [[_activityViewController presentFromRootViewController] subscribeCompleted:^{
+            DDLogVerbose(@"Add track completed");
+        }];
     }
     else {
         UIAlertView * alert = [[UIAlertView alloc] initWithTitle:@"New playlist" message:@"Enter a name for the new playlist" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:@"Cancel", nil];

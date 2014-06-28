@@ -1,6 +1,5 @@
 #import <JCRBlurView.h>
-#import <RXPromise/RXPromise.h>
-#import <ReactiveCocoa/ReactiveCocoa/RACSignal.h>
+#import <ReactiveCocoa/ReactiveCocoa.h>
 #import "PLActivityViewController.h"
 #import "PLActivityView.h"
 #import "PLActivity.h"
@@ -12,7 +11,8 @@
     NSLayoutConstraint *_constraintActivityHidden;
     NSLayoutConstraint *_constraintActivityShown;
 
-    RXPromise *_completionPromise;
+    BOOL _dismissed;
+    RACSubject *_completionSubject;
 }
 
 @property (strong, nonatomic) UIView *view;
@@ -46,11 +46,12 @@
         UISwipeGestureRecognizer *swipeRecognizer = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(activitiesSwipe:)];
         swipeRecognizer.direction = UISwipeGestureRecognizerDirectionDown;
         [_activityView addGestureRecognizer:swipeRecognizer];
-        
-        _activityView.selectedActivity.thenOnMain(^(id<PLActivity> activity) {
+
+        [_activityView.selectedActivitySignal subscribeNext:^(id<PLActivity> activity) {
             [self dismiss:activity];
-            return (id)nil;
-        }, nil);
+        } completed:^{
+            [self dismiss:nil];
+        }];
         
         [self addViewsConstraints];
     }
@@ -69,6 +70,10 @@
 
 - (void)dismiss:(id<PLActivity>)activity
 {
+    if (_dismissed)
+        return;
+    _dismissed = YES;
+
     [self.view removeConstraint:_constraintActivityShown];
     [self.view addConstraint:_constraintActivityHidden];
     
@@ -86,23 +91,23 @@
         
         if (activity) {
             [[activity performActivity] subscribeError:[PLErrorManager logErrorVoidBlock] completed:^{
-                [_completionPromise resolveWithResult:nil];
+                [_completionSubject sendCompleted];
             }];
         }
         else
-            [_completionPromise resolveWithResult:nil];
+            [_completionSubject sendCompleted];
     }];
 }
 
-- (RXPromise *)presentFromRootViewController
+- (RACSignal *)presentFromRootViewController
 {
     UIViewController *rootViewController = [UIApplication sharedApplication].delegate.window.rootViewController;
     return [self presentFromViewController:rootViewController];
 }
 
-- (RXPromise *)presentFromViewController:(UIViewController *)controller
+- (RACSignal *)presentFromViewController:(UIViewController *)controller
 {
-    _completionPromise = [[RXPromise alloc] init];
+    _completionSubject = [RACSubject subject];
 
     [controller.view addSubview:self.view];
     [self addSuperviewConstraints];
@@ -119,7 +124,7 @@
         [self.view layoutIfNeeded];
     }];
 
-    return _completionPromise;
+    return _completionSubject;
 }
 
 

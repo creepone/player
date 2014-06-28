@@ -3,12 +3,12 @@
 #import "PLMusicLibraryViewController.h"
 #import "PLTrackGroupCell.h"
 #import "PLTrackCell.h"
-#import "PLTrackTableViewCellController.h"
 #import "PLMediaItemTrackGroup.h"
 #import "PLMediaItemTrack.h"
 #import "NSArray+PLExtensions.h"
 #import "PLTableViewProgress.h"
 #import "PLTrackGroupCellModelView.h"
+#import "PLTrackCellModelView.h"
 
 @interface PLTracksViewController () {
     NSMutableSet *_selection;
@@ -87,7 +87,10 @@
     else if (indexPath.section == 1) {
         PLTrackCell *cell = [tableView dequeueReusableCellWithIdentifier:@"trackCell" forIndexPath:indexPath];
         PLMediaItemTrack *track = _tracks[indexPath.row];
-        [PLTrackTableViewCellController configureCell:cell withTrack:track selected:[self isTrackSelected:track]];
+
+        PLTrackCellModelView *modelView = [[PLTrackCellModelView alloc] initWithTrack:track selected:[self isTrackSelected:track]];
+        [cell setupBindings:modelView];
+
         return cell;
     }
 

@@ -1,4 +1,4 @@
-#import <RXPromise/RXPromise.h>
+#import <ReactiveCocoa/ReactiveCocoa.h>
 #import "PLMainViewController.h"
 #import "PLMainUI.h"
 #import "PLPlaylistSongsDelegate.h"
@@ -6,7 +6,7 @@
 #import "PLImportActivityViewController.h"
 
 @interface PLMainViewController () {
-    PLPlaylistSongsDelegate *_dataSource;
+    PLPlaylistSongsDelegate *_delegate;
     PLImportActivityViewController *_activityViewController;
 }
 
@@ -20,7 +20,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    _dataSource = [[PLPlaylistSongsDelegate alloc] initWithTableView:self.tableView];
+    _delegate = [[PLPlaylistSongsDelegate alloc] initWithTableView:self.tableView];
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -37,10 +37,10 @@
 - (IBAction)tappedAdd:(id)sender
 {
     _activityViewController = [[PLImportActivityViewController alloc] init];
-    [_activityViewController presentFromRootViewController].then(^(id result) {
-        DDLogVerbose(@"completed activity");
-        return (id)nil;
-    }, nil);
+    [[_activityViewController presentFromRootViewController] subscribeCompleted:^{
+        DDLogVerbose(@"Completed import activity.");
+        _activityViewController = nil;
+    }];
 }
 
 @end

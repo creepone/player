@@ -1,6 +1,6 @@
 #import <UIKit/UIKit.h>
 
-@class RXPromise;
+@class RACSignal;
 
 @interface PLActivityViewController : NSObject
 
@@ -12,14 +12,14 @@
 
 /**
 * Presents this view controller under the view of the application's root view controller.
-* Delivers a promise that will be resolved as soon as it has performed all the work and was dismissed.
+* Delivers a signal that will complete as soon as it has performed all the work and was dismissed.
 */
-- (RXPromise *)presentFromRootViewController;
+- (RACSignal *)presentFromRootViewController;
 
 /**
 * Presents this view controller under the view of the given view controller.
-* Delivers a promise that will be resolved as soon as it has performed all the work and was dismissed.
+* Delivers a signal that will complete as soon as it has performed all the work and was dismissed.
 */
-- (RXPromise *)presentFromViewController:(UIViewController *)controller;
+- (RACSignal *)presentFromViewController:(UIViewController *)controller;
 
 @end

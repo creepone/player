@@ -1,6 +1,6 @@
 #import "JCRBlurView.h"
 
-@class RXPromise;
+@class RACSignal;
 
 @interface PLActivityView : JCRBlurView
 
@@ -11,9 +11,9 @@
                      appActivities:(NSArray *)appActivities;
 
 /**
-* Once an activity (@see PLActivity) is selected in this view, the given promise will be resolved with it.
-* If the view is dismissed without selecting an activity, the promise will resolve to nil.
+* Once an activity (@see PLActivity) is selected in this view, the given signal will deliver it and complete.
+* If the view is dismissed without selecting an activity, the signal will simply complete.
 */
-- (RXPromise *)selectedActivity;
+- (RACSignal *)selectedActivitySignal;
 
 @end

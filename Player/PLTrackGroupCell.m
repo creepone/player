@@ -6,6 +6,13 @@
     PLTrackGroupCellModelView *_modelView;
 }
 
+@property (strong, nonatomic) IBOutlet UILabel *labelTitle;
+@property (strong, nonatomic) IBOutlet UILabel *labelArtist;
+@property (strong, nonatomic) IBOutlet UILabel *labelInfo;
+
+@property (strong, nonatomic) IBOutlet UIImageView *imageViewAddState;
+@property (strong, nonatomic) IBOutlet UIImageView *imageViewArtwork;
+
 @end
 
 @implementation PLTrackGroupCell
