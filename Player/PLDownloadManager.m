@@ -110,14 +110,16 @@ NSString * const PLBackgroundSessionIdentifier = @"at.iosapps.Player.BackgroundS
         [tasks removeObjectForKey:trackId];
         
         PLTrack *track = [[PLDataAccess sharedDataAccess] trackWithObjectID:trackId];
+        if (track == nil)
+            return nil;
         
         return [[PLFileImport moveToDocumentsFolder:location underFileName:[track.downloadURL lastPathComponent]]
         flattenMap:^RACStream *(NSURL *fileURL) {
             PLTrack *track = [[PLDataAccess sharedDataAccess] trackWithObjectID:trackId];
-            track.downloadStatus = PLTrackDownloadStatusDone;
             track.fileURL = [fileURL absoluteString];
             [track loadMetadataFromAsset];
-            
+            track.downloadStatus = PLTrackDownloadStatusDone;
+
             return [[[PLDataAccess sharedDataAccess] saveChangesSignal] doCompleted:^{
                 DDLogVerbose(@"Finished downloading track %@", track.title);
                 [taskInfo.progressSubject sendCompleted];
@@ -134,7 +136,7 @@ NSString * const PLBackgroundSessionIdentifier = @"at.iosapps.Player.BackgroundS
         return;
 
     NSNumber *progress = @( (double)totalBytesWritten / (double)totalBytesExpectedToWrite );
-    NSString *trackId = downloadTask.description;
+    NSString *trackId = downloadTask.taskDescription;
 
     [[self taskInfoWithId:trackId] subscribeNext:^(PLTaskInfo *taskInfo) {
         [taskInfo.progressSubject sendNext:progress];
@@ -152,7 +154,10 @@ NSString * const PLBackgroundSessionIdentifier = @"at.iosapps.Player.BackgroundS
         [tasks removeObjectForKey:trackId];
 
         PLTrack *track = [[PLDataAccess sharedDataAccess] trackWithObjectID:trackId];
-        track.downloadStatus = PLTrackDownloadStatusError;
+
+        BOOL wasCancelled = [error.domain isEqualToString:NSURLErrorDomain] && error.code == -999;
+        track.downloadStatus = wasCancelled ? PLTrackDownloadStatusIdle : PLTrackDownloadStatusError;
+        
         return [[PLDataAccess sharedDataAccess] saveChangesSignal];
     }];
 
@@ -178,21 +183,21 @@ NSString * const PLBackgroundSessionIdentifier = @"at.iosapps.Player.BackgroundS
 
 - (RACSignal *)enqueueDownloadOfTrack:(PLTrack *)track
 {
-    NSURL *downloadURL = [NSURL URLWithString:track.downloadURL];
+    NSURL *downloadURL = [NSURL URLWithString:track.downloadURL];    
     NSString *trackId = [[track.objectID URIRepresentation] absoluteString];
 
     return [[self tasksSignal] flattenMap:^RACStream *(NSMutableDictionary *tasks) {
 
+        NSURLSessionDownloadTask *downloadTask = [_session downloadTaskWithURL:downloadURL];
+        downloadTask.taskDescription = trackId;
+        [downloadTask resume];
+
+        tasks[trackId] = [PLTaskInfo infoForTask:downloadTask];
+
         PLTrack *track = [[PLDataAccess sharedDataAccess] trackWithObjectID:trackId];
         track.downloadStatus = PLTrackDownloadStatusDownloading;
 
-        return [[[PLDataAccess sharedDataAccess] saveChangesSignal] doCompleted:^{
-            NSURLSessionDownloadTask *downloadTask = [_session downloadTaskWithURL:downloadURL];
-            downloadTask.taskDescription = trackId;
-            [downloadTask resume];
-
-            tasks[trackId] = [PLTaskInfo infoForTask:downloadTask];
-        }];
+        return [[PLDataAccess sharedDataAccess] saveChangesSignal];
     }];
 }
 

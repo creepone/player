@@ -6,6 +6,7 @@
 #import "NSString+Extensions.h"
 #import "PLImageCache.h"
 #import "PLErrorManager.h"
+#import "PLDownloadManager.h"
 
 @interface PLTrack()
 
@@ -61,6 +62,10 @@
         [[NSFileManager defaultManager] removeItemAtURL:fileURL error:&error];
         if (error)
             [PLErrorManager logError:error];
+    }
+
+    if (self.downloadURL && self.downloadStatus == PLTrackDownloadStatusDownloading) {
+        [[PLDownloadManager sharedManager] cancelDownloadOfTrack:self];
     }
 
     [self.managedObjectContext deleteObject:self];

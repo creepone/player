@@ -30,7 +30,7 @@ extern NSString * const PLBackgroundSessionIdentifier;
 /**
  Returns a signal that delivers the progress values (float between 0. and 1.) of the task that is downloading
  the given track and completes when the track has been downloaded.
- If no tasks exists that is currently downloading the given tracks, completes immediately.
+ If no tasks exists that is currently downloading the given track, completes immediately.
  */
 - (RACSignal *)progressSignalForTrack:(PLTrack *)track;
 

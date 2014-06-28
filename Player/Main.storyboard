@@ -49,9 +49,12 @@
                                             <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fzu-VJ-lFb">
+                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fzu-VJ-lFb" customClass="UIButton">
                                             <rect key="frame" x="287" y="17" width="25" height="25"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <accessibility key="accessibilityConfiguration">
+                                                <accessibilityTraits key="traits" none="YES" button="YES"/>
+                                            </accessibility>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="25" id="PaV-LS-uXN"/>
                                                 <constraint firstAttribute="width" constant="25" id="b17-Nv-d3e"/>
@@ -100,12 +103,12 @@
                                     </constraints>
                                 </tableViewCellContentView>
                                 <connections>
+                                    <outlet property="buttonPlaceholder" destination="fzu-VJ-lFb" id="OJ4-Ae-oKV"/>
                                     <outlet property="constraintRightViewPlaceholder" destination="I3a-9W-ezC" id="yT2-q4-0fN"/>
                                     <outlet property="imageViewArtwork" destination="2o2-1v-GKJ" id="zMn-tg-fmJ"/>
                                     <outlet property="labelArtist" destination="vEr-oH-2uA" id="GJI-Om-vT7"/>
                                     <outlet property="labelDuration" destination="mGG-B8-CDb" id="KKF-EC-Jlr"/>
                                     <outlet property="labelTitle" destination="aVd-kd-1QY" id="KK8-gN-Dmy"/>
-                                    <outlet property="viewPlaceholder" destination="fzu-VJ-lFb" id="Hke-hP-Nbk"/>
                                     <outlet property="viewProgress" destination="qoX-qe-tIb" id="xbw-OB-WTp"/>
                                 </connections>
                             </tableViewCell>

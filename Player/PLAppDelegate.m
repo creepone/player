@@ -43,7 +43,7 @@ static void onUncaughtException(NSException* exception);
     
     [self initializeData].thenOnMain(^(id result){
 
-        [PLMainUI showLegacy];
+        [PLMainUI showNew];
         [[UIApplication sharedApplication] beginReceivingRemoteControlEvents];
 
         NSURL *fileToImport = launchOptions[UIApplicationLaunchOptionsURLKey];

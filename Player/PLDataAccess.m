@@ -157,7 +157,7 @@
     if (managedObjectID == nil)
         return nil;
 
-    return (PLTrack *)[self.context objectWithID:managedObjectID];
+    return (PLTrack *)[self.context existingObjectWithID:managedObjectID error:nil];
 }
 
 - (PLTrack *)nextTrackToMirror

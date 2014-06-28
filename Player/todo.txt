@@ -1,6 +1,4 @@
-implement adding download tracks as placeholders
-download routine 
-    -> given a track creates the tasks for downloading its URL, stores its persistent identifier so that when the download is complete we can update it (or delete the file if the track no longer exists)
+run the accessory command on the whole row selection if defined ?
 
 later:
 refactor PLTrackTableViewCellController to viewmodel pattern

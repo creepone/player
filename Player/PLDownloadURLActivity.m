@@ -41,13 +41,15 @@
         PLDownloadManager *downloadManager = [PLDownloadManager sharedManager];
 
         PLTrack *track = [dataAccess trackWithDownloadURL:downloadURL];
-
+        BOOL wasTrackInserted = [track isInserted];
+        
         PLPlaylist *playlist = [dataAccess selectedPlaylist];
         if (playlist)
             [playlist addTrack:track];
 
         [[[dataAccess saveChangesSignal] then:^RACSignal *{
-            return [downloadManager enqueueDownloadOfTrack:track];
+            // do not enqueue the download if the track already existed
+            return wasTrackInserted ? [downloadManager enqueueDownloadOfTrack:track] : nil;
         }]
         subscribeCompleted:^{
             [promise resolveWithResult:nil];
