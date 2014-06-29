@@ -7,7 +7,8 @@
 - (NSUInteger)songsCount;
 - (PLPlaylistSongCellViewModel *)songViewModelAt:(NSIndexPath *)indexPath;
 - (void)selectSongAt:(NSIndexPath *)indexPath;
-- (void)removeSongAt:(NSIndexPath *)indexPath;
+- (RACSignal *)moveSongFrom:(NSIndexPath *)fromIndexPath to:(NSIndexPath *)toIndexPath;
+- (RACSignal *)removeSongAt:(NSIndexPath *)indexPath;
 
 /**
 * Returns a signal that delivers an NSArray of PLFetchedResultsUpdate objects each time

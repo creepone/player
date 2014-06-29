@@ -55,7 +55,7 @@
         [player play];
 }
 
-- (void)removeSongAt:(NSIndexPath *)indexPath
+- (RACSignal *)removeSongAt:(NSIndexPath *)indexPath
 {
     PLPlaylistSong *song = [_fetchedResultsController objectAtIndexPath:indexPath];
     PLPlayer *player = [PLPlayer sharedPlayer];
@@ -64,11 +64,31 @@
         [player stop];
 
     [song.playlist removeSong:song];
+    
+    return [[PLDataAccess sharedDataAccess] saveChangesSignal];
+}
 
-    NSError *error;
-    [[PLDataAccess sharedDataAccess] saveChanges:&error];
-    if (error)
-        [PLErrorManager logError:error];
+- (RACSignal *)moveSongFrom:(NSIndexPath *)fromIndexPath to:(NSIndexPath *)toIndexPath
+{    
+    PLDataAccess *dataAccess = [PLDataAccess sharedDataAccess];
+    PLPlaylist *selectedPlaylist = [dataAccess selectedPlaylist];
+    
+    NSInteger indexFrom = [fromIndexPath row];
+    NSInteger indexTo = [toIndexPath row];
+    
+    if(indexFrom != indexTo) {
+        NSMutableArray *allSongs = [[_fetchedResultsController fetchedObjects] mutableCopy];
+        
+        PLPlaylistSong *songToMove = [allSongs objectAtIndex:indexFrom];
+        [allSongs removeObjectAtIndex:indexFrom];
+        [allSongs insertObject:songToMove atIndex:indexTo];
+        
+        [selectedPlaylist renumberSongsOrder:allSongs];
+        
+        return [dataAccess saveChangesSignal];
+    }
+    
+    return [RACSignal empty];
 }
 
 - (RACSignal *)updatesSignal

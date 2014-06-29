@@ -4,7 +4,7 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3733"/>
     </dependencies>
     <scenes>
-        <!--Main View Controller - Baladeur-->
+        <!--Playlist Songs View Controller - Baladeur-->
         <scene sceneID="dGa-l4-eo4">
             <objects>
                 <tableViewController id="bzV-l1-pgC" customClass="PLPlaylistSongsViewController" sceneMemberID="viewController">

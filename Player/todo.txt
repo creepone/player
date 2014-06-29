@@ -1,5 +1,3 @@
-implement reordering of the tracks on the main screen (+ Edit button that triggers it)
-
 long term:
 refactor all the promise usages to RAC, remove dependency on RXPromise and its extensions
 refactor the "Activity View" and "Music Library Import" to use MVVM

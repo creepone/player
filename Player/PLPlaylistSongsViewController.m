@@ -3,9 +3,12 @@
 #import "PLPlaylistSongsViewModel.h"
 #import "PLPlaylistSongCell.h"
 #import "PLFetchedResultsUpdate.h"
+#import "PLErrorManager.h"
+#import "UITableView+PLExtensions.h"
 
 @interface PLPlaylistSongsViewController () {
     PLPlaylistSongsViewModel *_viewModel;
+    BOOL _ignoreUpdates;
 }
 
 - (IBAction)tappedSwitch:(id)sender;
@@ -18,6 +21,8 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    self.navigationItem.rightBarButtonItem = self.editButtonItem;
+    
     [self setupBindings:[PLPlaylistSongsViewModel new]];
 }
 
@@ -31,7 +36,13 @@
 - (void)setupBindings:(PLPlaylistSongsViewModel *)viewModel
 {
     _viewModel = viewModel;
-    [self rac_liftSelector:@selector(applyUpdates:) withSignals:[_viewModel.updatesSignal takeUntil:self.rac_willDeallocSignal], nil];
+
+    @weakify(self);
+    [_viewModel.updatesSignal subscribeNext:^(NSArray *updates) {
+        @strongify(self);
+        if (self && !self->_ignoreUpdates)
+            [self.tableView pl_applyUpdates:updates];
+    }];
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
@@ -51,7 +62,33 @@
 
 - (UITableViewCellEditingStyle)tableView:(UITableView *)tableView editingStyleForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return UITableViewCellEditingStyleDelete;
+    return [tableView isEditing] ? UITableViewCellEditingStyleNone : UITableViewCellEditingStyleDelete;
+}
+
+- (BOOL)tableView:(UITableView *)tableView shouldIndentWhileEditingRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return NO;
+}
+
+- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return YES;
+}
+
+- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath
+{
+    _ignoreUpdates = YES;
+    
+    @weakify(self);
+    [[[_viewModel moveSongFrom:fromIndexPath to:toIndexPath] finally:^{
+        @strongify(self);
+        if (self)
+            self->_ignoreUpdates = NO;
+    }]
+    subscribeError:^(NSError *error) {
+        [PLErrorManager logError:error];
+        // todo: show a TSMessage and reload the table view so that the operation gets undone in the view
+    }];
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
@@ -62,34 +99,8 @@
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (editingStyle == UITableViewCellEditingStyleDelete) {
-        [_viewModel removeSongAt:indexPath];
+        [[_viewModel removeSongAt:indexPath] subscribeError:[PLErrorManager logErrorVoidBlock]];
     }
-}
-
-- (void)applyUpdates:(NSArray *)updates
-{
-    // todo: maybe extract this to a reusable helper method ?
-
-    [self.tableView beginUpdates];
-
-    for (PLFetchedResultsUpdate *update in updates)
-    {
-        switch(update.changeType)
-        {
-            case NSFetchedResultsChangeInsert:
-            {
-                [self.tableView insertRowsAtIndexPaths:@[update.targetIndexPath] withRowAnimation:UITableViewRowAnimationFade];
-                break;
-            }
-            case NSFetchedResultsChangeDelete:
-            {
-                [self.tableView deleteRowsAtIndexPaths:@[update.indexPath] withRowAnimation:UITableViewRowAnimationFade];
-                break;
-            }
-        }
-    }
-
-    [self.tableView endUpdates];
 }
 
 

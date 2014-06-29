@@ -31,6 +31,7 @@
 		696C1ADFA4D617995455F30F /* PLDownloadFromDropboxActivity.m in Sources */ = {isa = PBXBuildFile; fileRef = 696C123B1E65E488D94DD4A8 /* PLDownloadFromDropboxActivity.m */; };
 		696C1B378A7D2749C756064C /* PLMediaItemTrack.m in Sources */ = {isa = PBXBuildFile; fileRef = 696C1EEB72AA7536F82ED55D /* PLMediaItemTrack.m */; };
 		696C1B8D690CECA9499F257E /* PLMediaLibrarySearch.m in Sources */ = {isa = PBXBuildFile; fileRef = 696C1A1B2AD9708890647B5D /* PLMediaLibrarySearch.m */; };
+		696C1BDC652AD70EC4358087 /* UITableView+PLExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 696C1663900DCC34F758B7A1 /* UITableView+PLExtensions.m */; };
 		696C1C17D8D7CEA11E7A5928 /* PLDownloadFromGDriveActivity.m in Sources */ = {isa = PBXBuildFile; fileRef = 696C1D4C6FF0251EBF444798 /* PLDownloadFromGDriveActivity.m */; };
 		696C1C38A95357371CFEE558 /* PLDownloadURLActivity.m in Sources */ = {isa = PBXBuildFile; fileRef = 696C1AD27942A80B8A9896C5 /* PLDownloadURLActivity.m */; };
 		696C1CC618F99813793E6F46 /* PLFileSharingActivity.m in Sources */ = {isa = PBXBuildFile; fileRef = 696C143FEC9667A8B106C5AE /* PLFileSharingActivity.m */; };
@@ -133,6 +134,7 @@
 		696C150BD38DBFE750DEEE04 /* PLBackgroundProcess.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PLBackgroundProcess.m; sourceTree = "<group>"; };
 		696C154AEE9EE86422D272E3 /* PLEntity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PLEntity.h; sourceTree = "<group>"; };
 		696C154DBBACAD9E008A4737 /* PLImportActivityViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PLImportActivityViewController.h; sourceTree = "<group>"; };
+		696C1663900DCC34F758B7A1 /* UITableView+PLExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITableView+PLExtensions.m"; sourceTree = "<group>"; };
 		696C16A4D226E0A5EC204C36 /* PLErrorManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PLErrorManager.h; sourceTree = "<group>"; };
 		696C16B1CAB1C03543A4485C /* PLDownloadPodcastActivity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PLDownloadPodcastActivity.h; sourceTree = "<group>"; };
 		696C17062B46F55CD8C4E0F3 /* PLPlaylistSongsViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PLPlaylistSongsViewModel.m; sourceTree = "<group>"; };
@@ -164,6 +166,7 @@
 		696C1CE67D437458210D2DE2 /* PLButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PLButton.m; sourceTree = "<group>"; };
 		696C1D4C6FF0251EBF444798 /* PLDownloadFromGDriveActivity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PLDownloadFromGDriveActivity.m; sourceTree = "<group>"; };
 		696C1DAFDDBB4DBE1F7CD47C /* PLBackgroundProcess.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PLBackgroundProcess.h; sourceTree = "<group>"; };
+		696C1DB0C3355E2EB3D24D03 /* UITableView+PLExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITableView+PLExtensions.h"; sourceTree = "<group>"; };
 		696C1DCA168EE30B89EDD143 /* PLPlaylistSongsViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PLPlaylistSongsViewModel.h; sourceTree = "<group>"; };
 		696C1DE1EB61A8AB868243D1 /* PLActivityView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PLActivityView.h; sourceTree = "<group>"; };
 		696C1DE33AAD9B681D2E03F9 /* NSObject+PLExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+PLExtensions.m"; sourceTree = "<group>"; };
@@ -319,6 +322,8 @@
 				696C1BC84EFF2E07F8CE0D8D /* PLConstraints.h */,
 				C378CD74194C505A001D0593 /* PLRouter.h */,
 				C378CD75194C505A001D0593 /* PLRouter.m */,
+				696C1663900DCC34F758B7A1 /* UITableView+PLExtensions.m */,
+				696C1DB0C3355E2EB3D24D03 /* UITableView+PLExtensions.h */,
 			);
 			name = Utils;
 			sourceTree = "<group>";
@@ -563,8 +568,8 @@
 			children = (
 				696C12E93800D96F5AFEE66A /* PLPlaylistSongCellViewModel.h */,
 				696C1B64873859724C208B95 /* PLPlaylistSongCellViewModel.m */,
-				696C17062B46F55CD8C4E0F3 /* PLPlaylistSongsViewModel.m */,
 				696C1DCA168EE30B89EDD143 /* PLPlaylistSongsViewModel.h */,
+				696C17062B46F55CD8C4E0F3 /* PLPlaylistSongsViewModel.m */,
 			);
 			name = ViewModel;
 			sourceTree = "<group>";
@@ -1087,6 +1092,7 @@
 				696C103AFE37906F58AE8524 /* PLPlaylistSongsViewModel.m in Sources */,
 				696C1FCAE33C027584502130 /* PLFetchedResultsUpdate.m in Sources */,
 				696C14C3B0C607930E2E9DBD /* PLFetchedResultsControllerDelegate.m in Sources */,
+				696C1BDC652AD70EC4358087 /* UITableView+PLExtensions.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
