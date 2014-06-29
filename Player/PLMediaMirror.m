@@ -50,7 +50,7 @@
 
 - (RACSignal *)nextItem
 {
-    return [[RACSignal createSignal:^RACDisposable *(id <RACSubscriber> subscriber) {
+    return [RACSignal createSignal:^RACDisposable *(id <RACSubscriber> subscriber) {
 
         PLDataAccess *dataAccess = [PLDataAccess sharedDataAccess];
         PLTrack *track = [dataAccess nextTrackToMirror];
@@ -61,8 +61,7 @@
         [subscriber sendCompleted];
 
         return nil;
-
-    }] deliverOn:[RACScheduler mainThreadScheduler]];
+    }];
 }
 
 - (RACSignal *)processItem:(id)item

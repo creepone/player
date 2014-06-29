@@ -1,9 +1,7 @@
-@class RACSignal;
+@class PLMusicLibraryViewModel;
 
 @interface PLMusicLibraryViewController : UITableViewController
 
-@property (nonatomic, strong) NSMutableArray *selection;
-
-- (RACSignal *)doneSignal;
+@property (nonatomic, strong) PLMusicLibraryViewModel *viewModel;
 
 @end

@@ -7,6 +7,7 @@
     BOOL _suspended;
 }
 
+@property (nonatomic, assign) BOOL isRunning;
 @property (nonatomic, retain) RACSignal *progressSignal;
 
 @end
@@ -15,9 +16,10 @@
 
 - (void)ensureRunning
 {
-    // if already running, nothing to do
-    if (self.progressSignal)
+    if (self.isRunning) {
+        DDLogInfo(@"The process %@ already running", NSStringFromClass([self class]));
         return;
+    }
 
     DDLogVerbose(@"Activating the process %@", NSStringFromClass([self class]));
     _suspended = NO;
@@ -26,15 +28,17 @@
         return [self processItem:item];
     }];
 
+    self.isRunning = YES;
+    
     self.progressSignal = [[[[processSignal repeatWhileBlock:^BOOL(NSUInteger count) {
         return count > 0 && !self->_suspended;
     }]
     doCompleted:^{
-        self.progressSignal = nil;
+        self.isRunning = NO;
         DDLogVerbose(@"Completed the process %@", NSStringFromClass([self class]));
     }]
     doError:^(NSError *error){
-        self.progressSignal = nil;
+        self.isRunning = NO;
         [PLErrorManager logError:error];
     }]
     replayLast];

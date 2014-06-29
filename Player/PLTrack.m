@@ -1,5 +1,4 @@
 @import AVFoundation;
-#import <RXPromise/RXPromise.h>
 #import <ReactiveCocoa/ReactiveCocoa.h>
 #import "PLTrack.h"
 #import "PLMediaLibrarySearch.h"

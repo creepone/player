@@ -21,13 +21,13 @@ typedef NS_ENUM(NSInteger, PLTrackGroupType) {
 @property (nonatomic, readonly) NSTimeInterval duration;
 
 /**
-* Delivers a UIImage with the artwork for this group, then completes.
+* Returns a signal that delivers a UIImage with the artwork for this group, then completes.
 */
 - (RACSignal *)artwork;
 
 /**
-* Resolves to an NSArray of the tracks (instances of PLMediaItemTrack) from this group.
+* Returns a signal that delivers an array of all the PLMediaItemTrack-s from this group, then completes.
 */
-- (RXPromise *)tracks;
+- (RACSignal *)tracks;
 
 @end

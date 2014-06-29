@@ -2,7 +2,6 @@
 #import "PLPlaylistSongsViewController.h"
 #import "PLPlaylistSongsViewModel.h"
 #import "PLPlaylistSongCell.h"
-#import "PLFetchedResultsUpdate.h"
 #import "PLErrorManager.h"
 #import "UITableView+PLExtensions.h"
 

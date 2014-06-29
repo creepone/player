@@ -1,4 +1,3 @@
-#import <RXPromise/RXPromise.h>
 #import <ReactiveCocoa/ReactiveCocoa.h>
 #import "PLPlaylistSong.h"
 #import "PLTrack.h"

@@ -8,7 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		696C103AFE37906F58AE8524 /* PLPlaylistSongsViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 696C17062B46F55CD8C4E0F3 /* PLPlaylistSongsViewModel.m */; };
+		696C10A3093038033BA242D1 /* PLTracksViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 696C1EE9C22410FB27CF3DDE /* PLTracksViewModel.m */; };
 		696C12295CFEA1F9814E8AC8 /* PLPlaylistSongCellViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 696C1B64873859724C208B95 /* PLPlaylistSongCellViewModel.m */; };
+		696C12CF6D6221B60CEB7C1F /* PLTrackGroupsViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 696C1BBA1610D9791048F69A /* PLTrackGroupsViewModel.m */; };
 		696C13068CF01B07191595AB /* PLImageCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 696C1239863912CEC9BDB652 /* PLImageCache.m */; };
 		696C13EE5F69A14268974A60 /* PLErrorManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 696C12FAB54495AF46A2A951 /* PLErrorManager.m */; };
 		696C1409FF66555E089505A1 /* NSArray+PLExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 696C133478AB46FE4BED85EF /* NSArray+PLExtensions.m */; };
@@ -35,6 +37,7 @@
 		696C1C17D8D7CEA11E7A5928 /* PLDownloadFromGDriveActivity.m in Sources */ = {isa = PBXBuildFile; fileRef = 696C1D4C6FF0251EBF444798 /* PLDownloadFromGDriveActivity.m */; };
 		696C1C38A95357371CFEE558 /* PLDownloadURLActivity.m in Sources */ = {isa = PBXBuildFile; fileRef = 696C1AD27942A80B8A9896C5 /* PLDownloadURLActivity.m */; };
 		696C1CC618F99813793E6F46 /* PLFileSharingActivity.m in Sources */ = {isa = PBXBuildFile; fileRef = 696C143FEC9667A8B106C5AE /* PLFileSharingActivity.m */; };
+		696C1D76AA5FA9B96D261F18 /* PLMusicLibraryViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 696C1B3795A7D52E48E2FC52 /* PLMusicLibraryViewModel.m */; };
 		696C1DF8E8A5D182F7F07621 /* PLBackgroundProcess.m in Sources */ = {isa = PBXBuildFile; fileRef = 696C150BD38DBFE750DEEE04 /* PLBackgroundProcess.m */; };
 		696C1E705DB79F2E2990D98A /* UIView+PLExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 696C1AEEA078C2AEA6CA16D1 /* UIView+PLExtensions.m */; };
 		696C1F1FF839CDC5DB90DE97 /* PLButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 696C1CE67D437458210D2DE2 /* PLButton.m */; };
@@ -93,7 +96,7 @@
 		C3CC18B8191E43300026E681 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = C3CC18BA191E43300026E681 /* Localizable.strings */; };
 		C3CC18BF191F60EC0026E681 /* MusicLibrary.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C3CC18BE191F60EC0026E681 /* MusicLibrary.storyboard */; };
 		C3CC18C4191F65350026E681 /* PLMusicLibraryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C3CC18C3191F65350026E681 /* PLMusicLibraryViewController.m */; };
-		C3CC18C7191F73790026E681 /* PLTrackGroupViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C3CC18C6191F73790026E681 /* PLTrackGroupViewController.m */; };
+		C3CC18C7191F73790026E681 /* PLTrackGroupsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C3CC18C6191F73790026E681 /* PLTrackGroupsViewController.m */; };
 		C3CC18CA191F7B850026E681 /* PLTrackGroupCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C3CC18C9191F7B850026E681 /* PLTrackGroupCell.m */; };
 		C3CC18CD191FABD30026E681 /* PLTracksViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C3CC18CC191FABD30026E681 /* PLTracksViewController.m */; };
 		C3CC18D3191FC5990026E681 /* PLTrackCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C3CC18D2191FC5990026E681 /* PLTrackCell.m */; };
@@ -108,6 +111,7 @@
 /* Begin PBXFileReference section */
 		2F7BD0A371C24EA3853F30EA /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		696C1046C87A0138396351B9 /* PLActivityView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PLActivityView.m; sourceTree = "<group>"; };
+		696C1066234718178E912F08 /* PLTrackGroupsViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PLTrackGroupsViewModel.h; sourceTree = "<group>"; };
 		696C107644FDE533B6B072AE /* PLDownloadURLActivity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PLDownloadURLActivity.h; sourceTree = "<group>"; };
 		696C1086BA744B3A005D70E6 /* PLBackgroundProcess+Protected.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "PLBackgroundProcess+Protected.h"; sourceTree = "<group>"; };
 		696C1208975D1BCA891A80BA /* PLColors.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PLColors.h; sourceTree = "<group>"; };
@@ -148,6 +152,8 @@
 		696C1931BF56608A412ACF33 /* NSString+PLExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+PLExtensions.h"; sourceTree = "<group>"; };
 		696C19563B0CAE9008642F75 /* PLMediaItemTrackGroup.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PLMediaItemTrackGroup.h; sourceTree = "<group>"; };
 		696C1960628953871BEA02C3 /* UIView+PLExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+PLExtensions.h"; sourceTree = "<group>"; };
+		696C1993C79E42E191701DC3 /* PLTracksViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PLTracksViewModel.h; sourceTree = "<group>"; };
+		696C199AF85F9A8C5406280B /* PLMusicLibraryViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PLMusicLibraryViewModel.h; sourceTree = "<group>"; };
 		696C19A6848C7EB377AF58C5 /* PLLogging.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PLLogging.m; sourceTree = "<group>"; };
 		696C19B02B8C2610D58EAA58 /* PLCachedArtwork.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PLCachedArtwork.h; sourceTree = "<group>"; };
 		696C1A1B2AD9708890647B5D /* PLMediaLibrarySearch.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PLMediaLibrarySearch.m; sourceTree = "<group>"; };
@@ -158,9 +164,11 @@
 		696C1AD27942A80B8A9896C5 /* PLDownloadURLActivity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PLDownloadURLActivity.m; sourceTree = "<group>"; };
 		696C1ADA62259499028F9F4B /* PLUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PLUtils.h; sourceTree = "<group>"; };
 		696C1AEEA078C2AEA6CA16D1 /* UIView+PLExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+PLExtensions.m"; sourceTree = "<group>"; };
+		696C1B3795A7D52E48E2FC52 /* PLMusicLibraryViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PLMusicLibraryViewModel.m; sourceTree = "<group>"; };
 		696C1B64873859724C208B95 /* PLPlaylistSongCellViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PLPlaylistSongCellViewModel.m; sourceTree = "<group>"; };
 		696C1B78075493A42466C4A8 /* NSString+PLExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+PLExtensions.m"; sourceTree = "<group>"; };
 		696C1B7CB3806FA7AF21905E /* PLFetchedResultsUpdate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PLFetchedResultsUpdate.m; sourceTree = "<group>"; };
+		696C1BBA1610D9791048F69A /* PLTrackGroupsViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PLTrackGroupsViewModel.m; sourceTree = "<group>"; };
 		696C1BC84EFF2E07F8CE0D8D /* PLConstraints.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PLConstraints.h; sourceTree = "<group>"; };
 		696C1C1CFEA94557045A202E /* PLActivityViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PLActivityViewController.m; sourceTree = "<group>"; };
 		696C1CE67D437458210D2DE2 /* PLButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PLButton.m; sourceTree = "<group>"; };
@@ -177,6 +185,7 @@
 		696C1E7C20B9B213E7843DEF /* PLFileSharingActivity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PLFileSharingActivity.h; sourceTree = "<group>"; };
 		696C1EADB9F92F456BBFD2EE /* NSObject+PLExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+PLExtensions.h"; sourceTree = "<group>"; };
 		696C1EE652F22078B91B6C56 /* PLDownloadFromICloudActivity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PLDownloadFromICloudActivity.h; sourceTree = "<group>"; };
+		696C1EE9C22410FB27CF3DDE /* PLTracksViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PLTracksViewModel.m; sourceTree = "<group>"; };
 		696C1EEB72AA7536F82ED55D /* PLMediaItemTrack.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PLMediaItemTrack.m; sourceTree = "<group>"; };
 		696C1F2107FF194F73B00CA7 /* PLMediaItemTrackGroup.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PLMediaItemTrackGroup.m; sourceTree = "<group>"; };
 		696C1F36F1EB35D1A794B4FE /* PLColors.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PLColors.m; sourceTree = "<group>"; };
@@ -263,8 +272,8 @@
 		C3CC18BE191F60EC0026E681 /* MusicLibrary.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = MusicLibrary.storyboard; sourceTree = "<group>"; };
 		C3CC18C2191F65350026E681 /* PLMusicLibraryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PLMusicLibraryViewController.h; sourceTree = "<group>"; };
 		C3CC18C3191F65350026E681 /* PLMusicLibraryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PLMusicLibraryViewController.m; sourceTree = "<group>"; };
-		C3CC18C5191F73790026E681 /* PLTrackGroupViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PLTrackGroupViewController.h; sourceTree = "<group>"; };
-		C3CC18C6191F73790026E681 /* PLTrackGroupViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PLTrackGroupViewController.m; sourceTree = "<group>"; };
+		C3CC18C5191F73790026E681 /* PLTrackGroupsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PLTrackGroupsViewController.h; sourceTree = "<group>"; };
+		C3CC18C6191F73790026E681 /* PLTrackGroupsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PLTrackGroupsViewController.m; sourceTree = "<group>"; };
 		C3CC18C8191F7B850026E681 /* PLTrackGroupCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PLTrackGroupCell.h; sourceTree = "<group>"; };
 		C3CC18C9191F7B850026E681 /* PLTrackGroupCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PLTrackGroupCell.m; sourceTree = "<group>"; };
 		C3CC18CB191FABD30026E681 /* PLTracksViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PLTracksViewController.h; sourceTree = "<group>"; };
@@ -501,8 +510,8 @@
 			children = (
 				C3CC18C2191F65350026E681 /* PLMusicLibraryViewController.h */,
 				C3CC18C3191F65350026E681 /* PLMusicLibraryViewController.m */,
-				C3CC18C5191F73790026E681 /* PLTrackGroupViewController.h */,
-				C3CC18C6191F73790026E681 /* PLTrackGroupViewController.m */,
+				C3CC18C5191F73790026E681 /* PLTrackGroupsViewController.h */,
+				C3CC18C6191F73790026E681 /* PLTrackGroupsViewController.m */,
 				C3CC18CB191FABD30026E681 /* PLTracksViewController.h */,
 				C3CC18CC191FABD30026E681 /* PLTracksViewController.m */,
 			);
@@ -577,6 +586,12 @@
 		C378CDCC195F0849001D0593 /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
+				696C199AF85F9A8C5406280B /* PLMusicLibraryViewModel.h */,
+				696C1B3795A7D52E48E2FC52 /* PLMusicLibraryViewModel.m */,
+				696C1066234718178E912F08 /* PLTrackGroupsViewModel.h */,
+				696C1BBA1610D9791048F69A /* PLTrackGroupsViewModel.m */,
+				696C1993C79E42E191701DC3 /* PLTracksViewModel.h */,
+				696C1EE9C22410FB27CF3DDE /* PLTracksViewModel.m */,
 				696C1DFF03B12814A6C12B05 /* PLTrackGroupCellViewModel.h */,
 				696C173E18677F6CD43519DF /* PLTrackGroupCellViewModel.m */,
 				C378CDD4195F0EF4001D0593 /* PLTrackCellViewModel.h */,
@@ -1021,7 +1036,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C3CC18C7191F73790026E681 /* PLTrackGroupViewController.m in Sources */,
+				C3CC18C7191F73790026E681 /* PLTrackGroupsViewController.m in Sources */,
 				C3BC5A381656B772002DA837 /* main.m in Sources */,
 				C3BC5A3C1656B772002DA837 /* PLAppDelegate.m in Sources */,
 				C3A4D67F19433F1C0060B704 /* PLTableViewProgress.m in Sources */,
@@ -1093,6 +1108,9 @@
 				696C1FCAE33C027584502130 /* PLFetchedResultsUpdate.m in Sources */,
 				696C14C3B0C607930E2E9DBD /* PLFetchedResultsControllerDelegate.m in Sources */,
 				696C1BDC652AD70EC4358087 /* UITableView+PLExtensions.m in Sources */,
+				696C12CF6D6221B60CEB7C1F /* PLTrackGroupsViewModel.m in Sources */,
+				696C10A3093038033BA242D1 /* PLTracksViewModel.m in Sources */,
+				696C1D76AA5FA9B96D261F18 /* PLMusicLibraryViewModel.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

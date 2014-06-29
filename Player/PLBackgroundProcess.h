@@ -8,9 +8,6 @@
 * Signal that sends a PLBackgroundProcessProgress object for each processed item when it starts processing it.
 * Completes when there's no more work to be done or has been suspended. Replayed so that the last item
 * (the one currently being processed), if any, is always sent.
-*
-* @remarks
-* If the process is currently not running, progressSignal is nil.
 */
 @property (nonatomic, retain, readonly) RACSignal *progressSignal;
 

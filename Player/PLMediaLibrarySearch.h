@@ -1,6 +1,6 @@
 #import <MediaPlayer/MediaPlayer.h>
 
-@class RXPromise;
+@class RACSignal;
 
 @interface PLMediaLibrarySearch : NSObject
 
@@ -10,38 +10,38 @@
 + (MPMediaItem *)mediaItemWithPersistentId:(NSNumber *)persistentId;
 
 /**
-* Resolves to an array of PLMediaItemTrack-s that are the result of the given media query.
+* Returns a signal that delivers an array of PLMediaItemTrack-s containing the results of the given media query.
 */
-+ (RXPromise *)tracksForMediaQuery:(MPMediaQuery *)mediaQuery;
++ (RACSignal *)tracksForMediaQuery:(MPMediaQuery *)mediaQuery;
 
 /**
-* Resolves to an array of all the PLMediaItemTrack-s in the given collection.
+* Returns a signal that delivers an array of PLMediaItemTrack-s containing the tracks from the given collection.
 */
-+ (RXPromise *)tracksForCollection:(MPMediaItemCollection *)collection;
++ (RACSignal *)tracksForCollection:(MPMediaItemCollection *)collection;
 
 /**
-* Resolves to an array of PLMediaItemTrackGroup-s corresponding to each audiobook found in the media library.
+* Returns a signal that delivers an array of PLMediaItemTrackGroup-s containing all the audiobooks found in the media library, then completes.
 */
-+ (RXPromise *)allAudiobooks;
++ (RACSignal *)allAudiobooks;
 
 /**
- * Resolves to an array of PLMediaItemTrackGroup-s corresponding to each album found in the media library.
+* Returns a signal that delivers an array of PLMediaItemTrackGroup-s containing all the albums found in the media library, then completes.
  */
-+ (RXPromise *)allAlbums;
++ (RACSignal *)allAlbums;
 
 /**
- * Resolves to an array of PLMediaItemTrackGroup-s corresponding to each playlist found in the media library.
+* Returns a signal that delivers an array of PLMediaItemTrackGroup-s containing all the playlists found in the media library, then completes.
  */
-+ (RXPromise *)allPlaylists;
++ (RACSignal *)allPlaylists;
 
 /**
- * Resolves to an array of PLMediaItemTrackGroup-s corresponding to each podcast found in the media library.
- */
-+ (RXPromise *)allPodcasts;
+* Returns a signal that delivers an array of PLMediaItemTrackGroup-s containing all the podcasts found in the media library, then completes.
+*/
++ (RACSignal *)allPodcasts;
 
 /**
- * Resolves to an array of PLMediaItemTrackGroup-s corresponding to each iTunes U album found in the media library.
+* Returns a signal that delivers an array of PLMediaItemTrackGroup-s containing all the iTunes U albums found in the media library, then completes.
  */
-+ (RXPromise *)allITunesU;
++ (RACSignal *)allITunesU;
 
 @end

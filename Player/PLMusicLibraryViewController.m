@@ -1,6 +1,7 @@
-#import <ReactiveCocoa/ReactiveCocoa.h>
 #import "PLMusicLibraryViewController.h"
-#import "PLTrackGroupViewController.h"
+#import "PLTrackGroupsViewController.h"
+#import "PLMusicLibraryViewModel.h"
+#import "PLTrackGroupsViewModel.h"
 
 @interface PLMusicLibraryViewController ()
 
@@ -13,44 +14,36 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    self.selection = [NSMutableArray array];
-}
-
-- (RACSignal *)doneSignal
-{
-    return [[[self rac_signalForSelector:@selector(dismiss:)] take:1] map:^id(id _) {
-        return self.selection;
-    }];
 }
 
 - (IBAction)dismiss:(UIStoryboardSegue *)segue
 {
+    self.viewModel.dismissed = YES;
     [self.presentingViewController dismissViewControllerAnimated:YES completion:nil];
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
     if ([segue.identifier isEqualToString:@"audiobooks"]) {
-        PLTrackGroupViewController *trackGroupVc = [segue destinationViewController];
-        trackGroupVc.trackGroupType = PLTrackGroupTypeAudiobooks;
+        PLTrackGroupsViewController *trackGroupVc = [segue destinationViewController];
+        trackGroupVc.viewModel = [self.viewModel viewModelForTrackGroupType:PLTrackGroupTypeAudiobooks];
     }
     else if ([segue.identifier isEqualToString:@"albums"]) {
-        PLTrackGroupViewController *trackGroupVc = [segue destinationViewController];
-        trackGroupVc.trackGroupType = PLTrackGroupTypeAlbums;
+        PLTrackGroupsViewController *trackGroupVc = [segue destinationViewController];
+        trackGroupVc.viewModel = [self.viewModel viewModelForTrackGroupType:PLTrackGroupTypeAlbums];
     }
     else if ([segue.identifier isEqualToString:@"playlists"]) {
-        PLTrackGroupViewController *trackGroupVc = [segue destinationViewController];
-        trackGroupVc.trackGroupType = PLTrackGroupTypePlaylists;
+        PLTrackGroupsViewController *trackGroupVc = [segue destinationViewController];
+        trackGroupVc.viewModel = [self.viewModel viewModelForTrackGroupType:PLTrackGroupTypePlaylists];
     }
     else if ([segue.identifier isEqualToString:@"itunesu"]) {
-        PLTrackGroupViewController *trackGroupVc = [segue destinationViewController];
-        trackGroupVc.trackGroupType = PLTrackGroupTypeITunesU;
+        PLTrackGroupsViewController *trackGroupVc = [segue destinationViewController];
+        trackGroupVc.viewModel = [self.viewModel viewModelForTrackGroupType:PLTrackGroupTypeITunesU];
     }
     else if ([segue.identifier isEqualToString:@"podcasts"]) {
-        PLTrackGroupViewController *trackGroupVc = [segue destinationViewController];
-        trackGroupVc.trackGroupType = PLTrackGroupTypePodcasts;
+        PLTrackGroupsViewController *trackGroupVc = [segue destinationViewController];
+        trackGroupVc.viewModel = [self.viewModel viewModelForTrackGroupType:PLTrackGroupTypePodcasts];
     }
-    
 }
 
 @end

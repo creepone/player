@@ -1,9 +1,8 @@
-#import <RXPromise/RXPromise.h>
+#import <ReactiveCocoa/ReactiveCocoa.h>
 #import "PLMediaLibrarySearch.h"
 #import "PLMediaItemTrack.h"
-#import "NSArray+PLExtensions.h"
-#import "RXPromise+PLExtensions.h"
 #import "PLMediaItemTrackGroup.h"
+#import "NSArray+PLExtensions.h"
 
 @implementation PLMediaLibrarySearch
 
@@ -16,80 +15,128 @@
     return [query.items firstObject];
 }
 
-+ (RXPromise *)tracksForMediaQuery:(MPMediaQuery *)mediaQuery
-{
-    return [RXPromise pl_runInBackground:^{
-        return [mediaQuery.items pl_map:^(MPMediaItem *mediaItem) {
-            return [[PLMediaItemTrack alloc] initWithMediaItem:mediaItem];
++ (RACSignal *)tracksForMediaQuery:(MPMediaQuery *)mediaQuery
+{    return [[RACSignal createSignal:^RACDisposable *(id <RACSubscriber> subscriber) {
+
+        return [[RACScheduler scheduler] schedule:^{
+            NSArray *result = [mediaQuery.items pl_map:^id(MPMediaItem *mediaItem) {
+                return [[PLMediaItemTrack alloc] initWithMediaItem:mediaItem];
+            }];
+
+            [subscriber sendNext:result];
+            [subscriber sendCompleted];
         }];
-    }];
+
+    }] deliverOn:[RACScheduler mainThreadScheduler]];
 }
 
-+ (RXPromise *)tracksForCollection:(MPMediaItemCollection *)collection
++ (RACSignal *)tracksForCollection:(MPMediaItemCollection *)collection
 {
-    return [RXPromise pl_runInBackground:^{
-        return [collection.items pl_map:^(MPMediaItem *mediaItem) {
-            return [[PLMediaItemTrack alloc] initWithMediaItem:mediaItem];
+    return [[RACSignal createSignal:^RACDisposable *(id <RACSubscriber> subscriber) {
+
+        return [[RACScheduler scheduler] schedule:^{
+            NSArray *result = [collection.items pl_map:^id(MPMediaItem *mediaItem) {
+                return [[PLMediaItemTrack alloc] initWithMediaItem:mediaItem];
+            }];
+
+            [subscriber sendNext:result];
+            [subscriber sendCompleted];
         }];
-    }];
+
+    }] deliverOn:[RACScheduler mainThreadScheduler]];
 }
 
-+ (RXPromise *)allAudiobooks
++ (RACSignal *)allAudiobooks
 {
-    return [RXPromise pl_runInBackground:^{
-        MPMediaQuery *query = [MPMediaQuery audiobooksQuery];
+    return [[RACSignal createSignal:^RACDisposable *(id <RACSubscriber> subscriber) {
 
-        return [query.collections pl_map:^(MPMediaItemCollection *audiobook) {
-            return [[PLMediaItemTrackGroup alloc] initWithType:PLTrackGroupTypeAudiobooks collection:audiobook];
+        return [[RACScheduler scheduler] schedule:^{
+            MPMediaQuery *query = [MPMediaQuery audiobooksQuery];
+
+            NSArray *result = [query.collections pl_map:^id(MPMediaItemCollection *audiobook) {
+                return [[PLMediaItemTrackGroup alloc] initWithType:PLTrackGroupTypeAudiobooks collection:audiobook];
+            }];
+
+            [subscriber sendNext:result];
+            [subscriber sendCompleted];
         }];
-    }];
+
+    }] deliverOn:[RACScheduler mainThreadScheduler]];
 }
 
-+ (RXPromise *)allAlbums
++ (RACSignal *)allAlbums
 {
-    return [RXPromise pl_runInBackground:^{
-        MPMediaQuery *query = [MPMediaQuery albumsQuery];
+    return [[RACSignal createSignal:^RACDisposable *(id <RACSubscriber> subscriber) {
 
-        return [query.collections pl_map:^(MPMediaItemCollection *album) {
-            return [[PLMediaItemTrackGroup alloc] initWithType:PLTrackGroupTypeAlbums collection:album];
+        return [[RACScheduler scheduler] schedule:^{
+            MPMediaQuery *query = [MPMediaQuery albumsQuery];
+
+            NSArray *result = [query.collections pl_map:^id(MPMediaItemCollection *album) {
+                return [[PLMediaItemTrackGroup alloc] initWithType:PLTrackGroupTypeAlbums collection:album];
+            }];
+
+            [subscriber sendNext:result];
+            [subscriber sendCompleted];
         }];
-    }];
+
+    }] deliverOn:[RACScheduler mainThreadScheduler]];
 }
 
-+ (RXPromise *)allPlaylists
++ (RACSignal *)allPlaylists
 {
-    return [RXPromise pl_runInBackground:^{
-        MPMediaQuery *query = [MPMediaQuery playlistsQuery];
+    return [[RACSignal createSignal:^RACDisposable *(id <RACSubscriber> subscriber) {
 
-        return [query.collections pl_map:^(MPMediaItemCollection *album) {
-            return [[PLMediaItemTrackGroup alloc] initWithType:PLTrackGroupTypePlaylists collection:album];
+        return [[RACScheduler scheduler] schedule:^{
+            MPMediaQuery *query = [MPMediaQuery playlistsQuery];
+
+            NSArray *result = [query.collections pl_map:^id(MPMediaItemCollection *playlist) {
+                return [[PLMediaItemTrackGroup alloc] initWithType:PLTrackGroupTypePlaylists collection:playlist];
+            }];
+
+            [subscriber sendNext:result];
+            [subscriber sendCompleted];
         }];
-    }];
+
+    }] deliverOn:[RACScheduler mainThreadScheduler]];
 }
 
-+ (RXPromise *)allPodcasts
++ (RACSignal *)allPodcasts
 {
-    return [RXPromise pl_runInBackground:^{
-        MPMediaQuery *query = [MPMediaQuery podcastsQuery];
+    return [[RACSignal createSignal:^RACDisposable *(id <RACSubscriber> subscriber) {
 
-        return [query.collections pl_map:^(MPMediaItemCollection *podcast) {
-            return [[PLMediaItemTrackGroup alloc] initWithType:PLTrackGroupTypePodcasts collection:podcast];
+        return [[RACScheduler scheduler] schedule:^{
+            MPMediaQuery *query = [MPMediaQuery podcastsQuery];
+
+            NSArray *result = [query.collections pl_map:^id(MPMediaItemCollection *podcast) {
+                return [[PLMediaItemTrackGroup alloc] initWithType:PLTrackGroupTypePodcasts collection:podcast];
+            }];
+
+            [subscriber sendNext:result];
+            [subscriber sendCompleted];
         }];
-    }];
+
+    }] deliverOn:[RACScheduler mainThreadScheduler]];
 }
 
-+ (RXPromise *)allITunesU
++ (RACSignal *)allITunesU
 {
-    return [RXPromise pl_runInBackground:^{
-        MPMediaQuery *query = [[MPMediaQuery alloc] init];
-        MPMediaPropertyPredicate *predicate = [MPMediaPropertyPredicate predicateWithValue:@(MPMediaTypeAudioITunesU) forProperty:MPMediaItemPropertyMediaType];
-        [query addFilterPredicate:predicate];
-        query.groupingType = MPMediaGroupingAlbum;
+    return [[RACSignal createSignal:^RACDisposable *(id <RACSubscriber> subscriber) {
 
-        return [query.collections pl_map:^(MPMediaItemCollection *itunesu) {
-            return [[PLMediaItemTrackGroup alloc] initWithType:PLTrackGroupTypeITunesU collection:itunesu];
+        return [[RACScheduler scheduler] schedule:^{
+            MPMediaQuery *query = [[MPMediaQuery alloc] init];
+            MPMediaPropertyPredicate *predicate = [MPMediaPropertyPredicate predicateWithValue:@(MPMediaTypeAudioITunesU) forProperty:MPMediaItemPropertyMediaType];
+            [query addFilterPredicate:predicate];
+            query.groupingType = MPMediaGroupingAlbum;
+
+            NSArray *result = [query.collections pl_map:^id(MPMediaItemCollection *itunesu) {
+                return [[PLMediaItemTrackGroup alloc] initWithType:PLTrackGroupTypeITunesU collection:itunesu];
+            }];
+
+            [subscriber sendNext:result];
+            [subscriber sendCompleted];
         }];
-    }];
+
+    }] deliverOn:[RACScheduler mainThreadScheduler]];
 }
 
 @end

@@ -6,8 +6,6 @@
 //  Copyright (c) 2012 Tomas Vana. All rights reserved.
 //
 
-#import <MediaPlayer/MediaPlayer.h>
-#import <RXPromise/RXPromise.h>
 #import <ReactiveCocoa/ReactiveCocoa.h>
 
 #import "PLPlaylistViewController.h"
@@ -18,14 +16,6 @@
 #import "PLUtils.h"
 #import "NSString+Extensions.h"
 #import "PLActivityViewController.h"
-#import "PLSelectFromMusicLibraryActivity.h"
-#import "PLDownloadFromDropboxActivity.h"
-#import "PLDownloadFromGDriveActivity.h"
-#import "PLDownloadFromICloudActivity.h"
-#import "PLDownloadURLActivity.h"
-#import "PLDownloadPodcastActivity.h"
-#import "PLFileSharingActivity.h"
-#import "NSObject+PLExtensions.h"
 #import "PLLegacySongTableViewCell.h"
 #import "PLImportActivityViewController.h"
 

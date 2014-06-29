@@ -3,6 +3,8 @@
 #import "PLMusicLibraryViewController.h"
 #import "PLDataAccess.h"
 #import "PLMediaMirror.h"
+#import "PLMusicLibraryViewModel.h"
+#import "PLUtils.h"
 
 @interface PLSelectFromMusicLibraryActivity() {
     PLPlaylist *_playlist;
@@ -36,12 +38,15 @@
     UIViewController *rootViewController = [UIApplication sharedApplication].delegate.window.rootViewController;
 
     UINavigationController *navigationController = storyboard.instantiateInitialViewController;
+
+    PLMusicLibraryViewModel *viewModel = [PLMusicLibraryViewModel new];
+    PLMusicLibraryViewController *musicLibraryVc = navigationController.viewControllers[0];
+    musicLibraryVc.viewModel = viewModel;
+
     [rootViewController presentViewController:navigationController animated:YES completion:nil];
 
-    PLMusicLibraryViewController *musicLibraryVc = navigationController.viewControllers[0];
-
-    return [musicLibraryVc.doneSignal flattenMap:^RACStream *(NSArray *selection) {
-        return [self importSongs:selection];
+    return [[[RACObserve(viewModel, dismissed) filter:[PLUtils isTruePredicate]] take:1] then:^RACSignal *{
+        return [self importSongs:viewModel.selection];
     }];
 }
 

@@ -1,4 +1,3 @@
-#import <RXPromise.h>
 #import <ReactiveCocoa/ReactiveCocoa.h>
 #import "PLFileImport.h"
 #import "PLDataAccess.h"

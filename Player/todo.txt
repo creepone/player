@@ -1,3 +1,5 @@
+mirror to a temp location, then copy (so that intermediate files cannot be accessed using iTunes File Sharing)
+
 long term:
 refactor all the promise usages to RAC, remove dependency on RXPromise and its extensions
 refactor the "Activity View" and "Music Library Import" to use MVVM

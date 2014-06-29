@@ -71,7 +71,7 @@
     return [[PLImageCache sharedCache] smallArtworkForMediaItemWithPersistentId:_persistentId];
 }
 
-- (RXPromise *)tracks
+- (RACSignal *)tracks
 {
     if (_trackGroupType == PLTrackGroupTypeAudiobooks) {
         MPMediaQuery *query = [MPMediaQuery audiobooksQuery];
@@ -105,7 +105,7 @@
         return [PLMediaLibrarySearch tracksForMediaQuery:query];
     }
 
-    return [RXPromise promiseWithResult:[NSArray array]];
+    return [RACSignal empty];
 }
 
 @end

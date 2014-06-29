@@ -25,6 +25,37 @@ const int kAccessoryImageTag = 2;
 
 @implementation PLPlaylistSongCell
 
+- (void)setupBindings:(PLPlaylistSongCellViewModel *)modelView
+{
+    _modelView = modelView;
+    
+    RAC(self.labelTitle, text) = [RACObserve(modelView, titleText) takeUntil:self.rac_prepareForReuseSignal];
+    RAC(self.labelArtist, text) = [RACObserve(modelView, artistText) takeUntil:self.rac_prepareForReuseSignal];
+    
+    RACSignal *alphaSignal = [RACObserve(modelView, alpha) takeUntil:self.rac_prepareForReuseSignal];
+    RAC(self.labelTitle, alpha) = alphaSignal;
+    RAC(self.labelArtist, alpha) = alphaSignal;
+    RAC(self.labelDuration, alpha) = alphaSignal;
+    RAC(self.imageViewArtwork, alpha) = alphaSignal;
+    RAC(self.viewProgress, alpha) = alphaSignal;
+    
+    RAC(self.imageViewArtwork, image, [UIImage imageNamed:@"DefaultArtwork"]) = [RACObserve(modelView, imageArtwork) takeUntil:self.rac_prepareForReuseSignal];
+    RAC(self.labelDuration, text) = [RACObserve(modelView, durationText) takeUntil:self.rac_prepareForReuseSignal];
+    RAC(self, backgroundColor) = [RACObserve(modelView, backgroundColor) takeUntil:self.rac_prepareForReuseSignal];
+    
+    [self rac_liftSelector:@selector(setCellProgress:) withSignals:[RACObserve(modelView, playbackProgress) takeUntil:self.rac_prepareForReuseSignal], nil];
+    RAC(self.buttonPlaceholder, rac_command) = [RACObserve(modelView, accessoryCommand) takeUntil:self.rac_prepareForReuseSignal];
+    
+    RACSignal *accessoryProgressSignal = [RACObserve(modelView, accessoryProgress) takeUntil:self.rac_prepareForReuseSignal];
+    RACSignal *accessoryImageSignal = [RACObserve(modelView, accessoryImage) takeUntil:self.rac_prepareForReuseSignal];
+    RACSignal *accessoryVisibleSignal = [RACSignal combineLatest:@[accessoryProgressSignal, accessoryImageSignal] reduce:^(id first, id second) { return @(first || second); }];
+    
+    [self rac_liftSelector:@selector(setAccessoryProgress:) withSignals:accessoryProgressSignal, nil];
+    [self rac_liftSelector:@selector(setAccessoryImage:) withSignals:accessoryImageSignal, nil];
+    [self rac_liftSelector:@selector(setButtonPlaceholderVisible:) withSignals:accessoryVisibleSignal, nil];
+}
+
+
 - (void)setCellProgress:(NSNumber *)progress
 {
     UIView *progressSuperview = self.viewProgress.superview;
@@ -97,36 +128,6 @@ const int kAccessoryImageTag = 2;
         self.constraintRightViewPlaceholder.constant = -25.f;
 }
 
-
-- (void)setupBindings:(PLPlaylistSongCellViewModel *)modelView
-{
-    _modelView = modelView;
-
-    RAC(self.labelTitle, text) = [RACObserve(modelView, titleText) takeUntil:self.rac_prepareForReuseSignal];
-    RAC(self.labelArtist, text) = [RACObserve(modelView, artistText) takeUntil:self.rac_prepareForReuseSignal];
-
-    RACSignal *alphaSignal = [RACObserve(modelView, alpha) takeUntil:self.rac_prepareForReuseSignal];
-    RAC(self.labelTitle, alpha) = alphaSignal;
-    RAC(self.labelArtist, alpha) = alphaSignal;
-    RAC(self.labelDuration, alpha) = alphaSignal;
-    RAC(self.imageViewArtwork, alpha) = alphaSignal;
-    RAC(self.viewProgress, alpha) = alphaSignal;
-
-    RAC(self.imageViewArtwork, image, [UIImage imageNamed:@"DefaultArtwork"]) = [RACObserve(modelView, imageArtwork) takeUntil:self.rac_prepareForReuseSignal];
-    RAC(self.labelDuration, text) = [RACObserve(modelView, durationText) takeUntil:self.rac_prepareForReuseSignal];
-    RAC(self, backgroundColor) = [RACObserve(modelView, backgroundColor) takeUntil:self.rac_prepareForReuseSignal];
-    
-    [self rac_liftSelector:@selector(setCellProgress:) withSignals:[RACObserve(modelView, playbackProgress) takeUntil:self.rac_prepareForReuseSignal], nil];
-    RAC(self.buttonPlaceholder, rac_command) = [RACObserve(modelView, accessoryCommand) takeUntil:self.rac_prepareForReuseSignal];
-
-    RACSignal *accessoryProgressSignal = [RACObserve(modelView, accessoryProgress) takeUntil:self.rac_prepareForReuseSignal];
-    RACSignal *accessoryImageSignal = [RACObserve(modelView, accessoryImage) takeUntil:self.rac_prepareForReuseSignal];
-    RACSignal *accessoryVisibleSignal = [RACSignal combineLatest:@[accessoryProgressSignal, accessoryImageSignal] reduce:^(id first, id second) { return @(first || second); }];
-
-    [self rac_liftSelector:@selector(setAccessoryProgress:) withSignals:accessoryProgressSignal, nil];
-    [self rac_liftSelector:@selector(setAccessoryImage:) withSignals:accessoryImageSignal, nil];
-    [self rac_liftSelector:@selector(setButtonPlaceholderVisible:) withSignals:accessoryVisibleSignal, nil];
-}
 
 - (void)prepareForReuse
 {

@@ -1,5 +1,5 @@
 #import <Foundation/Foundation.h>
-@class RXPromise;
+
 @class RACSignal;
 
 @interface PLFileImport : NSObject

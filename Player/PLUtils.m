@@ -69,4 +69,9 @@
     return ^BOOL(id value) { return value != nil; };
 }
 
++ (PLPredicate)isTruePredicate
+{
+    return ^BOOL(id value) { return [value boolValue]; };
+}
+
 @end

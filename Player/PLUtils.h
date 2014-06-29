@@ -28,5 +28,6 @@ typedef BOOL (^PLPredicate)(id);
 + (UIImage *)launchImage;
 
 + (PLPredicate)isNotNilPredicate;
++ (PLPredicate)isTruePredicate;
 
 @end

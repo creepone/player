@@ -1,4 +1,3 @@
-#import <RXPromise/RXPromise.h>
 #import "NSObject+PLExtensions.h"
 
 @implementation NSObject (PLExtensions)
