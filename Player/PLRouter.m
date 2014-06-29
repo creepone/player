@@ -1,10 +1,12 @@
-#import "PLMainUI.h"
+#import <ReactiveCocoa/ReactiveCocoa.h>
+#import "PLRouter.h"
 #import "PLBookmarksViewController.h"
 #import "PLSettingsViewController.h"
 #import "PLPlayerViewController.h"
 #import "PLPlaylistViewController.h"
+#import "PLImportActivityViewController.h"
 
-@implementation PLMainUI
+@implementation PLRouter
 
 + (void)showLegacy
 {
@@ -25,6 +27,15 @@
     UIStoryboard *mainStoryboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
     UIWindow *window = [[UIApplication sharedApplication] keyWindow];
     window.rootViewController = [mainStoryboard instantiateInitialViewController];
+}
+
++ (RACSignal *)showTrackImport
+{
+    __block PLImportActivityViewController *activityViewController = [[PLImportActivityViewController alloc] init];
+    return [[activityViewController presentFromRootViewController] doCompleted:^{
+        DDLogVerbose(@"Completed import activity.");
+        activityViewController = nil;
+    }];
 }
 
 @end

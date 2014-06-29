@@ -1,8 +1,8 @@
 #import "PLTrackCell.h"
-#import "PLTrackCellModelView.h"
+#import "PLTrackCellViewModel.h"
 
 @interface PLTrackCell() {
-    PLTrackCellModelView *_modelView;
+    PLTrackCellViewModel *_modelView;
 }
 
 @property (strong, nonatomic) IBOutlet UILabel *labelTitle;
@@ -13,7 +13,7 @@
 
 @implementation PLTrackCell
 
-- (void)setupBindings:(PLTrackCellModelView *)modelView
+- (void)setupBindings:(PLTrackCellViewModel *)modelView
 {
     _modelView = modelView;
 

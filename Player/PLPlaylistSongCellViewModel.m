@@ -1,5 +1,5 @@
 #import <ReactiveCocoa/ReactiveCocoa.h>
-#import "PLPlaylistSongCellModelView.h"
+#import "PLPlaylistSongCellViewModel.h"
 #import "PLPlaylistSong.h"
 #import "PLColors.h"
 #import "PLPlaylist.h"
@@ -8,7 +8,7 @@
 #import "NSObject+PLExtensions.h"
 #import "PLDownloadManager.h"
 
-@interface PLPlaylistSongCellModelView() {
+@interface PLPlaylistSongCellViewModel () {
     PLPlaylistSong *_playlistSong;
     RACDisposable *_progressTimerSubscription;
 }
@@ -24,7 +24,7 @@
 
 @end
 
-@implementation PLPlaylistSongCellModelView
+@implementation PLPlaylistSongCellViewModel
 
 - (instancetype)initWithPlaylistSong:(PLPlaylistSong *)playlistSong
 {

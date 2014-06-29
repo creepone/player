@@ -11,7 +11,7 @@
 #import "SliderCell.h"
 #import "NSString+Extensions.h"
 #import "UIViewController+PLErrorExtensions.h"
-#import "PLMainUI.h"
+#import "PLRouter.h"
 
 #define GoBackAlert 22
 
@@ -187,7 +187,7 @@
         [alert show];
     }
     else if (indexPath.row == 5) {
-        [PLMainUI showNew];
+        [PLRouter showNew];
     }
     else if (indexPath.row == 6) {
         NSString *archivePath = [PLLogging archiveLogs];

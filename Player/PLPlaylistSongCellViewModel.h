@@ -3,7 +3,7 @@
 
 @class PLPlaylistSong, PLTrack, RACCommand;
 
-@interface PLPlaylistSongCellModelView : NSObject
+@interface PLPlaylistSongCellViewModel : NSObject
 
 @property (strong, nonatomic, readonly) UIImage *imageArtwork;
 @property (strong, nonatomic, readonly) NSString *titleText;

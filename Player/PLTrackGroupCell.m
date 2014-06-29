@@ -1,9 +1,9 @@
 #import <ReactiveCocoa/ReactiveCocoa.h>
 #import "PLTrackGroupCell.h"
-#import "PLTrackGroupCellModelView.h"
+#import "PLTrackGroupCellViewModel.h"
 
 @interface PLTrackGroupCell () {
-    PLTrackGroupCellModelView *_modelView;
+    PLTrackGroupCellViewModel *_modelView;
 }
 
 @property (strong, nonatomic) IBOutlet UILabel *labelTitle;
@@ -17,7 +17,7 @@
 
 @implementation PLTrackGroupCell
 
-- (void)setupBindings:(PLTrackGroupCellModelView *)modelView
+- (void)setupBindings:(PLTrackGroupCellViewModel *)modelView
 {
     _modelView = modelView;
 

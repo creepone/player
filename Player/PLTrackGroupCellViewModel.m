@@ -1,7 +1,7 @@
-#import "PLTrackGroupCellModelView.h"
+#import "PLTrackGroupCellViewModel.h"
 #import "PLMediaItemTrackGroup.h"
 
-@interface PLTrackGroupCellModelView() {
+@interface PLTrackGroupCellViewModel () {
     PLMediaItemTrackGroup *_trackGroup;
 }
 
@@ -13,7 +13,7 @@
 
 @end
 
-@implementation PLTrackGroupCellModelView
+@implementation PLTrackGroupCellViewModel
 
 - (instancetype)initWithTrackGroup:(PLMediaItemTrackGroup *)trackGroup selected:(BOOL)selected
 {

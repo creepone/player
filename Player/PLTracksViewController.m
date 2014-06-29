@@ -7,8 +7,8 @@
 #import "PLMediaItemTrack.h"
 #import "NSArray+PLExtensions.h"
 #import "PLTableViewProgress.h"
-#import "PLTrackGroupCellModelView.h"
-#import "PLTrackCellModelView.h"
+#import "PLTrackGroupCellViewModel.h"
+#import "PLTrackCellViewModel.h"
 
 @interface PLTracksViewController () {
     NSMutableSet *_selection;
@@ -79,7 +79,7 @@
     if (indexPath.section == 0) {
         PLTrackGroupCell *cell = [tableView dequeueReusableCellWithIdentifier:@"trackGroupHeaderCell" forIndexPath:indexPath];
 
-        PLTrackGroupCellModelView *modelView = [[PLTrackGroupCellModelView alloc] initWithTrackGroup:self.trackGroup selected:[self isAllSelected]];
+        PLTrackGroupCellViewModel *modelView = [[PLTrackGroupCellViewModel alloc] initWithTrackGroup:self.trackGroup selected:[self isAllSelected]];
         [cell setupBindings:modelView];
 
         return cell;
@@ -88,7 +88,7 @@
         PLTrackCell *cell = [tableView dequeueReusableCellWithIdentifier:@"trackCell" forIndexPath:indexPath];
         PLMediaItemTrack *track = _tracks[indexPath.row];
 
-        PLTrackCellModelView *modelView = [[PLTrackCellModelView alloc] initWithTrack:track selected:[self isTrackSelected:track]];
+        PLTrackCellViewModel *modelView = [[PLTrackCellViewModel alloc] initWithTrack:track selected:[self isTrackSelected:track]];
         [cell setupBindings:modelView];
 
         return cell;

@@ -4,7 +4,7 @@
 #import "PLMediaLibrarySearch.h"
 #import "PLTrackGroupCell.h"
 #import "PLTableViewProgress.h"
-#import "PLTrackGroupCellModelView.h"
+#import "PLTrackGroupCellViewModel.h"
 
 @interface PLTrackGroupViewController () {
     NSArray *_groups;
@@ -95,7 +95,7 @@
     PLTrackGroupCell *cell = [tableView dequeueReusableCellWithIdentifier:@"trackGroupCell" forIndexPath:indexPath];
     PLMediaItemTrackGroup *trackGroup = [_groups objectAtIndex:indexPath.row];
 
-    PLTrackGroupCellModelView *modelView = [[PLTrackGroupCellModelView alloc] initWithTrackGroup:trackGroup selected:NO];
+    PLTrackGroupCellViewModel *modelView = [[PLTrackGroupCellViewModel alloc] initWithTrackGroup:trackGroup selected:NO];
     [cell setupBindings:modelView];
 
     return cell;

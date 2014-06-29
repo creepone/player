@@ -1,9 +1,9 @@
 #import <UIKit/UIKit.h>
 
-@class PLTrackGroupCellModelView;
+@class PLTrackGroupCellViewModel;
 
 @interface PLTrackGroupCell : UITableViewCell
 
-- (void)setupBindings:(PLTrackGroupCellModelView *)modelView;
+- (void)setupBindings:(PLTrackGroupCellViewModel *)modelView;
 
 @end

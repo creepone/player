@@ -1,8 +1,8 @@
-#import "PLTrackCellModelView.h"
+#import "PLTrackCellViewModel.h"
 #import "PLMediaItemTrack.h"
 #import "PLUtils.h"
 
-@interface PLTrackCellModelView() {
+@interface PLTrackCellViewModel () {
     PLMediaItemTrack *_track;
 }
 
@@ -13,7 +13,7 @@
 
 @end
 
-@implementation PLTrackCellModelView
+@implementation PLTrackCellViewModel
 
 - (instancetype)initWithTrack:(PLMediaItemTrack *)track selected:(BOOL)selected
 {

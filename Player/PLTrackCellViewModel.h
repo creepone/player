@@ -2,7 +2,7 @@
 
 @class PLMediaItemTrack;
 
-@interface PLTrackCellModelView : NSObject
+@interface PLTrackCellViewModel : NSObject
 
 @property (strong, nonatomic, readonly) NSString *titleText;
 @property (strong, nonatomic, readonly) NSString *durationText;

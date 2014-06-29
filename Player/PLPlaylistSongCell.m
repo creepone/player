@@ -1,12 +1,12 @@
 #import <ReactiveCocoa/ReactiveCocoa.h>
 #import <FFCircularProgressView/FFCircularProgressView.h>
 #import "PLPlaylistSongCell.h"
-#import "PLPlaylistSongCellModelView.h"
+#import "PLPlaylistSongCellViewModel.h"
 #import "PLColors.h"
 #import "UIView+PLExtensions.h"
 
 @interface PLPlaylistSongCell () {
-    PLPlaylistSongCellModelView *_modelView;
+    PLPlaylistSongCellViewModel *_modelView;
     NSLayoutConstraint *_progressWidthConstraint;
 }
 
@@ -98,7 +98,7 @@ const int kAccessoryImageTag = 2;
 }
 
 
-- (void)setupBindings:(PLPlaylistSongCellModelView *)modelView
+- (void)setupBindings:(PLPlaylistSongCellViewModel *)modelView
 {
     _modelView = modelView;
 

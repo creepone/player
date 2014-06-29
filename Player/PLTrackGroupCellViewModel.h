@@ -2,7 +2,7 @@
 
 @class PLMediaItemTrackGroup;
 
-@interface PLTrackGroupCellModelView : NSObject
+@interface PLTrackGroupCellViewModel : NSObject
 
 @property (strong, nonatomic, readonly) UIImage *imageArtwork;
 @property (strong, nonatomic, readonly) UIImage *imageAddState;

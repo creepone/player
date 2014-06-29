@@ -1,7 +1,7 @@
-@class PLTrackCellModelView;
+@class PLTrackCellViewModel;
 
 @interface PLTrackCell : UITableViewCell
 
-- (void)setupBindings:(PLTrackCellModelView *)modelView;
+- (void)setupBindings:(PLTrackCellViewModel *)modelView;
 
 @end

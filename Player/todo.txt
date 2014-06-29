@@ -1,8 +1,6 @@
-think about the signals usage in the PLActivityView(Controller) again, also maybe refactor to MVVM ?
-
-think about the relationship between table view delegates (e.g. PLPlaylistsSongsDelegate) and MVVM - where do they fit into the picture ?
-
 implement reordering of the tracks on the main screen (+ Edit button that triggers it)
 
 long term:
 refactor all the promise usages to RAC, remove dependency on RXPromise and its extensions
+refactor the "Activity View" and "Music Library Import" to use MVVM
+introduce some service container mechanism so that the VMs can be unit tested

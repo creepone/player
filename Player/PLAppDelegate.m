@@ -11,7 +11,7 @@
 #import "PLErrorManager.h"
 #import "PLFileImport.h"
 #import "PLUtils.h"
-#import "PLMainUI.h"
+#import "PLRouter.h"
 #import "PLMediaMirror.h"
 #import "PLDownloadManager.h"
 
@@ -43,7 +43,7 @@ static void onUncaughtException(NSException* exception);
     
     [self initializeData].thenOnMain(^(id result){
 
-        [PLMainUI showNew];
+        [PLRouter showNew];
         [[UIApplication sharedApplication] beginReceivingRemoteControlEvents];
 
         NSURL *fileToImport = launchOptions[UIApplicationLaunchOptionsURLKey];

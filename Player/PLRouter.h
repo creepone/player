@@ -1,9 +1,11 @@
 #import <Foundation/Foundation.h>
 
-@interface PLMainUI : NSObject
+@interface PLRouter : NSObject
 
 + (void)showLegacy;
 
 + (void)showNew;
+
++ (RACSignal *)showTrackImport;
 
 @end

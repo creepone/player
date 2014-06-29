@@ -1,9 +1,9 @@
 #import <UIKit/UIKit.h>
 
-@class PLPlaylistSongCellModelView;
+@class PLPlaylistSongCellViewModel;
 
 @interface PLPlaylistSongCell : UITableViewCell
 
-- (void)setupBindings:(PLPlaylistSongCellModelView *)modelView;
+- (void)setupBindings:(PLPlaylistSongCellViewModel *)modelView;
 
 @end
