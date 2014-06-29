@@ -50,7 +50,6 @@ PODS:
   - ReactiveCocoa/no-arc (2.3.1)
   - ReactiveCocoa/UI (2.3.1):
     - ReactiveCocoa/Core
-  - RXPromise (0.12.0)
   - SSZipArchive (0.3.1)
   - SVProgressHUD (1.0)
   - TSMessages (0.9.9):
@@ -63,7 +62,6 @@ DEPENDENCIES:
   - iOS-blur (~> 0.0.5)
   - libextobjc (~> 0.4)
   - ReactiveCocoa (from `https://raw.githubusercontent.com/creepone/ReactiveCocoa/private/ReactiveCocoa.podspec.json`)
-  - RXPromise (from `https://github.com/creepone/RXPromise.git`, branch `master`)
   - SSZipArchive (~> 0.3)
   - SVProgressHUD (~> 1.0)
   - TSMessages (~> 0.9.9)
@@ -71,9 +69,6 @@ DEPENDENCIES:
 EXTERNAL SOURCES:
   ReactiveCocoa:
     :podspec: https://raw.githubusercontent.com/creepone/ReactiveCocoa/private/ReactiveCocoa.podspec.json
-  RXPromise:
-    :branch: master
-    :git: https://github.com/creepone/RXPromise.git
 
 SPEC CHECKSUMS:
   CocoaLumberjack: 5766cdd1d0a24bcf15a133c6023747346bf786dd
@@ -83,7 +78,6 @@ SPEC CHECKSUMS:
   iOS-blur: 5ec57b4a72e57a4f8f5f47ff3f59e56c0690b761
   libextobjc: ba42e4111f433273a886cd54f0ddaddb7f62f82f
   ReactiveCocoa: d62de1d789eca0db8fd464bbfe7a350189ffebe7
-  RXPromise: d5b80b17dee7c9360e7be2ec140f74667855f7ac
   SSZipArchive: 6dc0ea3fe4b55574bee23c9f01d7c0f8437d59ef
   SVProgressHUD: 5034c6e22b8c2ca3e09402e48d41ed0340aa1c50
   TSMessages: 2999ef55e532378692e9d14d32da2bb60e285129

@@ -1,17 +1,16 @@
-#import <RXPromise.h>
+#import <ReactiveCocoa/ReactiveCocoa.h>
 #import "PLMigrationManager.h"
 #import "PLDefaultsManager.h"
 #import "PLCoreDataStack.h"
 #import "PLDataAccess.h"
 #import "PLUtils.h"
-#import "RXPromise+PLExtensions.h"
 #import "PLErrorManager.h"
 
 const long PLCurrentDataStoreVersion = 1;
 
 @implementation PLMigrationManager
 
-+ (RXPromise *)coreDataStack
++ (RACSignal *)coreDataStack
 {
     PLDefaultsManager *defaultsManager = [PLDefaultsManager sharedManager];
     long lastInstalledVersion = [defaultsManager dataStoreVersion];
@@ -20,29 +19,28 @@ const long PLCurrentDataStoreVersion = 1;
         return [self coreDataStackForModelVersion:PLCurrentDataStoreVersion];
     }
     else if(lastInstalledVersion == 0) {
-        return [self coreDataStackForModelVersion:PLCurrentDataStoreVersion].thenOnMain(^(PLCoreDataStack *coreDataStack) {
-            return [self createDefaultObjectsInContext:coreDataStack.managedObjectContext].thenOnMain(^(id result) {
+        return [[self coreDataStackForModelVersion:PLCurrentDataStoreVersion] flattenMap:^RACStream *(PLCoreDataStack *coreDataStack) {
+            return [[[self createDefaultObjectsInContext:coreDataStack.managedObjectContext] doCompleted:^{
                 [defaultsManager setDataStoreVersion:PLCurrentDataStoreVersion];
-                return coreDataStack;
-            }, nil);
-        }, nil);
+            }] concat:[RACSignal return:coreDataStack]];
+        }];
     }
 
-    return [self migrateFromVersion:lastInstalledVersion].thenOnMain(^(id result) {
-        return [self coreDataStackForModelVersion:PLCurrentDataStoreVersion].thenOnMain(^(PLCoreDataStack *coreDataStack) {
+    return [[self migrateFromVersion:lastInstalledVersion] then:^RACSignal *{
+        return [[self coreDataStackForModelVersion:PLCurrentDataStoreVersion] doCompleted:^{
             [defaultsManager setDataStoreVersion:PLCurrentDataStoreVersion];
-            return coreDataStack;
-        }, nil);
-    }, nil);
+        }];
+    }];
 }
 
-+ (RXPromise *)coreDataStackForModelVersion:(NSInteger)version
++ (RACSignal *)coreDataStackForModelVersion:(NSInteger)version
 {
-    NSURL *storeURL = [NSURL fileURLWithPath:[self dataStorePathVersion:version]];    
+    NSURL *storeURL = [NSURL fileURLWithPath:[self dataStorePathVersion:version]];
 
     NSError *error;
     PLCoreDataStack *coreDataStack = [PLCoreDataStack coreDataStackWithStoreURL:storeURL andModel:[self modelVersion:version] error:&error];
-    return [RXPromise promiseWithResult:(error ? : coreDataStack)];
+
+    return error ? [RACSignal error:error] : [RACSignal return:coreDataStack];
 }
 
 + (NSManagedObjectModel *)currentModel
@@ -82,57 +80,76 @@ const long PLCurrentDataStoreVersion = 1;
 }
 
 
-+ (RXPromise *)createDefaultObjectsInContext:(NSManagedObjectContext *)context
++ (RACSignal *)createDefaultObjectsInContext:(NSManagedObjectContext *)context
 {
-    PLPlaylist *playlist = [NSEntityDescription insertNewObjectForEntityForName:@"PLPlaylist" inManagedObjectContext:context];
-    playlist.name = @"Default";
-    playlist.position = [NSNumber numberWithInt:0];
-    
-    NSError *error;
-    if (![context save:&error])
-        return [RXPromise promiseWithResult:error];
-    
-    PLDataAccess *dataAccess = [[PLDataAccess alloc] initWithContext:context];
-    [dataAccess selectPlaylist:playlist];
-    return [RXPromise promiseWithResult:nil];
+    return [RACSignal createSignal:^RACDisposable *(id <RACSubscriber> subscriber) {
+        PLPlaylist *playlist = [NSEntityDescription insertNewObjectForEntityForName:@"PLPlaylist" inManagedObjectContext:context];
+        playlist.name = @"Default";
+        playlist.position = [NSNumber numberWithInt:0];
+
+        NSError *error;
+        if (![context save:&error]) {
+            [subscriber sendError:error];
+            return nil;
+        }
+
+        PLDataAccess *dataAccess = [[PLDataAccess alloc] initWithContext:context];
+        [dataAccess selectPlaylist:playlist];
+        [subscriber sendCompleted];
+
+        return nil;
+    }];
 }
 
-+ (RXPromise *)migrateFromVersion:(NSInteger)version
++ (RACSignal *)migrateFromVersion:(NSInteger)version
 {
-    return [RXPromise pl_runInBackground:^{
+    return [[RACSignal createSignal:^RACDisposable *(id <RACSubscriber> subscriber) {
 
-        @autoreleasepool {
-            NSURL *sourceStoreURL = [NSURL fileURLWithPath:[self dataStorePathVersion:version]];
-            NSURL *targetStoreURL = [NSURL fileURLWithPath:[self dataStorePathVersion:PLCurrentDataStoreVersion]];
+        return [[RACScheduler scheduler] schedule:^{
 
-            NSManagedObjectModel *sourceModel = [self modelVersion:version];
-            NSManagedObjectModel *targetModel = [self modelVersion:PLCurrentDataStoreVersion];
+            @autoreleasepool {
+                NSURL *sourceStoreURL = [NSURL fileURLWithPath:[self dataStorePathVersion:version]];
+                NSURL *targetStoreURL = [NSURL fileURLWithPath:[self dataStorePathVersion:PLCurrentDataStoreVersion]];
 
-            NSMigrationManager *migrationManager = [[NSMigrationManager alloc] initWithSourceModel:sourceModel destinationModel:targetModel];
-            NSMappingModel *mappingModel = [NSMappingModel mappingModelFromBundles:nil forSourceModel:sourceModel destinationModel:targetModel];
+                NSManagedObjectModel *sourceModel = [self modelVersion:version];
+                NSManagedObjectModel *targetModel = [self modelVersion:PLCurrentDataStoreVersion];
 
-            if (!mappingModel)
-                return [PLErrorManager errorWithCode:PLErrorMappingModelNotFound description:@"Could not find the mapping model"];
+                NSMigrationManager *migrationManager = [[NSMigrationManager alloc] initWithSourceModel:sourceModel destinationModel:targetModel];
+                NSMappingModel *mappingModel = [NSMappingModel mappingModelFromBundles:nil forSourceModel:sourceModel destinationModel:targetModel];
 
-            NSError *error;
-            [migrationManager migrateStoreFromURL:sourceStoreURL
-                                             type:NSSQLiteStoreType
-                                          options:nil
-                                 withMappingModel:mappingModel
-                                 toDestinationURL:targetStoreURL
-                                  destinationType:NSSQLiteStoreType
-                               destinationOptions:nil
-                                            error:&error];
+                if (!mappingModel) {
+                    [subscriber sendError:[PLErrorManager errorWithCode:PLErrorMappingModelNotFound description:@"Could not find the mapping model"]];
+                    return;
+                }
 
-            if (error)
-                return error;
+                NSError *error;
+                [migrationManager migrateStoreFromURL:sourceStoreURL
+                                                 type:NSSQLiteStoreType
+                                              options:nil
+                                     withMappingModel:mappingModel
+                                     toDestinationURL:targetStoreURL
+                                      destinationType:NSSQLiteStoreType
+                                   destinationOptions:nil
+                                                error:&error];
 
-            NSFileManager *fileManager = [[NSFileManager alloc] init];
-            [fileManager removeItemAtPath:[self dataStorePathVersion:version] error:&error];
+                if (error) {
+                    [subscriber sendError:error];
+                    return;
+                }
 
-            return error;
-        }
-    }];
+                NSFileManager *fileManager = [[NSFileManager alloc] init];
+                [fileManager removeItemAtPath:[self dataStorePathVersion:version] error:&error];
+
+                if (error) {
+                    [subscriber sendError:error];
+                    return;
+                }
+
+                [subscriber sendCompleted];
+            }
+        }];
+
+    }] deliverOn:[RACScheduler mainThreadScheduler]];
 }
 
 @end

@@ -1,4 +1,4 @@
-#import <RXPromise/RXPromise.h>
+#import <ReactiveCocoa/ReactiveCocoa.h>
 #import "PLMediaItemTrackGroup.h"
 #import "PLImageCache.h"
 #import "PLMediaLibrarySearch.h"

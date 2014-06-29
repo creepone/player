@@ -1,5 +1,4 @@
 #import <SVProgressHUD.h>
-#import <RXPromise.h>
 #import <ReactiveCocoa/ReactiveCocoa.h>
 
 #import "PLAppDelegate.h"
@@ -15,9 +14,7 @@
 #import "PLMediaMirror.h"
 #import "PLDownloadManager.h"
 
-static const int kMigrationErrorAlertTag = 44;
-
-@interface PLAppDelegate() <UIAlertViewDelegate>
+@interface PLAppDelegate()
 
 static void onUncaughtException(NSException* exception);
 
@@ -40,9 +37,8 @@ static void onUncaughtException(NSException* exception);
     [self.window makeKeyAndVisible];
 
     [self.window.rootViewController.view setBackgroundColor:[UIColor colorWithPatternImage:[PLUtils launchImage]]];
-    
-    [self initializeData].thenOnMain(^(id result){
 
+    [[self initializeData] subscribeCompleted:^{
         [PLRouter showNew];
         [[UIApplication sharedApplication] beginReceivingRemoteControlEvents];
 
@@ -51,9 +47,7 @@ static void onUncaughtException(NSException* exception);
             [[PLFileImport importFile:fileToImport] subscribeError:[PLErrorManager logErrorVoidBlock]];
 
         [[PLMediaMirror sharedInstance] ensureRunning];
-        
-        return (id)nil;
-    }, nil);
+    }];
     
     return YES;
 }
@@ -122,23 +116,17 @@ static void onUncaughtException(NSException* exception);
 
 #pragma mark - Data initialization on startup
 
-- (RXPromise *)initializeData
+- (RACSignal *)initializeData
 {
     [SVProgressHUD showWithStatus:NSLocalizedString(@"Messages.InitializingData", nil) maskType:SVProgressHUDMaskTypeBlack];
 
     // todo: grace time for the hud
 
-    @weakify(self);
-    return [PLMigrationManager coreDataStack].thenOnMain(^(PLCoreDataStack *coreDataStack) {
-        @strongify(self);
-
+    return [[[PLMigrationManager coreDataStack] doNext:^(PLCoreDataStack *coreDataStack) {
         self.coreDataStack = coreDataStack;
         [SVProgressHUD dismiss];
-        return coreDataStack;
-    },
-    ^(NSError *error) {
-        @strongify(self);
-
+    }]
+    doError:^(NSError *error) {
         [PLErrorManager logError:error];
         [SVProgressHUD dismiss];
 
@@ -146,22 +134,13 @@ static void onUncaughtException(NSException* exception);
         UIAlertView *alert = [[UIAlertView alloc]
                 initWithTitle:@"Error"
                       message:@"There was an error migrating the data."
-                     delegate:self
+                     delegate:nil
             cancelButtonTitle:@"OK"
             otherButtonTitles:nil];
 
-        [alert setTag:kMigrationErrorAlertTag];
+        [alert.rac_buttonClickedSignal subscribeNext:^(id x) { exit(1); }];
         [alert show];
-
-        return (id)nil;
-    });
-}
-
-- (void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex
-{
-    if(alertView.tag == kMigrationErrorAlertTag) {
-        exit(1);
-    }
+    }];
 }
 
 - (void)remoteControlReceivedWithEvent:(UIEvent *)event

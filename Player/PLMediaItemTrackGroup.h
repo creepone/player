@@ -1,7 +1,6 @@
 #import <MediaPlayer/MediaPlayer.h>
-#import <ReactiveCocoa/ReactiveCocoa.h>
 
-@class RXPromise;
+@class RACSignal;
 
 typedef NS_ENUM(NSInteger, PLTrackGroupType) {
     PLTrackGroupTypeAudiobooks,

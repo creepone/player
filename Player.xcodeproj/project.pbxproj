@@ -15,7 +15,6 @@
 		696C13EE5F69A14268974A60 /* PLErrorManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 696C12FAB54495AF46A2A951 /* PLErrorManager.m */; };
 		696C1409FF66555E089505A1 /* NSArray+PLExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 696C133478AB46FE4BED85EF /* NSArray+PLExtensions.m */; };
 		696C14355BFE9EF3A322E84C /* PLColors.m in Sources */ = {isa = PBXBuildFile; fileRef = 696C1F36F1EB35D1A794B4FE /* PLColors.m */; };
-		696C144E4704B5A5CF53C33D /* RXPromise+PLExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 696C1F806E065E1941BA78DA /* RXPromise+PLExtensions.m */; };
 		696C14C3B0C607930E2E9DBD /* PLFetchedResultsControllerDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 696C131DDE2F8669C019BECF /* PLFetchedResultsControllerDelegate.m */; };
 		696C150707F3BDB3401223BA /* PLConstraints.m in Sources */ = {isa = PBXBuildFile; fileRef = 696C134AABF2AE3C703232D6 /* PLConstraints.m */; };
 		696C153A17367E75E95611F2 /* PLCachedArtwork.m in Sources */ = {isa = PBXBuildFile; fileRef = 696C1500B3FE45191DAA56E0 /* PLCachedArtwork.m */; };
@@ -132,7 +131,6 @@
 		696C1414B69DC381029EE20D /* PLBackgroundProcessProgress.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PLBackgroundProcessProgress.h; sourceTree = "<group>"; };
 		696C1426B1C214592AD07A07 /* PLFetchedResultsUpdate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PLFetchedResultsUpdate.h; sourceTree = "<group>"; };
 		696C143FEC9667A8B106C5AE /* PLFileSharingActivity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PLFileSharingActivity.m; sourceTree = "<group>"; };
-		696C14419B3F9D0681D046BE /* RXPromise+PLExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "RXPromise+PLExtensions.h"; sourceTree = "<group>"; };
 		696C146AEE2E2953E78DFD15 /* PLDownloadPodcastActivity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PLDownloadPodcastActivity.m; sourceTree = "<group>"; };
 		696C1500B3FE45191DAA56E0 /* PLCachedArtwork.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PLCachedArtwork.m; sourceTree = "<group>"; };
 		696C150BD38DBFE750DEEE04 /* PLBackgroundProcess.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PLBackgroundProcess.m; sourceTree = "<group>"; };
@@ -190,7 +188,6 @@
 		696C1F2107FF194F73B00CA7 /* PLMediaItemTrackGroup.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PLMediaItemTrackGroup.m; sourceTree = "<group>"; };
 		696C1F36F1EB35D1A794B4FE /* PLColors.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PLColors.m; sourceTree = "<group>"; };
 		696C1F6362232CF71408E756 /* PLBackgroundProcessProgress.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PLBackgroundProcessProgress.m; sourceTree = "<group>"; };
-		696C1F806E065E1941BA78DA /* RXPromise+PLExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "RXPromise+PLExtensions.m"; sourceTree = "<group>"; };
 		696C1FC517E0B1E486397B42 /* PLActivityViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PLActivityViewController.h; sourceTree = "<group>"; };
 		696C1FE29357EB7961765F29 /* PLMediaMirror.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PLMediaMirror.h; sourceTree = "<group>"; };
 		696C1FE69CD877A0A21E876F /* PLImportActivityViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PLImportActivityViewController.m; sourceTree = "<group>"; };
@@ -355,15 +352,6 @@
 			name = View;
 			sourceTree = "<group>";
 		};
-		696C14DD1BF4F4658D5009EC /* Promises */ = {
-			isa = PBXGroup;
-			children = (
-				696C1F806E065E1941BA78DA /* RXPromise+PLExtensions.m */,
-				696C14419B3F9D0681D046BE /* RXPromise+PLExtensions.h */,
-			);
-			name = Promises;
-			sourceTree = "<group>";
-		};
 		696C1726DE7EC4DA536D552A /* Network */ = {
 			isa = PBXGroup;
 			children = (
@@ -416,7 +404,6 @@
 				696C1FFF4599CDF04A92A304 /* Error handling */,
 				696C1AAD96C35E9BF3686E67 /* Caching */,
 				696C1A0B68A4C7AB83906623 /* Extensions */,
-				696C14DD1BF4F4658D5009EC /* Promises */,
 				696C116486C7C451B7194AAE /* Background processes */,
 				696C1ADA62259499028F9F4B /* PLUtils.h */,
 				696C182AEF78B538772A01FD /* PLUtils.m */,
@@ -1095,7 +1082,6 @@
 				C3CC18D3191FC5990026E681 /* PLTrackCell.m in Sources */,
 				696C1409FF66555E089505A1 /* NSArray+PLExtensions.m in Sources */,
 				696C159390EB7A51269C2399 /* NSString+PLExtensions.m in Sources */,
-				696C144E4704B5A5CF53C33D /* RXPromise+PLExtensions.m in Sources */,
 				696C169A25ECD6B14186B438 /* PLEntity.m in Sources */,
 				696C1FBF6134FDF5DE3BD2C6 /* PLLegacySongTableViewCell.m in Sources */,
 				696C12295CFEA1F9814E8AC8 /* PLPlaylistSongCellViewModel.m in Sources */,

@@ -1,4 +1,3 @@
-@class PLMediaItemTrackGroup;
 @class PLTracksViewModel;
 
 @interface PLTracksViewController : UITableViewController

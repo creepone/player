@@ -1,7 +1,7 @@
 #import <Foundation/Foundation.h>
 #import <CoreData/CoreData.h>
 
-@class PLCoreDataStack, RXPromise;
+@class RACSignal;
 
 extern const long PLCurrentDataStoreVersion;
 
@@ -29,18 +29,16 @@ extern const long PLCurrentDataStoreVersion;
 + (NSString *)dataStoreNameVersion:(NSInteger)version;
 
 /**
- Resolves to a core data stack ready to be used by the application. It takes care about
- ensuring that it uses the latest model and migrates the persistent data store if necessary.
+ Returns a signal that delivers a core data stack ready to be used by the application, then completes.
+ It takes care about ensuring that it uses the latest model and migrates the persistent data store if necessary.
  In case the data store doesn't exist, it is created and filled with default set of objects.
- In case of failure, non-nil error is set that occured.
  */
-+ (RXPromise *)coreDataStack;
++ (RACSignal *)coreDataStack;
 
 /**
- Resolves to a core data stack from a specific version of the model. The data store must
- exist in this version as no migration or initialization will be performed.
- In case of failure, non-nil error is set that occured.
+ Returns a signal that delivers a core data stack from a specific version of the model, then completes.
+ The data store must exist in this version as no migration or initialization will be performed.
  */
-+ (RXPromise *)coreDataStackForModelVersion:(NSInteger)version;
++ (RACSignal *)coreDataStackForModelVersion:(NSInteger)version;
 
 @end
