@@ -55,7 +55,7 @@
     PLPlaylistSongCell *cell = [tableView dequeueReusableCellWithIdentifier:kPlaylistSongCell forIndexPath:indexPath];
 
     PLPlaylistSongCellViewModel *viewModel = [_viewModel songViewModelAt:indexPath];
-    [cell setupBindings:viewModel];
+    cell.viewModel = viewModel;
     return cell;
 }
 

@@ -1,3 +1,7 @@
+integrate getting the DB API Secret into the build
+upload icon @ Dropbox dev page
+use something like dropbox://path for the track downloadURL so that it can be retried if authentication fails
+
 long term:
 refactor the "Activity View" to use MVVM
 introduce some service container mechanism so that the VMs can be unit tested

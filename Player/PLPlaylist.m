@@ -18,10 +18,10 @@
 - (void)remove
 {
     // iterating like this makes sure we also remove associated objects (e.g. tracks)
-    for (PLPlaylistSong *song in self.songs) {
+    for (PLPlaylistSong *song in [self.songs copy]) {
         [song remove];
         [self removeSongsObject:song];
-    }
+    } 
 
     [self.managedObjectContext deleteObject:self];
 }

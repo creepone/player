@@ -4,6 +4,6 @@
 
 @interface PLPlaylistSongCell : UITableViewCell
 
-- (void)setupBindings:(PLPlaylistSongCellViewModel *)modelView;
+@property (nonatomic, strong) PLPlaylistSongCellViewModel *viewModel;
 
 @end

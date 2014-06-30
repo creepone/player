@@ -6,8 +6,8 @@
 #import "UIView+PLExtensions.h"
 
 @interface PLPlaylistSongCell () {
-    PLPlaylistSongCellViewModel *_modelView;
     NSLayoutConstraint *_progressWidthConstraint;
+    RACDisposable *_bindingsDisposable;
 }
 
 @property (strong, nonatomic) IBOutlet UIImageView *imageViewArtwork;
@@ -25,29 +25,62 @@ const int kAccessoryImageTag = 2;
 
 @implementation PLPlaylistSongCell
 
-- (void)setupBindings:(PLPlaylistSongCellViewModel *)modelView
+- (void)setViewModel:(PLPlaylistSongCellViewModel *)viewModel
 {
-    _modelView = modelView;
+    _viewModel = viewModel;
+    [_bindingsDisposable dispose];
+
+    if (viewModel != nil) {
+        [self setupStaticValues];
+        
+        _bindingsDisposable = [[RACScheduler mainThreadScheduler] afterDelay:1.0 schedule:^{
+            [self setupBindings];
+        }];
+    }    
+}
+
+- (void)setupStaticValues
+{
+    self.labelTitle.text = self.viewModel.titleText;
+    self.labelArtist.text = self.viewModel.artistText;
+    self.labelTitle.alpha = self.labelArtist.alpha = self.labelDuration.alpha = self.imageViewArtwork.alpha = self.viewProgress.alpha = self.viewModel.alpha;
     
-    RAC(self.labelTitle, text) = [RACObserve(modelView, titleText) takeUntil:self.rac_prepareForReuseSignal];
-    RAC(self.labelArtist, text) = [RACObserve(modelView, artistText) takeUntil:self.rac_prepareForReuseSignal];
+    UIImage *imageArtwork = self.viewModel.imageArtwork;
+    self.imageViewArtwork.image = imageArtwork ? : [UIImage imageNamed:@"DefaultArtwork"];
     
-    RACSignal *alphaSignal = [RACObserve(modelView, alpha) takeUntil:self.rac_prepareForReuseSignal];
-    RAC(self.labelTitle, alpha) = alphaSignal;
-    RAC(self.labelArtist, alpha) = alphaSignal;
-    RAC(self.labelDuration, alpha) = alphaSignal;
-    RAC(self.imageViewArtwork, alpha) = alphaSignal;
-    RAC(self.viewProgress, alpha) = alphaSignal;
+    self.labelDuration.text = self.viewModel.durationText;
+    self.backgroundColor = self.viewModel.backgroundColor;
+
+    [self setCellProgress:@(self.viewModel.playbackProgress)];
+    self.buttonPlaceholder.rac_command = self.viewModel.accessoryCommand;
     
-    RAC(self.imageViewArtwork, image, [UIImage imageNamed:@"DefaultArtwork"]) = [RACObserve(modelView, imageArtwork) takeUntil:self.rac_prepareForReuseSignal];
-    RAC(self.labelDuration, text) = [RACObserve(modelView, durationText) takeUntil:self.rac_prepareForReuseSignal];
-    RAC(self, backgroundColor) = [RACObserve(modelView, backgroundColor) takeUntil:self.rac_prepareForReuseSignal];
+    NSNumber *accessoryProgress = self.viewModel.accessoryProgress;
+    UIImage *accessoryImage = self.viewModel.accessoryImage;
     
-    [self rac_liftSelector:@selector(setCellProgress:) withSignals:[RACObserve(modelView, playbackProgress) takeUntil:self.rac_prepareForReuseSignal], nil];
-    RAC(self.buttonPlaceholder, rac_command) = [RACObserve(modelView, accessoryCommand) takeUntil:self.rac_prepareForReuseSignal];
+    [self setAccessoryProgress:accessoryProgress];
+    [self setAccessoryImage:accessoryImage];
+    [self setButtonPlaceholderVisible:(accessoryProgress || accessoryImage)];
+
+}
+
+- (void)setupBindings
+{
+    RAC(self.labelTitle, text) = [RACObserve(self.viewModel, titleText) takeUntil:self.rac_prepareForReuseSignal];
+    RAC(self.labelArtist, text) = [RACObserve(self.viewModel, artistText) takeUntil:self.rac_prepareForReuseSignal];
     
-    RACSignal *accessoryProgressSignal = [RACObserve(modelView, accessoryProgress) takeUntil:self.rac_prepareForReuseSignal];
-    RACSignal *accessoryImageSignal = [RACObserve(modelView, accessoryImage) takeUntil:self.rac_prepareForReuseSignal];
+    [[RACObserve(self.viewModel, alpha) takeUntil:self.rac_prepareForReuseSignal] subscribeNext:^(NSNumber *alpha) {
+        self.labelTitle.alpha = self.labelArtist.alpha = self.labelDuration.alpha = self.imageViewArtwork.alpha = self.viewProgress.alpha = [alpha floatValue];
+    }];
+    
+    RAC(self.imageViewArtwork, image, [UIImage imageNamed:@"DefaultArtwork"]) = [RACObserve(self.viewModel, imageArtwork) takeUntil:self.rac_prepareForReuseSignal];
+    RAC(self.labelDuration, text) = [RACObserve(self.viewModel, durationText) takeUntil:self.rac_prepareForReuseSignal];
+    RAC(self, backgroundColor) = [RACObserve(self.viewModel, backgroundColor) takeUntil:self.rac_prepareForReuseSignal];
+    
+    [self rac_liftSelector:@selector(setCellProgress:) withSignals:[RACObserve(self.viewModel, playbackProgress) takeUntil:self.rac_prepareForReuseSignal], nil];
+    RAC(self.buttonPlaceholder, rac_command) = [RACObserve(self.viewModel, accessoryCommand) takeUntil:self.rac_prepareForReuseSignal];
+    
+    RACSignal *accessoryProgressSignal = [RACObserve(self.viewModel, accessoryProgress) takeUntil:self.rac_prepareForReuseSignal];
+    RACSignal *accessoryImageSignal = [RACObserve(self.viewModel, accessoryImage) takeUntil:self.rac_prepareForReuseSignal];
     RACSignal *accessoryVisibleSignal = [RACSignal combineLatest:@[accessoryProgressSignal, accessoryImageSignal] reduce:^(id first, id second) { return @(first || second); }];
     
     [self rac_liftSelector:@selector(setAccessoryProgress:) withSignals:accessoryProgressSignal, nil];
@@ -132,7 +165,7 @@ const int kAccessoryImageTag = 2;
 - (void)prepareForReuse
 {
     [super prepareForReuse];
-    _modelView = nil;
+    self.viewModel = nil;
 }
 
 @end

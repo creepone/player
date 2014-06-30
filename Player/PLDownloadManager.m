@@ -113,7 +113,9 @@ NSString * const PLBackgroundSessionIdentifier = @"at.iosapps.Player.BackgroundS
         if (track == nil)
             return nil;
         
-        return [[PLFileImport moveToDocumentsFolder:location underFileName:[track.downloadURL lastPathComponent]]
+        NSString *targetFileName = [PLUtils fileNameFromURL:[NSURL URLWithString:track.downloadURL]];
+                
+        return [[PLFileImport moveToDocumentsFolder:location underFileName:targetFileName]
         flattenMap:^RACStream *(NSURL *fileURL) {
             PLTrack *track = [[PLDataAccess sharedDataAccess] trackWithObjectID:trackId];
             track.fileURL = [fileURL absoluteString];
@@ -147,6 +149,8 @@ NSString * const PLBackgroundSessionIdentifier = @"at.iosapps.Player.BackgroundS
 {
     if (error == nil)
         return;
+    
+    [PLErrorManager logError:error];
 
     NSString *trackId = task.taskDescription;
 

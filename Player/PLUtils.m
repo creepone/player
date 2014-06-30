@@ -55,6 +55,13 @@
     return [NSString stringWithFormat:@"%02ld:%02ld", min, sec];
 }
 
++ (NSString *)fileNameFromURL:(NSURL *)url
+{
+    return [[[url lastPathComponent]
+        stringByReplacingOccurrencesOfString:@"+" withString:@" "]
+        stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+}
+
 + (UIImage *)launchImage
 {
     CGRect bounds = [[UIScreen mainScreen] bounds];

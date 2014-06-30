@@ -1,5 +1,6 @@
 #import <SVProgressHUD.h>
 #import <ReactiveCocoa/ReactiveCocoa.h>
+#import <DropboxSDK/DropboxSDK.h>
 
 #import "PLAppDelegate.h"
 #import "PLCoreDataStack.h"
@@ -98,6 +99,20 @@ static void onUncaughtException(NSException* exception);
 
 - (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation
 {
+    DDLogVerbose(@"opening url %@", url);
+    
+    // do not handle dropbox requests
+    if ([url.scheme isEqualToString:@"db-rqjkvshiflgy2qj"])
+        return YES;
+    
+    /*if ([[DBSession sharedSession] handleOpenURL:url]) {
+        if ([[DBSession sharedSession] isLinked]) {
+            DDLogVerbose(@"Linked to Dropbox");
+            // todo: raise event ?
+        }
+        return YES;
+    }*/
+    
     if (self.coreDataStack)
         [[PLFileImport importFile:url] subscribeError:[PLErrorManager logErrorVoidBlock]];
     return YES;

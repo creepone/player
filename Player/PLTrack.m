@@ -6,6 +6,7 @@
 #import "PLImageCache.h"
 #import "PLErrorManager.h"
 #import "PLDownloadManager.h"
+#import "PLUtils.h"
 
 @interface PLTrack()
 
@@ -48,7 +49,10 @@
     PLTrack *track = [NSEntityDescription insertNewObjectForEntityForName:[self entityName] inManagedObjectContext:context];
     track.downloadStatus = PLTrackDownloadStatusIdle;
     track.downloadURL = downloadURL;
-    track.title = [[downloadURL lastPathComponent] stringByDeletingPathExtension];
+    
+    NSString *targetFileName = [PLUtils fileNameFromURL:[NSURL URLWithString:downloadURL]];
+    track.title = [targetFileName stringByDeletingPathExtension];
+    
     return track;
 }
 

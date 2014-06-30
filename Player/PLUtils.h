@@ -20,6 +20,8 @@ typedef BOOL (^PLPredicate)(id);
 
 + (NSString *)formatDuration:(NSTimeInterval)duration;
 
++ (NSString *)fileNameFromURL:(NSURL *)url;
+
 /**
  Uses a workaround to deliver the launch image of the application without duplicating it in the asset catalog.
  For dubious reasons, the launch image does not behave in the same way as ordinary images and requesting it with

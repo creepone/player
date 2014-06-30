@@ -34,27 +34,30 @@
 
         [self updateTrackMetadata];
         [self setupUpdatingProgress];
-
+        if (_playlistSong.track.downloadURL)
+            [self setupObservingDownload];
+        
         RACSignal *songChangeSignal = [[[NSNotificationCenter defaultCenter] rac_addObserverForName:kPLPlayerSongChange object:nil] takeUntil:self.rac_willDeallocSignal];
         RACSignal *isPlayingChangeSignal = [[[NSNotificationCenter defaultCenter] rac_addObserverForName:kPLPlayerIsPlayingChange object:nil] takeUntil:self.rac_willDeallocSignal];
         RACSignal *willEnterForegroundSignal = [[[NSNotificationCenter defaultCenter] rac_addObserverForName:UIApplicationWillEnterForegroundNotification object:nil] takeUntil:self.rac_willDeallocSignal];
         RACSignal *didEnterBackgroundSignal = [[[NSNotificationCenter defaultCenter] rac_addObserverForName:UIApplicationDidEnterBackgroundNotification object:nil] takeUntil:self.rac_willDeallocSignal];
-
+       
+        @weakify(self);
+        
         [songChangeSignal subscribeNext:^(id _){
+            @strongify(self);
             [self pl_notifyKvoForKey:@"backgroundColor"];
         }];
 
         [[RACSignal merge:@[ songChangeSignal, isPlayingChangeSignal, willEnterForegroundSignal ]] subscribeNext:^(id _) {
+            @strongify(self);
             [self setupUpdatingProgress];
         }];
 
         [didEnterBackgroundSignal subscribeNext:^(id _) {
+            @strongify(self);
             [self stopUpdatingProgress];
         }];
-
-        if (_playlistSong.track.downloadURL)
-            [self setupObservingDownload];
-        
     }
     return self;
 }
@@ -198,6 +201,7 @@
 
 - (void)dealloc
 {
+    DDLogVerbose(@"dealloc of viewModel");
     [self stopUpdatingProgress];
 }
 
