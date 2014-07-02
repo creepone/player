@@ -1,4 +1,21 @@
+#import <objc/runtime.h>
 #import "NSObject+PLExtensions.h"
+
+@interface PLDeallocNotifier : NSObject
+
+@property (nonatomic, copy) void (^deallocBlock)();
+
+@end
+
+@implementation PLDeallocNotifier
+
+- (void)dealloc
+{
+    if (self.deallocBlock)
+        self.deallocBlock();
+}
+
+@end
 
 @implementation NSObject (PLExtensions)
 
@@ -32,6 +49,13 @@
     for (NSString *key in keys) {
         [self pl_notifyKvoForKey:key];
     }
+}
+
+- (void)pl_attachDeallocBlock:(dispatch_block_t)deallocBlock
+{
+    PLDeallocNotifier *notifier = [PLDeallocNotifier new];
+    notifier.deallocBlock = deallocBlock;
+    objc_setAssociatedObject(self, (__bridge void *)notifier, notifier, OBJC_ASSOCIATION_RETAIN);
 }
 
 @end

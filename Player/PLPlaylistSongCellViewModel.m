@@ -201,7 +201,6 @@
 
 - (void)dealloc
 {
-    DDLogVerbose(@"dealloc of viewModel");
     [self stopUpdatingProgress];
 }
 

@@ -48,6 +48,9 @@
 		696C1FC71A11624AE1D6F4F6 /* PLBackgroundProcessProgress.m in Sources */ = {isa = PBXBuildFile; fileRef = 696C1F6362232CF71408E756 /* PLBackgroundProcessProgress.m */; };
 		696C1FCAE33C027584502130 /* PLFetchedResultsUpdate.m in Sources */ = {isa = PBXBuildFile; fileRef = 696C1B7CB3806FA7AF21905E /* PLFetchedResultsUpdate.m */; };
 		C3381F9A19609F8600DA2B7B /* PLDropboxManager.m in Sources */ = {isa = PBXBuildFile; fileRef = C3381F9919609F8600DA2B7B /* PLDropboxManager.m */; };
+		C3381FE01963D1A800DA2B7B /* PLObservable.m in Sources */ = {isa = PBXBuildFile; fileRef = C3381FDB1963D1A800DA2B7B /* PLObservable.m */; };
+		C3381FE11963D1A800DA2B7B /* PLKVOObservable.m in Sources */ = {isa = PBXBuildFile; fileRef = C3381FDD1963D1A800DA2B7B /* PLKVOObservable.m */; };
+		C3381FE21963D1A800DA2B7B /* PLNotificationCenterObservable.m in Sources */ = {isa = PBXBuildFile; fileRef = C3381FDF1963D1A800DA2B7B /* PLNotificationCenterObservable.m */; };
 		C3437569166BE531006EC87D /* jbl_confirm.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = C3437568166BE531006EC87D /* jbl_confirm.mp3 */; };
 		C343756B166BE5ED006EC87D /* jbl_confirm.caf in Resources */ = {isa = PBXBuildFile; fileRef = C343756A166BE5ED006EC87D /* jbl_confirm.caf */; };
 		C343756D166BE661006EC87D /* jbl_confirm.aiff in Resources */ = {isa = PBXBuildFile; fileRef = C343756C166BE661006EC87D /* jbl_confirm.aiff */; };
@@ -194,6 +197,12 @@
 		696C1FE69CD877A0A21E876F /* PLImportActivityViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PLImportActivityViewController.m; sourceTree = "<group>"; };
 		C3381F9819609F8600DA2B7B /* PLDropboxManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PLDropboxManager.h; sourceTree = "<group>"; };
 		C3381F9919609F8600DA2B7B /* PLDropboxManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PLDropboxManager.m; sourceTree = "<group>"; };
+		C3381FDA1963D1A800DA2B7B /* PLObservable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PLObservable.h; sourceTree = "<group>"; };
+		C3381FDB1963D1A800DA2B7B /* PLObservable.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PLObservable.m; sourceTree = "<group>"; };
+		C3381FDC1963D1A800DA2B7B /* PLKVOObservable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PLKVOObservable.h; sourceTree = "<group>"; };
+		C3381FDD1963D1A800DA2B7B /* PLKVOObservable.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PLKVOObservable.m; sourceTree = "<group>"; };
+		C3381FDE1963D1A800DA2B7B /* PLNotificationCenterObservable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PLNotificationCenterObservable.h; sourceTree = "<group>"; };
+		C3381FDF1963D1A800DA2B7B /* PLNotificationCenterObservable.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PLNotificationCenterObservable.m; sourceTree = "<group>"; };
 		C3437568166BE531006EC87D /* jbl_confirm.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = jbl_confirm.mp3; sourceTree = "<group>"; };
 		C343756A166BE5ED006EC87D /* jbl_confirm.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = jbl_confirm.caf; sourceTree = "<group>"; };
 		C343756C166BE661006EC87D /* jbl_confirm.aiff */ = {isa = PBXFileReference; lastKnownFileType = audio.aiff; path = jbl_confirm.aiff; sourceTree = "<group>"; };
@@ -400,6 +409,7 @@
 		696C1A30A16BABDC7CEF1C08 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
+				C3381FD91963D13B00DA2B7B /* Observables */,
 				C3A4D679193E401B0060B704 /* Import */,
 				C3BC5AE81656CCBB002DA837 /* Settings */,
 				696C1726DE7EC4DA536D552A /* Network */,
@@ -471,6 +481,19 @@
 				C3381F9919609F8600DA2B7B /* PLDropboxManager.m */,
 			);
 			name = Model;
+			sourceTree = "<group>";
+		};
+		C3381FD91963D13B00DA2B7B /* Observables */ = {
+			isa = PBXGroup;
+			children = (
+				C3381FDA1963D1A800DA2B7B /* PLObservable.h */,
+				C3381FDB1963D1A800DA2B7B /* PLObservable.m */,
+				C3381FDC1963D1A800DA2B7B /* PLKVOObservable.h */,
+				C3381FDD1963D1A800DA2B7B /* PLKVOObservable.m */,
+				C3381FDE1963D1A800DA2B7B /* PLNotificationCenterObservable.h */,
+				C3381FDF1963D1A800DA2B7B /* PLNotificationCenterObservable.m */,
+			);
+			name = Observables;
 			sourceTree = "<group>";
 		};
 		C34ADCDC19164CBE00A07EBB /* Legacy */ = {
@@ -1049,6 +1072,7 @@
 				C3A4D682194343570060B704 /* PLProgressTableViewCell.m in Sources */,
 				C3BC5A991656B959002DA837 /* PLPlaylistViewController.m in Sources */,
 				C3BC5AB21656C284002DA837 /* PLPlayerViewController.m in Sources */,
+				C3381FE11963D1A800DA2B7B /* PLKVOObservable.m in Sources */,
 				C3BC5ABD1656C4E7002DA837 /* PLBookmarksViewController.m in Sources */,
 				C3BC5AC21656C4EF002DA837 /* PLSettingsViewController.m in Sources */,
 				C3BC5ACD1656C81C002DA837 /* Model.xcdatamodeld in Sources */,
@@ -1075,6 +1099,7 @@
 				696C15F960FE4C012828606D /* PLActivityViewController.m in Sources */,
 				696C1688959910200C8E162E /* PLSelectFromMusicLibraryActivity.m in Sources */,
 				C3A4D67C193E40320060B704 /* PLFileImport.m in Sources */,
+				C3381FE21963D1A800DA2B7B /* PLNotificationCenterObservable.m in Sources */,
 				C3CC18C4191F65350026E681 /* PLMusicLibraryViewController.m in Sources */,
 				696C1E705DB79F2E2990D98A /* UIView+PLExtensions.m in Sources */,
 				696C150707F3BDB3401223BA /* PLConstraints.m in Sources */,
@@ -1112,6 +1137,7 @@
 				696C1F37827BDCC5942F540F /* PLMediaMirror.m in Sources */,
 				696C103AFE37906F58AE8524 /* PLPlaylistSongsViewModel.m in Sources */,
 				696C1FCAE33C027584502130 /* PLFetchedResultsUpdate.m in Sources */,
+				C3381FE01963D1A800DA2B7B /* PLObservable.m in Sources */,
 				696C14C3B0C607930E2E9DBD /* PLFetchedResultsControllerDelegate.m in Sources */,
 				696C1BDC652AD70EC4358087 /* UITableView+PLExtensions.m in Sources */,
 				696C12CF6D6221B60CEB7C1F /* PLTrackGroupsViewModel.m in Sources */,

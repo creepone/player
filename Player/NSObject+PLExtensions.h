@@ -24,4 +24,9 @@
 */
 - (void)pl_notifyKvoForKeys:(NSArray *)keys;
 
+/**
+* Attaches a given block to be executed as soon as this objects gets deallocated.
+*/
+- (void)pl_attachDeallocBlock:(dispatch_block_t)deallocBlock;
+
 @end
