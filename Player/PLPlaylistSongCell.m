@@ -4,10 +4,11 @@
 #import "PLPlaylistSongCellViewModel.h"
 #import "PLColors.h"
 #import "UIView+PLExtensions.h"
+#import "PLKVOObserver.h"
 
 @interface PLPlaylistSongCell () {
     NSLayoutConstraint *_progressWidthConstraint;
-    RACDisposable *_bindingsDisposable;
+    PLKVOObserver *_viewModelObserver;
 }
 
 @property (strong, nonatomic) IBOutlet UIImageView *imageViewArtwork;
@@ -20,72 +21,50 @@
 
 @end
 
-const int kAccessoryProgressTag = 1;
-const int kAccessoryImageTag = 2;
+static const int kAccessoryProgressTag = 1;
+static const int kAccessoryImageTag = 2;
 
 @implementation PLPlaylistSongCell
 
 - (void)setViewModel:(PLPlaylistSongCellViewModel *)viewModel
 {
     _viewModel = viewModel;
-    [_bindingsDisposable dispose];
-
     if (viewModel != nil) {
-        [self setupStaticValues];
-        
-        _bindingsDisposable = [[RACScheduler mainThreadScheduler] afterDelay:1.0 schedule:^{
-            [self setupBindings];
-        }];
-    }    
-}
-
-- (void)setupStaticValues
-{
-    self.labelTitle.text = self.viewModel.titleText;
-    self.labelArtist.text = self.viewModel.artistText;
-    self.labelTitle.alpha = self.labelArtist.alpha = self.labelDuration.alpha = self.imageViewArtwork.alpha = self.viewProgress.alpha = self.viewModel.alpha;
-    
-    UIImage *imageArtwork = self.viewModel.imageArtwork;
-    self.imageViewArtwork.image = imageArtwork ? : [UIImage imageNamed:@"DefaultArtwork"];
-    
-    self.labelDuration.text = self.viewModel.durationText;
-    self.backgroundColor = self.viewModel.backgroundColor;
-
-    [self setCellProgress:@(self.viewModel.playbackProgress)];
-    self.buttonPlaceholder.rac_command = self.viewModel.accessoryCommand;
-    
-    NSNumber *accessoryProgress = self.viewModel.accessoryProgress;
-    UIImage *accessoryImage = self.viewModel.accessoryImage;
-    
-    [self setAccessoryProgress:accessoryProgress];
-    [self setAccessoryImage:accessoryImage];
-    [self setButtonPlaceholderVisible:(accessoryProgress || accessoryImage)];
-
+        [self setupBindings];
+    }
 }
 
 - (void)setupBindings
 {
-    RAC(self.labelTitle, text) = [RACObserve(self.viewModel, titleText) takeUntil:self.rac_prepareForReuseSignal];
-    RAC(self.labelArtist, text) = [RACObserve(self.viewModel, artistText) takeUntil:self.rac_prepareForReuseSignal];
+    @weakify(self);
     
-    [[RACObserve(self.viewModel, alpha) takeUntil:self.rac_prepareForReuseSignal] subscribeNext:^(NSNumber *alpha) {
-        self.labelTitle.alpha = self.labelArtist.alpha = self.labelDuration.alpha = self.imageViewArtwork.alpha = self.viewProgress.alpha = [alpha floatValue];
+    PLKVOObserver *observer = [PLKVOObserver observerWithTarget:_viewModel];
+    [observer addKeyPath:@keypath(_viewModel.titleText) handler:^(id value) { @strongify(self); self.labelTitle.text = value; }];
+    [observer addKeyPath:@keypath(_viewModel.artistText) handler:^(id value) { @strongify(self); self.labelArtist.text = value; }];
+    [observer addKeyPath:@keypath(_viewModel.durationText) handler:^(id value) { @strongify(self); self.labelDuration.text = value; }];
+    [observer addKeyPath:@keypath(_viewModel.backgroundColor) handler:^(id value) { @strongify(self); self.backgroundColor = value; }];
+    [observer addKeyPath:@keypath(_viewModel.playbackProgress) handler:^(id value) { @strongify(self); [self setCellProgress:value]; }];
+    [observer addKeyPath:@keypath(_viewModel.accessoryCommand) handler:^(id value) { @strongify(self); self.buttonPlaceholder.rac_command = value; }];
+    
+    [observer addKeyPath:@keypath(_viewModel.alpha) handler:^(id value) { @strongify(self);
+        self.labelTitle.alpha = self.labelArtist.alpha = self.labelDuration.alpha = self.imageViewArtwork.alpha = self.viewProgress.alpha = [value floatValue];
     }];
     
-    RAC(self.imageViewArtwork, image, [UIImage imageNamed:@"DefaultArtwork"]) = [RACObserve(self.viewModel, imageArtwork) takeUntil:self.rac_prepareForReuseSignal];
-    RAC(self.labelDuration, text) = [RACObserve(self.viewModel, durationText) takeUntil:self.rac_prepareForReuseSignal];
-    RAC(self, backgroundColor) = [RACObserve(self.viewModel, backgroundColor) takeUntil:self.rac_prepareForReuseSignal];
+    [observer addKeyPath:@keypath(_viewModel.imageArtwork) handler:^(id value) { @strongify(self);
+        self.imageViewArtwork.image = value ? : [UIImage imageNamed:@"DefaultArtwork"];
+    }];
     
-    [self rac_liftSelector:@selector(setCellProgress:) withSignals:[RACObserve(self.viewModel, playbackProgress) takeUntil:self.rac_prepareForReuseSignal], nil];
-    RAC(self.buttonPlaceholder, rac_command) = [RACObserve(self.viewModel, accessoryCommand) takeUntil:self.rac_prepareForReuseSignal];
+    [observer addKeyPath:@keypath(_viewModel.accessoryProgress) handler:^(id value) { @strongify(self);
+        [self setAccessoryProgress:value];
+        [self updateButtonPlaceholderVisibility];
+    }];
     
-    RACSignal *accessoryProgressSignal = [RACObserve(self.viewModel, accessoryProgress) takeUntil:self.rac_prepareForReuseSignal];
-    RACSignal *accessoryImageSignal = [RACObserve(self.viewModel, accessoryImage) takeUntil:self.rac_prepareForReuseSignal];
-    RACSignal *accessoryVisibleSignal = [RACSignal combineLatest:@[accessoryProgressSignal, accessoryImageSignal] reduce:^(id first, id second) { return @(first || second); }];
+    [observer addKeyPath:@keypath(_viewModel.accessoryImage) handler:^(id value) { @strongify(self);
+        [self setAccessoryImage:value];
+        [self updateButtonPlaceholderVisibility];
+    }];
     
-    [self rac_liftSelector:@selector(setAccessoryProgress:) withSignals:accessoryProgressSignal, nil];
-    [self rac_liftSelector:@selector(setAccessoryImage:) withSignals:accessoryImageSignal, nil];
-    [self rac_liftSelector:@selector(setButtonPlaceholderVisible:) withSignals:accessoryVisibleSignal, nil];
+    _viewModelObserver = observer;
 }
 
 
@@ -152,8 +131,10 @@ const int kAccessoryImageTag = 2;
     [imageView setImage:image];
 }
 
-- (void)setButtonPlaceholderVisible:(BOOL)visible
+- (void)updateButtonPlaceholderVisibility
 {
+    BOOL visible = _viewModel.accessoryProgress || _viewModel.accessoryImage;
+
     // to keep the other constraints working, we move this view out of the visible container if it should be hidden
     if (visible)
         self.constraintRightViewPlaceholder.constant = 8.f;
@@ -165,6 +146,14 @@ const int kAccessoryImageTag = 2;
 - (void)prepareForReuse
 {
     [super prepareForReuse];
+    
+    _viewModelObserver = nil;
+    self.viewModel = nil;
+}
+
+- (void)dealloc
+{
+    _viewModelObserver = nil;
     self.viewModel = nil;
 }
 

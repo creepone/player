@@ -7,10 +7,13 @@
 #import "PLPlayer.h"
 #import "NSObject+PLExtensions.h"
 #import "PLDownloadManager.h"
+#import "PLNotificationObserver.h"
 
 @interface PLPlaylistSongCellViewModel () {
     PLPlaylistSong *_playlistSong;
+    PLNotificationObserver *_notificationObserver;
     RACDisposable *_progressTimerSubscription;
+    RACDisposable *_imageArtworkSubscription;
 }
 
 @property (strong, nonatomic, readwrite) UIImage *imageArtwork;
@@ -37,25 +40,23 @@
         if (_playlistSong.track.downloadURL)
             [self setupObservingDownload];
         
-        RACSignal *songChangeSignal = [[[NSNotificationCenter defaultCenter] rac_addObserverForName:kPLPlayerSongChange object:nil] takeUntil:self.rac_willDeallocSignal];
-        RACSignal *isPlayingChangeSignal = [[[NSNotificationCenter defaultCenter] rac_addObserverForName:kPLPlayerIsPlayingChange object:nil] takeUntil:self.rac_willDeallocSignal];
-        RACSignal *willEnterForegroundSignal = [[[NSNotificationCenter defaultCenter] rac_addObserverForName:UIApplicationWillEnterForegroundNotification object:nil] takeUntil:self.rac_willDeallocSignal];
-        RACSignal *didEnterBackgroundSignal = [[[NSNotificationCenter defaultCenter] rac_addObserverForName:UIApplicationDidEnterBackgroundNotification object:nil] takeUntil:self.rac_willDeallocSignal];
-       
-        @weakify(self);
-        
-        [songChangeSignal subscribeNext:^(id _){
-            @strongify(self);
-            [self pl_notifyKvoForKey:@"backgroundColor"];
-        }];
+        _notificationObserver = [PLNotificationObserver observer];
 
-        [[RACSignal merge:@[ songChangeSignal, isPlayingChangeSignal, willEnterForegroundSignal ]] subscribeNext:^(id _) {
-            @strongify(self);
+        @weakify(self);
+        [_notificationObserver addNotification:kPLPlayerSongChange handler:^(id _) { @strongify(self);
+            [self pl_notifyKvoForKey:@"backgroundColor"];
             [self setupUpdatingProgress];
         }];
 
-        [didEnterBackgroundSignal subscribeNext:^(id _) {
-            @strongify(self);
+        [_notificationObserver addNotification:kPLPlayerIsPlayingChange handler:^(id _) { @strongify(self);
+            [self setupUpdatingProgress];
+        }];
+
+        [_notificationObserver addNotification:UIApplicationWillEnterForegroundNotification handler:^(id _) { @strongify(self);
+            [self setupUpdatingProgress];
+        }];
+
+        [_notificationObserver addNotification:UIApplicationDidEnterBackgroundNotification handler:^(id _) { @strongify(self);
             [self stopUpdatingProgress];
         }];
     }
@@ -69,8 +70,11 @@
     self.alpha = _playlistSong.assetURL ? 1.f : 0.5f;
     [self pl_notifyKvoForKey:@"durationText"];
 
-    RACSignal *nextUpdateSignal = [self rac_signalForSelector:@selector(updateTrackMetadata)];
-    RAC(self, imageArtwork) = [_playlistSong.smallArtwork takeUntil:nextUpdateSignal];
+    [_imageArtworkSubscription dispose];
+    @weakify(self);
+    _imageArtworkSubscription = [_playlistSong.smallArtwork subscribeNext:^(UIImage *image) { @strongify(self);
+        self.imageArtwork = image;
+    }];
 }
 
 - (void)setupObservingDownload
@@ -79,10 +83,11 @@
     if (track.downloadStatus == PLTrackDownloadStatusDone)
         return;
     
-    RACSignal *trackWillFaultSignal = [track rac_signalForSelector:@selector(willTurnIntoFault)];
-    RACSignal *downloadStatusSignal = [RACObserve(track, downloadStatus) takeUntil:[RACSignal merge:@[self.rac_willDeallocSignal, trackWillFaultSignal]]];
-    
+    RACSignal *downloadStatusSignal = [RACObserve(track, downloadStatus) takeUntil:self.rac_willDeallocSignal];
     [downloadStatusSignal subscribeNext:^(NSNumber *value) {
+        if ([track faultingState] != 0)
+            return;
+        
         PLTrackDownloadStatus downloadStatus = (PLTrackDownloadStatus)[value shortValue];
         
         switch (downloadStatus)
