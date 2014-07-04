@@ -19,6 +19,9 @@
 
 - (RACSignal *)performActivity
 {
+    [PLDropboxManager sharedManager];
+    return [RACSignal empty];
+    
     NSString *testPath = @"/Audio/Sheila%20Heen%2C%20Douglas%20Stone%20-%20Thanks%20for%20the%20Feedback/Sheila%20Heen%2C%20Douglas%20Stone%20-%20Thanks%20for%20the%20Feedback%20-%20Part%202.m4b";
     NSURL *downloadURL = [[PLDropboxManager sharedManager] downloadURLForPath:testPath];
     

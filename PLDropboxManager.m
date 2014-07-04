@@ -16,10 +16,11 @@
 {
     self = [super init];
     if (self) {
-        // todo: figure out how to fill in the secret here
-        DBSession *session = [[DBSession alloc] initWithAppKey:@"rqjkvshiflgy2qj"
-         appSecret:@""
-         root:kDBRootDropbox];
+        
+        NSString *dropboxSecret = [self dropboxSecret];
+        DDLogInfo(@"Dropbox secret = %@", dropboxSecret);
+        
+        DBSession *session = [[DBSession alloc] initWithAppKey:@"rqjkvshiflgy2qj" appSecret:dropboxSecret root:kDBRootDropbox];
          
         [DBSession setSharedSession:session];
 
@@ -56,6 +57,17 @@
 	
     return [urlRequest URL];
     
+}
+
+- (NSString *)dropboxSecret
+{
+    // env. variable, used in the local dev environment
+    NSString *envVariable = [[[NSProcessInfo processInfo] environment] objectForKey:@"DROPBOX_SECRET"];
+    if (envVariable != nil)
+        return envVariable;
+
+    // bundle variable, used for the build
+    return [[[NSBundle mainBundle] infoDictionary] objectForKey:@"DropboxSecret"];
 }
 
 @end
