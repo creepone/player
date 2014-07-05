@@ -18,4 +18,13 @@
     return result;
 }
 
+- (NSArray *)pl_allButLast
+{
+    if ([self count] == 0)
+        return self;
+    
+    NSRange range = { .location = 0, .length = [self count] - 1 };
+    return [self subarrayWithRange:range];
+}
+
 @end

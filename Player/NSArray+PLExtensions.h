@@ -10,4 +10,9 @@
  */
 - (NSArray *)pl_map:(id (^)(id obj))projection;
 
+/**
+ Returns a new array containing the same elements as this one except for the last one.
+ */
+- (NSArray *)pl_allButLast;
+
 @end

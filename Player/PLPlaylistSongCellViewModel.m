@@ -39,7 +39,7 @@
         [self setupUpdatingProgress];
         if (_playlistSong.track.downloadURL)
             [self setupObservingDownload];
-        
+
         _notificationObserver = [PLNotificationObserver observer];
 
         @weakify(self);

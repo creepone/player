@@ -14,6 +14,7 @@
 #import "PLRouter.h"
 #import "PLMediaMirror.h"
 #import "PLDownloadManager.h"
+#import "PLDropboxManager.h"
 
 @interface PLAppDelegate()
 
@@ -101,17 +102,10 @@ static void onUncaughtException(NSException* exception);
 {
     DDLogVerbose(@"opening url %@", url);
     
-    // do not handle dropbox requests
-    if ([url.scheme isEqualToString:@"db-rqjkvshiflgy2qj"])
+    if ([[DBSession sharedSession] handleOpenURL:url]) {
+        [[NSNotificationCenter defaultCenter] postNotificationName:PLDropboxURLHandledNotification object:nil];
         return YES;
-    
-    /*if ([[DBSession sharedSession] handleOpenURL:url]) {
-        if ([[DBSession sharedSession] isLinked]) {
-            DDLogVerbose(@"Linked to Dropbox");
-            // todo: raise event ?
-        }
-        return YES;
-    }*/
+    }
     
     if (self.coreDataStack)
         [[PLFileImport importFile:url] subscribeError:[PLErrorManager logErrorVoidBlock]];

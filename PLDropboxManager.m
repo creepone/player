@@ -1,6 +1,13 @@
 #import <DropboxSDK/DropboxSDK.h>
+#import <ReactiveCocoa/ReactiveCocoa.h>
+#import "DBRestClient+RACSignalSupport.h"
 #import "MPOAuthURLRequest.h"
 #import "PLDropboxManager.h"
+
+NSString * const PLDropboxURLHandledNotification = @"PLDropboxURLHandledNotification";
+
+@interface PLDropboxManager()
+@end
 
 @implementation PLDropboxManager
 
@@ -16,32 +23,50 @@
 {
     self = [super init];
     if (self) {
-        
-        NSString *dropboxSecret = [self dropboxSecret];
-        DDLogInfo(@"Dropbox secret = %@", dropboxSecret);
-        
-        DBSession *session = [[DBSession alloc] initWithAppKey:@"rqjkvshiflgy2qj" appSecret:dropboxSecret root:kDBRootDropbox];
-         
+        DBSession *session = [[DBSession alloc] initWithAppKey:@"rqjkvshiflgy2qj" appSecret:[self dropboxSecret] root:kDBRootDropbox];
         [DBSession setSharedSession:session];
-
-        if (![session isLinked]) {
-            // todo: extract to PLRouter
-
-            UIWindow *window = [[UIApplication sharedApplication] keyWindow];
-            [session linkFromController:window.rootViewController];
-
-            // todo: complete the signal at this point, we will have to be reinvoked when the authentication is done
-        }
     }
     return self;
 }
 
-- (NSURL *)downloadURLForPath:(NSString *)filePath
+
+- (BOOL)ensureLinked
 {
     DBSession *session = [DBSession sharedSession];
     
-    // todo: escape filePath
-    NSString* urlString = [NSString stringWithFormat:@"https://api-content.dropbox.com/1/files/dropbox%@",filePath];
+    if (![session isLinked]) {
+        UIWindow *window = [[UIApplication sharedApplication] keyWindow];
+        [session linkFromController:window.rootViewController];
+        return NO;
+    }
+    
+    return YES;
+}
+
+- (void)unlink
+{
+    [[DBSession sharedSession] unlinkAll];
+}
+
+
+- (RACSignal *)listFolder:(NSString *)path
+{
+    DBRestClient *restClient = [[DBRestClient alloc] initWithSession:[DBSession sharedSession]];
+    
+    return [[restClient rac_loadMetadataSignal:path] map:^(DBMetadata *metadata) {
+        return metadata.contents;
+    }];
+}
+
+
+- (NSURL *)downloadURLForPath:(NSString *)filePath
+{
+    DBSession *session = [DBSession sharedSession];
+    if (![session isLinked])
+        return nil;
+    
+    NSString *escapedPath = [filePath stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+    NSString* urlString = [NSString stringWithFormat:@"https://api-content.dropbox.com/1/files/dropbox%@", escapedPath];
     NSURL* url = [NSURL URLWithString:urlString];
 		
     NSString *userId = session.userIds[0];
@@ -56,15 +81,24 @@
 									   usingMethod:credentialStore.signatureMethod];
 	
     return [urlRequest URL];
-    
 }
 
 - (NSString *)dropboxSecret
 {
+    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+    
     // env. variable, used in the local dev environment
     NSString *envVariable = [[[NSProcessInfo processInfo] environment] objectForKey:@"DROPBOX_SECRET"];
-    if (envVariable != nil)
+    if (envVariable != nil) {
+        [userDefaults setObject:envVariable forKey:@"DROPBOX_SECRET"];
+        [userDefaults synchronize];
         return envVariable;
+    }
+    
+    // setting, used when running a locally built version without passing the envvar
+    NSString *setting = [userDefaults objectForKey:@"DROPBOX_SECRET"];
+    if (setting != nil)
+        return setting;
 
     // bundle variable, used for the build
     return [[[NSBundle mainBundle] infoDictionary] objectForKey:@"DropboxSecret"];

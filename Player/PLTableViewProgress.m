@@ -6,6 +6,7 @@
     BOOL _originalScrollEnabled;
     __weak id<UITableViewDataSource> _originalDataSource;
     __weak id<UITableViewDelegate> _originalDelegate;
+    CGFloat _originalRowHeight;
 }
 
 @end
@@ -19,6 +20,7 @@
         _originalScrollEnabled = tableView.scrollEnabled;
         _originalDataSource = tableView.dataSource;
         _originalDelegate = tableView.delegate;
+        _originalRowHeight = tableView.rowHeight;
         _tableView = tableView;
     }
     return self;
@@ -51,6 +53,7 @@
         tableView.dataSource = self;
         tableView.delegate = self;
         tableView.scrollEnabled = NO;
+        tableView.rowHeight = 98.f;
         [tableView reloadData];
     });
 }
@@ -71,6 +74,7 @@
     _tableView.scrollEnabled = _originalScrollEnabled;
     _tableView.delegate = _originalDelegate;
     _tableView.dataSource = _originalDataSource;
+    _tableView.rowHeight = _originalRowHeight;
 }
 
 @end

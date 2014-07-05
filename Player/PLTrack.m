@@ -102,7 +102,7 @@
     if (mediaItem)
         return [mediaItem valueForProperty:MPMediaItemPropertyAssetURL];
     
-    if (self.fileURL) {
+    if (self.fileURL) {        
         NSURL *fileURL = [NSURL URLWithString:self.fileURL];
         
         if (![[NSFileManager defaultManager] fileExistsAtPath:fileURL.path])

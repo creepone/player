@@ -82,6 +82,6 @@
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
 	<key>DropboxSecret</key>
-	<string>DROPBOX_SECRET</string>
+	<string>${DROPBOX_SECRET}</string>
 </dict>
 </plist>

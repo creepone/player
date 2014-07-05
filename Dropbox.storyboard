@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="5056" systemVersion="13C1021" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="Whx-FH-LE2">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3733"/>
+    </dependencies>
+    <scenes>
+        <!--Dropbox Items View Controller - Add to playlist-->
+        <scene sceneID="sEJ-GG-Rvu">
+            <objects>
+                <tableViewController storyboardIdentifier="dropboxItems" useStoryboardIdentifierAsRestorationIdentifier="YES" id="OFM-pO-LyN" customClass="PLDropboxItemsViewController" sceneMemberID="viewController">
+                    <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="ElO-Gh-yQV">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                        <prototypes>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="dropboxItemCell" id="YzI-vd-X0j" customClass="PLDropboxItemCell">
+                                <rect key="frame" x="0.0" y="86" width="320" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="YzI-vd-X0j" id="eYL-aJ-N5a">
+                                    <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <imageView userInteractionEnabled="NO" contentMode="right" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="751" image="ButtonAdd" translatesAutoresizingMaskIntoConstraints="NO" id="a2v-Vq-nU9">
+                                            <rect key="frame" x="212" y="10" width="100" height="23"/>
+                                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                        </imageView>
+                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="252" verticalHuggingPriority="251" text="Dropbox file or folder" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zwG-qb-OIb">
+                                            <rect key="frame" x="45" y="11" width="162" height="21"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="FileIcon" translatesAutoresizingMaskIntoConstraints="NO" id="t9E-k3-Icq">
+                                            <rect key="frame" x="0.0" y="0.0" width="43" height="43"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="43" id="2rA-h8-Bwa"/>
+                                                <constraint firstAttribute="height" constant="43" id="VDM-Kx-WT5"/>
+                                            </constraints>
+                                        </imageView>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="t9E-k3-Icq" firstAttribute="leading" secondItem="eYL-aJ-N5a" secondAttribute="leading" id="4Cu-Hd-eKV"/>
+                                        <constraint firstAttribute="trailing" secondItem="a2v-Vq-nU9" secondAttribute="trailing" constant="8" id="D0O-VJ-6Eq"/>
+                                        <constraint firstAttribute="centerY" secondItem="a2v-Vq-nU9" secondAttribute="centerY" id="HlM-rd-LWH"/>
+                                        <constraint firstItem="zwG-qb-OIb" firstAttribute="leading" secondItem="t9E-k3-Icq" secondAttribute="trailing" constant="2" id="MQE-mQ-bk8"/>
+                                        <constraint firstItem="t9E-k3-Icq" firstAttribute="top" secondItem="eYL-aJ-N5a" secondAttribute="top" id="Mjs-aE-5EH"/>
+                                        <constraint firstItem="a2v-Vq-nU9" firstAttribute="leading" secondItem="zwG-qb-OIb" secondAttribute="trailing" constant="5" id="fe6-0r-GCK"/>
+                                        <constraint firstAttribute="centerY" secondItem="zwG-qb-OIb" secondAttribute="centerY" id="hGp-1X-tV3"/>
+                                    </constraints>
+                                </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="imageViewAddState" destination="a2v-Vq-nU9" id="wiL-z7-Qwe"/>
+                                    <outlet property="imageViewIcon" destination="t9E-k3-Icq" id="S1V-j1-wzL"/>
+                                    <outlet property="labelName" destination="zwG-qb-OIb" id="1ia-SR-02b"/>
+                                </connections>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="OFM-pO-LyN" id="Ddv-tp-MOe"/>
+                            <outlet property="delegate" destination="OFM-pO-LyN" id="wky-dc-nat"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="Add to playlist" id="zNN-Ba-NMi">
+                        <barButtonItem key="rightBarButtonItem" style="done" systemItem="done" id="hj8-wm-0fE">
+                            <connections>
+                                <action selector="tappedDone:" destination="OFM-pO-LyN" id="rXc-UI-WTK"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="qM4-cK-Zmq" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="611" y="83"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="EwH-vy-Euv">
+            <objects>
+                <navigationController definesPresentationContext="YES" id="Whx-FH-LE2" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="iO8-EO-2wV">
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="OFM-pO-LyN" kind="relationship" relationship="rootViewController" id="jBI-R3-GG3"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="LKD-1w-km1" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="77" y="83"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="ButtonAdd" width="23" height="23"/>
+        <image name="FileIcon" width="43" height="43"/>
+    </resources>
+    <simulatedMetricsContainer key="defaultSimulatedMetrics">
+        <simulatedStatusBarMetrics key="statusBar"/>
+        <simulatedOrientationMetrics key="orientation"/>
+        <simulatedScreenMetrics key="destination" type="retina4"/>
+    </simulatedMetricsContainer>
+</document>

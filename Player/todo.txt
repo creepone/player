@@ -1,7 +1,14 @@
-integrate getting the DB API Secret into the build
-upload icon @ Dropbox dev page
-use something like dropbox://path for the track downloadURL so that it can be retried if authentication fails
+implement selection
+
+screen for an empty folder in dropbox
+
+link/unlink dropbox in the settings
+update icon to rounded corners @ dropbox
+test with an uninstalled dropbox
 
 long term:
 refactor the "Activity View" to use MVVM
 introduce some service container mechanism so that the VMs can be unit tested
+
+app store release todos:
+activate dropbox app for public

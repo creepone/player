@@ -4,6 +4,7 @@
 #import "PLDataAccess.h"
 #import "PLUtils.h"
 #import "PLFileImport.h"
+#import "PLDropboxManager.h"
 
 @interface PLTaskInfo : NSObject 
 
@@ -192,7 +193,10 @@ NSString * const PLBackgroundSessionIdentifier = @"at.iosapps.Player.BackgroundS
 
 - (RACSignal *)enqueueDownloadOfTrack:(PLTrack *)track
 {
-    NSURL *downloadURL = [NSURL URLWithString:track.downloadURL];    
+    NSURL *downloadURL = [self transformDownloadURL:[NSURL URLWithString:track.downloadURL]];
+    if (downloadURL == nil)
+        return [RACSignal empty];
+    
     NSString *trackId = [[track.objectID URIRepresentation] absoluteString];
 
     return [[self tasksSignal] flattenMap:^RACStream *(NSMutableDictionary *tasks) {
@@ -227,6 +231,15 @@ NSString * const PLBackgroundSessionIdentifier = @"at.iosapps.Player.BackgroundS
     return [[self taskInfoWithId:trackId] flattenMap:^RACStream *(PLTaskInfo *taskInfo) {
         return taskInfo.progressSubject;
     }];
+}
+
+
+- (NSURL *)transformDownloadURL:(NSURL *)downloadURL
+{
+    if ([downloadURL.scheme isEqualToString:@"dropbox"]) {
+        return [[PLDropboxManager sharedManager] downloadURLForPath:downloadURL.path];
+    }
+    return downloadURL;
 }
 
 @end
