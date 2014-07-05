@@ -59,7 +59,7 @@ NSString * const PLDropboxURLHandledNotification = @"PLDropboxURLHandledNotifica
 }
 
 
-- (NSURL *)downloadURLForPath:(NSString *)filePath
+- (NSURLRequest *)requestForPath:(NSString *)filePath
 {
     DBSession *session = [DBSession sharedSession];
     if (![session isLinked])
@@ -79,8 +79,7 @@ NSString * const PLDropboxURLHandledNotification = @"PLDropboxURLHandledNotifica
     NSMutableURLRequest* urlRequest = [oauthRequest
 									   urlRequestSignedWithSecret:credentialStore.signingKey
 									   usingMethod:credentialStore.signatureMethod];
-	
-    return [urlRequest URL];
+    return urlRequest;
 }
 
 - (NSString *)dropboxSecret

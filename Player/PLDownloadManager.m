@@ -193,15 +193,15 @@ NSString * const PLBackgroundSessionIdentifier = @"at.iosapps.Player.BackgroundS
 
 - (RACSignal *)enqueueDownloadOfTrack:(PLTrack *)track
 {
-    NSURL *downloadURL = [self transformDownloadURL:[NSURL URLWithString:track.downloadURL]];
-    if (downloadURL == nil)
+    NSURLRequest *request = [self requestForDownloadURL:[NSURL URLWithString:track.downloadURL]];
+    if (request == nil)
         return [RACSignal empty];
     
     NSString *trackId = [[track.objectID URIRepresentation] absoluteString];
 
     return [[self tasksSignal] flattenMap:^RACStream *(NSMutableDictionary *tasks) {
 
-        NSURLSessionDownloadTask *downloadTask = [_session downloadTaskWithURL:downloadURL];
+        NSURLSessionDownloadTask *downloadTask = [_session downloadTaskWithRequest:request];
         downloadTask.taskDescription = trackId;
         [downloadTask resume];
 
@@ -234,12 +234,15 @@ NSString * const PLBackgroundSessionIdentifier = @"at.iosapps.Player.BackgroundS
 }
 
 
-- (NSURL *)transformDownloadURL:(NSURL *)downloadURL
+- (NSURLRequest *)requestForDownloadURL:(NSURL *)downloadURL
 {
+    if (downloadURL == nil)
+        return nil;
+    
     if ([downloadURL.scheme isEqualToString:@"dropbox"]) {
-        return [[PLDropboxManager sharedManager] downloadURLForPath:downloadURL.path];
+        return [[PLDropboxManager sharedManager] requestForPath:downloadURL.path];
     }
-    return downloadURL;
+    return [NSURLRequest requestWithURL:downloadURL];
 }
 
 @end

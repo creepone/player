@@ -39,7 +39,8 @@
 
 - (IBAction)tappedDone:(id)sender
 {
-    self.viewModel.dismissed = YES;
+    PLDropboxItemsViewController *rootController = self.navigationController.viewControllers[0];
+    rootController.viewModel.dismissed = YES;
     [self.presentingViewController dismissViewControllerAnimated:YES completion:nil];
 }
 

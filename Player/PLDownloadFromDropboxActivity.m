@@ -7,6 +7,7 @@
 #import "PLDropboxItemsViewController.h"
 #import "PLDropboxItemsViewModel.h"
 #import "PLUtils.h"
+#import "PLDropboxPathAsset.h"
 
 @implementation PLDownloadFromDropboxActivity
 
@@ -40,20 +41,33 @@
         
     return [[[RACObserve(viewModel, dismissed) filter:[PLUtils isTruePredicate]] take:1] then:^RACSignal *{
         
-        // todo: import selection
+        NSArray *assets = [viewModel.selection allAssets];
+
+        RACSignal *pathsToDownload = [[assets.rac_sequence signalWithScheduler:[RACScheduler mainThreadScheduler]]
+            flattenMap:^RACStream *(PLDropboxPathAsset *asset) {
+                if (asset.metadata.isDirectory) {
+                    return [self listDirectoryRecursive:asset.metadata.path];
+                }
+                else {
+                    return [RACSignal return:asset.metadata.path];
+                }
+            }];
         
-        return [RACSignal empty];
+        return [pathsToDownload flattenMap:^RACStream *(NSString *path) {
+            return [self downloadPath:path];
+        }];
     }];
-    
-    /*NSString *testPath = @"/Audio/Sheila%20Heen%2C%20Douglas%20Stone%20-%20Thanks%20for%20the%20Feedback/Sheila%20Heen%2C%20Douglas%20Stone%20-%20Thanks%20for%20the%20Feedback%20-%20Part%202.m4b";
-    NSURL *downloadURL = [[PLDropboxManager sharedManager] downloadURLForPath:testPath];
-    
+}
+
+- (RACSignal *)downloadPath:(NSString *)path
+{
+    NSString *downloadURL = [NSString stringWithFormat:@"dropbox://%@", [path stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
     DDLogVerbose(@"downloadURL = %@", downloadURL);
     
     PLDataAccess *dataAccess = [PLDataAccess sharedDataAccess];
     PLDownloadManager *downloadManager = [PLDownloadManager sharedManager];
     
-    PLTrack *track = [dataAccess trackWithDownloadURL:[downloadURL absoluteString]];
+    PLTrack *track = [dataAccess trackWithDownloadURL:downloadURL];
     BOOL wasTrackInserted = [track isInserted];
     
     PLPlaylist *playlist = [dataAccess selectedPlaylist];
@@ -64,8 +78,21 @@
         // do not enqueue the download if the track already existed
         return wasTrackInserted ? [downloadManager enqueueDownloadOfTrack:track] : nil;
     }];
-     
-     */
+}
+
+- (RACSignal *)listDirectoryRecursive:(NSString *)path
+{
+    return [[[PLDropboxManager sharedManager] listFolder:path] flattenMap:^RACStream *(NSArray *items) {
+        return [[items.rac_sequence signalWithScheduler:[RACScheduler mainThreadScheduler]]
+            flattenMap:^RACStream *(DBMetadata *metadata) {
+                if (metadata.isDirectory) {
+                    return [self listDirectoryRecursive:metadata.path];
+                }
+                else {
+                    return [RACSignal return:metadata.path];
+                }
+            }];
+    }];
 }
 
 @end

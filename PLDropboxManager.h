@@ -9,7 +9,7 @@ extern NSString * const PLDropboxURLHandledNotification;
 - (BOOL)ensureLinked;
 - (void)unlink;
 
-- (NSURL *)downloadURLForPath:(NSString *)filePath;
+- (NSURLRequest *)requestForPath:(NSString *)filePath;
 
 - (RACSignal *)listFolder:(NSString *)path;
 
