@@ -45,11 +45,11 @@
 
         RACSignal *pathsToDownload = [[assets.rac_sequence signalWithScheduler:[RACScheduler mainThreadScheduler]]
             flattenMap:^RACStream *(PLDropboxPathAsset *asset) {
-                if (asset.metadata.isDirectory) {
-                    return [self listDirectoryRecursive:asset.metadata.path];
+                if (asset.metadata == nil || asset.metadata.isDirectory) {
+                    return [self listDirectoryRecursive:asset.path];
                 }
                 else {
-                    return [RACSignal return:asset.metadata.path];
+                    return [RACSignal return:asset.path];
                 }
             }];
         

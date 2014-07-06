@@ -8,6 +8,6 @@
 
 - (DBMetadata *)metadata;
 
-@property (nonatomic, strong) NSArray *siblings;
+@property (nonatomic, weak) NSArray *siblings;
 
 @end

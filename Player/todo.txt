@@ -1,5 +1,3 @@
-implement selection
-
 screen for an empty folder in dropbox
 
 link/unlink dropbox in the settings
