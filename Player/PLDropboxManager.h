@@ -6,6 +6,7 @@ extern NSString * const PLDropboxURLHandledNotification;
 
 + (PLDropboxManager *)sharedManager;
 
+- (BOOL)isLinked;
 - (BOOL)ensureLinked;
 - (void)unlink;
 

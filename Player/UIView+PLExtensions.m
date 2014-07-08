@@ -2,6 +2,14 @@
 
 @implementation UIView (PLExtensions)
 
+- (void)pl_mapOnSubviews:(PLViewAction)action
+{
+    for (UIView *subview in self.subviews) {
+        [subview pl_mapOnSubviews:action];
+        action(subview);
+    }
+}
+
 - (void)pl_addSizeConstraints:(CGSize)size
 {
     [self pl_addWidthConstraint:size.width];

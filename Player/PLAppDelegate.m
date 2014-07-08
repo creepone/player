@@ -48,7 +48,7 @@ static void onUncaughtException(NSException* exception);
         if (fileToImport)
             [[PLFileImport importFile:fileToImport] subscribeError:[PLErrorManager logErrorVoidBlock]];
 
-        [[PLMediaMirror sharedInstance] ensureRunning];
+        [[PLMediaMirror sharedInstance] ensureRunning];        
     }];
     
     return YES;

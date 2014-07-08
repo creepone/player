@@ -30,6 +30,12 @@ NSString * const PLDropboxURLHandledNotification = @"PLDropboxURLHandledNotifica
 }
 
 
+- (BOOL)isLinked
+{
+    return [[DBSession sharedSession] isLinked];
+}
+
+
 - (BOOL)ensureLinked
 {
     DBSession *session = [DBSession sharedSession];

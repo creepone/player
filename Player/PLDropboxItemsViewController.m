@@ -59,11 +59,19 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return [self.viewModel itemsCount];
+    return [self.viewModel cellsCount];
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return [self.viewModel useEmptyCell] ? 94.f : 44.f;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    if ([self.viewModel useEmptyCell])
+        return [tableView dequeueReusableCellWithIdentifier:@"emptyCell" forIndexPath:indexPath];
+    
     PLDropboxItemCell *cell = [tableView dequeueReusableCellWithIdentifier:@"dropboxItemCell" forIndexPath:indexPath];
     cell.viewModel = [self.viewModel cellViewModelAt:indexPath];
     return cell;

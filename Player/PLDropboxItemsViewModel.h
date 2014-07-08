@@ -21,7 +21,8 @@
  */
 @property (nonatomic, assign) BOOL loading;
 
-- (NSUInteger)itemsCount;
+- (NSUInteger)cellsCount;
+- (BOOL)useEmptyCell;
 - (PLDropboxItemCellViewModel *)cellViewModelAt:(NSIndexPath *)indexPath;
 - (void)toggleSelectAt:(NSIndexPath *)indexPath;
 

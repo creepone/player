@@ -8,6 +8,8 @@
 #import "PLDropboxItemsViewModel.h"
 #import "PLUtils.h"
 #import "PLDropboxPathAsset.h"
+#import "PLErrorManager.h"
+#import "UIView+PLExtensions.h"
 
 @implementation PLDownloadFromDropboxActivity
 
@@ -23,13 +25,13 @@
 
 - (RACSignal *)performActivity
 {
-    PLDropboxManager *dropboxManager = [PLDropboxManager sharedManager];
-    
-    if (![dropboxManager ensureLinked])
+    if (![[PLDropboxManager sharedManager] ensureLinked]) {
+        [self retryAfterLinked];
         return [RACSignal empty];
-    
+    }
+
     UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Dropbox" bundle:nil];
-    UIViewController *rootViewController = [UIApplication sharedApplication].delegate.window.rootViewController;
+    UIViewController *rootViewController = [[[UIApplication sharedApplication] keyWindow] rootViewController];
     
     UINavigationController *navigationController = storyboard.instantiateInitialViewController;
     
@@ -38,24 +40,47 @@
     dropboxItemsVc.viewModel = viewModel;
     
     [rootViewController presentViewController:navigationController animated:YES completion:nil];
-        
+    
     return [[[RACObserve(viewModel, dismissed) filter:[PLUtils isTruePredicate]] take:1] then:^RACSignal *{
         
         NSArray *assets = [viewModel.selection allAssets];
-
+        
         RACSignal *pathsToDownload = [[assets.rac_sequence signalWithScheduler:[RACScheduler mainThreadScheduler]]
-            flattenMap:^RACStream *(PLDropboxPathAsset *asset) {
-                if (asset.metadata == nil || asset.metadata.isDirectory) {
-                    return [self listDirectoryRecursive:asset.path];
-                }
-                else {
-                    return [RACSignal return:asset.path];
-                }
-            }];
+                                      flattenMap:^RACStream *(PLDropboxPathAsset *asset) {
+                                          if (asset.metadata == nil || asset.metadata.isDirectory) {
+                                              return [self listDirectoryRecursive:asset.path];
+                                          }
+                                          else {
+                                              return [RACSignal return:asset.path];
+                                          }
+                                      }];
         
         return [pathsToDownload flattenMap:^RACStream *(NSString *path) {
             return [self downloadPath:path];
         }];
+    }];
+}
+
+- (void)retryAfterLinked
+{
+    [[[[NSNotificationCenter defaultCenter] rac_addObserverForName:PLDropboxURLHandledNotification object:nil] take:1] subscribeNext:^(id _) {
+        if ([[PLDropboxManager sharedManager] isLinked]) {
+            
+            UIViewController *rootViewController = [[[UIApplication sharedApplication] keyWindow] rootViewController];
+            UIViewController *presentedViewController = [rootViewController presentedViewController];
+            
+            RACSignal *cleanupSignal = [RACSignal empty];
+            if (presentedViewController != nil) {
+                cleanupSignal = presentedViewController.rac_willDeallocSignal;
+            }
+            
+            RACSignal *retrySignal = [cleanupSignal then:^RACSignal *{
+                PLDownloadFromDropboxActivity *restartedActivity = [PLDownloadFromDropboxActivity new];
+                return [restartedActivity performActivity];
+            }];
+            
+            [retrySignal subscribeError:[PLErrorManager logErrorVoidBlock]];
+        }
     }];
 }
 

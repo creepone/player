@@ -73,10 +73,18 @@
 }
 
 
-- (NSUInteger)itemsCount
+- (NSUInteger)cellsCount
 {
+    if (self.loading)
+        return 0;
+    
     NSUInteger itemsCount = [self.items count];
-    return itemsCount > 0 ? itemsCount + 1 : 0;
+    return itemsCount > 0 ? itemsCount + 1 : 1;
+}
+
+- (BOOL)useEmptyCell
+{
+    return !self.loading && [self.items count] == 0;
 }
 
 - (PLDropboxItemCellViewModel *)cellViewModelAt:(NSIndexPath *)indexPath
