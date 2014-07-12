@@ -50,11 +50,11 @@
 		696C1FCAE33C027584502130 /* PLFetchedResultsUpdate.m in Sources */ = {isa = PBXBuildFile; fileRef = 696C1B7CB3806FA7AF21905E /* PLFetchedResultsUpdate.m */; };
 		C3381F9A19609F8600DA2B7B /* PLDropboxManager.m in Sources */ = {isa = PBXBuildFile; fileRef = C3381F9919609F8600DA2B7B /* PLDropboxManager.m */; };
 		C3381FE61965BB7D00DA2B7B /* PLKVOObserver.m in Sources */ = {isa = PBXBuildFile; fileRef = C3381FE51965BB7D00DA2B7B /* PLKVOObserver.m */; };
-		C3381FF0196707E100DA2B7B /* Dropbox.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C3381FEF196707E100DA2B7B /* Dropbox.storyboard */; };
-		C3381FF419670DA100DA2B7B /* PLDropboxItemCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C3381FF319670DA100DA2B7B /* PLDropboxItemCell.m */; };
-		C3381FF719670E6600DA2B7B /* PLDropboxItemsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C3381FF619670E6600DA2B7B /* PLDropboxItemsViewController.m */; };
-		C3381FFB19670EE700DA2B7B /* PLDropboxItemsViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = C3381FFA19670EE700DA2B7B /* PLDropboxItemsViewModel.m */; };
-		C3381FFE19670FCD00DA2B7B /* PLDropboxItemCellViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = C3381FFD19670FCD00DA2B7B /* PLDropboxItemCellViewModel.m */; };
+		C3381FF0196707E100DA2B7B /* CloudImport.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C3381FEF196707E100DA2B7B /* CloudImport.storyboard */; };
+		C3381FF419670DA100DA2B7B /* PLCloudItemCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C3381FF319670DA100DA2B7B /* PLCloudItemCell.m */; };
+		C3381FF719670E6600DA2B7B /* PLCloudItemsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C3381FF619670E6600DA2B7B /* PLCloudItemsViewController.m */; };
+		C3381FFB19670EE700DA2B7B /* PLCloudItemsViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = C3381FFA19670EE700DA2B7B /* PLCloudItemsViewModel.m */; };
+		C3381FFE19670FCD00DA2B7B /* PLCloudItemCellViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = C3381FFD19670FCD00DA2B7B /* PLCloudItemCellViewModel.m */; };
 		C33820011967220200DA2B7B /* DBRestClient+RACSignalSupport.m in Sources */ = {isa = PBXBuildFile; fileRef = C33820001967220200DA2B7B /* DBRestClient+RACSignalSupport.m */; };
 		C338200619680E4800DA2B7B /* PLPathAssetSet.m in Sources */ = {isa = PBXBuildFile; fileRef = C338200519680E4800DA2B7B /* PLPathAssetSet.m */; };
 		C338200A1968365100DA2B7B /* PLDropboxPathAsset.m in Sources */ = {isa = PBXBuildFile; fileRef = C33820091968365100DA2B7B /* PLDropboxPathAsset.m */; };
@@ -114,6 +114,7 @@
 		C3CC2C7F196D91320013FC57 /* PLGDriveManager.m in Sources */ = {isa = PBXBuildFile; fileRef = C3CC2C7E196D91320013FC57 /* PLGDriveManager.m */; };
 		C3CC2C83197128A40013FC57 /* PLServiceContainer.m in Sources */ = {isa = PBXBuildFile; fileRef = C3CC2C82197128A40013FC57 /* PLServiceContainer.m */; };
 		C3CC2C87197139A10013FC57 /* PLServiceContainer+Registrations.m in Sources */ = {isa = PBXBuildFile; fileRef = C3CC2C86197139A10013FC57 /* PLServiceContainer+Registrations.m */; };
+		C3CC2C8D19713EEC0013FC57 /* PLCloudImport.m in Sources */ = {isa = PBXBuildFile; fileRef = C3CC2C8C19713EEC0013FC57 /* PLCloudImport.m */; };
 		C3D1A65A16CFC337006D3E5F /* PLPlaylistSelectViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C3D1A65916CFC337006D3E5F /* PLPlaylistSelectViewController.m */; };
 		C3F1A13518E83F6F00A82EAC /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C3F1A13418E83F6F00A82EAC /* Images.xcassets */; };
 		C3F539F3195A047300409CC4 /* PLDownloadManager.m in Sources */ = {isa = PBXBuildFile; fileRef = C3F539F2195A047300409CC4 /* PLDownloadManager.m */; };
@@ -211,15 +212,15 @@
 		C3381F9919609F8600DA2B7B /* PLDropboxManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PLDropboxManager.m; path = Player/PLDropboxManager.m; sourceTree = "<group>"; };
 		C3381FE41965BB7D00DA2B7B /* PLKVOObserver.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PLKVOObserver.h; sourceTree = "<group>"; };
 		C3381FE51965BB7D00DA2B7B /* PLKVOObserver.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PLKVOObserver.m; sourceTree = "<group>"; };
-		C3381FEF196707E100DA2B7B /* Dropbox.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = Dropbox.storyboard; path = Player/Dropbox.storyboard; sourceTree = "<group>"; };
-		C3381FF219670DA100DA2B7B /* PLDropboxItemCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PLDropboxItemCell.h; path = Player/PLDropboxItemCell.h; sourceTree = "<group>"; };
-		C3381FF319670DA100DA2B7B /* PLDropboxItemCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PLDropboxItemCell.m; path = Player/PLDropboxItemCell.m; sourceTree = "<group>"; };
-		C3381FF519670E6600DA2B7B /* PLDropboxItemsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PLDropboxItemsViewController.h; path = Player/PLDropboxItemsViewController.h; sourceTree = "<group>"; };
-		C3381FF619670E6600DA2B7B /* PLDropboxItemsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PLDropboxItemsViewController.m; path = Player/PLDropboxItemsViewController.m; sourceTree = "<group>"; };
-		C3381FF919670EE700DA2B7B /* PLDropboxItemsViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PLDropboxItemsViewModel.h; path = Player/PLDropboxItemsViewModel.h; sourceTree = "<group>"; };
-		C3381FFA19670EE700DA2B7B /* PLDropboxItemsViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PLDropboxItemsViewModel.m; path = Player/PLDropboxItemsViewModel.m; sourceTree = "<group>"; };
-		C3381FFC19670FCD00DA2B7B /* PLDropboxItemCellViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PLDropboxItemCellViewModel.h; path = Player/PLDropboxItemCellViewModel.h; sourceTree = "<group>"; };
-		C3381FFD19670FCD00DA2B7B /* PLDropboxItemCellViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PLDropboxItemCellViewModel.m; path = Player/PLDropboxItemCellViewModel.m; sourceTree = "<group>"; };
+		C3381FEF196707E100DA2B7B /* CloudImport.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = CloudImport.storyboard; path = Player/CloudImport.storyboard; sourceTree = "<group>"; };
+		C3381FF219670DA100DA2B7B /* PLCloudItemCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PLCloudItemCell.h; path = Player/PLCloudItemCell.h; sourceTree = "<group>"; };
+		C3381FF319670DA100DA2B7B /* PLCloudItemCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PLCloudItemCell.m; path = Player/PLCloudItemCell.m; sourceTree = "<group>"; };
+		C3381FF519670E6600DA2B7B /* PLCloudItemsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PLCloudItemsViewController.h; path = Player/PLCloudItemsViewController.h; sourceTree = "<group>"; };
+		C3381FF619670E6600DA2B7B /* PLCloudItemsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PLCloudItemsViewController.m; path = Player/PLCloudItemsViewController.m; sourceTree = "<group>"; };
+		C3381FF919670EE700DA2B7B /* PLCloudItemsViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PLCloudItemsViewModel.h; path = Player/PLCloudItemsViewModel.h; sourceTree = "<group>"; };
+		C3381FFA19670EE700DA2B7B /* PLCloudItemsViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PLCloudItemsViewModel.m; path = Player/PLCloudItemsViewModel.m; sourceTree = "<group>"; };
+		C3381FFC19670FCD00DA2B7B /* PLCloudItemCellViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PLCloudItemCellViewModel.h; path = Player/PLCloudItemCellViewModel.h; sourceTree = "<group>"; };
+		C3381FFD19670FCD00DA2B7B /* PLCloudItemCellViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PLCloudItemCellViewModel.m; path = Player/PLCloudItemCellViewModel.m; sourceTree = "<group>"; };
 		C3381FFF1967220200DA2B7B /* DBRestClient+RACSignalSupport.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "DBRestClient+RACSignalSupport.h"; path = "Player/DBRestClient+RACSignalSupport.h"; sourceTree = "<group>"; };
 		C33820001967220200DA2B7B /* DBRestClient+RACSignalSupport.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "DBRestClient+RACSignalSupport.m"; path = "Player/DBRestClient+RACSignalSupport.m"; sourceTree = "<group>"; };
 		C338200419680E4800DA2B7B /* PLPathAssetSet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PLPathAssetSet.h; sourceTree = "<group>"; };
@@ -320,6 +321,8 @@
 		C3CC2C84197138230013FC57 /* PLDownloadProvider.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PLDownloadProvider.h; sourceTree = "<group>"; };
 		C3CC2C86197139A10013FC57 /* PLServiceContainer+Registrations.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "PLServiceContainer+Registrations.m"; sourceTree = "<group>"; };
 		C3CC2C8819713A6F0013FC57 /* PLServiceContainer+Registrations.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "PLServiceContainer+Registrations.h"; sourceTree = "<group>"; };
+		C3CC2C8B19713EEC0013FC57 /* PLCloudImport.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PLCloudImport.h; sourceTree = "<group>"; };
+		C3CC2C8C19713EEC0013FC57 /* PLCloudImport.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PLCloudImport.m; sourceTree = "<group>"; };
 		C3CF9FD418B52EF4004EE4A1 /* revision.prefix */ = {isa = PBXFileReference; lastKnownFileType = text; path = revision.prefix; sourceTree = "<group>"; };
 		C3CF9FD518B52EF4004EE4A1 /* prebuild.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = prebuild.sh; sourceTree = "<group>"; };
 		C3CF9FD618B52EF4004EE4A1 /* deploy.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = deploy.sh; sourceTree = "<group>"; };
@@ -497,17 +500,7 @@
 			name = "Error handling";
 			sourceTree = "<group>";
 		};
-		C3381F9619609F6300DA2B7B /* Dropbox Import */ = {
-			isa = PBXGroup;
-			children = (
-				C3381F9719609F7300DA2B7B /* Model */,
-				C3381FEB1967075100DA2B7B /* View */,
-				C3381FF819670ED000DA2B7B /* ViewModel */,
-			);
-			name = "Dropbox Import";
-			sourceTree = "<group>";
-		};
-		C3381F9719609F7300DA2B7B /* Model */ = {
+		C3381F9719609F7300DA2B7B /* Dropbox */ = {
 			isa = PBXGroup;
 			children = (
 				696C1E25BD897DECFEAFAE74 /* PLDownloadFromDropboxActivity.h */,
@@ -519,7 +512,7 @@
 				C33820081968365100DA2B7B /* PLDropboxPathAsset.h */,
 				C33820091968365100DA2B7B /* PLDropboxPathAsset.m */,
 			);
-			name = Model;
+			name = Dropbox;
 			sourceTree = "<group>";
 		};
 		C3381FE31965BB6600DA2B7B /* Bindings */ = {
@@ -533,21 +526,11 @@
 			name = Bindings;
 			sourceTree = "<group>";
 		};
-		C3381FEB1967075100DA2B7B /* View */ = {
-			isa = PBXGroup;
-			children = (
-				C3381FEF196707E100DA2B7B /* Dropbox.storyboard */,
-				C3381FF119670D8600DA2B7B /* Views */,
-				C3381FEC1967076D00DA2B7B /* ViewControllers */,
-			);
-			name = View;
-			sourceTree = "<group>";
-		};
 		C3381FEC1967076D00DA2B7B /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
-				C3381FF519670E6600DA2B7B /* PLDropboxItemsViewController.h */,
-				C3381FF619670E6600DA2B7B /* PLDropboxItemsViewController.m */,
+				C3381FF519670E6600DA2B7B /* PLCloudItemsViewController.h */,
+				C3381FF619670E6600DA2B7B /* PLCloudItemsViewController.m */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -555,8 +538,8 @@
 		C3381FF119670D8600DA2B7B /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				C3381FF219670DA100DA2B7B /* PLDropboxItemCell.h */,
-				C3381FF319670DA100DA2B7B /* PLDropboxItemCell.m */,
+				C3381FF219670DA100DA2B7B /* PLCloudItemCell.h */,
+				C3381FF319670DA100DA2B7B /* PLCloudItemCell.m */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -564,10 +547,10 @@
 		C3381FF819670ED000DA2B7B /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
-				C3381FF919670EE700DA2B7B /* PLDropboxItemsViewModel.h */,
-				C3381FFA19670EE700DA2B7B /* PLDropboxItemsViewModel.m */,
-				C3381FFC19670FCD00DA2B7B /* PLDropboxItemCellViewModel.h */,
-				C3381FFD19670FCD00DA2B7B /* PLDropboxItemCellViewModel.m */,
+				C3381FF919670EE700DA2B7B /* PLCloudItemsViewModel.h */,
+				C3381FFA19670EE700DA2B7B /* PLCloudItemsViewModel.m */,
+				C3381FFC19670FCD00DA2B7B /* PLCloudItemCellViewModel.h */,
+				C3381FFD19670FCD00DA2B7B /* PLCloudItemCellViewModel.m */,
 			);
 			name = ViewModel;
 			sourceTree = "<group>";
@@ -833,12 +816,11 @@
 		C3BC5A1C1656B772002DA837 = {
 			isa = PBXGroup;
 			children = (
-				C3CC2C78196D90F50013FC57 /* GDrive Import */,
+				C3CC2C8919713E4B0013FC57 /* Cloud Import */,
 				C378CDC8195F07DE001D0593 /* Shared */,
 				C378CDCE195F09E7001D0593 /* Activity View */,
 				C378CDC9195F07F0001D0593 /* Main (Playlist) */,
 				C378CDC3195F060A001D0593 /* Music Library Import */,
-				C3381F9619609F6300DA2B7B /* Dropbox Import */,
 				C34ADCDC19164CBE00A07EBB /* Legacy */,
 				C3BC5A3A1656B772002DA837 /* PLAppDelegate.h */,
 				C3BC5A3B1656B772002DA837 /* PLAppDelegate.m */,
@@ -1012,15 +994,7 @@
 			name = Resources;
 			sourceTree = "<group>";
 		};
-		C3CC2C78196D90F50013FC57 /* GDrive Import */ = {
-			isa = PBXGroup;
-			children = (
-				C3CC2C79196D91030013FC57 /* Model */,
-			);
-			name = "GDrive Import";
-			sourceTree = "<group>";
-		};
-		C3CC2C79196D91030013FC57 /* Model */ = {
+		C3CC2C79196D91030013FC57 /* GDrive */ = {
 			isa = PBXGroup;
 			children = (
 				696C12C5B79AE1DFA667B290 /* PLDownloadFromGDriveActivity.h */,
@@ -1028,7 +1002,7 @@
 				C3CC2C7D196D91320013FC57 /* PLGDriveManager.h */,
 				C3CC2C7E196D91320013FC57 /* PLGDriveManager.m */,
 			);
-			name = Model;
+			name = GDrive;
 			sourceTree = "<group>";
 		};
 		C3CC2C80197128950013FC57 /* Service Container */ = {
@@ -1040,6 +1014,45 @@
 				C3CC2C86197139A10013FC57 /* PLServiceContainer+Registrations.m */,
 			);
 			name = "Service Container";
+			sourceTree = "<group>";
+		};
+		C3CC2C8919713E4B0013FC57 /* Cloud Import */ = {
+			isa = PBXGroup;
+			children = (
+				C3CC2C8A19713E610013FC57 /* Model */,
+				C3CC2C8E19713FED0013FC57 /* View */,
+				C3381FF819670ED000DA2B7B /* ViewModel */,
+			);
+			name = "Cloud Import";
+			sourceTree = "<group>";
+		};
+		C3CC2C8A19713E610013FC57 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				C3CC2C8F19714F220013FC57 /* Managers */,
+				C3CC2C8B19713EEC0013FC57 /* PLCloudImport.h */,
+				C3CC2C8C19713EEC0013FC57 /* PLCloudImport.m */,
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
+		C3CC2C8E19713FED0013FC57 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				C3381FEF196707E100DA2B7B /* CloudImport.storyboard */,
+				C3381FF119670D8600DA2B7B /* Views */,
+				C3381FEC1967076D00DA2B7B /* ViewControllers */,
+			);
+			name = View;
+			sourceTree = "<group>";
+		};
+		C3CC2C8F19714F220013FC57 /* Managers */ = {
+			isa = PBXGroup;
+			children = (
+				C3381F9719609F7300DA2B7B /* Dropbox */,
+				C3CC2C79196D91030013FC57 /* GDrive */,
+			);
+			name = Managers;
 			sourceTree = "<group>";
 		};
 		C3CF9FD318B52EE3004EE4A1 /* Build */ = {
@@ -1120,7 +1133,7 @@
 				C3BC5A421656B772002DA837 /* Default-568h@2x.png in Resources */,
 				C3CC18DB19227CD30026E681 /* icon.png in Resources */,
 				C3CC18BF191F60EC0026E681 /* MusicLibrary.storyboard in Resources */,
-				C3381FF0196707E100DA2B7B /* Dropbox.storyboard in Resources */,
+				C3381FF0196707E100DA2B7B /* CloudImport.storyboard in Resources */,
 				C3CC18B8191E43300026E681 /* Localizable.strings in Resources */,
 				C3BC5A9A1656B959002DA837 /* PLPlaylistViewController.xib in Resources */,
 				C3BC5AAB1656C23A002DA837 /* list.png in Resources */,
@@ -1188,6 +1201,7 @@
 				C3BC5A991656B959002DA837 /* PLPlaylistViewController.m in Sources */,
 				C3BC5AB21656C284002DA837 /* PLPlayerViewController.m in Sources */,
 				C3BC5ABD1656C4E7002DA837 /* PLBookmarksViewController.m in Sources */,
+				C3CC2C8D19713EEC0013FC57 /* PLCloudImport.m in Sources */,
 				C3BC5AC21656C4EF002DA837 /* PLSettingsViewController.m in Sources */,
 				C3BC5ACD1656C81C002DA837 /* Model.xcdatamodeld in Sources */,
 				C3BC5AD31656CA4D002DA837 /* PLBookmark.m in Sources */,
@@ -1235,7 +1249,7 @@
 				696C196244DD64E0DD03976E /* UIViewController+PLErrorExtensions.m in Sources */,
 				696C197C7FC7F02EAB520C14 /* PLUtils.m in Sources */,
 				696C1B8D690CECA9499F257E /* PLMediaLibrarySearch.m in Sources */,
-				C3381FF719670E6600DA2B7B /* PLDropboxItemsViewController.m in Sources */,
+				C3381FF719670E6600DA2B7B /* PLCloudItemsViewController.m in Sources */,
 				696C177E0F2230FE3DDA991B /* PLMediaItemTrackGroup.m in Sources */,
 				696C13068CF01B07191595AB /* PLImageCache.m in Sources */,
 				696C153A17367E75E95611F2 /* PLCachedArtwork.m in Sources */,
@@ -1244,8 +1258,8 @@
 				C3CC18CA191F7B850026E681 /* PLTrackGroupCell.m in Sources */,
 				C3CC18D3191FC5990026E681 /* PLTrackCell.m in Sources */,
 				696C1409FF66555E089505A1 /* NSArray+PLExtensions.m in Sources */,
-				C3381FFB19670EE700DA2B7B /* PLDropboxItemsViewModel.m in Sources */,
-				C3381FFE19670FCD00DA2B7B /* PLDropboxItemCellViewModel.m in Sources */,
+				C3381FFB19670EE700DA2B7B /* PLCloudItemsViewModel.m in Sources */,
+				C3381FFE19670FCD00DA2B7B /* PLCloudItemCellViewModel.m in Sources */,
 				696C159390EB7A51269C2399 /* NSString+PLExtensions.m in Sources */,
 				696C169A25ECD6B14186B438 /* PLEntity.m in Sources */,
 				C338200A1968365100DA2B7B /* PLDropboxPathAsset.m in Sources */,
@@ -1262,7 +1276,7 @@
 				696C14C3B0C607930E2E9DBD /* PLFetchedResultsControllerDelegate.m in Sources */,
 				696C1BDC652AD70EC4358087 /* UITableView+PLExtensions.m in Sources */,
 				696C12CF6D6221B60CEB7C1F /* PLTrackGroupsViewModel.m in Sources */,
-				C3381FF419670DA100DA2B7B /* PLDropboxItemCell.m in Sources */,
+				C3381FF419670DA100DA2B7B /* PLCloudItemCell.m in Sources */,
 				696C10A3093038033BA242D1 /* PLTracksViewModel.m in Sources */,
 				C3381FE61965BB7D00DA2B7B /* PLKVOObserver.m in Sources */,
 				696C1D76AA5FA9B96D261F18 /* PLMusicLibraryViewModel.m in Sources */,

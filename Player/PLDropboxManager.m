@@ -4,6 +4,8 @@
 #import "MPOAuthURLRequest.h"
 #import "PLDropboxManager.h"
 #import "PLPathAssetSet.h"
+#import "PLDropboxPathAsset.h"
+#import "NSArray+PLExtensions.h"
 
 NSString * const PLDropboxURLHandledNotification = @"PLDropboxURLHandledNotification";
 
@@ -25,7 +27,7 @@ static NSString *kAppKey = @"rqjkvshiflgy2qj";
 - (instancetype)init
 {
     self = [super init];
-    if (self) {        
+    if (self) {
         DBSession *session = [[DBSession alloc] initWithAppKey:kAppKey appSecret:[self clientSecret] root:kDBRootDropbox];
         [DBSession setSharedSession:session];
     }
@@ -80,12 +82,19 @@ static NSString *kAppKey = @"rqjkvshiflgy2qj";
 }
 
 
-- (RACSignal *)listFolder:(NSString *)path
+- (id <PLPathAsset>)rootAsset
+{
+    return [PLDropboxPathAsset assetWithMetadata:nil parent:nil];
+}
+
+- (RACSignal *)loadChildren:(id <PLPathAsset>)asset
 {
     DBRestClient *restClient = [[DBRestClient alloc] initWithSession:[DBSession sharedSession]];
     
-    return [[restClient rac_loadMetadataSignal:path] map:^(DBMetadata *metadata) {
-        return metadata.contents;
+    return [[restClient rac_loadMetadataSignal:asset.path] map:^(DBMetadata *metadata) {
+        return [metadata.contents pl_map:^id(DBMetadata *metadata) {
+            return [PLDropboxPathAsset assetWithMetadata:metadata parent:asset];
+        }];
     }];
 }
 
@@ -126,7 +135,6 @@ static NSString *kAppKey = @"rqjkvshiflgy2qj";
 
 - (NSString *)clientSecret
 {
-#if DEBUG
     NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
     
     // env. variable, used in the local dev environment
@@ -141,7 +149,6 @@ static NSString *kAppKey = @"rqjkvshiflgy2qj";
     NSString *setting = [userDefaults objectForKey:@"DROPBOX_SECRET"];
     if (setting != nil)
         return setting;
-#endif
 
     // bundle variable, used for the build
     return [[[NSBundle mainBundle] infoDictionary] objectForKey:@"DropboxSecret"];

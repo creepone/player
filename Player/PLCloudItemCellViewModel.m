@@ -1,8 +1,8 @@
-#import <DropboxSDK/DropboxSDK.h>
-#import "PLDropboxItemCellViewModel.h"
+#import "PLCloudItemCellViewModel.h"
+#import "PLPathAssetSet.h"
 
-@interface PLDropboxItemCellViewModel() {
-    DBMetadata *_metadata;
+@interface PLCloudItemCellViewModel() {
+    id<PLPathAsset> _asset;
 }
 
 @property (strong, nonatomic, readwrite) NSString *name;
@@ -13,7 +13,7 @@
 
 @end
 
-@implementation PLDropboxItemCellViewModel
+@implementation PLCloudItemCellViewModel
 
 - (instancetype)initToggleWithSelected:(BOOL)selected
 {
@@ -28,16 +28,16 @@
     return self;
 }
 
-- (instancetype)initWithMetadata:(DBMetadata *)metadata selected:(BOOL)selected
+- (instancetype)initWithAsset:(id<PLPathAsset>)asset selected:(BOOL)selected
 {
     self = [super init];
     if (self) {
-        _metadata = metadata;
+        _asset = asset;
         
-        self.name = [[metadata path] lastPathComponent];
+        self.name = [[asset path] lastPathComponent];
         self.alpha = selected ? 0.5f : 1.f;
         
-        if (metadata.isDirectory) {
+        if (asset.isDirectory) {
             self.imageIcon = [UIImage imageNamed:@"FolderIcon"];
             self.imageAddState = nil;
             self.selectionStyle = UITableViewCellSelectionStyleGray;

@@ -4,7 +4,11 @@
 
 - (NSString *)path;
 - (id<PLPathAsset>)parent;
-- (NSArray *)siblings;
+
+@property (nonatomic, weak) NSArray *siblings;
+
+- (BOOL)isRoot;
+- (BOOL)isDirectory;
 
 @end
 

@@ -1,8 +1,8 @@
-#import "PLDropboxItemCell.h"
-#import "PLDropboxItemCellViewModel.h"
+#import "PLCloudItemCell.h"
+#import "PLCloudItemCellViewModel.h"
 #import "PLKVOObserver.h"
 
-@interface PLDropboxItemCell() {
+@interface PLCloudItemCell() {
     PLKVOObserver *_viewModelObserver;
 }
 
@@ -12,9 +12,9 @@
 
 @end
 
-@implementation PLDropboxItemCell
+@implementation PLCloudItemCell
 
-- (void)setViewModel:(PLDropboxItemCellViewModel *)viewModel
+- (void)setViewModel:(PLCloudItemCellViewModel *)viewModel
 {
     _viewModel = viewModel;
     if (viewModel != nil) {

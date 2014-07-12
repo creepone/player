@@ -7,7 +7,7 @@
 
 @interface PLPlaylistSongsViewController () {
     PLPlaylistSongsViewModel *_viewModel;
-    BOOL _ignoreUpdates;
+    BOOL _ignoreUpdates, _isVisible;
 }
 
 - (IBAction)tappedSwitch:(id)sender;
@@ -29,6 +29,13 @@
 {
     [super viewDidAppear:animated];
     [self.tableView reloadData];
+    _isVisible = YES;
+}
+
+- (void)viewWillDisappear:(BOOL)animated
+{
+    [super viewWillDisappear:animated];
+    _isVisible = NO;
 }
 
 
@@ -39,7 +46,7 @@
     @weakify(self);
     [_viewModel.updatesSignal subscribeNext:^(NSArray *updates) {
         @strongify(self);
-        if (self && !self->_ignoreUpdates)
+        if (self && self->_isVisible && !self->_ignoreUpdates)
             [self.tableView pl_applyUpdates:updates];
     }];
 }

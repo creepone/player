@@ -9,6 +9,8 @@
 
 @implementation PLDropboxPathAsset
 
+@synthesize siblings;
+
 - (instancetype)initWithMetadata:(DBMetadata *)metadata parent:(PLDropboxPathAsset *)parent
 {
     self = [super init];
@@ -24,11 +26,6 @@
     return [[self alloc] initWithMetadata:metadata parent:parent];
 }
 
-- (DBMetadata *)metadata
-{
-    return _metadata;
-}
-
 - (NSString *)path
 {
     return _metadata ? _metadata.path : @"/";
@@ -37,6 +34,16 @@
 - (id<PLPathAsset>)parent
 {
     return _parent;
+}
+
+- (BOOL)isRoot
+{
+    return _metadata == nil;
+}
+
+- (BOOL)isDirectory
+{
+    return _metadata == nil || _metadata.isDirectory;
 }
 
 @end

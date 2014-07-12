@@ -1,8 +1,8 @@
 #import <Foundation/Foundation.h>
 
-@class DBMetadata;
+@protocol PLPathAsset;
 
-@interface PLDropboxItemCellViewModel : NSObject
+@interface PLCloudItemCellViewModel : NSObject
 
 @property (strong, nonatomic, readonly) NSString *name;
 @property (strong, nonatomic, readonly) UIImage *imageIcon;
@@ -11,6 +11,6 @@
 @property (assign, nonatomic, readonly) UITableViewCellSelectionStyle selectionStyle;
 
 - (instancetype)initToggleWithSelected:(BOOL)selected;
-- (instancetype)initWithMetadata:(DBMetadata *)metadata selected:(BOOL)selected;
+- (instancetype)initWithAsset:(id<PLPathAsset>)asset selected:(BOOL)selected;
 
 @end

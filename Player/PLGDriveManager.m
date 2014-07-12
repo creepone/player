@@ -139,7 +139,6 @@ static NSString *kClientID = @"210955112623-cqjrd6qt7d1fgl9fvclct69kgrtjd2nu.app
 
 - (NSString *)clientSecret
 {
-#if DEBUG
     NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
     
     // env. variable, used in the local dev environment
@@ -154,7 +153,6 @@ static NSString *kClientID = @"210955112623-cqjrd6qt7d1fgl9fvclct69kgrtjd2nu.app
     NSString *setting = [userDefaults objectForKey:@"GDRIVE_SECRET"];
     if (setting != nil)
         return setting;
-#endif
     
     // bundle variable, used for the build
     return [[[NSBundle mainBundle] infoDictionary] objectForKey:@"GDriveSecret"];

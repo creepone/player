@@ -1,10 +1,10 @@
 #import <ReactiveCocoa/ReactiveCocoa.h>
-#import "PLDropboxItemsViewController.h"
-#import "PLDropboxItemsViewModel.h"
-#import "PLDropboxItemCell.h"
+#import "PLCloudItemsViewController.h"
+#import "PLCloudItemsViewModel.h"
+#import "PLCloudItemCell.h"
 #import "PLTableViewProgress.h"
 
-@interface PLDropboxItemsViewController () {
+@interface PLCloudItemsViewController () {
     PLTableViewProgress *_tableViewProgress;
 }
 
@@ -12,7 +12,7 @@
 
 @end
 
-@implementation PLDropboxItemsViewController
+@implementation PLCloudItemsViewController
 
 - (void)viewDidLoad
 {
@@ -39,7 +39,7 @@
 
 - (IBAction)tappedDone:(id)sender
 {
-    PLDropboxItemsViewController *rootController = self.navigationController.viewControllers[0];
+    PLCloudItemsViewController *rootController = self.navigationController.viewControllers[0];
     rootController.viewModel.dismissed = YES;
     [self.presentingViewController dismissViewControllerAnimated:YES completion:nil];
 }
@@ -72,7 +72,7 @@
     if ([self.viewModel useEmptyCell])
         return [tableView dequeueReusableCellWithIdentifier:@"emptyCell" forIndexPath:indexPath];
     
-    PLDropboxItemCell *cell = [tableView dequeueReusableCellWithIdentifier:@"dropboxItemCell" forIndexPath:indexPath];
+    PLCloudItemCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cloudItemCell" forIndexPath:indexPath];
     cell.viewModel = [self.viewModel cellViewModelAt:indexPath];
     return cell;
 }
@@ -84,9 +84,9 @@
     [tableView reloadData];
 }
      
-- (void)navigateTo:(PLDropboxItemsViewModel *)viewModel
+- (void)navigateTo:(PLCloudItemsViewModel *)viewModel
 {
-    PLDropboxItemsViewController *controller = [self.storyboard instantiateViewControllerWithIdentifier:@"dropboxItems"];
+    PLCloudItemsViewController *controller = [self.storyboard instantiateViewControllerWithIdentifier:@"cloudItems"];
     controller.viewModel = viewModel;
     [self.navigationController pushViewController:controller animated:YES];
 }

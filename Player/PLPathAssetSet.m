@@ -1,8 +1,7 @@
 #import "PLPathAssetSet.h"
-#import "NSArray+PLExtensions.h"
 
 @interface PLPathAssetSet() {
-    NSMutableSet *_set;
+    NSMutableArray *_assets;
 }
 @end
 
@@ -12,7 +11,7 @@
 {
     self = [super init];
     if (self) {
-        _set = [NSMutableSet set];
+        _assets = [NSMutableArray array];
     }
     return self;
 }
@@ -24,7 +23,7 @@
 
 - (BOOL)contains:(id<PLPathAsset>)asset
 {
-    for (id<PLPathAsset> includedPathAsset in _set) {
+    for (id<PLPathAsset> includedPathAsset in _assets) {
         if ([asset.path hasPrefix:includedPathAsset.path])
             return YES;
     }
@@ -45,12 +44,12 @@
     if ([self contains:asset])
         return;
     
-    [_set addObject:asset];
+    [_assets addObject:asset];
     
     // remove all descendants previously included
-    for (id<PLPathAsset> includedPathAsset in [_set copy]) {
+    for (id<PLPathAsset> includedPathAsset in [_assets copy]) {
         if ([includedPathAsset.path hasPrefix:asset.path] && ![includedPathAsset.path isEqualToString:asset.path])
-            [_set removeObject:includedPathAsset];
+            [_assets removeObject:includedPathAsset];
     }
     
     if (asset.parent != nil) {
@@ -71,8 +70,8 @@
     if (![self contains:asset])
         return;
     
-    if ([_set containsObject:asset]) {
-        [_set removeObject:asset];
+    if ([_assets containsObject:asset]) {
+        [_assets removeObject:asset];
         return;
     }
     
@@ -90,7 +89,7 @@
 
 - (NSArray *)allAssets
 {
-    return [_set allObjects];
+    return _assets;
 }
 
 @end

@@ -1,8 +1,11 @@
 #import <Foundation/Foundation.h>
 
-@class PLDropboxItemCellViewModel, RACSignal, PLPathAssetSet;
+@protocol PLCloudManager;
+@class PLCloudItemCellViewModel, RACSignal, PLPathAssetSet;
 
-@interface PLDropboxItemsViewModel : NSObject
+@interface PLCloudItemsViewModel : NSObject
+
+- (instancetype)initWithCloudManager:(id <PLCloudManager>)cloudManager;
 
 /**
  Delivers a set of all the selected assets.
@@ -23,7 +26,7 @@
 
 - (NSUInteger)cellsCount;
 - (BOOL)useEmptyCell;
-- (PLDropboxItemCellViewModel *)cellViewModelAt:(NSIndexPath *)indexPath;
+- (PLCloudItemCellViewModel *)cellViewModelAt:(NSIndexPath *)indexPath;
 - (void)toggleSelectAt:(NSIndexPath *)indexPath;
 
 - (RACSignal *)navigationSignal;
