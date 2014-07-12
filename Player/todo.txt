@@ -1,3 +1,6 @@
+integrate google drive api secret into the build
+a screen with "an error occured" into the Dropbox view
+
 long term:
 refactor the "Activity View" to use MVVM
 introduce some service container mechanism so that the VMs can be unit tested

@@ -9,6 +9,8 @@ NSString * const PLDropboxURLHandledNotification = @"PLDropboxURLHandledNotifica
 @interface PLDropboxManager()
 @end
 
+static NSString *kAppKey = @"rqjkvshiflgy2qj";
+
 @implementation PLDropboxManager
 
 + (PLDropboxManager *)sharedManager
@@ -23,34 +25,59 @@ NSString * const PLDropboxURLHandledNotification = @"PLDropboxURLHandledNotifica
 {
     self = [super init];
     if (self) {
-        DBSession *session = [[DBSession alloc] initWithAppKey:@"rqjkvshiflgy2qj" appSecret:[self dropboxSecret] root:kDBRootDropbox];
+        NSString *secret = [self clientSecret];
+        DDLogInfo(@"Dropbox Secret = %@", secret);
+        
+        DBSession *session = [[DBSession alloc] initWithAppKey:kAppKey appSecret:[self clientSecret] root:kDBRootDropbox];
         [DBSession setSharedSession:session];
     }
     return self;
 }
-
 
 - (BOOL)isLinked
 {
     return [[DBSession sharedSession] isLinked];
 }
 
-
-- (BOOL)ensureLinked
+- (RACSignal *)link
 {
-    DBSession *session = [DBSession sharedSession];
-    
-    if (![session isLinked]) {
+    if (self.isLinked)
+        return [RACSignal return:@(YES)];
+
+    return [RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
+        
         UIWindow *window = [[UIApplication sharedApplication] keyWindow];
-        [session linkFromController:window.rootViewController];
-        return NO;
-    }
-    
-    return YES;
+        [[DBSession sharedSession] linkFromController:window.rootViewController];
+        
+        [[[[NSNotificationCenter defaultCenter] rac_addObserverForName:PLDropboxURLHandledNotification object:nil] take:1] subscribeNext:^(id _) {
+            
+            BOOL isLinked =  [[DBSession sharedSession] isLinked];
+            
+            UIViewController *rootViewController = window.rootViewController;
+            UIViewController *presentedViewController = [rootViewController presentedViewController];
+            
+            // wait for the Dropbox authentication view controller (if present) to disappear before we complete the signal
+            
+            RACSignal *cleanupSignal = [RACSignal empty];
+            if (presentedViewController != nil) {
+                cleanupSignal = presentedViewController.rac_willDeallocSignal;
+            }
+            
+            [cleanupSignal subscribeCompleted:^{
+                [subscriber sendNext:@(isLinked)];
+                [subscriber sendCompleted];
+            }];
+        }];
+        
+        return nil;
+    }];
 }
 
 - (void)unlink
 {
+    if (!self.isLinked)
+        return;
+    
     [[DBSession sharedSession] unlinkAll];
 }
 
@@ -63,7 +90,6 @@ NSString * const PLDropboxURLHandledNotification = @"PLDropboxURLHandledNotifica
         return metadata.contents;
     }];
 }
-
 
 - (NSURLRequest *)requestForPath:(NSString *)filePath
 {
@@ -88,8 +114,10 @@ NSString * const PLDropboxURLHandledNotification = @"PLDropboxURLHandledNotifica
     return urlRequest;
 }
 
-- (NSString *)dropboxSecret
+
+- (NSString *)clientSecret
 {
+#if DEBUG
     NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
     
     // env. variable, used in the local dev environment
@@ -104,6 +132,7 @@ NSString * const PLDropboxURLHandledNotification = @"PLDropboxURLHandledNotifica
     NSString *setting = [userDefaults objectForKey:@"DROPBOX_SECRET"];
     if (setting != nil)
         return setting;
+#endif
 
     // bundle variable, used for the build
     return [[[NSBundle mainBundle] infoDictionary] objectForKey:@"DropboxSecret"];

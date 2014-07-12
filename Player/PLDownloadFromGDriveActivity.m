@@ -1,5 +1,7 @@
 #import <ReactiveCocoa/ReactiveCocoa.h>
+#import <Google-API-Client/GTLDrive.h>
 #import "PLDownloadFromGDriveActivity.h"
+#import "PLGDriveManager.h"
 
 @implementation PLDownloadFromGDriveActivity
 
@@ -15,7 +17,18 @@
 
 - (RACSignal *)performActivity
 {
-    return [RACSignal empty];
+    PLGDriveManager *driveManager = [PLGDriveManager sharedManager];
+    
+    if (!driveManager.isLinked) {
+        return [[driveManager link] flattenMap:^RACStream *(NSNumber *isLinked) {
+            return [isLinked boolValue] ? [self performActivity] : nil;
+        }];
+    }
+    
+    return [[driveManager listFolder:@"root"] flattenMap:^RACStream *(GTLDriveChildList* fileList) {
+        DDLogVerbose(@"files = %@", fileList);
+        return nil;
+    }];
 }
 
 @end

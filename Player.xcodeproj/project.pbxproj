@@ -111,6 +111,7 @@
 		C3CC18CD191FABD30026E681 /* PLTracksViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C3CC18CC191FABD30026E681 /* PLTracksViewController.m */; };
 		C3CC18D3191FC5990026E681 /* PLTrackCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C3CC18D2191FC5990026E681 /* PLTrackCell.m */; };
 		C3CC18DB19227CD30026E681 /* icon.png in Resources */ = {isa = PBXBuildFile; fileRef = C3CC18DA19227CD20026E681 /* icon.png */; };
+		C3CC2C7F196D91320013FC57 /* PLGDriveManager.m in Sources */ = {isa = PBXBuildFile; fileRef = C3CC2C7E196D91320013FC57 /* PLGDriveManager.m */; };
 		C3D1A65A16CFC337006D3E5F /* PLPlaylistSelectViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C3D1A65916CFC337006D3E5F /* PLPlaylistSelectViewController.m */; };
 		C3F1A13518E83F6F00A82EAC /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C3F1A13418E83F6F00A82EAC /* Images.xcassets */; };
 		C3F539F3195A047300409CC4 /* PLDownloadManager.m in Sources */ = {isa = PBXBuildFile; fileRef = C3F539F2195A047300409CC4 /* PLDownloadManager.m */; };
@@ -128,7 +129,7 @@
 		696C1239863912CEC9BDB652 /* PLImageCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PLImageCache.m; sourceTree = "<group>"; };
 		696C123B1E65E488D94DD4A8 /* PLDownloadFromDropboxActivity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PLDownloadFromDropboxActivity.m; path = Player/PLDownloadFromDropboxActivity.m; sourceTree = "<group>"; };
 		696C125EC4796E70CFB25276 /* PLMediaLibrarySearch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PLMediaLibrarySearch.h; sourceTree = "<group>"; };
-		696C12C5B79AE1DFA667B290 /* PLDownloadFromGDriveActivity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PLDownloadFromGDriveActivity.h; sourceTree = "<group>"; };
+		696C12C5B79AE1DFA667B290 /* PLDownloadFromGDriveActivity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PLDownloadFromGDriveActivity.h; path = Player/PLDownloadFromGDriveActivity.h; sourceTree = "<group>"; };
 		696C12C9DF1F34B0D5963EEC /* UIViewController+PLErrorExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+PLErrorExtensions.m"; sourceTree = "<group>"; };
 		696C12E93800D96F5AFEE66A /* PLPlaylistSongCellViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PLPlaylistSongCellViewModel.h; sourceTree = "<group>"; };
 		696C12FAB54495AF46A2A951 /* PLErrorManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PLErrorManager.m; sourceTree = "<group>"; };
@@ -183,7 +184,7 @@
 		696C1BC84EFF2E07F8CE0D8D /* PLConstraints.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PLConstraints.h; sourceTree = "<group>"; };
 		696C1C1CFEA94557045A202E /* PLActivityViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PLActivityViewController.m; sourceTree = "<group>"; };
 		696C1CE67D437458210D2DE2 /* PLButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PLButton.m; sourceTree = "<group>"; };
-		696C1D4C6FF0251EBF444798 /* PLDownloadFromGDriveActivity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PLDownloadFromGDriveActivity.m; sourceTree = "<group>"; };
+		696C1D4C6FF0251EBF444798 /* PLDownloadFromGDriveActivity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PLDownloadFromGDriveActivity.m; path = Player/PLDownloadFromGDriveActivity.m; sourceTree = "<group>"; };
 		696C1DAFDDBB4DBE1F7CD47C /* PLBackgroundProcess.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PLBackgroundProcess.h; sourceTree = "<group>"; };
 		696C1DB0C3355E2EB3D24D03 /* UITableView+PLExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITableView+PLExtensions.h"; sourceTree = "<group>"; };
 		696C1DCA168EE30B89EDD143 /* PLPlaylistSongsViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PLPlaylistSongsViewModel.h; sourceTree = "<group>"; };
@@ -310,6 +311,8 @@
 		C3CC18D1191FC5990026E681 /* PLTrackCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PLTrackCell.h; sourceTree = "<group>"; };
 		C3CC18D2191FC5990026E681 /* PLTrackCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PLTrackCell.m; sourceTree = "<group>"; };
 		C3CC18DA19227CD20026E681 /* icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = icon.png; path = Images.xcassets/AppIcon.appiconset/icon.png; sourceTree = "<group>"; };
+		C3CC2C7D196D91320013FC57 /* PLGDriveManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PLGDriveManager.h; path = Player/PLGDriveManager.h; sourceTree = "<group>"; };
+		C3CC2C7E196D91320013FC57 /* PLGDriveManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PLGDriveManager.m; path = Player/PLGDriveManager.m; sourceTree = "<group>"; };
 		C3CF9FD418B52EF4004EE4A1 /* revision.prefix */ = {isa = PBXFileReference; lastKnownFileType = text; path = revision.prefix; sourceTree = "<group>"; };
 		C3CF9FD518B52EF4004EE4A1 /* prebuild.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = prebuild.sh; sourceTree = "<group>"; };
 		C3CF9FD618B52EF4004EE4A1 /* deploy.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = deploy.sh; sourceTree = "<group>"; };
@@ -752,8 +755,6 @@
 			isa = PBXGroup;
 			children = (
 				696C13ED65045480BDB66BE0 /* PLActivity.h */,
-				696C12C5B79AE1DFA667B290 /* PLDownloadFromGDriveActivity.h */,
-				696C1D4C6FF0251EBF444798 /* PLDownloadFromGDriveActivity.m */,
 				696C1EE652F22078B91B6C56 /* PLDownloadFromICloudActivity.h */,
 				696C1A8B85B56C770FB7BEC0 /* PLDownloadFromICloudActivity.m */,
 				696C107644FDE533B6B072AE /* PLDownloadURLActivity.h */,
@@ -823,6 +824,7 @@
 		C3BC5A1C1656B772002DA837 = {
 			isa = PBXGroup;
 			children = (
+				C3CC2C78196D90F50013FC57 /* GDrive Import */,
 				C378CDC8195F07DE001D0593 /* Shared */,
 				C378CDCE195F09E7001D0593 /* Activity View */,
 				C378CDC9195F07F0001D0593 /* Main (Playlist) */,
@@ -999,6 +1001,25 @@
 				C3CC18BA191E43300026E681 /* Localizable.strings */,
 			);
 			name = Resources;
+			sourceTree = "<group>";
+		};
+		C3CC2C78196D90F50013FC57 /* GDrive Import */ = {
+			isa = PBXGroup;
+			children = (
+				C3CC2C79196D91030013FC57 /* Model */,
+			);
+			name = "GDrive Import";
+			sourceTree = "<group>";
+		};
+		C3CC2C79196D91030013FC57 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				696C12C5B79AE1DFA667B290 /* PLDownloadFromGDriveActivity.h */,
+				696C1D4C6FF0251EBF444798 /* PLDownloadFromGDriveActivity.m */,
+				C3CC2C7D196D91320013FC57 /* PLGDriveManager.h */,
+				C3CC2C7E196D91320013FC57 /* PLGDriveManager.m */,
+			);
+			name = Model;
 			sourceTree = "<group>";
 		};
 		C3CF9FD318B52EE3004EE4A1 /* Build */ = {
@@ -1181,6 +1202,7 @@
 				696C1C17D8D7CEA11E7A5928 /* PLDownloadFromGDriveActivity.m in Sources */,
 				C378CD76194C505A001D0593 /* PLRouter.m in Sources */,
 				696C1A663DCC44EB31B19B46 /* PLDownloadFromICloudActivity.m in Sources */,
+				C3CC2C7F196D91320013FC57 /* PLGDriveManager.m in Sources */,
 				C33820011967220200DA2B7B /* DBRestClient+RACSignalSupport.m in Sources */,
 				C384009B193879E600D6A930 /* PLTrack.m in Sources */,
 				696C1C38A95357371CFEE558 /* PLDownloadURLActivity.m in Sources */,

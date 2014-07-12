@@ -10,5 +10,5 @@ export LC_ALL="en_US.UTF-8"
 pod install
 
 #  make sure that the revision.prefix file is updated so that it contains the actual build and revision numbers
-echo -e "#define BUILD_NUMBER $BUILD_NUMBER\n#define BUILD_VCS_NUMBER $BUILD_VCS_NUMBER\n#define DROPBOX_SECRET $DROPBOX_SECRET" > Player/revision.prefix
+echo -e "#define BUILD_NUMBER $BUILD_NUMBER\n#define BUILD_VCS_NUMBER $BUILD_VCS_NUMBER\n#define DROPBOX_SECRET $DROPBOX_SECRET\n#define GDRIVE_SECRET $GDRIVE_SECRET" > Player/revision.prefix
 touch Player/Info.plist

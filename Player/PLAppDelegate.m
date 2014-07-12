@@ -15,6 +15,7 @@
 #import "PLMediaMirror.h"
 #import "PLDownloadManager.h"
 #import "PLDropboxManager.h"
+#import "PLGDriveManager.h"
 
 @interface PLAppDelegate()
 

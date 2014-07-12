@@ -1,10 +1,10 @@
 #import <Foundation/Foundation.h>
 
-extern NSString * const PLDropboxURLHandledNotification;
+@class RACSignal;
 
-@interface PLDropboxManager : NSObject
+@interface PLGDriveManager : NSObject
 
-+ (PLDropboxManager *)sharedManager;
++ (PLGDriveManager *)sharedManager;
 
 - (BOOL)isLinked;
 - (RACSignal *)link;

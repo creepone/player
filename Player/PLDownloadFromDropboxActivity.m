@@ -25,9 +25,12 @@
 
 - (RACSignal *)performActivity
 {
-    if (![[PLDropboxManager sharedManager] ensureLinked]) {
-        [self retryAfterLinked];
-        return [RACSignal empty];
+    PLDropboxManager *dropboxManager = [PLDropboxManager sharedManager];
+    
+    if (!dropboxManager.isLinked) {
+        return [[dropboxManager link] flattenMap:^RACStream *(NSNumber *isLinked) {
+            return [isLinked boolValue] ? [self performActivity] : nil;
+        }];
     }
 
     UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Dropbox" bundle:nil];
@@ -61,28 +64,6 @@
     }];
 }
 
-- (void)retryAfterLinked
-{
-    [[[[NSNotificationCenter defaultCenter] rac_addObserverForName:PLDropboxURLHandledNotification object:nil] take:1] subscribeNext:^(id _) {
-        if ([[PLDropboxManager sharedManager] isLinked]) {
-            
-            UIViewController *rootViewController = [[[UIApplication sharedApplication] keyWindow] rootViewController];
-            UIViewController *presentedViewController = [rootViewController presentedViewController];
-            
-            RACSignal *cleanupSignal = [RACSignal empty];
-            if (presentedViewController != nil) {
-                cleanupSignal = presentedViewController.rac_willDeallocSignal;
-            }
-            
-            RACSignal *retrySignal = [cleanupSignal then:^RACSignal *{
-                PLDownloadFromDropboxActivity *restartedActivity = [PLDownloadFromDropboxActivity new];
-                return [restartedActivity performActivity];
-            }];
-            
-            [retrySignal subscribeError:[PLErrorManager logErrorVoidBlock]];
-        }
-    }];
-}
 
 - (RACSignal *)downloadPath:(NSString *)path
 {
