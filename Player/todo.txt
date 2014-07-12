@@ -1,4 +1,4 @@
-integrate google drive api secret into the build
+use Documents subpath for the file location (to be able to use both debug and release versions)
 a screen with "an error occured" into the Dropbox view
 
 long term:

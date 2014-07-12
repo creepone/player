@@ -27,10 +27,6 @@ static NSString *kClientID = @"210955112623-cqjrd6qt7d1fgl9fvclct69kgrtjd2nu.app
 {
     self = [super init];
     if (self) {
-        
-        NSString *secret = [self clientSecret];
-        DDLogInfo(@"Google Drive Secret = %@", secret);
-        
         _driveService = [[GTLServiceDrive alloc] init];
         _driveService.shouldFetchNextPages = YES;
         _driveService.authorizer = [GTMOAuth2ViewControllerTouch authForGoogleFromKeychainForName:kKeychainItemName clientID:kClientID clientSecret:[self clientSecret]];

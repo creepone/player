@@ -14,6 +14,7 @@
 #import "PLRouter.h"
 #import "PLMediaMirror.h"
 #import "PLDownloadManager.h"
+#import "PLServiceContainer+Registrations.h"
 #import "PLDropboxManager.h"
 #import "PLGDriveManager.h"
 
@@ -34,6 +35,8 @@ static void onUncaughtException(NSException* exception);
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     self.window.tintColor = [PLColors themeColor];
     [PLDefaultsManager registerDefaults];
+    
+    [[PLServiceContainer sharedContainer] registerAll];
 
     // temporary VC for the progress hud
     self.window.rootViewController = [[UIViewController alloc] init];

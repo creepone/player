@@ -5,6 +5,7 @@
 #import "PLUtils.h"
 #import "PLFileImport.h"
 #import "PLDropboxManager.h"
+#import "PLServiceContainer.h"
 
 @interface PLTaskInfo : NSObject 
 
@@ -239,9 +240,12 @@ NSString * const PLBackgroundSessionIdentifier = @"at.iosapps.Player.BackgroundS
     if (downloadURL == nil)
         return nil;
     
-    if ([downloadURL.scheme isEqualToString:@"dropbox"]) {
-        return [[PLDropboxManager sharedManager] requestForPath:downloadURL.path];
+    for (id<PLDownloadProvider> downloadProvider in PLResolveMany(PLDownloadProvider)) {
+        NSURLRequest *request = [downloadProvider requestForDownloadURL:downloadURL];
+        if (request != nil)
+            return request;
     }
+
     return [NSURLRequest requestWithURL:downloadURL];
 }
 

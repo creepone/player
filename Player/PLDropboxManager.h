@@ -1,16 +1,17 @@
 #import <Foundation/Foundation.h>
+#import "PLDownloadProvider.h"
 
 extern NSString * const PLDropboxURLHandledNotification;
 
-@interface PLDropboxManager : NSObject
+@class RACSignal;
+
+@interface PLDropboxManager : NSObject <PLDownloadProvider>
 
 + (PLDropboxManager *)sharedManager;
 
 - (BOOL)isLinked;
 - (RACSignal *)link;
 - (void)unlink;
-
-- (NSURLRequest *)requestForPath:(NSString *)filePath;
 
 - (RACSignal *)listFolder:(NSString *)path;
 

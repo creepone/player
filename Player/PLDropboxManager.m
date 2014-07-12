@@ -3,6 +3,7 @@
 #import "DBRestClient+RACSignalSupport.h"
 #import "MPOAuthURLRequest.h"
 #import "PLDropboxManager.h"
+#import "PLPathAssetSet.h"
 
 NSString * const PLDropboxURLHandledNotification = @"PLDropboxURLHandledNotification";
 
@@ -24,10 +25,7 @@ static NSString *kAppKey = @"rqjkvshiflgy2qj";
 - (instancetype)init
 {
     self = [super init];
-    if (self) {
-        NSString *secret = [self clientSecret];
-        DDLogInfo(@"Dropbox Secret = %@", secret);
-        
+    if (self) {        
         DBSession *session = [[DBSession alloc] initWithAppKey:kAppKey appSecret:[self clientSecret] root:kDBRootDropbox];
         [DBSession setSharedSession:session];
     }
@@ -91,8 +89,13 @@ static NSString *kAppKey = @"rqjkvshiflgy2qj";
     }];
 }
 
-- (NSURLRequest *)requestForPath:(NSString *)filePath
+
+- (NSURLRequest *)requestForDownloadURL:(NSURL *)downloadURL
 {
+    if (![downloadURL.scheme isEqualToString:@"dropbox"])
+        return nil;
+    
+    NSString *filePath = downloadURL.path;
     DBSession *session = [DBSession sharedSession];
     if (![session isLinked])
         return nil;
@@ -100,7 +103,7 @@ static NSString *kAppKey = @"rqjkvshiflgy2qj";
     NSString *escapedPath = [filePath stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
     NSString* urlString = [NSString stringWithFormat:@"https://api-content.dropbox.com/1/files/dropbox%@", escapedPath];
     NSURL* url = [NSURL URLWithString:urlString];
-		
+    
     NSString *userId = session.userIds[0];
     MPOAuthCredentialConcreteStore *credentialStore = [session credentialStoreForUserId:userId];
     
@@ -112,6 +115,12 @@ static NSString *kAppKey = @"rqjkvshiflgy2qj";
 									   urlRequestSignedWithSecret:credentialStore.signingKey
 									   usingMethod:credentialStore.signatureMethod];
     return urlRequest;
+    
+}
+
+- (NSURL *)downloadURLForAsset:(id <PLPathAsset>)asset
+{
+    return [NSURL URLWithString:[NSString stringWithFormat:@"dropbox://%@", [asset.path stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]]];
 }
 
 
