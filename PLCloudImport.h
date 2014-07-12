@@ -12,6 +12,7 @@
 
 - (id <PLPathAsset>)rootAsset;
 - (RACSignal *)loadChildren:(id <PLPathAsset>)asset;
+- (NSURL *)downloadURLForAsset:(id <PLPathAsset>)asset;
 
 @end
 

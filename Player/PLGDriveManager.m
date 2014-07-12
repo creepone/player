@@ -3,6 +3,8 @@
 #import <gtm-oauth2/GTMOAuth2ViewControllerTouch.h>
 #import "PLGDriveManager.h"
 #import "PLErrorManager.h"
+#import "PLGDrivePathAsset.h"
+#import "NSArray+PLExtensions.h"
 
 @interface PLGDriveManager() {
     GTLServiceDrive *_driveService;
@@ -10,6 +12,7 @@
 
 @end
 
+static NSString *kSchemePrefix = @"gdrive+";
 static NSString *kKeychainItemName = @"GoogleDriveCredentials";
 static NSString *kClientID = @"210955112623-cqjrd6qt7d1fgl9fvclct69kgrtjd2nu.apps.googleusercontent.com";
 
@@ -108,30 +111,70 @@ static NSString *kClientID = @"210955112623-cqjrd6qt7d1fgl9fvclct69kgrtjd2nu.app
 }
 
 
-- (NSURLRequest *)requestForPath:(NSString *)filePath
+- (id <PLPathAsset>)rootAsset
 {
-    // todo: implement
-    return nil;
+    return [[PLGDrivePathAsset alloc] initWithDriveFile:nil parent:nil];
 }
 
-- (RACSignal *)listFolder:(NSString *)path
+- (RACSignal *)loadChildren:(id <PLPathAsset>)asset
 {
+    PLGDrivePathAsset *driveAsset = (PLGDrivePathAsset *)asset;
+
     return [RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
         
-        GTLQueryDrive *query = [GTLQueryDrive queryForChildrenListWithFolderId:path];
+        GTLQueryDrive *query = [GTLQueryDrive queryForFilesList];
+        query.q = [NSString stringWithFormat:@"'%@' IN parents", driveAsset.identifier];
         
         // todo: set mime types to the query so that only audio files are loaded
         
-        [_driveService executeQuery:query completionHandler:^(GTLServiceTicket *ticket, GTLDriveChildList *files, NSError *error) {
+        [_driveService executeQuery:query completionHandler:^(GTLServiceTicket *ticket, GTLDriveFileList *files, NSError *error) {
             if (error != nil) {
                 [subscriber sendError:error];
                 return;
             }
+            NSSortDescriptor *sortDescriptorFolder = [NSSortDescriptor sortDescriptorWithKey:@"isDirectory" ascending:NO];
+            NSSortDescriptor *sortDescriptorTitle = [NSSortDescriptor sortDescriptorWithKey:@"title" ascending:YES];
+
+            NSArray *items = [[files.items pl_map:^id(GTLDriveFile *file) {
+                return [[PLGDrivePathAsset alloc] initWithDriveFile:file parent:asset];
+            }] sortedArrayUsingDescriptors:@[sortDescriptorFolder, sortDescriptorTitle]];
             
-            [subscriber sendNext:files];
+            [subscriber sendNext:items];
             [subscriber sendCompleted];
         }];
         
+        return nil;
+    }];
+}
+
+- (NSURL *)downloadURLForAsset:(id <PLPathAsset>)asset
+{
+    PLGDrivePathAsset *driveAsset = (PLGDrivePathAsset *)asset;
+    NSString *downloadURL = driveAsset.driveFile.downloadUrl;
+    
+    NSURLComponents *components = [NSURLComponents componentsWithString:downloadURL];
+    components.scheme = [NSString stringWithFormat:@"%@%@", kSchemePrefix, components.scheme];
+    return [components URL];
+}
+
+- (RACSignal *)requestForDownloadURL:(NSURL *)downloadURL
+{
+    if (![downloadURL.scheme hasPrefix:kSchemePrefix])
+        return nil;
+    
+    NSURLComponents *components = [NSURLComponents componentsWithURL:downloadURL resolvingAgainstBaseURL:NO];
+    components.scheme = [components.scheme substringFromIndex:[kSchemePrefix length]];
+    NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:components.URL];
+    
+    return [RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
+        [_driveService.authorizer authorizeRequest:request completionHandler:^(NSError *error) {
+            if (error)
+                [subscriber sendError:error];
+            else {
+                [subscriber sendNext:request];
+                [subscriber sendCompleted];
+            }
+        }];
         return nil;
     }];
 }

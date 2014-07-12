@@ -31,6 +31,11 @@
     return _metadata ? _metadata.path : @"/";
 }
 
+- (NSString *)title
+{
+    return [_metadata.path lastPathComponent];
+}
+
 - (id<PLPathAsset>)parent
 {
     return _parent;

@@ -36,7 +36,7 @@
         
         _navigationSubject = [RACSubject subject];
         
-        self.title = [_parent isRoot] ? @"Add to playlist" : [_parent.path lastPathComponent]; // todo: localize
+        self.title = _parent.isRoot ? @"Add to playlist" : _parent.title; // todo: localize
         
         [self loadItems];
     }

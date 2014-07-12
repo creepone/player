@@ -1,17 +1,10 @@
 #import <Foundation/Foundation.h>
+#import "PLCloudImport.h"
 
 @class RACSignal;
 
-@interface PLGDriveManager : NSObject
+@interface PLGDriveManager : NSObject <PLCloudManager>
 
 + (PLGDriveManager *)sharedManager;
-
-- (BOOL)isLinked;
-- (RACSignal *)link;
-- (void)unlink;
-
-- (NSURLRequest *)requestForPath:(NSString *)filePath;
-
-- (RACSignal *)listFolder:(NSString *)path;
 
 @end

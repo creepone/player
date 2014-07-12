@@ -115,6 +115,7 @@
 		C3CC2C83197128A40013FC57 /* PLServiceContainer.m in Sources */ = {isa = PBXBuildFile; fileRef = C3CC2C82197128A40013FC57 /* PLServiceContainer.m */; };
 		C3CC2C87197139A10013FC57 /* PLServiceContainer+Registrations.m in Sources */ = {isa = PBXBuildFile; fileRef = C3CC2C86197139A10013FC57 /* PLServiceContainer+Registrations.m */; };
 		C3CC2C8D19713EEC0013FC57 /* PLCloudImport.m in Sources */ = {isa = PBXBuildFile; fileRef = C3CC2C8C19713EEC0013FC57 /* PLCloudImport.m */; };
+		C3CC2C9219718A190013FC57 /* PLGDrivePathAsset.m in Sources */ = {isa = PBXBuildFile; fileRef = C3CC2C9119718A190013FC57 /* PLGDrivePathAsset.m */; };
 		C3D1A65A16CFC337006D3E5F /* PLPlaylistSelectViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C3D1A65916CFC337006D3E5F /* PLPlaylistSelectViewController.m */; };
 		C3F1A13518E83F6F00A82EAC /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C3F1A13418E83F6F00A82EAC /* Images.xcassets */; };
 		C3F539F3195A047300409CC4 /* PLDownloadManager.m in Sources */ = {isa = PBXBuildFile; fileRef = C3F539F2195A047300409CC4 /* PLDownloadManager.m */; };
@@ -323,6 +324,8 @@
 		C3CC2C8819713A6F0013FC57 /* PLServiceContainer+Registrations.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "PLServiceContainer+Registrations.h"; sourceTree = "<group>"; };
 		C3CC2C8B19713EEC0013FC57 /* PLCloudImport.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PLCloudImport.h; sourceTree = "<group>"; };
 		C3CC2C8C19713EEC0013FC57 /* PLCloudImport.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PLCloudImport.m; sourceTree = "<group>"; };
+		C3CC2C9019718A190013FC57 /* PLGDrivePathAsset.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PLGDrivePathAsset.h; sourceTree = "<group>"; };
+		C3CC2C9119718A190013FC57 /* PLGDrivePathAsset.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PLGDrivePathAsset.m; sourceTree = "<group>"; };
 		C3CF9FD418B52EF4004EE4A1 /* revision.prefix */ = {isa = PBXFileReference; lastKnownFileType = text; path = revision.prefix; sourceTree = "<group>"; };
 		C3CF9FD518B52EF4004EE4A1 /* prebuild.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = prebuild.sh; sourceTree = "<group>"; };
 		C3CF9FD618B52EF4004EE4A1 /* deploy.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = deploy.sh; sourceTree = "<group>"; };
@@ -816,11 +819,11 @@
 		C3BC5A1C1656B772002DA837 = {
 			isa = PBXGroup;
 			children = (
-				C3CC2C8919713E4B0013FC57 /* Cloud Import */,
 				C378CDC8195F07DE001D0593 /* Shared */,
-				C378CDCE195F09E7001D0593 /* Activity View */,
 				C378CDC9195F07F0001D0593 /* Main (Playlist) */,
+				C378CDCE195F09E7001D0593 /* Activity View */,
 				C378CDC3195F060A001D0593 /* Music Library Import */,
+				C3CC2C8919713E4B0013FC57 /* Cloud Import */,
 				C34ADCDC19164CBE00A07EBB /* Legacy */,
 				C3BC5A3A1656B772002DA837 /* PLAppDelegate.h */,
 				C3BC5A3B1656B772002DA837 /* PLAppDelegate.m */,
@@ -1001,6 +1004,8 @@
 				696C1D4C6FF0251EBF444798 /* PLDownloadFromGDriveActivity.m */,
 				C3CC2C7D196D91320013FC57 /* PLGDriveManager.h */,
 				C3CC2C7E196D91320013FC57 /* PLGDriveManager.m */,
+				C3CC2C9019718A190013FC57 /* PLGDrivePathAsset.h */,
+				C3CC2C9119718A190013FC57 /* PLGDrivePathAsset.m */,
 			);
 			name = GDrive;
 			sourceTree = "<group>";
@@ -1241,6 +1246,7 @@
 				C33820011967220200DA2B7B /* DBRestClient+RACSignalSupport.m in Sources */,
 				C384009B193879E600D6A930 /* PLTrack.m in Sources */,
 				696C1C38A95357371CFEE558 /* PLDownloadURLActivity.m in Sources */,
+				C3CC2C9219718A190013FC57 /* PLGDrivePathAsset.m in Sources */,
 				C3381F9A19609F8600DA2B7B /* PLDropboxManager.m in Sources */,
 				696C1F9C8C8A7886A8530949 /* PLDownloadPodcastActivity.m in Sources */,
 				696C1CC618F99813793E6F46 /* PLFileSharingActivity.m in Sources */,

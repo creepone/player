@@ -115,7 +115,8 @@ NSString * const PLBackgroundSessionIdentifier = @"at.iosapps.Player.BackgroundS
         if (track == nil)
             return nil;
         
-        NSString *targetFileName = [PLUtils fileNameFromURL:[NSURL URLWithString:track.downloadURL]];
+        // todo: maybe we should store the targetFileName separately, in case we ever want to use a different title
+        NSString *targetFileName = track.title;
                 
         return [[PLFileImport moveToDocumentsFolder:location underFileName:targetFileName]
         flattenMap:^RACStream *(NSURL *fileURL) {
@@ -194,24 +195,26 @@ NSString * const PLBackgroundSessionIdentifier = @"at.iosapps.Player.BackgroundS
 
 - (RACSignal *)enqueueDownloadOfTrack:(PLTrack *)track
 {
-    NSURLRequest *request = [self requestForDownloadURL:[NSURL URLWithString:track.downloadURL]];
-    if (request == nil)
+    RACSignal *requestSignal = [self requestForDownloadURL:[NSURL URLWithString:track.downloadURL]];
+    if (requestSignal == nil)
         return [RACSignal empty];
     
     NSString *trackId = [[track.objectID URIRepresentation] absoluteString];
-
-    return [[self tasksSignal] flattenMap:^RACStream *(NSMutableDictionary *tasks) {
-
-        NSURLSessionDownloadTask *downloadTask = [_session downloadTaskWithRequest:request];
-        downloadTask.taskDescription = trackId;
-        [downloadTask resume];
-
-        tasks[trackId] = [PLTaskInfo infoForTask:downloadTask];
-
-        PLTrack *track = [[PLDataAccess sharedDataAccess] trackWithObjectID:trackId];
-        track.downloadStatus = PLTrackDownloadStatusDownloading;
-
-        return [[PLDataAccess sharedDataAccess] saveChangesSignal];
+    
+    return [requestSignal flattenMap:^RACStream *(NSURLRequest *request) {
+        return [[self tasksSignal] flattenMap:^RACStream *(NSMutableDictionary *tasks) {
+            
+            NSURLSessionDownloadTask *downloadTask = [_session downloadTaskWithRequest:request];
+            downloadTask.taskDescription = trackId;
+            [downloadTask resume];
+            
+            tasks[trackId] = [PLTaskInfo infoForTask:downloadTask];
+            
+            PLTrack *track = [[PLDataAccess sharedDataAccess] trackWithObjectID:trackId];
+            track.downloadStatus = PLTrackDownloadStatusDownloading;
+            
+            return [[PLDataAccess sharedDataAccess] saveChangesSignal];
+        }];
     }];
 }
 
@@ -235,18 +238,18 @@ NSString * const PLBackgroundSessionIdentifier = @"at.iosapps.Player.BackgroundS
 }
 
 
-- (NSURLRequest *)requestForDownloadURL:(NSURL *)downloadURL
+- (RACSignal *)requestForDownloadURL:(NSURL *)downloadURL
 {
     if (downloadURL == nil)
         return nil;
     
     for (id<PLDownloadProvider> downloadProvider in PLResolveMany(PLDownloadProvider)) {
-        NSURLRequest *request = [downloadProvider requestForDownloadURL:downloadURL];
-        if (request != nil)
-            return request;
+        RACSignal *requestSignal = [downloadProvider requestForDownloadURL:downloadURL];
+        if (requestSignal != nil)
+            return requestSignal;
     }
 
-    return [NSURLRequest requestWithURL:downloadURL];
+    return [RACSignal return:[NSURLRequest requestWithURL:downloadURL]];
 }
 
 @end

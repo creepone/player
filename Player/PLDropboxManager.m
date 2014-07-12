@@ -99,7 +99,7 @@ static NSString *kAppKey = @"rqjkvshiflgy2qj";
 }
 
 
-- (NSURLRequest *)requestForDownloadURL:(NSURL *)downloadURL
+- (RACSignal *)requestForDownloadURL:(NSURL *)downloadURL
 {
     if (![downloadURL.scheme isEqualToString:@"dropbox"])
         return nil;
@@ -123,7 +123,7 @@ static NSString *kAppKey = @"rqjkvshiflgy2qj";
     NSMutableURLRequest* urlRequest = [oauthRequest
 									   urlRequestSignedWithSecret:credentialStore.signingKey
 									   usingMethod:credentialStore.signatureMethod];
-    return urlRequest;
+    return [RACSignal return:urlRequest];
     
 }
 

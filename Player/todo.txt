@@ -1,5 +1,11 @@
+set mime types to the query so that only audio files are loaded
+
 use Documents subpath for the file location (to be able to use both debug and release versions)
-a screen with "an error occured" into the Dropbox view
+a screen with "an error occured" into the Cloud Import view
+get rid of the warning (deprecated AudioSessionAddPropertyListener)
+
+show some progress while importing the songs (takes quite a long time for many songs)
+bigger tap area for the download icon
 
 long term:
 refactor the "Activity View" to use MVVM

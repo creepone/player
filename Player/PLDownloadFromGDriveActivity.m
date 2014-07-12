@@ -17,17 +17,9 @@
 
 - (RACSignal *)performActivity
 {
-    PLGDriveManager *driveManager = [PLGDriveManager sharedManager];
-    
-    if (!driveManager.isLinked) {
-        return [[driveManager link] flattenMap:^RACStream *(NSNumber *isLinked) {
-            return [isLinked boolValue] ? [self performActivity] : nil;
-        }];
-    }
-    
-    return [[driveManager listFolder:@"root"] flattenMap:^RACStream *(GTLDriveChildList* fileList) {
-        DDLogVerbose(@"files = %@", fileList);
-        return nil;
+    __block PLCloudImport *cloudImport = [[PLCloudImport alloc] initWithManager:[PLGDriveManager sharedManager]];
+    return [[cloudImport selectAndImport] finally:^{
+        cloudImport = nil;
     }];
 }
 

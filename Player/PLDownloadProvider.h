@@ -1,10 +1,9 @@
 #import <Foundation/Foundation.h>
 
-@protocol PLPathAsset;
+@class RACSignal;
 
 @protocol PLDownloadProvider <NSObject>
 
-- (NSURLRequest *)requestForDownloadURL:(NSURL *)downloadURL;
-- (NSURL *)downloadURLForAsset:(id <PLPathAsset>)asset;
+- (RACSignal *)requestForDownloadURL:(NSURL *)downloadURL;
 
 @end

@@ -8,14 +8,6 @@
 #import "PLDownloadManager.h"
 #import "PLUtils.h"
 
-@interface PLTrack()
-
-@property (nonatomic) NSTimeInterval duration;
-@property (nonatomic, retain) NSString *artist;
-@property (nonatomic, retain) NSString *title;
-
-@end
-
 @implementation PLTrack
 
 @dynamic persistentId;

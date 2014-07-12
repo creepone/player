@@ -34,7 +34,7 @@
     if (self) {
         _asset = asset;
         
-        self.name = [[asset path] lastPathComponent];
+        self.name = asset.title;
         self.alpha = selected ? 0.5f : 1.f;
         
         if (asset.isDirectory) {

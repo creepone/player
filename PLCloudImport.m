@@ -71,6 +71,7 @@
     PLDownloadManager *downloadManager = [PLDownloadManager sharedManager];
     
     PLTrack *track = [dataAccess trackWithDownloadURL:[downloadURL absoluteString]];
+    track.title = asset.title;
     BOOL wasTrackInserted = [track isInserted];
     
     PLPlaylist *playlist = [dataAccess selectedPlaylist];

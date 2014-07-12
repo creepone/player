@@ -18,9 +18,9 @@ typedef NS_ENUM(int16_t, PLTrackDownloadStatus) {
 @property (nonatomic) BOOL played;
 @property (nonatomic, retain) NSSet *playlistSongs;
 
-@property (nonatomic, readonly) NSTimeInterval duration;
-@property (nonatomic, readonly) NSString *artist;
-@property (nonatomic, readonly) NSString *title;
+@property (nonatomic, assign) NSTimeInterval duration;
+@property (nonatomic, retain) NSString *artist;
+@property (nonatomic, retain) NSString *title;
 
 
 + (PLTrack *)trackWithPersistentId:(NSNumber *)persistentId inContext:(NSManagedObjectContext *)context;

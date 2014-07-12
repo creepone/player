@@ -3,6 +3,7 @@
 @protocol PLPathAsset <NSObject>
 
 - (NSString *)path;
+- (NSString *)title;
 - (id<PLPathAsset>)parent;
 
 @property (nonatomic, weak) NSArray *siblings;

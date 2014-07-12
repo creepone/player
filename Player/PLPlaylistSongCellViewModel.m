@@ -84,8 +84,10 @@
         return;
     
     RACSignal *downloadStatusSignal = [RACObserve(track, downloadStatus) takeUntil:self.rac_willDeallocSignal];
-    [downloadStatusSignal subscribeNext:^(NSNumber *value) {
-        if ([track faultingState] != 0)
+    
+    @weakify(self);
+    [downloadStatusSignal subscribeNext:^(NSNumber *value) { @strongify(self);
+        if (!self || [track faultingState] != 0)
             return;
         
         PLTrackDownloadStatus downloadStatus = (PLTrackDownloadStatus)[value shortValue];
