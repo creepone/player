@@ -19,6 +19,8 @@
 @property (strong, nonatomic) IBOutlet UIView *viewProgress;
 @property (strong, nonatomic) IBOutlet NSLayoutConstraint *constraintRightViewPlaceholder;
 
+- (IBAction)tappedAccessory:(id)sender;
+
 @end
 
 static const int kAccessoryProgressTag = 1;
@@ -44,7 +46,6 @@ static const int kAccessoryImageTag = 2;
     [observer addKeyPath:@keypath(_viewModel.durationText) handler:^(id value) { @strongify(self); self.labelDuration.text = value; }];
     [observer addKeyPath:@keypath(_viewModel.backgroundColor) handler:^(id value) { @strongify(self); self.backgroundColor = value; }];
     [observer addKeyPath:@keypath(_viewModel.playbackProgress) handler:^(id value) { @strongify(self); [self setCellProgress:value]; }];
-    [observer addKeyPath:@keypath(_viewModel.accessoryCommand) handler:^(id value) { @strongify(self); self.buttonPlaceholder.rac_command = value; }];
     
     [observer addKeyPath:@keypath(_viewModel.alpha) handler:^(id value) { @strongify(self);
         self.labelTitle.alpha = self.labelArtist.alpha = self.labelDuration.alpha = self.imageViewArtwork.alpha = self.viewProgress.alpha = [value floatValue];
@@ -140,6 +141,13 @@ static const int kAccessoryImageTag = 2;
         self.constraintRightViewPlaceholder.constant = 8.f;
     else
         self.constraintRightViewPlaceholder.constant = -25.f;
+}
+
+- (IBAction)tappedAccessory:(id)sender
+{
+    dispatch_block_t accessoryBlock = _viewModel.accessoryBlock;
+    if (accessoryBlock != nil)
+        accessoryBlock();
 }
 
 

@@ -85,5 +85,7 @@
 	<string>DROPBOX_SECRET</string>
 	<key>GDriveSecret</key>
 	<string>GDRIVE_SECRET</string>
+	<key>OneDriveSecret</key>
+	<string>ONEDRIVE_SECRET</string>
 </dict>
 </plist>

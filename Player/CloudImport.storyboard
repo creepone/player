@@ -57,7 +57,7 @@
                                     <outlet property="labelName" destination="zwG-qb-OIb" id="1ia-SR-02b"/>
                                 </connections>
                             </tableViewCell>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="emptyCell" rowHeight="94" id="mso-s5-8iK" customClass="PLDropboxItemCell">
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="emptyCell" rowHeight="94" id="mso-s5-8iK">
                                 <rect key="frame" x="0.0" y="130" width="320" height="94"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="mso-s5-8iK" id="CtC-PQ-quv">
@@ -87,9 +87,6 @@
                                         <constraint firstAttribute="bottom" secondItem="yY0-Db-WfE" secondAttribute="bottom" constant="21" id="hg3-PP-v05"/>
                                     </constraints>
                                 </tableViewCellContentView>
-                                <connections>
-                                    <outlet property="labelName" destination="yY0-Db-WfE" id="te1-xe-Bl9"/>
-                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>

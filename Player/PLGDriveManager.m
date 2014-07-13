@@ -102,12 +102,12 @@ static NSString *kClientID = @"210955112623-cqjrd6qt7d1fgl9fvclct69kgrtjd2nu.app
     }];
 }
 
-- (void)unlink
+- (RACSignal *)unlink
 {
-    if (!self.isLinked)
-        return;
+    if (self.isLinked)
+        [GTMOAuth2ViewControllerTouch removeAuthFromKeychainForName:kKeychainItemName];
     
-    [GTMOAuth2ViewControllerTouch removeAuthFromKeychainForName:kKeychainItemName];
+    return [RACSignal empty];
 }
 
 

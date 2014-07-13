@@ -1,4 +1,5 @@
 #import <ReactiveCocoa/ReactiveCocoa.h>
+#import <SVProgressHUD.h>
 #import "PLPathAssetSet.h"
 #import "PLCloudImport.h"
 #import "PLCloudItemsViewModel.h"
@@ -43,7 +44,9 @@
     
     [rootViewController presentViewController:navigationController animated:YES completion:nil];
     
-    return [[[RACObserve(viewModel, dismissed) filter:[PLUtils isTruePredicate]] take:1] then:^RACSignal *{
+    return [[[[RACObserve(viewModel, dismissed) filter:[PLUtils isTruePredicate]] take:1] then:^RACSignal *{
+        
+        [SVProgressHUD showWithStatus:@"Adding tracks" maskType:SVProgressHUDMaskTypeBlack]; // todo: localize
         
         NSArray *assets = [viewModel.selection allAssets];
         
@@ -60,6 +63,9 @@
         return [assetsToDownload flattenMap:^RACStream *(id <PLPathAsset> asset) {
             return [self downloadAsset:asset];
         }];
+    }]
+    finally:^{
+        [SVProgressHUD dismiss];
     }];
 }
 

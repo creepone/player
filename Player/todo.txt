@@ -1,15 +1,20 @@
 set mime types to the query so that only audio files are loaded
+    - in the query for Google Drive
+    - filter the results for OneDrive
+
+a screen with "an error occured" into the Cloud Import view
 
 use Documents subpath for the file location (to be able to use both debug and release versions)
-a screen with "an error occured" into the Cloud Import view
 get rid of the warning (deprecated AudioSessionAddPropertyListener)
 
-show some progress while importing the songs (takes quite a long time for many songs)
 bigger tap area for the download icon
+grace time for progress huds
+get rid of the icon in table view progress cell
 
 long term:
 refactor the "Activity View" to use MVVM
 introduce some service container mechanism so that the VMs can be unit tested
+set allowsCellularAccess based on a configuration setting
 
 app store release todos:
 activate dropbox app for public

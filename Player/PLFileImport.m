@@ -30,30 +30,30 @@
 + (RACSignal *)moveToDocumentsFolder:(NSURL *)fileURL underFileName:(NSString *)fileName
 {
     return [RACSignal createSignal:^RACDisposable *(id <RACSubscriber> subscriber) {
-
         NSFileManager *fileManager = [NSFileManager defaultManager];
-
+        
         NSString *newFileName = fileName;
         NSString *documentsPath = [PLUtils documentDirectoryPath];
         NSString *targetFilePath = [NSString pathWithComponents:@[documentsPath, newFileName]];
-
+        
         int suffix = 1;
         while ([fileManager fileExistsAtPath:targetFilePath]) {
             newFileName = [NSString stringWithFormat:@"%@_%d.%@", [fileName stringByDeletingPathExtension], suffix, [fileName pathExtension]];
             targetFilePath = [NSString pathWithComponents:@[documentsPath, newFileName]];
         }
-
+        
         NSURL *targetFileURL = [NSURL fileURLWithPath:targetFilePath];
-
+        
         NSError *error;
         [fileManager moveItemAtURL:fileURL toURL:targetFileURL error:&error];
-
+        
         if (error)
             [subscriber sendError:error];
         else {
             [subscriber sendNext:targetFileURL];
             [subscriber sendCompleted];
         }
+
         return nil;
     }];
 }

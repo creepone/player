@@ -5,9 +5,21 @@ extern NSString * const PLBackgroundSessionIdentifier;
 
 @class PLTrack, RACSignal;
 
+@protocol PLProgress <NSObject>
+
+@property (nonatomic, readonly) double progress;
+
+@end
+
 @interface PLDownloadManager : NSObject
 
 + (PLDownloadManager *)sharedManager;
+
+/**
+ Delivers YES as soon as all the data from the session has been loaded and this instance is ready to use.
+ It is not safe to call any of the methods before this happens.
+ */
+@property (nonatomic, readonly) BOOL isReady;
 
 /**
  The handler to be called in the URLSessionDidFinishEventsForBackgroundURLSession delegate method. Typically
@@ -23,15 +35,12 @@ extern NSString * const PLBackgroundSessionIdentifier;
 
 /**
  Cancels the task that is currently downloading the given track, if any.
- Returns a signal that delivers no values but completes when the task has been cancelled.
  */
-- (RACSignal *)cancelDownloadOfTrack:(PLTrack *)track;
+- (void)cancelDownloadOfTrack:(PLTrack *)track;
 
 /**
- Returns a signal that delivers the progress values (float between 0. and 1.) of the task that is downloading
- the given track and completes when the track has been downloaded.
- If no task exists that is currently downloading the given track, completes immediately.
+ Delivers a progress object that can be observed with KVO to track the progress of the download task for the given track.
  */
-- (RACSignal *)progressSignalForTrack:(PLTrack *)track;
+- (id<PLProgress>)progressForTrack:(PLTrack *)track;
 
 @end

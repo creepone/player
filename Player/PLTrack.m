@@ -41,10 +41,7 @@
     PLTrack *track = [NSEntityDescription insertNewObjectForEntityForName:[self entityName] inManagedObjectContext:context];
     track.downloadStatus = PLTrackDownloadStatusIdle;
     track.downloadURL = downloadURL;
-    
-    NSString *targetFileName = [PLUtils fileNameFromURL:[NSURL URLWithString:downloadURL]];
-    track.title = [targetFileName stringByDeletingPathExtension];
-    
+    track.title = [PLUtils fileNameFromURL:[NSURL URLWithString:downloadURL]];;
     return track;
 }
 

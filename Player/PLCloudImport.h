@@ -8,7 +8,7 @@
 
 - (BOOL)isLinked;
 - (RACSignal *)link;
-- (void)unlink;
+- (RACSignal *)unlink;
 
 - (id <PLPathAsset>)rootAsset;
 - (RACSignal *)loadChildren:(id <PLPathAsset>)asset;

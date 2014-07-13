@@ -15,7 +15,7 @@
 
 @property (strong, nonatomic, readonly) UIImage *accessoryImage;
 @property (strong, nonatomic, readonly) NSNumber *accessoryProgress;
-@property (strong, nonatomic, readonly) RACCommand *accessoryCommand;
+@property (copy, nonatomic, readonly) dispatch_block_t accessoryBlock;
 
 - (instancetype)initWithPlaylistSong:(PLPlaylistSong *)playlistSong;
 

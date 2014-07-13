@@ -14,7 +14,7 @@
 // Activities
 "Activities.Dropbox" = "Dropbox";
 "Activities.GDrive" = "Google Drive";
-"Activities.ICloud" = "iCloud";
+"Activities.OneDrive" = "OneDrive";
 "Activities.Podcasts" = "Podcasty";
 "Activities.Download" = "Stiahnuť\nURL";
 "Activities.FileSharing" = "iTunes File\nSharing";

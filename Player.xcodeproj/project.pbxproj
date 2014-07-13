@@ -27,7 +27,6 @@
 		696C196244DD64E0DD03976E /* UIViewController+PLErrorExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 696C12C9DF1F34B0D5963EEC /* UIViewController+PLErrorExtensions.m */; };
 		696C197C7FC7F02EAB520C14 /* PLUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 696C182AEF78B538772A01FD /* PLUtils.m */; };
 		696C1A5C34970937DA5E0A3B /* PLLogging.m in Sources */ = {isa = PBXBuildFile; fileRef = 696C19A6848C7EB377AF58C5 /* PLLogging.m */; };
-		696C1A663DCC44EB31B19B46 /* PLDownloadFromICloudActivity.m in Sources */ = {isa = PBXBuildFile; fileRef = 696C1A8B85B56C770FB7BEC0 /* PLDownloadFromICloudActivity.m */; };
 		696C1A7540982F010E4E85CD /* PLTrackGroupCellViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 696C173E18677F6CD43519DF /* PLTrackGroupCellViewModel.m */; };
 		696C1ADFA4D617995455F30F /* PLDownloadFromDropboxActivity.m in Sources */ = {isa = PBXBuildFile; fileRef = 696C123B1E65E488D94DD4A8 /* PLDownloadFromDropboxActivity.m */; };
 		696C1B378A7D2749C756064C /* PLMediaItemTrack.m in Sources */ = {isa = PBXBuildFile; fileRef = 696C1EEB72AA7536F82ED55D /* PLMediaItemTrack.m */; };
@@ -116,6 +115,11 @@
 		C3CC2C87197139A10013FC57 /* PLServiceContainer+Registrations.m in Sources */ = {isa = PBXBuildFile; fileRef = C3CC2C86197139A10013FC57 /* PLServiceContainer+Registrations.m */; };
 		C3CC2C8D19713EEC0013FC57 /* PLCloudImport.m in Sources */ = {isa = PBXBuildFile; fileRef = C3CC2C8C19713EEC0013FC57 /* PLCloudImport.m */; };
 		C3CC2C9219718A190013FC57 /* PLGDrivePathAsset.m in Sources */ = {isa = PBXBuildFile; fileRef = C3CC2C9119718A190013FC57 /* PLGDrivePathAsset.m */; };
+		C3CC2C9619728FDB0013FC57 /* PLDownloadFromOneDriveActivity.m in Sources */ = {isa = PBXBuildFile; fileRef = C3CC2C9519728FDB0013FC57 /* PLDownloadFromOneDriveActivity.m */; };
+		C3CC2C9F197299970013FC57 /* PLOneDriveManager.m in Sources */ = {isa = PBXBuildFile; fileRef = C3CC2C9E197299970013FC57 /* PLOneDriveManager.m */; };
+		C3CC2CA21972B9510013FC57 /* PLOneDrivePathAsset.m in Sources */ = {isa = PBXBuildFile; fileRef = C3CC2CA11972B9510013FC57 /* PLOneDrivePathAsset.m */; };
+		C3CC2CA41972CA820013FC57 /* LiveSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C3CC2CA31972CA820013FC57 /* LiveSDK.framework */; };
+		C3CC2CA51972CA8F0013FC57 /* LiveSDK.framework in Resources */ = {isa = PBXBuildFile; fileRef = C3CC2CA31972CA820013FC57 /* LiveSDK.framework */; };
 		C3D1A65A16CFC337006D3E5F /* PLPlaylistSelectViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C3D1A65916CFC337006D3E5F /* PLPlaylistSelectViewController.m */; };
 		C3F1A13518E83F6F00A82EAC /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C3F1A13418E83F6F00A82EAC /* Images.xcassets */; };
 		C3F539F3195A047300409CC4 /* PLDownloadManager.m in Sources */ = {isa = PBXBuildFile; fileRef = C3F539F2195A047300409CC4 /* PLDownloadManager.m */; };
@@ -173,7 +177,6 @@
 		696C1A1B2AD9708890647B5D /* PLMediaLibrarySearch.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PLMediaLibrarySearch.m; sourceTree = "<group>"; };
 		696C1A380A19FBA5F3A9D4E3 /* PLSelectFromMusicLibraryActivity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PLSelectFromMusicLibraryActivity.m; sourceTree = "<group>"; };
 		696C1A801C481849E5EC42B5 /* PLMediaItemTrack.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PLMediaItemTrack.h; sourceTree = "<group>"; };
-		696C1A8B85B56C770FB7BEC0 /* PLDownloadFromICloudActivity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PLDownloadFromICloudActivity.m; sourceTree = "<group>"; };
 		696C1AA53C9864939BB01191 /* PLImageCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PLImageCache.h; sourceTree = "<group>"; };
 		696C1AD27942A80B8A9896C5 /* PLDownloadURLActivity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PLDownloadURLActivity.m; sourceTree = "<group>"; };
 		696C1ADA62259499028F9F4B /* PLUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PLUtils.h; sourceTree = "<group>"; };
@@ -200,7 +203,6 @@
 		696C1E69820AF0DDE12F4252 /* PLEntity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PLEntity.m; sourceTree = "<group>"; };
 		696C1E7C20B9B213E7843DEF /* PLFileSharingActivity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PLFileSharingActivity.h; sourceTree = "<group>"; };
 		696C1EADB9F92F456BBFD2EE /* NSObject+PLExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+PLExtensions.h"; sourceTree = "<group>"; };
-		696C1EE652F22078B91B6C56 /* PLDownloadFromICloudActivity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PLDownloadFromICloudActivity.h; sourceTree = "<group>"; };
 		696C1EE9C22410FB27CF3DDE /* PLTracksViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PLTracksViewModel.m; sourceTree = "<group>"; };
 		696C1EEB72AA7536F82ED55D /* PLMediaItemTrack.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PLMediaItemTrack.m; sourceTree = "<group>"; };
 		696C1F2107FF194F73B00CA7 /* PLMediaItemTrackGroup.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PLMediaItemTrackGroup.m; sourceTree = "<group>"; };
@@ -322,10 +324,17 @@
 		C3CC2C84197138230013FC57 /* PLDownloadProvider.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PLDownloadProvider.h; sourceTree = "<group>"; };
 		C3CC2C86197139A10013FC57 /* PLServiceContainer+Registrations.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "PLServiceContainer+Registrations.m"; sourceTree = "<group>"; };
 		C3CC2C8819713A6F0013FC57 /* PLServiceContainer+Registrations.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "PLServiceContainer+Registrations.h"; sourceTree = "<group>"; };
-		C3CC2C8B19713EEC0013FC57 /* PLCloudImport.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PLCloudImport.h; sourceTree = "<group>"; };
-		C3CC2C8C19713EEC0013FC57 /* PLCloudImport.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PLCloudImport.m; sourceTree = "<group>"; };
-		C3CC2C9019718A190013FC57 /* PLGDrivePathAsset.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PLGDrivePathAsset.h; sourceTree = "<group>"; };
-		C3CC2C9119718A190013FC57 /* PLGDrivePathAsset.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PLGDrivePathAsset.m; sourceTree = "<group>"; };
+		C3CC2C8B19713EEC0013FC57 /* PLCloudImport.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PLCloudImport.h; path = Player/PLCloudImport.h; sourceTree = "<group>"; };
+		C3CC2C8C19713EEC0013FC57 /* PLCloudImport.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PLCloudImport.m; path = Player/PLCloudImport.m; sourceTree = "<group>"; };
+		C3CC2C9019718A190013FC57 /* PLGDrivePathAsset.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PLGDrivePathAsset.h; path = Player/PLGDrivePathAsset.h; sourceTree = "<group>"; };
+		C3CC2C9119718A190013FC57 /* PLGDrivePathAsset.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PLGDrivePathAsset.m; path = Player/PLGDrivePathAsset.m; sourceTree = "<group>"; };
+		C3CC2C9419728FDB0013FC57 /* PLDownloadFromOneDriveActivity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PLDownloadFromOneDriveActivity.h; path = Player/PLDownloadFromOneDriveActivity.h; sourceTree = "<group>"; };
+		C3CC2C9519728FDB0013FC57 /* PLDownloadFromOneDriveActivity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PLDownloadFromOneDriveActivity.m; path = Player/PLDownloadFromOneDriveActivity.m; sourceTree = "<group>"; };
+		C3CC2C9D197299970013FC57 /* PLOneDriveManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PLOneDriveManager.h; path = Player/PLOneDriveManager.h; sourceTree = "<group>"; };
+		C3CC2C9E197299970013FC57 /* PLOneDriveManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PLOneDriveManager.m; path = Player/PLOneDriveManager.m; sourceTree = "<group>"; };
+		C3CC2CA01972B9500013FC57 /* PLOneDrivePathAsset.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PLOneDrivePathAsset.h; path = Player/PLOneDrivePathAsset.h; sourceTree = "<group>"; };
+		C3CC2CA11972B9510013FC57 /* PLOneDrivePathAsset.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PLOneDrivePathAsset.m; path = Player/PLOneDrivePathAsset.m; sourceTree = "<group>"; };
+		C3CC2CA31972CA820013FC57 /* LiveSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = LiveSDK.framework; path = Player/LiveSDK.framework; sourceTree = "<group>"; };
 		C3CF9FD418B52EF4004EE4A1 /* revision.prefix */ = {isa = PBXFileReference; lastKnownFileType = text; path = revision.prefix; sourceTree = "<group>"; };
 		C3CF9FD518B52EF4004EE4A1 /* prebuild.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = prebuild.sh; sourceTree = "<group>"; };
 		C3CF9FD618B52EF4004EE4A1 /* deploy.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = deploy.sh; sourceTree = "<group>"; };
@@ -344,6 +353,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C3CC2CA41972CA820013FC57 /* LiveSDK.framework in Frameworks */,
 				C9C79EB53A7F4DF38B0DC6E7 /* libPods.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -750,8 +760,6 @@
 			isa = PBXGroup;
 			children = (
 				696C13ED65045480BDB66BE0 /* PLActivity.h */,
-				696C1EE652F22078B91B6C56 /* PLDownloadFromICloudActivity.h */,
-				696C1A8B85B56C770FB7BEC0 /* PLDownloadFromICloudActivity.m */,
 				696C107644FDE533B6B072AE /* PLDownloadURLActivity.h */,
 				696C1AD27942A80B8A9896C5 /* PLDownloadURLActivity.m */,
 				696C16B1CAB1C03543A4485C /* PLDownloadPodcastActivity.h */,
@@ -846,6 +854,7 @@
 		C3BC5A2A1656B772002DA837 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				C3CC2CA31972CA820013FC57 /* LiveSDK.framework */,
 				2F7BD0A371C24EA3853F30EA /* libPods.a */,
 			);
 			name = Frameworks;
@@ -1056,8 +1065,22 @@
 			children = (
 				C3381F9719609F7300DA2B7B /* Dropbox */,
 				C3CC2C79196D91030013FC57 /* GDrive */,
+				C3CC2C9319728FC20013FC57 /* OneDrive */,
 			);
 			name = Managers;
+			sourceTree = "<group>";
+		};
+		C3CC2C9319728FC20013FC57 /* OneDrive */ = {
+			isa = PBXGroup;
+			children = (
+				C3CC2C9419728FDB0013FC57 /* PLDownloadFromOneDriveActivity.h */,
+				C3CC2C9519728FDB0013FC57 /* PLDownloadFromOneDriveActivity.m */,
+				C3CC2C9D197299970013FC57 /* PLOneDriveManager.h */,
+				C3CC2C9E197299970013FC57 /* PLOneDriveManager.m */,
+				C3CC2CA01972B9500013FC57 /* PLOneDrivePathAsset.h */,
+				C3CC2CA11972B9510013FC57 /* PLOneDrivePathAsset.m */,
+			);
+			name = OneDrive;
 			sourceTree = "<group>";
 		};
 		C3CF9FD318B52EE3004EE4A1 /* Build */ = {
@@ -1131,6 +1154,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C3CC2CA51972CA8F0013FC57 /* LiveSDK.framework in Resources */,
 				C3BC5A361656B772002DA837 /* InfoPlist.strings in Resources */,
 				C3F1A13518E83F6F00A82EAC /* Images.xcassets in Resources */,
 				C3BC5A3E1656B772002DA837 /* Default.png in Resources */,
@@ -1223,6 +1247,7 @@
 				C378CD7C194C52A6001D0593 /* PLPlaylistSongsViewController.m in Sources */,
 				C3BC5B14165912F6002DA837 /* PLPlayer.m in Sources */,
 				C3CC2C83197128A40013FC57 /* PLServiceContainer.m in Sources */,
+				C3CC2C9F197299970013FC57 /* PLOneDriveManager.m in Sources */,
 				C3CC18CD191FABD30026E681 /* PLTracksViewController.m in Sources */,
 				C3544850165922C80083D703 /* SliderCell.m in Sources */,
 				C3D1A65A16CFC337006D3E5F /* PLPlaylistSelectViewController.m in Sources */,
@@ -1241,7 +1266,6 @@
 				C3F539F3195A047300409CC4 /* PLDownloadManager.m in Sources */,
 				696C1C17D8D7CEA11E7A5928 /* PLDownloadFromGDriveActivity.m in Sources */,
 				C378CD76194C505A001D0593 /* PLRouter.m in Sources */,
-				696C1A663DCC44EB31B19B46 /* PLDownloadFromICloudActivity.m in Sources */,
 				C3CC2C7F196D91320013FC57 /* PLGDriveManager.m in Sources */,
 				C33820011967220200DA2B7B /* DBRestClient+RACSignalSupport.m in Sources */,
 				C384009B193879E600D6A930 /* PLTrack.m in Sources */,
@@ -1254,6 +1278,7 @@
 				696C13EE5F69A14268974A60 /* PLErrorManager.m in Sources */,
 				696C196244DD64E0DD03976E /* UIViewController+PLErrorExtensions.m in Sources */,
 				696C197C7FC7F02EAB520C14 /* PLUtils.m in Sources */,
+				C3CC2C9619728FDB0013FC57 /* PLDownloadFromOneDriveActivity.m in Sources */,
 				696C1B8D690CECA9499F257E /* PLMediaLibrarySearch.m in Sources */,
 				C3381FF719670E6600DA2B7B /* PLCloudItemsViewController.m in Sources */,
 				696C177E0F2230FE3DDA991B /* PLMediaItemTrackGroup.m in Sources */,
@@ -1278,6 +1303,7 @@
 				696C1FC71A11624AE1D6F4F6 /* PLBackgroundProcessProgress.m in Sources */,
 				696C1F37827BDCC5942F540F /* PLMediaMirror.m in Sources */,
 				696C103AFE37906F58AE8524 /* PLPlaylistSongsViewModel.m in Sources */,
+				C3CC2CA21972B9510013FC57 /* PLOneDrivePathAsset.m in Sources */,
 				696C1FCAE33C027584502130 /* PLFetchedResultsUpdate.m in Sources */,
 				696C14C3B0C607930E2E9DBD /* PLFetchedResultsControllerDelegate.m in Sources */,
 				696C1BDC652AD70EC4358087 /* UITableView+PLExtensions.m in Sources */,
@@ -1373,6 +1399,11 @@
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_MODULES_AUTOLINK = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+					"$(PROJECT_DIR)/Player",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = NO;
 				GCC_PREFIX_HEADER = "Player/Player-Prefix.pch";
 				INFOPLIST_FILE = "Player/Player-Info.plist";
@@ -1394,6 +1425,11 @@
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_MODULES_AUTOLINK = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+					"$(PROJECT_DIR)/Player",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = NO;
 				GCC_PREFIX_HEADER = "Player/Player-Prefix.pch";
 				INFOPLIST_FILE = "Player/Player-Info.plist";

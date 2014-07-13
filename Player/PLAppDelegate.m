@@ -17,8 +17,11 @@
 #import "PLServiceContainer+Registrations.h"
 #import "PLDropboxManager.h"
 #import "PLGDriveManager.h"
+#import "PLOneDriveManager.h"
 
 @interface PLAppDelegate()
+
+@property (nonatomic, assign) BOOL isReady;
 
 static void onUncaughtException(NSException* exception);
 
@@ -44,7 +47,10 @@ static void onUncaughtException(NSException* exception);
 
     [self.window.rootViewController.view setBackgroundColor:[UIColor colorWithPatternImage:[PLUtils launchImage]]];
 
-    [[self initializeData] subscribeCompleted:^{
+    [[RACSignal merge:@[[self initializeData], [self initializeDownloads]]] subscribeCompleted:^{
+        
+        self.isReady = YES;
+        
         [PLRouter showNew];
         [[UIApplication sharedApplication] beginReceivingRemoteControlEvents];
 
@@ -52,7 +58,7 @@ static void onUncaughtException(NSException* exception);
         if (fileToImport)
             [[PLFileImport importFile:fileToImport] subscribeError:[PLErrorManager logErrorVoidBlock]];
 
-        [[PLMediaMirror sharedInstance] ensureRunning];        
+        [[PLMediaMirror sharedInstance] ensureRunning];
     }];
     
     return YES;
@@ -121,8 +127,7 @@ static void onUncaughtException(NSException* exception);
     if (![identifier isEqualToString:PLBackgroundSessionIdentifier])
         return;
     
-    // make sure that the coreDataStack is available to the delegate methods of the download manager
-    [[[RACObserve(self, coreDataStack) filter:[PLUtils isNotNilPredicate]] take:1] subscribeNext:^(id _) {
+    [[[RACObserve(self, isReady) filter:[PLUtils isTruePredicate]] take:1] subscribeNext:^(id _) {
         [[PLDownloadManager sharedManager] setSessionCompletionHandler:completionHandler];
     }];
 }
@@ -154,6 +159,12 @@ static void onUncaughtException(NSException* exception);
         [alert.rac_buttonClickedSignal subscribeNext:^(id x) { exit(1); }];
         [alert show];
     }];
+}
+
+- (RACSignal *)initializeDownloads
+{
+    PLDownloadManager *manager = [PLDownloadManager sharedManager];
+    return [[RACObserve(manager, isReady) filter:[PLUtils isTruePredicate]] take:1];
 }
 
 - (void)remoteControlReceivedWithEvent:(UIEvent *)event

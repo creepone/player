@@ -7,13 +7,17 @@
 #import "PLPlayer.h"
 #import "NSObject+PLExtensions.h"
 #import "PLDownloadManager.h"
+#import "PLErrorManager.h"
 #import "PLNotificationObserver.h"
+#import "PLKVOObserver.h"
 
 @interface PLPlaylistSongCellViewModel () {
     PLPlaylistSong *_playlistSong;
     PLNotificationObserver *_notificationObserver;
     RACDisposable *_progressTimerSubscription;
     RACDisposable *_imageArtworkSubscription;
+    PLKVOObserver *_downloadStatusObserver;
+    PLKVOObserver *_downloadProgressObserver;
 }
 
 @property (strong, nonatomic, readwrite) UIImage *imageArtwork;
@@ -23,7 +27,7 @@
 
 @property (strong, nonatomic, readwrite) UIImage *accessoryImage;
 @property (strong, nonatomic, readwrite) NSNumber *accessoryProgress;
-@property (strong, nonatomic, readwrite) RACCommand *accessoryCommand;
+@property (copy, nonatomic, readwrite) dispatch_block_t accessoryBlock;
 
 @end
 
@@ -78,17 +82,20 @@
 }
 
 - (void)setupObservingDownload
-{    
+{
     PLTrack *track = _playlistSong.track;
     if (track.downloadStatus == PLTrackDownloadStatusDone)
         return;
     
-    RACSignal *downloadStatusSignal = [RACObserve(track, downloadStatus) takeUntil:self.rac_willDeallocSignal];
+    PLKVOObserver *downloadStatusObserver = [PLKVOObserver observerWithTarget:track];
     
     @weakify(self);
-    [downloadStatusSignal subscribeNext:^(NSNumber *value) { @strongify(self);
+    [downloadStatusObserver addKeyPath:@keypath(track.downloadStatus) handler:^(NSNumber *value) {
+        @strongify(self);
         if (!self || [track faultingState] != 0)
             return;
+        
+        _downloadProgressObserver = nil;
         
         PLTrackDownloadStatus downloadStatus = (PLTrackDownloadStatus)[value shortValue];
         
@@ -96,41 +103,47 @@
         {
             case PLTrackDownloadStatusDownloading:
             {
-                RAC(self, accessoryProgress) = [[[RACSignal return:@(0.001)] concat:[[PLDownloadManager sharedManager] progressSignalForTrack:track]] takeUntil:[downloadStatusSignal skip:1]];
+                id <PLProgress> progress = [[PLDownloadManager sharedManager] progressForTrack:track];
+                _downloadProgressObserver = [PLKVOObserver observerWithTarget:progress];
+                @weakify(self);
+                [_downloadProgressObserver addKeyPath:@keypath(progress.progress) handler:^(NSNumber *value) { @strongify(self); self.accessoryProgress = value; }];
+                
                 self.accessoryImage = nil;
-                self.accessoryCommand = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
-                    return [[PLDownloadManager sharedManager] cancelDownloadOfTrack:track];
-                }];
+                self.accessoryBlock = ^{
+                    [[PLDownloadManager sharedManager] cancelDownloadOfTrack:track];
+                };
                 break;
             }
             case PLTrackDownloadStatusError:
             {
                 self.accessoryProgress = nil;
                 self.accessoryImage = [UIImage imageNamed:@"ErrorCircleIcon"];
-                self.accessoryCommand = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
-                    return [[PLDownloadManager sharedManager] enqueueDownloadOfTrack:track];
-                }];
+                self.accessoryBlock = ^{
+                    [[[PLDownloadManager sharedManager] enqueueDownloadOfTrack:track] subscribeError:[PLErrorManager logErrorVoidBlock]];
+                };
                 break;
             }
             case PLTrackDownloadStatusIdle:
             {
                 self.accessoryProgress = nil;
                 self.accessoryImage = [UIImage imageNamed:@"DownloadPlainIcon"];
-                self.accessoryCommand = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
-                    return [[PLDownloadManager sharedManager] enqueueDownloadOfTrack:track];
-                }];
+                self.accessoryBlock = ^{
+                    [[[PLDownloadManager sharedManager] enqueueDownloadOfTrack:track] subscribeError:[PLErrorManager logErrorVoidBlock]];
+                };
                 break;
             }
             case PLTrackDownloadStatusDone:
             {
                 self.accessoryProgress = nil;
                 self.accessoryImage = nil;
-                self.accessoryCommand = nil;
+                self.accessoryBlock = nil;
                 [self updateTrackMetadata];
                 break;
             }
         }
     }];
+    
+    _downloadStatusObserver = downloadStatusObserver;
 }
 
 - (void)setupUpdatingProgress
@@ -208,6 +221,8 @@
 
 - (void)dealloc
 {
+    _downloadStatusObserver = nil;
+    _downloadProgressObserver = nil;
     [self stopUpdatingProgress];
 }
 

@@ -73,12 +73,11 @@ static NSString *kAppKey = @"rqjkvshiflgy2qj";
     }];
 }
 
-- (void)unlink
+- (RACSignal *)unlink
 {
-    if (!self.isLinked)
-        return;
-    
-    [[DBSession sharedSession] unlinkAll];
+    if (self.isLinked)
+        [[DBSession sharedSession] unlinkAll];
+    return [RACSignal empty];
 }
 
 
