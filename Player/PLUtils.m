@@ -62,6 +62,23 @@
         stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
 }
 
++ (NSString *)pathFromDocuments:(NSURL *)absoluteURL
+{
+    NSString *documentsPath = [PLUtils documentDirectoryPath];
+    
+    if (![[absoluteURL path] hasPrefix:documentsPath])
+        return nil;
+    
+    return [[absoluteURL path] substringFromIndex:[documentsPath length]];
+}
+
++ (NSURL *)URLUnderDocuments:(NSString *)relativePath
+{
+    NSString *documentsPath = [PLUtils documentDirectoryPath];
+    NSString *absolutePath = [documentsPath stringByAppendingPathComponent:relativePath];
+    return [NSURL fileURLWithPath:absolutePath];
+}
+
 + (UIImage *)launchImage
 {
     CGRect bounds = [[UIScreen mainScreen] bounds];

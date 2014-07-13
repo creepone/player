@@ -151,6 +151,8 @@ static NSString *kClientID = @"210955112623-cqjrd6qt7d1fgl9fvclct69kgrtjd2nu.app
 {
     PLGDrivePathAsset *driveAsset = (PLGDrivePathAsset *)asset;
     NSString *downloadURL = driveAsset.driveFile.downloadUrl;
+    if (downloadURL == nil)
+        return nil;
     
     NSURLComponents *components = [NSURLComponents componentsWithString:downloadURL];
     components.scheme = [NSString stringWithFormat:@"%@%@", kSchemePrefix, components.scheme];

@@ -48,7 +48,7 @@
 - (void)remove
 {
     if (self.fileURL) {
-        NSURL *fileURL = [NSURL URLWithString:self.fileURL];
+        NSURL *fileURL = [PLUtils URLUnderDocuments:self.fileURL];
 
         NSError *error;
         [[NSFileManager defaultManager] removeItemAtURL:fileURL error:&error];
@@ -77,7 +77,7 @@
     if (!self.fileURL)
         return nil;
 
-    NSURL *fileURL = [NSURL URLWithString:self.fileURL];
+    NSURL *fileURL = [PLUtils URLUnderDocuments:self.fileURL];
     
     if (![[NSFileManager defaultManager] fileExistsAtPath:fileURL.path])
         return nil;
@@ -91,8 +91,8 @@
     if (mediaItem)
         return [mediaItem valueForProperty:MPMediaItemPropertyAssetURL];
     
-    if (self.fileURL) {        
-        NSURL *fileURL = [NSURL URLWithString:self.fileURL];
+    if (self.fileURL) {
+        NSURL *fileURL = [PLUtils URLUnderDocuments:self.fileURL];
         
         if (![[NSFileManager defaultManager] fileExistsAtPath:fileURL.path])
             return nil;
@@ -141,8 +141,7 @@
         }
         
         if (!self.title) {
-            NSURL *fileURL = [NSURL URLWithString:self.fileURL];
-            self.title = [[fileURL.path lastPathComponent] stringByDeletingPathExtension];
+            self.title = [[self.fileURL lastPathComponent] stringByDeletingPathExtension];
         }
     }
 }
@@ -154,7 +153,7 @@
         return [[PLImageCache sharedCache] smallArtworkForMediaItemWithPersistentId:@(self.persistentId)];
 
     if (self.fileURL)
-        return [[PLImageCache sharedCache] smallArtworkForFileWithURL:[NSURL URLWithString:self.fileURL]];
+        return [[PLImageCache sharedCache] smallArtworkForFileWithURL:[PLUtils URLUnderDocuments:self.fileURL]];
 
     return [RACSignal empty];
 }
@@ -165,7 +164,7 @@
         return [[PLImageCache sharedCache] largeArtworkForMediaItemWithPersistentId:@(self.persistentId)];
 
     if (self.fileURL)
-        return [[PLImageCache sharedCache] largeArtworkForFileWithURL:[NSURL URLWithString:self.fileURL]];
+        return [[PLImageCache sharedCache] largeArtworkForFileWithURL:[PLUtils URLUnderDocuments:self.fileURL]];
 
     return [RACSignal empty];
 }

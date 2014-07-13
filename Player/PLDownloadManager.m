@@ -119,7 +119,7 @@ NSString * const PLBackgroundSessionIdentifier = @"at.iosapps.Player.BackgroundS
     RACSignal *workSignal = [[PLFileImport moveToDocumentsFolder:location underFileName:targetFileName]
         flattenMap:^RACStream *(NSURL *fileURL) {
             PLTrack *track = [[PLDataAccess sharedDataAccess] trackWithObjectID:trackId];
-            track.fileURL = [fileURL absoluteString];
+            track.fileURL = [PLUtils pathFromDocuments:fileURL];
             [track loadMetadataFromAsset];
             track.downloadStatus = PLTrackDownloadStatusDone;
             

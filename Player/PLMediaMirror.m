@@ -83,7 +83,7 @@
         if (!track.managedObjectContext)
             return nil;
 
-        track.fileURL = [fileURL absoluteString];
+        track.fileURL = [PLUtils pathFromDocuments:fileURL];
 
         NSError *error;
         if (![[PLDataAccess sharedDataAccess] saveChanges:&error])

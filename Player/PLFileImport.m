@@ -9,7 +9,7 @@
 {
     return [[self moveToDocumentsFolder:fileURL] flattenMap:^RACStream *(NSURL *targetFileURL) {
         PLDataAccess *dataAccess = [PLDataAccess sharedDataAccess];
-        PLTrack *track = [dataAccess trackWithFileURL:[targetFileURL absoluteString]];
+        PLTrack *track = [dataAccess trackWithFileURL:[PLUtils pathFromDocuments:targetFileURL]];
 
         // todo: show ui to select the playlist(s) where the track should be inserted
 

@@ -72,6 +72,8 @@
 - (RACSignal *)downloadAsset:(id<PLPathAsset>)asset
 {
     NSURL *downloadURL = [_manager downloadURLForAsset:asset];
+    if (downloadURL == nil)
+        return [RACSignal empty];
     
     PLDataAccess *dataAccess = [PLDataAccess sharedDataAccess];
     PLDownloadManager *downloadManager = [PLDownloadManager sharedManager];

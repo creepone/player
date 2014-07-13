@@ -4,7 +4,6 @@ set mime types to the query so that only audio files are loaded
 
 a screen with "an error occured" into the Cloud Import view
 
-use Documents subpath for the file location (to be able to use both debug and release versions)
 get rid of the warning (deprecated AudioSessionAddPropertyListener)
 
 bigger tap area for the download icon
