@@ -5,9 +5,11 @@
 #import "PLDataAccess.h"
 #import "PLDefaultsManager.h"
 #import "PLAlerts.h"
+#import "PLNotificationObserver.h"
 
 @interface PLPlayer() <AVAudioPlayerDelegate> {
     AVAudioPlayer *_audioPlayer;
+    PLNotificationObserver *_notificationObserver;
 }
 
 - (void)pause;
@@ -17,38 +19,20 @@
 
 @implementation PLPlayer
 
-void audioRouteChangeListenerCallback (void *inUserData, AudioSessionPropertyID inPropertyID, UInt32 inPropertyValueSize, const void *inPropertyValue ) {
-    // ensure that this callback was invoked for a route change
-    if (inPropertyID != kAudioSessionProperty_AudioRouteChange) return;
-    {
-        // Determines the reason for the route change, to ensure that it is not
-        //      because of a category change.
-        CFDictionaryRef routeChangeDictionary = (CFDictionaryRef)inPropertyValue;
-        
-        CFNumberRef routeChangeReasonRef = (CFNumberRef)CFDictionaryGetValue (routeChangeDictionary, CFSTR (kAudioSession_AudioRouteChangeKey_Reason) );
-        SInt32 routeChangeReason;
-        CFNumberGetValue (routeChangeReasonRef, kCFNumberSInt32Type, &routeChangeReason);
-        
-        if (routeChangeReason == kAudioSessionRouteChangeReason_OldDeviceUnavailable) {
-            //Handle Headset Unplugged
-            
-            PLPlayer *this = (__bridge PLPlayer *)inUserData;
-            [this pause];
-            
-        } else if (routeChangeReason == kAudioSessionRouteChangeReason_NewDeviceAvailable) {
-            //Handle Headset plugged in
-        }
-        
-    }
-}
-
 - (id)init {
     self = [super init];
     if (self) {
         [[AVAudioSession sharedInstance] setCategory:AVAudioSessionCategoryPlayback error:nil];
         [[AVAudioSession sharedInstance] setActive:YES error:nil];
         
-        AudioSessionAddPropertyListener (kAudioSessionProperty_AudioRouteChange, audioRouteChangeListenerCallback, (__bridge void *)(self));
+        _notificationObserver = [PLNotificationObserver observer];
+        @weakify(self);
+        [_notificationObserver addNotification:AVAudioSessionRouteChangeNotification handler:^(NSNotification *notification) { @strongify(self);
+            NSInteger routeChangeReason = [[[notification userInfo] objectForKey:AVAudioSessionRouteChangeReasonKey] integerValue];
+            if (routeChangeReason == AVAudioSessionRouteChangeReasonOldDeviceUnavailable) {
+                [self pause];
+            }
+        }];
     }
     return self;
 }

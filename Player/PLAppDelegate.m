@@ -1,4 +1,3 @@
-#import <SVProgressHUD.h>
 #import <ReactiveCocoa/ReactiveCocoa.h>
 #import <DropboxSDK/DropboxSDK.h>
 
@@ -18,6 +17,7 @@
 #import "PLDropboxManager.h"
 #import "PLGDriveManager.h"
 #import "PLOneDriveManager.h"
+#import "PLProgressHUD.h"
 
 @interface PLAppDelegate()
 
@@ -136,17 +136,15 @@ static void onUncaughtException(NSException* exception);
 
 - (RACSignal *)initializeData
 {
-    [SVProgressHUD showWithStatus:NSLocalizedString(@"Messages.InitializingData", nil) maskType:SVProgressHUDMaskTypeBlack];
-
-    // todo: grace time for the hud
-
+    RACDisposable *progress = [PLProgressHUD showWithStatus:NSLocalizedString(@"Messages.InitializingData", nil)];
+    
     return [[[PLMigrationManager coreDataStack] doNext:^(PLCoreDataStack *coreDataStack) {
         self.coreDataStack = coreDataStack;
-        [SVProgressHUD dismiss];
+        [progress dispose];
     }]
     doError:^(NSError *error) {
         [PLErrorManager logError:error];
-        [SVProgressHUD dismiss];
+        [progress dispose];
 
         // todo: localize
         UIAlertView *alert = [[UIAlertView alloc]

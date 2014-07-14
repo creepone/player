@@ -4,11 +4,8 @@ set mime types to the query so that only audio files are loaded
 
 a screen with "an error occured" into the Cloud Import view
 
-get rid of the warning (deprecated AudioSessionAddPropertyListener)
-
 bigger tap area for the download icon
-grace time for progress huds
-get rid of the icon in table view progress cell
+profile lag on download complete
 
 long term:
 refactor the "Activity View" to use MVVM

@@ -120,6 +120,7 @@
 		C3CC2CA21972B9510013FC57 /* PLOneDrivePathAsset.m in Sources */ = {isa = PBXBuildFile; fileRef = C3CC2CA11972B9510013FC57 /* PLOneDrivePathAsset.m */; };
 		C3CC2CA41972CA820013FC57 /* LiveSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C3CC2CA31972CA820013FC57 /* LiveSDK.framework */; };
 		C3CC2CA51972CA8F0013FC57 /* LiveSDK.framework in Resources */ = {isa = PBXBuildFile; fileRef = C3CC2CA31972CA820013FC57 /* LiveSDK.framework */; };
+		C3CC2CAB197445810013FC57 /* PLProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = C3CC2CAA197445810013FC57 /* PLProgressHUD.m */; };
 		C3D1A65A16CFC337006D3E5F /* PLPlaylistSelectViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C3D1A65916CFC337006D3E5F /* PLPlaylistSelectViewController.m */; };
 		C3F1A13518E83F6F00A82EAC /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C3F1A13418E83F6F00A82EAC /* Images.xcassets */; };
 		C3F539F3195A047300409CC4 /* PLDownloadManager.m in Sources */ = {isa = PBXBuildFile; fileRef = C3F539F2195A047300409CC4 /* PLDownloadManager.m */; };
@@ -335,6 +336,8 @@
 		C3CC2CA01972B9500013FC57 /* PLOneDrivePathAsset.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PLOneDrivePathAsset.h; path = Player/PLOneDrivePathAsset.h; sourceTree = "<group>"; };
 		C3CC2CA11972B9510013FC57 /* PLOneDrivePathAsset.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PLOneDrivePathAsset.m; path = Player/PLOneDrivePathAsset.m; sourceTree = "<group>"; };
 		C3CC2CA31972CA820013FC57 /* LiveSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = LiveSDK.framework; path = Player/LiveSDK.framework; sourceTree = "<group>"; };
+		C3CC2CA9197445810013FC57 /* PLProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PLProgressHUD.h; sourceTree = "<group>"; };
+		C3CC2CAA197445810013FC57 /* PLProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PLProgressHUD.m; sourceTree = "<group>"; };
 		C3CF9FD418B52EF4004EE4A1 /* revision.prefix */ = {isa = PBXFileReference; lastKnownFileType = text; path = revision.prefix; sourceTree = "<group>"; };
 		C3CF9FD518B52EF4004EE4A1 /* prebuild.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = prebuild.sh; sourceTree = "<group>"; };
 		C3CF9FD618B52EF4004EE4A1 /* deploy.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = deploy.sh; sourceTree = "<group>"; };
@@ -388,6 +391,8 @@
 				C378CD75194C505A001D0593 /* PLRouter.m */,
 				696C1663900DCC34F758B7A1 /* UITableView+PLExtensions.m */,
 				696C1DB0C3355E2EB3D24D03 /* UITableView+PLExtensions.h */,
+				C3CC2CA9197445810013FC57 /* PLProgressHUD.h */,
+				C3CC2CAA197445810013FC57 /* PLProgressHUD.m */,
 			);
 			name = Utils;
 			sourceTree = "<group>";
@@ -1274,6 +1279,7 @@
 				C3381F9A19609F8600DA2B7B /* PLDropboxManager.m in Sources */,
 				696C1F9C8C8A7886A8530949 /* PLDownloadPodcastActivity.m in Sources */,
 				696C1CC618F99813793E6F46 /* PLFileSharingActivity.m in Sources */,
+				C3CC2CAB197445810013FC57 /* PLProgressHUD.m in Sources */,
 				696C1A5C34970937DA5E0A3B /* PLLogging.m in Sources */,
 				696C13EE5F69A14268974A60 /* PLErrorManager.m in Sources */,
 				696C196244DD64E0DD03976E /* UIViewController+PLErrorExtensions.m in Sources */,

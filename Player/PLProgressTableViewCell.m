@@ -25,6 +25,7 @@
 
         _progressView = [[FFCircularProgressView alloc] init];
         _progressView.tintColor = [PLColors themeColor];
+        _progressView.iconView = [[UIView alloc] initWithFrame:CGRectZero];
         _progressView.translatesAutoresizingMaskIntoConstraints = NO;
         [self.contentView addSubview:_progressView];
 

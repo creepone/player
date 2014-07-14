@@ -7,6 +7,7 @@
 #import "PLUtils.h"
 #import "PLDataAccess.h"
 #import "PLDownloadManager.h"
+#import "PLProgressHUD.h"
 
 @interface PLCloudImport() {
     id<PLCloudManager> _manager;
@@ -44,10 +45,11 @@
     
     [rootViewController presentViewController:navigationController animated:YES completion:nil];
     
+    __block RACDisposable *progress;
+    
     return [[[[RACObserve(viewModel, dismissed) filter:[PLUtils isTruePredicate]] take:1] then:^RACSignal *{
         
-        [SVProgressHUD showWithStatus:@"Adding tracks" maskType:SVProgressHUDMaskTypeBlack]; // todo: localize
-        
+        progress = [PLProgressHUD showWithStatus:@"Adding tracks"]; // todo: localize
         NSArray *assets = [viewModel.selection allAssets];
         
         RACSignal *assetsToDownload = [[assets.rac_sequence signalWithScheduler:[RACScheduler mainThreadScheduler]]
@@ -65,7 +67,7 @@
         }];
     }]
     finally:^{
-        [SVProgressHUD dismiss];
+        [progress dispose];
     }];
 }
 
@@ -88,7 +90,7 @@
     
     return [[dataAccess saveChangesSignal] then:^RACSignal *{
         // do not enqueue the download if the track already existed
-        return wasTrackInserted ? [downloadManager enqueueDownloadOfTrack:track] : nil;
+        return wasTrackInserted ? [downloadManager enqueueDownloadOfTrack:track] : [RACSignal empty];
     }];
 }
 
