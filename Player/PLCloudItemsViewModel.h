@@ -25,7 +25,7 @@
 @property (nonatomic, assign) BOOL loading;
 
 - (NSUInteger)cellsCount;
-- (BOOL)useEmptyCell;
+- (NSString *)cellIdentifier;
 - (PLCloudItemCellViewModel *)cellViewModelAt:(NSIndexPath *)indexPath;
 - (void)toggleSelectAt:(NSIndexPath *)indexPath;
 

@@ -89,7 +89,10 @@ static NSString *kClientID = @"000000004C12140D";
     return [subject flattenMap:^RACStream *(NSDictionary *result) {
         
         if (result[@"data"]) {
-            NSArray *items = [result[@"data"] pl_map:^id(NSDictionary *info) {
+            NSArray *items = [[result[@"data"] pl_filter:^BOOL(NSDictionary *info, NSUInteger idx) {
+                NSString *type = info[@"type"];
+                return [type isEqual:@"folder"] || [type isEqual:@"audio"];
+            }] pl_map:^id(NSDictionary *info) {
                 return [[PLOneDrivePathAsset alloc] initWithInfo:info parent:driveAsset];
             }];
             return [RACSignal return:items];

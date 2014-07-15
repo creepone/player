@@ -50,14 +50,13 @@
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fzu-VJ-lFb" customClass="UIButton">
-                                            <rect key="frame" x="287" y="17" width="25" height="25"/>
+                                            <rect key="frame" x="287" y="0.0" width="33" height="57"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <accessibility key="accessibilityConfiguration">
                                                 <accessibilityTraits key="traits" none="YES" button="YES"/>
                                             </accessibility>
                                             <constraints>
-                                                <constraint firstAttribute="height" constant="25" id="PaV-LS-uXN"/>
-                                                <constraint firstAttribute="width" constant="25" id="b17-Nv-d3e"/>
+                                                <constraint firstAttribute="width" constant="33" id="b17-Nv-d3e"/>
                                             </constraints>
                                             <connections>
                                                 <action selector="tappedAccessory:" destination="Zu3-bK-qhy" eventType="touchUpInside" id="ZcI-pU-Vbp"/>
@@ -91,15 +90,16 @@
                                         <constraint firstItem="mGG-B8-CDb" firstAttribute="leading" secondItem="2o2-1v-GKJ" secondAttribute="trailing" constant="8" id="2G3-x1-qIf"/>
                                         <constraint firstItem="aVd-kd-1QY" firstAttribute="leading" secondItem="2o2-1v-GKJ" secondAttribute="trailing" constant="8" id="Fwf-r1-DBv"/>
                                         <constraint firstItem="fzu-VJ-lFb" firstAttribute="leading" secondItem="aVd-kd-1QY" secondAttribute="trailing" constant="8" id="Hgy-PV-gNt"/>
-                                        <constraint firstAttribute="trailing" secondItem="fzu-VJ-lFb" secondAttribute="trailing" constant="8" id="I3a-9W-ezC"/>
+                                        <constraint firstAttribute="trailing" secondItem="fzu-VJ-lFb" secondAttribute="trailing" id="I3a-9W-ezC"/>
                                         <constraint firstItem="mGG-B8-CDb" firstAttribute="top" secondItem="vEr-oH-2uA" secondAttribute="bottom" id="KsF-iL-os5"/>
-                                        <constraint firstItem="fzu-VJ-lFb" firstAttribute="top" secondItem="FEN-r8-Ell" secondAttribute="top" constant="17" id="TtB-6E-NZD"/>
+                                        <constraint firstItem="fzu-VJ-lFb" firstAttribute="top" secondItem="FEN-r8-Ell" secondAttribute="top" id="TtB-6E-NZD"/>
                                         <constraint firstAttribute="bottom" secondItem="lMv-qp-oXo" secondAttribute="bottom" id="bBb-La-dvP"/>
                                         <constraint firstAttribute="trailing" secondItem="lMv-qp-oXo" secondAttribute="trailing" id="eHW-53-NO2"/>
                                         <constraint firstItem="fzu-VJ-lFb" firstAttribute="leading" secondItem="mGG-B8-CDb" secondAttribute="trailing" constant="8" id="khg-iu-qDc"/>
                                         <constraint firstItem="lMv-qp-oXo" firstAttribute="leading" secondItem="FEN-r8-Ell" secondAttribute="leading" id="qeI-K4-sdP"/>
                                         <constraint firstItem="fzu-VJ-lFb" firstAttribute="leading" secondItem="vEr-oH-2uA" secondAttribute="trailing" constant="8" id="snB-Tx-7eY"/>
                                         <constraint firstItem="aVd-kd-1QY" firstAttribute="top" secondItem="FEN-r8-Ell" secondAttribute="top" constant="5" id="umi-cm-GTp"/>
+                                        <constraint firstItem="lMv-qp-oXo" firstAttribute="top" secondItem="fzu-VJ-lFb" secondAttribute="bottom" id="w6G-if-boV"/>
                                         <constraint firstItem="2o2-1v-GKJ" firstAttribute="top" secondItem="FEN-r8-Ell" secondAttribute="top" constant="4" id="xcx-aL-p8Z"/>
                                         <constraint firstItem="2o2-1v-GKJ" firstAttribute="leading" secondItem="FEN-r8-Ell" secondAttribute="leading" constant="4" id="zC4-Nw-wt8"/>
                                         <constraint firstItem="vEr-oH-2uA" firstAttribute="leading" secondItem="2o2-1v-GKJ" secondAttribute="trailing" constant="8" id="zor-Nb-DLR"/>

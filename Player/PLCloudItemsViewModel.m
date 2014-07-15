@@ -61,6 +61,7 @@
     }
     error:^(NSError *error) {
         [PLErrorManager logError:error];
+        self.loading = NO;
     }];
 }
 
@@ -79,9 +80,17 @@
     return itemsCount > 0 ? itemsCount + 1 : 1;
 }
 
-- (BOOL)useEmptyCell
+- (NSString *)cellIdentifier
 {
-    return !self.loading && [self.items count] == 0;
+    if (self.loading)
+        return nil;
+    
+    if (self.items == nil)
+        return @"errorCell";
+    else if ([self.items count] == 0)
+        return @"emptyCell";
+    else
+        return @"cloudItemCell";
 }
 
 - (PLCloudItemCellViewModel *)cellViewModelAt:(NSIndexPath *)indexPath

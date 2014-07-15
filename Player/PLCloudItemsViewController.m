@@ -12,6 +12,8 @@
 
 @end
 
+static NSString * const kCellIdentifier = @"cloudItemCell";
+
 @implementation PLCloudItemsViewController
 
 - (void)viewDidLoad
@@ -64,15 +66,15 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return [self.viewModel useEmptyCell] ? 94.f : 44.f;
+    return [self.viewModel.cellIdentifier isEqualToString:kCellIdentifier] ? 44.f : 94.f;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if ([self.viewModel useEmptyCell])
-        return [tableView dequeueReusableCellWithIdentifier:@"emptyCell" forIndexPath:indexPath];
+    if (![self.viewModel.cellIdentifier isEqualToString:kCellIdentifier])
+        return [tableView dequeueReusableCellWithIdentifier:self.viewModel.cellIdentifier forIndexPath:indexPath];
     
-    PLCloudItemCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cloudItemCell" forIndexPath:indexPath];
+    PLCloudItemCell *cell = [tableView dequeueReusableCellWithIdentifier:kCellIdentifier forIndexPath:indexPath];
     cell.viewModel = [self.viewModel cellViewModelAt:indexPath];
     return cell;
 }

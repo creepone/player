@@ -102,9 +102,10 @@ static const int kAccessoryImageTag = 2;
         progressView.tintColor = [PLColors themeColor];
         progressView.translatesAutoresizingMaskIntoConstraints = NO;
         [self.buttonPlaceholder addSubview:progressView];
-
-        [progressView pl_addHorizontalStretchConstraint];
-        [progressView pl_addVerticalStretchConstraint];
+        
+        [progressView pl_addSizeConstraints:CGSizeMake(25.f, 25.f)];
+        [progressView pl_addHorizontalCenterConstraint];
+        [progressView pl_addVerticalCenterConstraint];
     }
 
     [progressView setProgress:[progress floatValue]];
@@ -125,8 +126,9 @@ static const int kAccessoryImageTag = 2;
         imageView.translatesAutoresizingMaskIntoConstraints = NO;
         [self.buttonPlaceholder addSubview:imageView];
 
-        [imageView pl_addHorizontalStretchConstraint];
-        [imageView pl_addVerticalStretchConstraint];
+        [imageView pl_addSizeConstraints:CGSizeMake(25.f, 25.f)];
+        [imageView pl_addHorizontalCenterConstraint];
+        [imageView pl_addVerticalCenterConstraint];
     }
 
     [imageView setImage:image];

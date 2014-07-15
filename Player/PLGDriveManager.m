@@ -119,14 +119,12 @@ static NSString *kClientID = @"210955112623-cqjrd6qt7d1fgl9fvclct69kgrtjd2nu.app
 - (RACSignal *)loadChildren:(id <PLPathAsset>)asset
 {
     PLGDrivePathAsset *driveAsset = (PLGDrivePathAsset *)asset;
-
+    
     return [RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
         
         GTLQueryDrive *query = [GTLQueryDrive queryForFilesList];
-        query.q = [NSString stringWithFormat:@"'%@' IN parents", driveAsset.identifier];
-        
-        // todo: set mime types to the query so that only audio files are loaded
-        
+        query.q = [NSString stringWithFormat:@"'%@' IN parents and (mimeType contains 'audio/' or mimeType = 'application/vnd.google-apps.folder')", driveAsset.identifier];
+                
         [_driveService executeQuery:query completionHandler:^(GTLServiceTicket *ticket, GTLDriveFileList *files, NSError *error) {
             if (error != nil) {
                 [subscriber sendError:error];

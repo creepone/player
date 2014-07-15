@@ -1,10 +1,3 @@
-set mime types to the query so that only audio files are loaded
-    - in the query for Google Drive
-    - filter the results for OneDrive
-
-a screen with "an error occured" into the Cloud Import view
-
-bigger tap area for the download icon
 profile lag on download complete
 
 long term:
