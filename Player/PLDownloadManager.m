@@ -128,7 +128,8 @@ NSString * const PLBackgroundSessionIdentifier = @"at.iosapps.Player.BackgroundS
             }];
         }];
 
-    [workSignal subscribeError:[PLErrorManager logErrorVoidBlock]];
+    [[workSignal subscribeOn:[RACScheduler immediateScheduler]]
+        subscribeError:[PLErrorManager logErrorVoidBlock]];
 }
 
 - (void)URLSession:(NSURLSession *)session downloadTask:(NSURLSessionDownloadTask *)downloadTask didWriteData:(int64_t)bytesWritten totalBytesWritten:(int64_t)totalBytesWritten totalBytesExpectedToWrite:(int64_t)totalBytesExpectedToWrite
