@@ -25,7 +25,9 @@ NSString * const PLErrorDomain = @"Player";
     DDLogError(@"%@", [error localizedDescription]);
 
     if (error.userInfo != nil)
-    DDLogError(@"%@", [error.userInfo description]);
+        DDLogError(@"%@", [error.userInfo description]);
+    
+    DDLogError(@"%@", [NSThread callStackSymbols]);
 }
 
 + (PLErrorHandler)logErrorBlock

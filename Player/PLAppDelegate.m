@@ -192,7 +192,7 @@ static void onUncaughtException(NSException* exception);
 
 static void onUncaughtException(NSException* exception)
 {
-    DDLogCError(@"Uncaught exception:\n%@\n%@\n%@", exception.name, exception.reason, exception.userInfo);
+    DDLogCError(@"Uncaught exception:\n%@\n%@\n%@\n%@", exception.name, exception.reason, exception.userInfo, exception.callStackSymbols);
 }
 
 @end
