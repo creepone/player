@@ -7,6 +7,7 @@
 #import "PLErrorManager.h"
 #import "PLDefaultsManager.h"
 #import "PLBackgroundProcessProgress.h"
+#import "PLFileImport.h"
 
 @implementation PLMediaMirror
 
@@ -71,7 +72,7 @@
     PLBackgroundProcessProgress *progress = [[PLBackgroundProcessProgress alloc] initWithItem:item progressSignal:nil];
     DDLogVerbose(@"Mirroring the track %@", track.assetURL);
 
-    RACSignal *exportSignal = [[[[track largeArtwork] flattenMap:^RACStream *(UIImage *artworkImage) {
+    RACSignal *exportSignal = [[[[[track largeArtwork] flattenMap:^RACStream *(UIImage *artworkImage) {
         NSData *artworkData;
         if (artworkImage)
             artworkData = UIImagePNGRepresentation(artworkImage);
@@ -79,9 +80,17 @@
         return [self exportTrack:track withArtwork:artworkData];
     }]
     flattenMap:^RACStream *(NSURL *fileURL) {
+        return [PLFileImport moveToDocumentsFolder:fileURL];
+    }]
+    flattenMap:^RACStream *(NSURL *fileURL) {
 
-        if (!track.managedObjectContext)
+        if (!track.managedObjectContext) {
+            NSError *error;
+            [[NSFileManager defaultManager] removeItemAtURL:fileURL error:&error];
+            if (error)
+                [PLErrorManager logError:error];
             return nil;
+        }
 
         track.fileURL = [PLUtils pathFromDocuments:fileURL];
 
@@ -99,7 +108,7 @@
 - (RACSignal *)exportTrack:(PLTrack *)track withArtwork:(NSData *)artwork
 {
     NSString *fileName = [NSString stringWithFormat:@"%lld.m4a", track.persistentId];
-    NSString *targetFilePath = [NSString pathWithComponents:@[[PLUtils documentDirectoryPath], fileName]];
+    NSString *targetFilePath = [NSString pathWithComponents:@[NSTemporaryDirectory(), fileName]];
     NSURL *targetFileURL = [NSURL fileURLWithPath:targetFilePath];
 
     NSFileManager *fileManager = [NSFileManager defaultManager];
