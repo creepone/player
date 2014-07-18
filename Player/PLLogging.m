@@ -22,7 +22,7 @@
 
     NSDictionary *infoDictionary = [[NSBundle mainBundle] infoDictionary];
     NSString *version = [infoDictionary objectForKey:@"CFBundleVersion"];
-    NSString *revision = [infoDictionary objectForKey:@"MingelRevision"];
+    NSString *revision = [infoDictionary objectForKey:@"GitRevision"];
     DDLogInfo(@"Startup, version #%@, revision %@", version, revision);
 }
 

@@ -1,8 +1,10 @@
-use documents folder or hide files somewhere out of sight and backup ?
-
 git revision missing in the release version's log
+#20
+#24
 implement itunes sharing item
 integrate tests
+#29
+podcasts
 
 long term:
 refactor the "Activity View" to use MVVM

@@ -87,5 +87,7 @@
 	<string>GDRIVE_SECRET</string>
 	<key>OneDriveSecret</key>
 	<string>ONEDRIVE_SECRET</string>
+	<key>GitRevision</key>
+	<string>BUILD_VCS_NUMBER</string>
 </dict>
 </plist>
