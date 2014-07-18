@@ -1,7 +1,8 @@
-#24
 implement itunes sharing item
+
+constants for predicateWithFormat
 integrate tests
-#29
+#29 + rename fileURL to filePath
 podcasts
 
 long term:

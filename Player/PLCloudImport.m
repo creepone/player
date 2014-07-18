@@ -77,21 +77,7 @@
     if (downloadURL == nil)
         return [RACSignal empty];
     
-    PLDataAccess *dataAccess = [PLDataAccess sharedDataAccess];
-    PLDownloadManager *downloadManager = [PLDownloadManager sharedManager];
-    
-    PLTrack *track = [dataAccess trackWithDownloadURL:[downloadURL absoluteString]];
-    track.title = asset.title;
-    BOOL wasTrackInserted = [track isInserted];
-    
-    PLPlaylist *playlist = [dataAccess selectedPlaylist];
-    if (playlist)
-        [playlist addTrack:track];
-    
-    return [[dataAccess saveChangesSignal] then:^RACSignal *{
-        // do not enqueue the download if the track already existed
-        return wasTrackInserted ? [downloadManager enqueueDownloadOfTrack:track] : [RACSignal empty];
-    }];
+    return [[PLDownloadManager sharedManager] addTrackToDownload:downloadURL withTitle:asset.title];
 }
 
 - (RACSignal *)loadChildrenRecursive:(id<PLPathAsset>)asset

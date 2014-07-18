@@ -33,22 +33,8 @@
         if ([buttonIndex intValue] == alertView.cancelButtonIndex)
             return nil;
 
-        NSString *downloadURL = [[alertView textFieldAtIndex:0] text];
-
-        PLDataAccess *dataAccess = [PLDataAccess sharedDataAccess];
-        PLDownloadManager *downloadManager = [PLDownloadManager sharedManager];
-
-        PLTrack *track = [dataAccess trackWithDownloadURL:downloadURL];
-        BOOL wasTrackInserted = [track isInserted];
-        
-        PLPlaylist *playlist = [dataAccess selectedPlaylist];
-        if (playlist)
-            [playlist addTrack:track];
-
-        return [[dataAccess saveChangesSignal] then:^RACSignal *{
-            // do not enqueue the download if the track already existed
-            return wasTrackInserted ? [downloadManager enqueueDownloadOfTrack:track] : nil;
-        }];
+        NSURL *downloadURL = [NSURL URLWithString:[[alertView textFieldAtIndex:0] text]];        
+        return [[PLDownloadManager sharedManager] addTrackToDownload:downloadURL withTitle:nil];
     }];
 }
 

@@ -37,6 +37,7 @@
         while ([fileManager fileExistsAtPath:targetFilePath]) {
             newFileName = [NSString stringWithFormat:@"%@_%d.%@", [fileName stringByDeletingPathExtension], suffix, [fileName pathExtension]];
             targetFilePath = [NSString pathWithComponents:@[documentsPath, newFileName]];
+            suffix++;
         }
         
         NSURL *targetFileURL = [NSURL fileURLWithPath:targetFilePath];

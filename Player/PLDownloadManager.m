@@ -171,6 +171,28 @@ NSString * const PLBackgroundSessionIdentifier = @"at.iosapps.Player.BackgroundS
 
 #pragma mark -- custom methods
 
+- (RACSignal *)addTrackToDownload:(NSURL *)downloadURL withTitle:(NSString *)title
+{
+    PLDataAccess *dataAccess = [PLDataAccess sharedDataAccess];
+    PLPlaylist *playlist = [dataAccess selectedPlaylist];
+    
+    PLTrack *track = [dataAccess trackWithDownloadURL:[downloadURL absoluteString]];
+    PLPlaylistSong *playlistSong = [dataAccess songWithTrack:track onPlaylist:playlist];
+    if (!playlistSong)
+        [playlist addTrack:track];
+    
+    // do not enqueue the download if the track already existed
+    if (!track.isInserted)
+        return [dataAccess saveChangesSignal] ;
+    
+    if (title)
+        track.title = title;
+    
+    return [[dataAccess saveChangesSignal] then:^RACSignal *{
+        return [self enqueueDownloadOfTrack:track];
+    }];
+}
+
 - (RACSignal *)enqueueDownloadOfTrack:(PLTrack *)track
 {
     RACSignal *requestSignal = [self requestForDownloadURL:[NSURL URLWithString:track.downloadURL]];

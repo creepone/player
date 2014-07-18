@@ -27,6 +27,13 @@ extern NSString * const PLBackgroundSessionIdentifier;
  */
 @property (nonatomic, copy) dispatch_block_t sessionCompletionHandler;
 
+
+/**
+ Adds a new track (if not present yet) with the given download URL and title to the selected playlist
+ and enqueues its download.
+ */
+- (RACSignal *)addTrackToDownload:(NSURL *)downloadURL withTitle:(NSString *)title;
+
 /**
  Creates and starts a download task for the given track. 
  Returns a signal that delivers no values but completes when the task has been started.
