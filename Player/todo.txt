@@ -1,5 +1,3 @@
-git revision missing in the release version's log
-#20
 #24
 implement itunes sharing item
 integrate tests

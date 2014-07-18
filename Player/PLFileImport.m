@@ -2,6 +2,7 @@
 #import "PLFileImport.h"
 #import "PLDataAccess.h"
 #import "PLUtils.h"
+#import "PLPlayer.h"
 
 @implementation PLFileImport
 
@@ -10,13 +11,9 @@
     return [[self moveToDocumentsFolder:fileURL] flattenMap:^RACStream *(NSURL *targetFileURL) {
         PLDataAccess *dataAccess = [PLDataAccess sharedDataAccess];
         PLTrack *track = [dataAccess trackWithFileURL:[PLUtils pathFromDocuments:targetFileURL]];
-
-        // todo: show ui to select the playlist(s) where the track should be inserted
-
-        PLPlaylist *playlist = [dataAccess selectedPlaylist];
-        if (playlist)
-            [playlist addTrack:track];
-
+        PLPlaylistSong *playlistSong = [[dataAccess selectedPlaylist] addTrack:track];
+        [[PLPlayer sharedPlayer] setCurrentSong:playlistSong];
+        
         return [dataAccess saveChangesSignal];
     }];
 }
