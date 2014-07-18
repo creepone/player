@@ -155,7 +155,15 @@
     [self save];
 }
 
-- (void)setPlaybackRate:(double)rate {
+- (float)playbackRate
+{
+    if (_audioPlayer != nil) {
+        return [_audioPlayer rate];
+    }
+    return 1.0;
+}
+
+- (void)setPlaybackRate:(float)rate {
     if (_audioPlayer != nil) {
         [_audioPlayer setRate:rate];
     }

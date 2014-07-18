@@ -18,6 +18,7 @@
 #import "PLGDriveManager.h"
 #import "PLOneDriveManager.h"
 #import "PLProgressHUD.h"
+#import "PLNowPlayingManager.h"
 
 @interface PLAppDelegate()
 
@@ -59,6 +60,8 @@ static void onUncaughtException(NSException* exception);
             [[PLFileImport importFile:fileToImport] subscribeError:[PLErrorManager logErrorVoidBlock]];
 
         [[PLMediaMirror sharedInstance] ensureRunning];
+        
+        [PLResolve(PLNowPlayingManager) startUpdating];
     }];
     
     return YES;

@@ -121,6 +121,7 @@
 		C3CC2CA41972CA820013FC57 /* LiveSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C3CC2CA31972CA820013FC57 /* LiveSDK.framework */; };
 		C3CC2CA51972CA8F0013FC57 /* LiveSDK.framework in Resources */ = {isa = PBXBuildFile; fileRef = C3CC2CA31972CA820013FC57 /* LiveSDK.framework */; };
 		C3CC2CAB197445810013FC57 /* PLProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = C3CC2CAA197445810013FC57 /* PLProgressHUD.m */; };
+		C3CC2CAF19797EA90013FC57 /* PLNowPlayingManager.m in Sources */ = {isa = PBXBuildFile; fileRef = C3CC2CAE19797EA90013FC57 /* PLNowPlayingManager.m */; };
 		C3D1A65A16CFC337006D3E5F /* PLPlaylistSelectViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C3D1A65916CFC337006D3E5F /* PLPlaylistSelectViewController.m */; };
 		C3F1A13518E83F6F00A82EAC /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C3F1A13418E83F6F00A82EAC /* Images.xcassets */; };
 		C3F539F3195A047300409CC4 /* PLDownloadManager.m in Sources */ = {isa = PBXBuildFile; fileRef = C3F539F2195A047300409CC4 /* PLDownloadManager.m */; };
@@ -338,6 +339,8 @@
 		C3CC2CA31972CA820013FC57 /* LiveSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = LiveSDK.framework; path = Player/LiveSDK.framework; sourceTree = "<group>"; };
 		C3CC2CA9197445810013FC57 /* PLProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PLProgressHUD.h; sourceTree = "<group>"; };
 		C3CC2CAA197445810013FC57 /* PLProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PLProgressHUD.m; sourceTree = "<group>"; };
+		C3CC2CAD19797EA90013FC57 /* PLNowPlayingManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PLNowPlayingManager.h; sourceTree = "<group>"; };
+		C3CC2CAE19797EA90013FC57 /* PLNowPlayingManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PLNowPlayingManager.m; sourceTree = "<group>"; };
 		C3CF9FD418B52EF4004EE4A1 /* revision.prefix */ = {isa = PBXFileReference; lastKnownFileType = text; path = revision.prefix; sourceTree = "<group>"; };
 		C3CF9FD518B52EF4004EE4A1 /* prebuild.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = prebuild.sh; sourceTree = "<group>"; };
 		C3CF9FD618B52EF4004EE4A1 /* deploy.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = deploy.sh; sourceTree = "<group>"; };
@@ -461,6 +464,7 @@
 		696C1A30A16BABDC7CEF1C08 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
+				C3CC2CAC19797E970013FC57 /* Playback */,
 				C3CC2C80197128950013FC57 /* Service Container */,
 				C3382007196833AF00DA2B7B /* Paths */,
 				C3381FE31965BB6600DA2B7B /* Bindings */,
@@ -481,10 +485,10 @@
 		696C1AAD96C35E9BF3686E67 /* Caching */ = {
 			isa = PBXGroup;
 			children = (
-				696C1239863912CEC9BDB652 /* PLImageCache.m */,
 				696C1AA53C9864939BB01191 /* PLImageCache.h */,
-				696C1500B3FE45191DAA56E0 /* PLCachedArtwork.m */,
+				696C1239863912CEC9BDB652 /* PLImageCache.m */,
 				696C19B02B8C2610D58EAA58 /* PLCachedArtwork.h */,
+				696C1500B3FE45191DAA56E0 /* PLCachedArtwork.m */,
 			);
 			name = Caching;
 			sourceTree = "<group>";
@@ -1088,6 +1092,15 @@
 			name = OneDrive;
 			sourceTree = "<group>";
 		};
+		C3CC2CAC19797E970013FC57 /* Playback */ = {
+			isa = PBXGroup;
+			children = (
+				C3CC2CAD19797EA90013FC57 /* PLNowPlayingManager.h */,
+				C3CC2CAE19797EA90013FC57 /* PLNowPlayingManager.m */,
+			);
+			name = Playback;
+			sourceTree = "<group>";
+		};
 		C3CF9FD318B52EE3004EE4A1 /* Build */ = {
 			isa = PBXGroup;
 			children = (
@@ -1237,6 +1250,7 @@
 				C3BC5ABD1656C4E7002DA837 /* PLBookmarksViewController.m in Sources */,
 				C3CC2C8D19713EEC0013FC57 /* PLCloudImport.m in Sources */,
 				C3BC5AC21656C4EF002DA837 /* PLSettingsViewController.m in Sources */,
+				C3CC2CAF19797EA90013FC57 /* PLNowPlayingManager.m in Sources */,
 				C3BC5ACD1656C81C002DA837 /* Model.xcdatamodeld in Sources */,
 				C3BC5AD31656CA4D002DA837 /* PLBookmark.m in Sources */,
 				C3BC5AD61656CA4E002DA837 /* PLPlaylist.m in Sources */,

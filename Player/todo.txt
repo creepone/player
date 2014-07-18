@@ -1,3 +1,5 @@
+git revision missing in the release version's log
+
 long term:
 refactor the "Activity View" to use MVVM
 introduce some service container mechanism so that the VMs can be unit tested

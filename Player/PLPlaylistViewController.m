@@ -347,6 +347,8 @@
         PLPlayer *player = [PLPlayer sharedPlayer];
         [player stop];
         
+        // todo: don't use this in the new code, as it doesn't trigger the notification, always set the current song of the player instead
+        
         PLPlaylistSong *song = [_songsFetchedResultsController objectAtIndexPath:indexPath];
         _selectedPlaylist.position = song.order;
         
