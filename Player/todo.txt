@@ -1,8 +1,11 @@
+use documents folder or hide files somewhere out of sight and backup ?
+
 git revision missing in the release version's log
+implement itunes sharing item
+integrate tests
 
 long term:
 refactor the "Activity View" to use MVVM
-introduce some service container mechanism so that the VMs can be unit tested
 set allowsCellularAccess based on a configuration setting
 in-app purchase for votes or adding new ideas to implement
 

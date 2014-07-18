@@ -1,4 +1,5 @@
 @import AVFoundation;
+@import MobileCoreServices;
 #import <ReactiveCocoa/ReactiveCocoa.h>
 #import "PLMediaMirror.h"
 #import "PLTrack.h"
@@ -8,6 +9,11 @@
 #import "PLDefaultsManager.h"
 #import "PLBackgroundProcessProgress.h"
 #import "PLFileImport.h"
+
+static NSString * const kOutputExtension = @"outputExtension";
+static NSString * const kFinalExtension = @"finalExtension";
+static NSString * const kOutputFileType = @"outputFileType";
+static NSString * const kExportPresetName = @"exportPresetName";
 
 @implementation PLMediaMirror
 
@@ -107,17 +113,23 @@
 
 - (RACSignal *)exportTrack:(PLTrack *)track withArtwork:(NSData *)artwork
 {
-    NSString *fileName = [NSString stringWithFormat:@"%lld.m4a", track.persistentId];
+    AVURLAsset *asset = [AVURLAsset URLAssetWithURL:track.assetURL options:nil];
+    NSString *extension = [[[[asset.URL absoluteString] componentsSeparatedByString:@"?"] objectAtIndex:0] pathExtension];
+    NSDictionary *settings = [self settingsForExtension:extension];
+    
+    NSString *fileName = [NSString stringWithFormat:@"%lld.%@", track.persistentId, settings[kOutputExtension]];
     NSString *targetFilePath = [NSString pathWithComponents:@[NSTemporaryDirectory(), fileName]];
     NSURL *targetFileURL = [NSURL fileURLWithPath:targetFilePath];
 
     NSFileManager *fileManager = [NSFileManager defaultManager];
     NSString *filePath = [targetFileURL path];
 
-    if([fileManager fileExistsAtPath:filePath])
-        [fileManager removeItemAtURL:targetFileURL error:nil];
-
-    AVURLAsset *asset = [AVURLAsset URLAssetWithURL:track.assetURL options:nil];
+    if([fileManager fileExistsAtPath:filePath]) {
+        NSError *error;
+        [fileManager removeItemAtURL:targetFileURL error:&error];
+        if (error)
+            return [RACSignal error:error];
+    }
 
     AVMutableMetadataItem *titleMetadataItem = [[AVMutableMetadataItem alloc] init];
     titleMetadataItem.keySpace = AVMetadataKeySpaceCommon;
@@ -134,12 +146,12 @@
     artworkMetadataItem.key = AVMetadataiTunesMetadataKeyCoverArt;
     artworkMetadataItem.value = artwork;
 
-    AVAssetExportSession *exportSession = [[AVAssetExportSession alloc] initWithAsset:asset presetName:AVAssetExportPresetAppleM4A];
+    AVAssetExportSession *exportSession = [[AVAssetExportSession alloc] initWithAsset:asset presetName:settings[kExportPresetName]];
     exportSession.outputURL = targetFileURL;
-    exportSession.outputFileType = AVFileTypeAppleM4A;
     exportSession.metadata = @[titleMetadataItem, artistMetadataItem, artworkMetadataItem];
-
-    return [RACSignal createSignal:^RACDisposable *(id <RACSubscriber> subscriber) {
+    exportSession.outputFileType = settings[kOutputFileType];
+    
+    return [[RACSignal createSignal:^RACDisposable *(id <RACSubscriber> subscriber) {
         [exportSession exportAsynchronouslyWithCompletionHandler:^(void)
         {
             if (exportSession.status == AVAssetExportSessionStatusCompleted) {
@@ -150,7 +162,55 @@
                 [subscriber sendError:exportSession.error];
         }];
         return nil;
+    }]
+    flattenMap:^RACStream *(NSURL *targetFileURL) {
+        if ([settings[kFinalExtension] isEqualToString:settings[kOutputExtension]])
+            return [RACSignal return:targetFileURL];
+        
+        NSError *error;
+        
+        NSString *pathWithOriginalExtension = [[targetFileURL.path stringByDeletingPathExtension] stringByAppendingPathExtension:settings[kFinalExtension]];
+        if ([fileManager fileExistsAtPath:pathWithOriginalExtension]) {
+            [fileManager removeItemAtPath:pathWithOriginalExtension error:&error];
+            if (error)
+                return [RACSignal error:error];
+        }
+        
+        [fileManager moveItemAtPath:targetFileURL.path toPath:pathWithOriginalExtension error:&error];
+        if (error)
+            return [RACSignal error:error];
+        
+        return [RACSignal return:[NSURL fileURLWithPath:pathWithOriginalExtension]];
     }];
 }
+
+- (NSDictionary *)settingsForExtension:(NSString *)extension
+{
+    if ([extension isEqualToString:@"mp3"]) {
+        return @{
+            kOutputExtension: @"mov",
+            kFinalExtension:extension,
+            kOutputFileType: AVFileTypeQuickTimeMovie,
+            kExportPresetName: AVAssetExportPresetPassthrough
+        };
+    }
+    
+    if ([extension isEqualToString:@"m4a"] || [extension isEqualToString:@"m4b"]) {
+        return @{
+            kOutputExtension: @"m4a",
+            kFinalExtension: extension,
+            kOutputFileType: AVFileTypeAppleM4A,
+            kExportPresetName: AVAssetExportPresetPassthrough
+        };
+    }
+    
+    return @{
+        kOutputExtension: @"m4a",
+        kFinalExtension: @"m4a",
+        kOutputFileType: AVFileTypeAppleM4A,
+        kExportPresetName: AVAssetExportPresetAppleM4A
+    };
+}
+
 
 @end
