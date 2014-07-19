@@ -149,7 +149,7 @@
             return;
         
         PLDataAccess *dataAccess = [PLDataAccess sharedDataAccess];
-        [dataAccess createPlaylist:name];
+        [dataAccess playlistWithName:name];
         
         NSError *error;
         [dataAccess saveChanges:&error];

@@ -1,6 +1,8 @@
-integrate tests
+#29
+
 constants for predicateWithFormat
-#29 + rename fileURL to filePath
+separate creation and lookup in PLDataAccess
+
 podcasts
 
 long term:

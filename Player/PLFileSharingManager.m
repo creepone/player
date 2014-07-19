@@ -37,7 +37,7 @@
                 if (attributes == nil || ![attributes.fileType isEqualToString:NSFileTypeRegular])
                     continue;
                 
-                if ([dataAccess existsTrackWithFileURL:relativePath])
+                if ([dataAccess existsTrackWithFilePath:relativePath])
                     continue;
                 
                 PLFileSharingItem *item = [PLFileSharingItem new];
@@ -62,7 +62,7 @@
             PLPlaylist *playlist = [dataAccess selectedPlaylist];
 
             for (PLFileSharingItem *item in items) {
-                PLTrack *track = [dataAccess trackWithFileURL:item.path];
+                PLTrack *track = [dataAccess trackWithFilePath:item.path];
                 if (!track.isInserted)
                     continue;
                 

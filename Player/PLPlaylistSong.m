@@ -27,7 +27,7 @@
             shouldRemoveTrack = YES;
 
         // is this a track that we share with the iTunes Library without mirroring it ?
-        if (![defaultsManager mirrorTracks] && self.track.persistentId && !self.track.fileURL)
+        if (![defaultsManager mirrorTracks] && self.track.persistentId && !self.track.filePath)
             shouldRemoveTrack = YES;
     }
 

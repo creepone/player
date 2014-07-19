@@ -6,9 +6,12 @@
 
 @interface PLPlaylist : PLEntity
 
+@property (nonatomic, retain) NSString * uuid;
 @property (nonatomic, retain) NSString * name;
 @property (nonatomic, retain) NSNumber * position;
 @property (nonatomic, retain) NSSet *songs;
+
++ (PLPlaylist *)playlistWithName:(NSString *)name inContext:(NSManagedObjectContext *)context;
 
 /**
  Adds the given track to this playlist and delivers the corresponding playlist song entity.

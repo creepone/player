@@ -3,8 +3,8 @@
 @implementation PLDefaultsManager
 
 static NSString *kDataStoreVersion = @"DataStoreVersion";
-static NSString *kSelectedPlaylist = @"SelectedPlaylist";
-static NSString *kBookmarkPlaylist = @"BookmarkPlaylist";
+static NSString *kSelectedPlaylistUuid = @"SelectedPlaylistUuid";
+static NSString *kBookmarkPlaylistUuid = @"BookmarkPlaylistUuid";
 static NSString *kPlaybackRate = @"PlaybackRate";
 static NSString *kGoBackTime = @"GoBackTime";
 static NSString *kMirrorTracks = @"MirrorTracks";
@@ -59,29 +59,29 @@ static NSString *kRemoveUnusedTracks = @"RemoveUnusedTracks";
     [userDefaults synchronize];
 }
 
-- (NSURL *)selectedPlaylist
+- (NSString *)selectedPlaylistUuid
 {
     NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
-    return [userDefaults URLForKey:kSelectedPlaylist];
+    return [userDefaults stringForKey:kSelectedPlaylistUuid];
 }
 
-- (void)setSelectedPlaylist:(NSURL *)playlist
+- (void)setSelectedPlaylistUuid:(NSString *)playlistUuid
 {
     NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
-    [userDefaults setURL:playlist forKey:kSelectedPlaylist];
+    [userDefaults setValue:playlistUuid forKey:kSelectedPlaylistUuid];
     [userDefaults synchronize];
 }
 
-- (NSURL *)bookmarkPlaylist
+- (NSString *)bookmarkPlaylistUuid
 {
     NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
-    return [userDefaults URLForKey:kBookmarkPlaylist];
+    return [userDefaults stringForKey:kBookmarkPlaylistUuid];
 }
 
-- (void)setBookmarkPlaylist:(NSURL *)playlist
+- (void)setBookmarkPlaylistUuid:(NSString *)playlistUuid
 {
     NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
-    [userDefaults setURL:playlist forKey:kBookmarkPlaylist];
+    [userDefaults setValue:playlistUuid forKey:kBookmarkPlaylistUuid];
     [userDefaults synchronize];
 }
 

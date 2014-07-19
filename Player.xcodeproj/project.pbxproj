@@ -138,6 +138,9 @@
 		C3CC2CEB197A78CD0013FC57 /* PLTestUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = C3CC2CEA197A78CD0013FC57 /* PLTestUtils.m */; };
 		C3CC2CEF197A7BC20013FC57 /* XCTAsyncTestCase.m in Sources */ = {isa = PBXBuildFile; fileRef = C3CC2CEE197A7BC20013FC57 /* XCTAsyncTestCase.m */; };
 		C3CC2CF2197A7C1F0013FC57 /* PLTestCase.m in Sources */ = {isa = PBXBuildFile; fileRef = C3CC2CF1197A7C1F0013FC57 /* PLTestCase.m */; };
+		C3CC2CFA197AA9050013FC57 /* PLMigrationManager+Migrations.m in Sources */ = {isa = PBXBuildFile; fileRef = C3CC2CF9197AA9050013FC57 /* PLMigrationManager+Migrations.m */; };
+		C3CC2CFE197AB76E0013FC57 /* Mapping1_3.xcmappingmodel in Sources */ = {isa = PBXBuildFile; fileRef = C3CC2CFD197AB76E0013FC57 /* Mapping1_3.xcmappingmodel */; };
+		C3CC2D00197AB79F0013FC57 /* Mapping2_3.xcmappingmodel in Sources */ = {isa = PBXBuildFile; fileRef = C3CC2CFF197AB79F0013FC57 /* Mapping2_3.xcmappingmodel */; };
 		C3D1A65A16CFC337006D3E5F /* PLPlaylistSelectViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C3D1A65916CFC337006D3E5F /* PLPlaylistSelectViewController.m */; };
 		C3F1A13518E83F6F00A82EAC /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C3F1A13418E83F6F00A82EAC /* Images.xcassets */; };
 		C3F539F3195A047300409CC4 /* PLDownloadManager.m in Sources */ = {isa = PBXBuildFile; fileRef = C3F539F2195A047300409CC4 /* PLDownloadManager.m */; };
@@ -394,6 +397,12 @@
 		C3CC2CEE197A7BC20013FC57 /* XCTAsyncTestCase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XCTAsyncTestCase.m; sourceTree = "<group>"; };
 		C3CC2CF0197A7C1F0013FC57 /* PLTestCase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PLTestCase.h; sourceTree = "<group>"; };
 		C3CC2CF1197A7C1F0013FC57 /* PLTestCase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PLTestCase.m; sourceTree = "<group>"; };
+		C3CC2CF3197A99670013FC57 /* Model 2.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "Model 2.xcdatamodel"; sourceTree = "<group>"; };
+		C3CC2CF8197AA9050013FC57 /* PLMigrationManager+Migrations.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "PLMigrationManager+Migrations.h"; sourceTree = "<group>"; };
+		C3CC2CF9197AA9050013FC57 /* PLMigrationManager+Migrations.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "PLMigrationManager+Migrations.m"; sourceTree = "<group>"; };
+		C3CC2CFC197AB32B0013FC57 /* Model 3.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "Model 3.xcdatamodel"; sourceTree = "<group>"; };
+		C3CC2CFD197AB76E0013FC57 /* Mapping1_3.xcmappingmodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcmappingmodel; path = Mapping1_3.xcmappingmodel; sourceTree = "<group>"; };
+		C3CC2CFF197AB79F0013FC57 /* Mapping2_3.xcmappingmodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcmappingmodel; path = Mapping2_3.xcmappingmodel; sourceTree = "<group>"; };
 		C3CF9FD418B52EF4004EE4A1 /* revision.prefix */ = {isa = PBXFileReference; lastKnownFileType = text; path = revision.prefix; sourceTree = "<group>"; };
 		C3CF9FD518B52EF4004EE4A1 /* prebuild.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = prebuild.sh; sourceTree = "<group>"; };
 		C3CF9FD618B52EF4004EE4A1 /* deploy.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = deploy.sh; sourceTree = "<group>"; };
@@ -864,13 +873,12 @@
 			children = (
 				C3BC5ACB1656C81C002DA837 /* Model.xcdatamodeld */,
 				C3BC5ACA1656C808002DA837 /* Entities */,
-				C3BC5AE51656CC24002DA837 /* PLMigrationManager.h */,
-				C3BC5AE61656CC24002DA837 /* PLMigrationManager.m */,
+				C3CC2CFB197AA9250013FC57 /* Migration */,
+				696C18143D38E8EFE93A49E8 /* Utils */,
 				C3BC5AE01656CABF002DA837 /* PLDataAccess.h */,
 				C3BC5AE11656CABF002DA837 /* PLDataAccess.m */,
 				C3BC5ADD1656CA73002DA837 /* PLCoreDataStack.h */,
 				C3BC5ADE1656CA73002DA837 /* PLCoreDataStack.m */,
-				696C18143D38E8EFE93A49E8 /* Utils */,
 			);
 			name = CoreData;
 			sourceTree = "<group>";
@@ -1281,6 +1289,27 @@
 			name = Lib;
 			sourceTree = "<group>";
 		};
+		C3CC2CF4197A99B40013FC57 /* Mappings */ = {
+			isa = PBXGroup;
+			children = (
+				C3CC2CFD197AB76E0013FC57 /* Mapping1_3.xcmappingmodel */,
+				C3CC2CFF197AB79F0013FC57 /* Mapping2_3.xcmappingmodel */,
+			);
+			name = Mappings;
+			sourceTree = "<group>";
+		};
+		C3CC2CFB197AA9250013FC57 /* Migration */ = {
+			isa = PBXGroup;
+			children = (
+				C3CC2CF4197A99B40013FC57 /* Mappings */,
+				C3BC5AE51656CC24002DA837 /* PLMigrationManager.h */,
+				C3BC5AE61656CC24002DA837 /* PLMigrationManager.m */,
+				C3CC2CF8197AA9050013FC57 /* PLMigrationManager+Migrations.h */,
+				C3CC2CF9197AA9050013FC57 /* PLMigrationManager+Migrations.m */,
+			);
+			name = Migration;
+			sourceTree = "<group>";
+		};
 		C3CF9FD318B52EE3004EE4A1 /* Build */ = {
 			isa = PBXGroup;
 			children = (
@@ -1526,6 +1555,7 @@
 				696C15F960FE4C012828606D /* PLActivityViewController.m in Sources */,
 				696C1688959910200C8E162E /* PLSelectFromMusicLibraryActivity.m in Sources */,
 				C3A4D67C193E40320060B704 /* PLFileImport.m in Sources */,
+				C3CC2CFE197AB76E0013FC57 /* Mapping1_3.xcmappingmodel in Sources */,
 				C3CC18C4191F65350026E681 /* PLMusicLibraryViewController.m in Sources */,
 				696C1E705DB79F2E2990D98A /* UIView+PLExtensions.m in Sources */,
 				C3CC2CB9197A54EA0013FC57 /* PLFileSharingCell.m in Sources */,
@@ -1558,6 +1588,7 @@
 				C3CC18CA191F7B850026E681 /* PLTrackGroupCell.m in Sources */,
 				C3CC18D3191FC5990026E681 /* PLTrackCell.m in Sources */,
 				696C1409FF66555E089505A1 /* NSArray+PLExtensions.m in Sources */,
+				C3CC2D00197AB79F0013FC57 /* Mapping2_3.xcmappingmodel in Sources */,
 				C3381FFB19670EE700DA2B7B /* PLCloudItemsViewModel.m in Sources */,
 				C3381FFE19670FCD00DA2B7B /* PLCloudItemCellViewModel.m in Sources */,
 				696C159390EB7A51269C2399 /* NSString+PLExtensions.m in Sources */,
@@ -1577,6 +1608,7 @@
 				696C14C3B0C607930E2E9DBD /* PLFetchedResultsControllerDelegate.m in Sources */,
 				696C1BDC652AD70EC4358087 /* UITableView+PLExtensions.m in Sources */,
 				696C12CF6D6221B60CEB7C1F /* PLTrackGroupsViewModel.m in Sources */,
+				C3CC2CFA197AA9050013FC57 /* PLMigrationManager+Migrations.m in Sources */,
 				C3381FF419670DA100DA2B7B /* PLCloudItemCell.m in Sources */,
 				696C10A3093038033BA242D1 /* PLTracksViewModel.m in Sources */,
 				C3381FE61965BB7D00DA2B7B /* PLKVOObserver.m in Sources */,
@@ -1843,9 +1875,11 @@
 		C3BC5ACB1656C81C002DA837 /* Model.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
+				C3CC2CFC197AB32B0013FC57 /* Model 3.xcdatamodel */,
+				C3CC2CF3197A99670013FC57 /* Model 2.xcdatamodel */,
 				C3BC5ACC1656C81C002DA837 /* Model.xcdatamodel */,
 			);
-			currentVersion = C3BC5ACC1656C81C002DA837 /* Model.xcdatamodel */;
+			currentVersion = C3CC2CFC197AB32B0013FC57 /* Model 3.xcdatamodel */;
 			path = Model.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;

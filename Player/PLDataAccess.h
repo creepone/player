@@ -3,6 +3,8 @@
 #import "PLBookmark.h"
 #import "PLTrack.h"
 
+extern NSString * const PLSelectedPlaylistChange;
+
 @interface PLDataAccess : NSObject
 
 @property (nonatomic, readonly) NSManagedObjectContext *context;
@@ -31,9 +33,9 @@
 - (PLTrack *)trackWithPersistentId:(NSNumber *)persistentId;
 
 /**
- Delivers a track with the given file URL. If it already exists, it is simply returned, otherwise a new one is created.
+ Delivers a track with the given file path. If it already exists, it is simply returned, otherwise a new one is created.
  */
-- (PLTrack *)trackWithFileURL:(NSString *)fileURL;
+- (PLTrack *)trackWithFilePath:(NSString *)filePath;
 
 /**
 Delivers a track with the given download URL. If it already exists, it is simply returned, otherwise a new one is created.
@@ -46,9 +48,9 @@ Delivers a track with the given download URL. If it already exists, it is simply
 - (PLTrack *)trackWithObjectID:(NSString *)objectID;
 
 /**
- Returns YES if there is a track with the given file URL.
+ Returns YES if there is a track with the given file path.
  */
-- (BOOL)existsTrackWithFileURL:(NSString *)fileURL;
+- (BOOL)existsTrackWithFilePath:(NSString *)filePath;
 
 
 /**
@@ -72,14 +74,22 @@ Delivers a track with the given download URL. If it already exists, it is simply
 - (void)rollbackChanges;
 - (void)processChanges;
 
-- (PLPlaylist *)createPlaylist:(NSString *)name;
+/**
+ Delivers a new playlist with the given name. Does not check whether a different playlist with this name exists.
+ */
+- (PLPlaylist *)playlistWithName:(NSString *)name;
+
 - (PLPlaylist *)selectedPlaylist;
 - (void)selectPlaylist:(PLPlaylist *)playlist;
 - (PLPlaylist *)bookmarkPlaylist;
 - (void)setBookmarkPlaylist:(PLPlaylist *)playlist;
+- (PLPlaylist *)findPlaylistWithName:(NSString *)name;
 
 - (NSFetchedResultsController *)fetchedResultsControllerForAllPlaylists;
 - (NSFetchedResultsController *)fetchedResultsControllerForAllBookmarks;
 - (NSFetchedResultsController *)fetchedResultsControllerForSongsOfPlaylist:(PLPlaylist *)playlist;
+
+- (NSArray *)allEntities:(NSString *)entityName;
+- (NSArray *)allEntities:(NSString *)entityName sortedBy:(NSString *)key;
 
 @end

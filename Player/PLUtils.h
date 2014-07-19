@@ -43,4 +43,6 @@ typedef BOOL (^PLPredicate)(id);
 + (PLPredicate)isNotNilPredicate;
 + (PLPredicate)isTruePredicate;
 
++ (NSString *)generateUuid;
+
 @end

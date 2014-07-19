@@ -60,7 +60,7 @@
     song.playlist.position = song.order;
 
     [self save];
-
+    
     [[NSNotificationCenter defaultCenter] postNotificationName:kPLPlayerSongChange object:nil];
 
     [self play];

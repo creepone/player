@@ -1,12 +1,13 @@
 #import <ReactiveCocoa/ReactiveCocoa.h>
 #import "PLMigrationManager.h"
+#import "PLMigrationManager+Migrations.h"
 #import "PLDefaultsManager.h"
 #import "PLCoreDataStack.h"
 #import "PLDataAccess.h"
 #import "PLUtils.h"
 #import "PLErrorManager.h"
 
-const long PLCurrentDataStoreVersion = 1;
+const long PLCurrentDataStoreVersion = 3;
 
 @implementation PLMigrationManager
 
@@ -25,10 +26,15 @@ const long PLCurrentDataStoreVersion = 1;
             }] concat:[RACSignal return:coreDataStack]];
         }];
     }
+    
+    NSMutableDictionary *migrationInfo = [NSMutableDictionary dictionary];
+    [self preMigrateWithInfo:migrationInfo];
 
     return [[self migrateFromVersion:lastInstalledVersion] then:^RACSignal *{
-        return [[self coreDataStackForModelVersion:PLCurrentDataStoreVersion] doCompleted:^{
+        return [[self coreDataStackForModelVersion:PLCurrentDataStoreVersion] flattenMap:^RACStream *(PLCoreDataStack *coreDataStack) {
             [defaultsManager setDataStoreVersion:PLCurrentDataStoreVersion];
+            [self postMigrateWithInfo:migrationInfo];
+            return [RACSignal return:coreDataStack];
         }];
     }];
 }
@@ -72,6 +78,14 @@ const long PLCurrentDataStoreVersion = 1;
 {
     NSString *sqliteName = [self dataStoreNameVersion:version];
     return [[PLUtils documentDirectoryPath] stringByAppendingPathComponent:sqliteName];
+}
+
++ (NSArray *)dataStorePathsVersion:(NSInteger)version
+{
+    NSString *sqlitePath = [self dataStorePathVersion:version];
+    NSString *walPath = [sqlitePath stringByAppendingString:@"-wal"];
+    NSString *shmPath = [sqlitePath stringByAppendingString:@"-shm"];
+    return @[sqlitePath, walPath, shmPath];
 }
 
 + (NSString *)dataStoreNameVersion:(NSInteger)version
@@ -138,13 +152,15 @@ const long PLCurrentDataStoreVersion = 1;
                 }
 
                 NSFileManager *fileManager = [[NSFileManager alloc] init];
-                [fileManager removeItemAtPath:[self dataStorePathVersion:version] error:&error];
-
-                if (error) {
-                    [subscriber sendError:error];
-                    return;
+                
+                for (NSString *path in [self dataStorePathsVersion:version]) {
+                    [fileManager removeItemAtPath:path error:&error];
+                    if (error) {
+                        [subscriber sendError:error];
+                        return;
+                    }
                 }
-
+                
                 [subscriber sendCompleted];
             }
         }];

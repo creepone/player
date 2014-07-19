@@ -2,6 +2,7 @@
 #import "PLPlaylistSong.h"
 #import "PLDataAccess.h"
 #import "PLTrack.h"
+#import "PLUtils.h"
 
 @interface PLPlaylist()
 
@@ -11,9 +12,23 @@
 
 @implementation PLPlaylist
 
+@dynamic uuid;
 @dynamic name;
 @dynamic position;
 @dynamic songs;
+
++ (PLPlaylist *)playlistWithName:(NSString *)name inContext:(NSManagedObjectContext *)context
+{
+    PLPlaylist *playlist = [NSEntityDescription insertNewObjectForEntityForName:[self entityName] inManagedObjectContext:context];
+    playlist.name = name;
+    return playlist;
+}
+
+- (void)awakeFromInsert
+{
+    [super awakeFromInsert];
+    [self setPrimitiveValue:[PLUtils generateUuid] forKey:@"uuid"];
+}
 
 - (void)remove
 {

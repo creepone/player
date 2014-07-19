@@ -29,6 +29,10 @@
         [self updateInfo];
     }];
     
+    [_observer addNotification:PLSelectedPlaylistChange handler:^(NSNotification *notification) { @strongify(self);
+        [self updateInfo];
+    }];
+    
     [self updateInfo];
 }
 
@@ -46,8 +50,8 @@
     }
     
     NSMutableDictionary *info = [NSMutableDictionary dictionaryWithDictionary:@{
-        MPMediaItemPropertyTitle: track.title,
-        MPMediaItemPropertyArtist: track.artist,
+        MPMediaItemPropertyTitle: track.title ? : @"",
+        MPMediaItemPropertyArtist: track.artist ? : @"",
         MPMediaItemPropertyPlaybackDuration: @(track.duration),
         MPNowPlayingInfoPropertyElapsedPlaybackTime: @(player.currentPosition),
         MPNowPlayingInfoPropertyPlaybackRate: @(player.playbackRate)

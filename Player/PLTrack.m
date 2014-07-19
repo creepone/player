@@ -12,7 +12,7 @@
 
 @dynamic persistentId;
 @dynamic downloadStatus;
-@dynamic fileURL;
+@dynamic filePath;
 @dynamic downloadURL;
 @dynamic played;
 @dynamic playlistSongs;
@@ -28,10 +28,10 @@
     return track;
 }
 
-+ (PLTrack *)trackWithFileURL:(NSString *)fileURL inContext:(NSManagedObjectContext *)context
++ (PLTrack *)trackWithFilePath:(NSString *)filePath inContext:(NSManagedObjectContext *)context
 {
     PLTrack *track = [NSEntityDescription insertNewObjectForEntityForName:[self entityName] inManagedObjectContext:context];
-    track.fileURL = fileURL;
+    track.filePath = filePath;
     [track loadMetadataFromAsset];
     return track;
 }
@@ -47,8 +47,8 @@
 
 - (void)remove
 {
-    if (self.fileURL) {
-        NSURL *fileURL = [PLUtils URLUnderDocuments:self.fileURL];
+    if (self.filePath) {
+        NSURL *fileURL = [PLUtils URLUnderDocuments:self.filePath];
 
         NSError *error;
         [[NSFileManager defaultManager] removeItemAtURL:fileURL error:&error];
@@ -74,10 +74,10 @@
 
 - (AVURLAsset *)asset
 {
-    if (!self.fileURL)
+    if (!self.filePath)
         return nil;
 
-    NSURL *fileURL = [PLUtils URLUnderDocuments:self.fileURL];
+    NSURL *fileURL = [PLUtils URLUnderDocuments:self.filePath];
     
     if (![[NSFileManager defaultManager] fileExistsAtPath:fileURL.path])
         return nil;
@@ -91,8 +91,8 @@
     if (mediaItem)
         return [mediaItem valueForProperty:MPMediaItemPropertyAssetURL];
     
-    if (self.fileURL) {
-        NSURL *fileURL = [PLUtils URLUnderDocuments:self.fileURL];
+    if (self.filePath) {
+        NSURL *fileURL = [PLUtils URLUnderDocuments:self.filePath];
         
         if (![[NSFileManager defaultManager] fileExistsAtPath:fileURL.path])
             return nil;
@@ -141,7 +141,7 @@
         }
         
         if (!self.title) {
-            self.title = [[self.fileURL lastPathComponent] stringByDeletingPathExtension];
+            self.title = [[self.filePath lastPathComponent] stringByDeletingPathExtension];
         }
     }
 }
@@ -152,8 +152,8 @@
     if (self.persistentId)
         return [[PLImageCache sharedCache] smallArtworkForMediaItemWithPersistentId:@(self.persistentId)];
 
-    if (self.fileURL)
-        return [[PLImageCache sharedCache] smallArtworkForFileWithURL:[PLUtils URLUnderDocuments:self.fileURL]];
+    if (self.filePath)
+        return [[PLImageCache sharedCache] smallArtworkForFileWithURL:[PLUtils URLUnderDocuments:self.filePath]];
 
     return [RACSignal empty];
 }
@@ -163,8 +163,8 @@
     if (self.persistentId)
         return [[PLImageCache sharedCache] largeArtworkForMediaItemWithPersistentId:@(self.persistentId)];
 
-    if (self.fileURL)
-        return [[PLImageCache sharedCache] largeArtworkForFileWithURL:[PLUtils URLUnderDocuments:self.fileURL]];
+    if (self.filePath)
+        return [[PLImageCache sharedCache] largeArtworkForFileWithURL:[PLUtils URLUnderDocuments:self.filePath]];
 
     return [RACSignal empty];
 }

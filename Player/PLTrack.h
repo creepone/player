@@ -13,7 +13,7 @@ typedef NS_ENUM(int16_t, PLTrackDownloadStatus) {
 
 @property (nonatomic) int64_t persistentId;
 @property (nonatomic) PLTrackDownloadStatus downloadStatus;
-@property (nonatomic, retain) NSString *fileURL;
+@property (nonatomic, retain) NSString *filePath;
 @property (nonatomic, retain) NSString *downloadURL;
 @property (nonatomic) BOOL played;
 @property (nonatomic, retain) NSSet *playlistSongs;
@@ -24,7 +24,7 @@ typedef NS_ENUM(int16_t, PLTrackDownloadStatus) {
 
 
 + (PLTrack *)trackWithPersistentId:(NSNumber *)persistentId inContext:(NSManagedObjectContext *)context;
-+ (PLTrack *)trackWithFileURL:(NSString *)fileURL inContext:(NSManagedObjectContext *)context;
++ (PLTrack *)trackWithFilePath:(NSString *)filePath inContext:(NSManagedObjectContext *)context;
 + (PLTrack *)trackWithDownloadURL:(NSString *)downloadURL inContext:(NSManagedObjectContext *)context;
 
 - (void)remove;

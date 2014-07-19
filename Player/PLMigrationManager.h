@@ -18,15 +18,16 @@ extern const long PLCurrentDataStoreVersion;
 + (NSManagedObjectModel *)modelVersion:(NSInteger)version;
 
 /**
- Delivers the physical path to the specific version of the data store. Usually the data stores
- of previous versions are removed, so they won't be all available at the same time
+ Delivers the physical path to the sqlite file for the specific version of the data store. 
+ Usually the data stores of previous versions are removed, so they won't be all available at the same time.
  */
 + (NSString *)dataStorePathVersion:(NSInteger)version;
 
 /**
- Delivers the file name of the data store for the given version.
+ Delivers the physical path to the sqlite, wal and shm files for the specific version of the data store.
+ Usually the data stores of previous versions are removed, so they won't be all available at the same time.
  */
-+ (NSString *)dataStoreNameVersion:(NSInteger)version;
++ (NSArray *)dataStorePathsVersion:(NSInteger)version;
 
 /**
  Returns a signal that delivers a core data stack ready to be used by the application, then completes.

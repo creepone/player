@@ -98,4 +98,19 @@
     return ^BOOL(id value) { return [value boolValue]; };
 }
 
++ (NSString *)generateUuid
+{
+    // create a new UUID which you own
+    CFUUIDRef uuid = CFUUIDCreate(kCFAllocatorDefault);
+    
+    // create a new CFStringRef (toll-free bridged to NSString)
+    // that you own
+    NSString *uuidString = (__bridge_transfer NSString *)CFUUIDCreateString(kCFAllocatorDefault, uuid);
+    
+    // release the UUID
+    CFRelease(uuid);
+    
+    return uuidString;
+}
+
 @end
