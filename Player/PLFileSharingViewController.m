@@ -1,10 +1,10 @@
 #import <ReactiveCocoa/ReactiveCocoa.h>
-#import "PLCloudItemsViewController.h"
-#import "PLCloudItemsViewModel.h"
-#import "PLCloudItemCell.h"
+#import "PLFileSharingViewController.h"
+#import "PLFileSharingViewModel.h"
 #import "PLTableViewProgress.h"
+#import "PLFileSharingCell.h"
 
-@interface PLCloudItemsViewController () {
+@interface PLFileSharingViewController () {
     PLTableViewProgress *_tableViewProgress;
 }
 
@@ -12,7 +12,10 @@
 
 @end
 
-@implementation PLCloudItemsViewController
+static NSString * const kCellIdentifier = @"fileSharingCell";
+static NSString * const kEmptyCellIdentifier = @"emptyCell";
+
+@implementation PLFileSharingViewController
 
 - (void)viewDidLoad
 {
@@ -32,15 +35,12 @@
 
 - (void)setupBindings
 {
-    RAC(self, title) = [RACObserve(self.viewModel, title) takeUntil:self.rac_willDeallocSignal];
     [self rac_liftSelector:@selector(setLoading:) withSignals:[RACObserve(self.viewModel, loading) takeUntil:self.rac_willDeallocSignal], nil];
-    [self rac_liftSelector:@selector(navigateTo:) withSignals:[self.viewModel.navigationSignal takeUntil:self.rac_willDeallocSignal], nil];
 }
 
 - (IBAction)tappedDone:(id)sender
 {
-    PLCloudItemsViewController *rootController = self.navigationController.viewControllers[0];
-    rootController.viewModel.dismissed = YES;
+    self.viewModel.dismissed = YES;
     [self.presentingViewController dismissViewControllerAnimated:YES completion:nil];
 }
 
@@ -70,12 +70,12 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:self.viewModel.cellIdentifier forIndexPath:indexPath];
-    
-    if ([cell isKindOfClass:[PLCloudItemCell class]]) {
-        PLCloudItemCell *cloudItemCell = (PLCloudItemCell *)cell;
-        cloudItemCell.viewModel = [self.viewModel cellViewModelAt:indexPath];
-    }
 
+    if ([cell isKindOfClass:[PLFileSharingCell class]]) {
+        PLFileSharingCell *fileSharingCell = (PLFileSharingCell *)cell;
+        fileSharingCell.viewModel = [self.viewModel cellViewModelAt:indexPath];
+    }
+    
     return cell;
 }
 
@@ -85,12 +85,5 @@
     [self.viewModel toggleSelectAt:indexPath];
     [tableView reloadData];
 }
-     
-- (void)navigateTo:(PLCloudItemsViewModel *)viewModel
-{
-    PLCloudItemsViewController *controller = [self.storyboard instantiateViewControllerWithIdentifier:@"cloudItems"];
-    controller.viewModel = viewModel;
-    [self.navigationController pushViewController:controller animated:YES];
-}
-     
+
 @end

@@ -45,6 +45,11 @@ Delivers a track with the given download URL. If it already exists, it is simply
 */
 - (PLTrack *)trackWithObjectID:(NSString *)objectID;
 
+/**
+ Returns YES if there is a track with the given file URL.
+ */
+- (BOOL)existsTrackWithFileURL:(NSString *)fileURL;
+
 
 /**
  Returns the first found track (or nil if none found) with a persistentId without a file URL (i.e. a track yet to be mirrored)

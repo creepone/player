@@ -3,6 +3,7 @@
 #import "PLGDriveManager.h"
 #import "PLOneDriveManager.h"
 #import "PLNowPlayingManager.h"
+#import "PLFileSharingManager.h"
 
 @implementation PLServiceContainer (Registrations)
 
@@ -13,6 +14,7 @@
     [self addCreator:^{ return [PLOneDriveManager sharedManager]; } underProtocol:@protocol(PLDownloadProvider)];
     
     [self registerInstance:[PLNowPlayingManager new] underProtocol:@protocol(PLNowPlayingManager)];
+    [self registerInstance:[PLFileSharingManager new] underProtocol:@protocol(PLFileSharingManager)];
 }
 
 @end

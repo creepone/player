@@ -33,7 +33,7 @@
         if ([buttonIndex intValue] == alertView.cancelButtonIndex)
             return nil;
 
-        NSURL *downloadURL = [NSURL URLWithString:[[alertView textFieldAtIndex:0] text]];        
+        NSURL *downloadURL = [NSURL URLWithString:[[alertView textFieldAtIndex:0] text]];
         return [[PLDownloadManager sharedManager] addTrackToDownload:downloadURL withTitle:nil];
     }];
 }

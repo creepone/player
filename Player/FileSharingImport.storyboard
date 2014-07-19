@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="5056" systemVersion="13C1021" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="Jrd-Ae-lob">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3733"/>
+    </dependencies>
+    <scenes>
+        <!--File Sharing View Controller - Add to playlist-->
+        <scene sceneID="nrP-uQ-krc">
+            <objects>
+                <tableViewController id="HeD-dG-axX" customClass="PLFileSharingViewController" sceneMemberID="viewController">
+                    <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="Rug-h9-VOl">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                        <prototypes>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="fileSharingCell" id="Bh5-h7-ygu" customClass="PLFileSharingCell">
+                                <rect key="frame" x="0.0" y="86" width="320" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Bh5-h7-ygu" id="iQb-gi-mzx">
+                                    <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <imageView userInteractionEnabled="NO" contentMode="right" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="751" image="ButtonAdd" translatesAutoresizingMaskIntoConstraints="NO" id="N8N-Y0-SfK">
+                                            <rect key="frame" x="152" y="10" width="160" height="23"/>
+                                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                        </imageView>
+                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="252" verticalHuggingPriority="251" text="File to import" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pMo-2U-jzv">
+                                            <rect key="frame" x="45" y="11" width="102" height="21"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="FileIcon" translatesAutoresizingMaskIntoConstraints="NO" id="Tc5-Tj-LHa">
+                                            <rect key="frame" x="0.0" y="0.0" width="43" height="43"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="43" id="7kC-aP-pp8"/>
+                                                <constraint firstAttribute="width" constant="43" id="WzL-rf-Tkd"/>
+                                            </constraints>
+                                        </imageView>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstAttribute="centerY" secondItem="pMo-2U-jzv" secondAttribute="centerY" id="Du4-DL-itb"/>
+                                        <constraint firstItem="N8N-Y0-SfK" firstAttribute="leading" secondItem="pMo-2U-jzv" secondAttribute="trailing" constant="5" id="N1F-8i-J2x"/>
+                                        <constraint firstAttribute="centerY" secondItem="N8N-Y0-SfK" secondAttribute="centerY" id="W20-1F-2KU"/>
+                                        <constraint firstItem="Tc5-Tj-LHa" firstAttribute="top" secondItem="iQb-gi-mzx" secondAttribute="top" id="afY-bn-wqk"/>
+                                        <constraint firstItem="Tc5-Tj-LHa" firstAttribute="leading" secondItem="iQb-gi-mzx" secondAttribute="leading" id="c89-SI-f5Z"/>
+                                        <constraint firstItem="pMo-2U-jzv" firstAttribute="leading" secondItem="Tc5-Tj-LHa" secondAttribute="trailing" constant="2" id="hJ3-W2-nng"/>
+                                        <constraint firstAttribute="trailing" secondItem="N8N-Y0-SfK" secondAttribute="trailing" constant="8" id="ox4-Lf-4Vn"/>
+                                    </constraints>
+                                </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="imageViewAddState" destination="N8N-Y0-SfK" id="jv4-tY-WGf"/>
+                                    <outlet property="imageViewIcon" destination="Tc5-Tj-LHa" id="hpr-0S-uXz"/>
+                                    <outlet property="labelName" destination="pMo-2U-jzv" id="flS-ql-bIX"/>
+                                </connections>
+                            </tableViewCell>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="emptyCell" rowHeight="94" id="dw0-QS-zQb">
+                                <rect key="frame" x="0.0" y="130" width="320" height="94"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="dw0-QS-zQb" id="9r3-pI-Nrn">
+                                    <rect key="frame" x="0.0" y="0.0" width="320" height="93"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="252" verticalHuggingPriority="251" text="No files were found." lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FDa-b8-DNN">
+                                            <rect key="frame" x="84" y="51" width="153" height="21"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <color key="textColor" red="0.66666666666666663" green="0.66666666666666663" blue="0.66666666666666663" alpha="1" colorSpace="calibratedRGB"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <imageView userInteractionEnabled="NO" alpha="0.5" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="FolderIcon" translatesAutoresizingMaskIntoConstraints="NO" id="JaY-6z-9xD">
+                                            <rect key="frame" x="139" y="8" width="43" height="43"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="43" id="XCh-bG-XOb"/>
+                                                <constraint firstAttribute="width" constant="43" id="aTN-an-8Ox"/>
+                                            </constraints>
+                                        </imageView>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstAttribute="bottom" secondItem="FDa-b8-DNN" secondAttribute="bottom" constant="21" id="Aoe-nm-Auy"/>
+                                        <constraint firstItem="JaY-6z-9xD" firstAttribute="top" secondItem="9r3-pI-Nrn" secondAttribute="top" constant="8" id="Lww-cI-OYN"/>
+                                        <constraint firstAttribute="centerX" secondItem="JaY-6z-9xD" secondAttribute="centerX" id="Y0E-vf-AmY"/>
+                                        <constraint firstAttribute="centerX" secondItem="FDa-b8-DNN" secondAttribute="centerX" id="ZLz-3A-jWl"/>
+                                    </constraints>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="HeD-dG-axX" id="YSY-um-U3j"/>
+                            <outlet property="delegate" destination="HeD-dG-axX" id="ZBf-q8-xoj"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="Add to playlist" id="sje-jP-50b">
+                        <barButtonItem key="rightBarButtonItem" style="done" systemItem="done" id="xqF-3y-pNp">
+                            <connections>
+                                <action selector="tappedDone:" destination="HeD-dG-axX" id="2ze-sE-mZt"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="aAU-Ev-T9h" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1022" y="-239"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="bKP-VT-bAB">
+            <objects>
+                <navigationController definesPresentationContext="YES" id="Jrd-Ae-lob" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="Tpr-zw-PFQ">
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="HeD-dG-axX" kind="relationship" relationship="rootViewController" id="Lsp-2E-Mge"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="9dp-Fh-bYb" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="488" y="-239"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="ButtonAdd" width="23" height="23"/>
+        <image name="FileIcon" width="43" height="43"/>
+        <image name="FolderIcon" width="43" height="43"/>
+    </resources>
+    <simulatedMetricsContainer key="defaultSimulatedMetrics">
+        <simulatedStatusBarMetrics key="statusBar"/>
+        <simulatedOrientationMetrics key="orientation"/>
+        <simulatedScreenMetrics key="destination" type="retina4"/>
+    </simulatedMetricsContainer>
+</document>

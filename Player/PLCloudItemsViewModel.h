@@ -26,6 +26,7 @@
 
 - (NSUInteger)cellsCount;
 - (NSString *)cellIdentifier;
+- (CGFloat)cellHeight;
 - (PLCloudItemCellViewModel *)cellViewModelAt:(NSIndexPath *)indexPath;
 - (void)toggleSelectAt:(NSIndexPath *)indexPath;
 

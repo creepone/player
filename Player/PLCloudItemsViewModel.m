@@ -89,8 +89,19 @@
         return @"errorCell";
     else if ([self.items count] == 0)
         return @"emptyCell";
-    else
-        return @"cloudItemCell";
+    
+    return @"cloudItemCell";
+}
+
+- (CGFloat)cellHeight
+{
+    if (self.loading)
+        return 0;
+    
+    if (self.items == nil || [self.items count] == 0)
+        return 94.f;
+    
+    return 44.f;
 }
 
 - (PLCloudItemCellViewModel *)cellViewModelAt:(NSIndexPath *)indexPath

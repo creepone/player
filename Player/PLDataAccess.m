@@ -160,6 +160,15 @@
     return (PLTrack *)[self.context existingObjectWithID:managedObjectID error:nil];
 }
 
+- (BOOL)existsTrackWithFileURL:(NSString *)fileURL
+{
+    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+    [self setupQueryForTrackWithFileURL:fileURL fetchRequest:fetchRequest];
+    
+    NSUInteger count = [self.context countForFetchRequest:fetchRequest error:nil];
+    return count > 0;
+}
+
 - (PLTrack *)nextTrackToMirror
 {
     NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
