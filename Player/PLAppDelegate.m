@@ -35,6 +35,9 @@ static void onUncaughtException(NSException* exception);
 {
     [PLLogging setupLogging];
     NSSetUncaughtExceptionHandler(&onUncaughtException);
+    
+    if (isRunningTests())
+        return YES;
 
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     self.window.tintColor = [PLColors themeColor];
@@ -191,6 +194,13 @@ static void onUncaughtException(NSException* exception);
         default:
             break;
     }
+}
+
+static BOOL isRunningTests(void)
+{
+    NSDictionary* environment = [[NSProcessInfo processInfo] environment];
+    NSString* injectBundle = environment[@"XCInjectBundle"];
+    return [[injectBundle pathExtension] isEqualToString:@"xctest"];
 }
 
 static void onUncaughtException(NSException* exception)

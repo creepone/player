@@ -14,3 +14,6 @@ pod "SVProgressHUD", "~> 1.0"
 pod "FFCircularProgressView", "~> 0.3"
 pod "Dropbox-iOS-SDK", "~> 1.3.10"
 pod "Google-API-Client", "~> 0.1.1"
+
+
+link_with "Player", "Player Tests"
