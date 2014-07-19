@@ -212,7 +212,7 @@
 
 - (void)makeBookmark {
     PLDataAccess *dataAccess = [PLDataAccess sharedDataAccess];
-    [dataAccess addBookmarkAtPosition:self.currentPosition forTrack:self.currentSong.track];
+    [dataAccess createBookmarkAtPosition:self.currentPosition forTrack:self.currentSong.track];
     [self save];
 
     // ivar

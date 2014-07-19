@@ -3,7 +3,6 @@
 @class PLPlaylistSong;
 @class PLTrack;
 
-
 @interface PLPlaylist : PLEntity
 
 @property (nonatomic, retain) NSString * uuid;

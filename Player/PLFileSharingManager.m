@@ -62,7 +62,7 @@
             PLPlaylist *playlist = [dataAccess selectedPlaylist];
 
             for (PLFileSharingItem *item in items) {
-                PLTrack *track = [dataAccess trackWithFilePath:item.path];
+                PLTrack *track = [dataAccess findOrCreateTrackWithFilePath:item.path];
                 if (!track.isInserted)
                     continue;
                 

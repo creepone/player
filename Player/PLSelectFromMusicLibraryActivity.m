@@ -55,8 +55,8 @@
     PLDataAccess *dataAccess = [PLDataAccess sharedDataAccess];
 
     for (NSNumber *persistentId in persistentIds) {
-        PLTrack *track = [dataAccess trackWithPersistentId:persistentId];
-        PLPlaylistSong *playlistSong = [dataAccess songWithTrack:track onPlaylist:_playlist];
+        PLTrack *track = [dataAccess findOrCreateTrackWithPersistentId:persistentId];
+        PLPlaylistSong *playlistSong = [dataAccess findSongWithTrack:track onPlaylist:_playlist];
         
         if (!playlistSong)
             [_playlist addTrack:track];

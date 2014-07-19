@@ -70,7 +70,7 @@
 
 - (PLPlaylistSong *)addTrack:(PLTrack *)track
 {
-    PLPlaylistSong *playlistSong = [NSEntityDescription insertNewObjectForEntityForName:@"PLPlaylistSong" inManagedObjectContext:self.managedObjectContext];
+    PLPlaylistSong *playlistSong = [NSEntityDescription insertNewObjectForEntityForName:[PLPlaylistSong entityName] inManagedObjectContext:self.managedObjectContext];
     playlistSong.position = [NSNumber numberWithDouble:0.0];
     playlistSong.track = track;
     playlistSong.playlist = self;

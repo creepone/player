@@ -1,9 +1,7 @@
-#29
-
-constants for predicateWithFormat
-separate creation and lookup in PLDataAccess
-
 podcasts
+
+test migration @ veronika's iphone
+flatten migration sequence to the latest model
 
 long term:
 refactor the "Activity View" to use MVVM

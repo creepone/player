@@ -5,6 +5,8 @@
 #import "PLDefaultsManager.h"
 #import "PLErrorManager.h"
 
+#define instanceKey(OBJECT, PATH) (keypath(((OBJECT *)nil), PATH))
+
 @interface PLDataAccess() {
     NSManagedObjectContext *_context;
 }
@@ -14,17 +16,20 @@ NSString * const PLSelectedPlaylistChange = @"PLSelectedPlaylistChange";
 
 @implementation PLDataAccess
 
-- (id)init {
+- (id)init
+{
     return [self initWithNewContext:NO];
 }
 
-- (id)initWithNewContext:(BOOL)useNewContext {
+- (id)initWithNewContext:(BOOL)useNewContext
+{
     PLAppDelegate *appDelegate = (PLAppDelegate *)[[UIApplication sharedApplication] delegate];
     NSManagedObjectContext *context = useNewContext ? [appDelegate.coreDataStack newContext] : nil;
     return [self initWithContext:context];
 }
 
-- (id)initWithContext:(NSManagedObjectContext *)context {
+- (id)initWithContext:(NSManagedObjectContext *)context
+{
     self = [super init];
     if (self) {
         _context = context;
@@ -34,14 +39,16 @@ NSString * const PLSelectedPlaylistChange = @"PLSelectedPlaylistChange";
 }
 
 
-+ (PLDataAccess *)sharedDataAccess {
++ (PLDataAccess *)sharedDataAccess
+{
     static dispatch_once_t once;
     static PLDataAccess *sharedDataAccess;
     dispatch_once(&once, ^ { sharedDataAccess = [[self alloc] init]; });
     return sharedDataAccess;
 }
 
-- (NSManagedObjectContext *)context {
+- (NSManagedObjectContext *)context
+{
     if(_context == nil) {
         PLAppDelegate *appDelegate = (PLAppDelegate *)[[UIApplication sharedApplication] delegate];
         return appDelegate.coreDataStack.managedObjectContext;
@@ -50,13 +57,15 @@ NSString * const PLSelectedPlaylistChange = @"PLSelectedPlaylistChange";
         return _context;
 }
 
-- (void)mergeChangesIntoContext:(NSNotification *)notification {
+- (void)mergeChangesIntoContext:(NSNotification *)notification
+{
     if (notification.object != self.context) {
         [self.context mergeChangesFromContextDidSaveNotification:notification];
     }
 }
 
-- (BOOL)saveChanges:(NSError **)error {
+- (BOOL)saveChanges:(NSError **)error
+{
 	return [self.context save:error];
 }
 
@@ -75,196 +84,153 @@ NSString * const PLSelectedPlaylistChange = @"PLSelectedPlaylistChange";
     }];
 }
 
-- (void)rollbackChanges {
+- (void)rollbackChanges
+{
     [self.context rollback];
 }
 
-- (void)processChanges {
+- (void)processChanges
+{
     [self.context processPendingChanges];
 }
 
-- (PLPlaylist *)playlistWithName:(NSString *)name
+
+- (PLPlaylist *)createPlaylistWithName:(NSString *)name
 {
     return [PLPlaylist playlistWithName:name inContext:self.context];
 }
 
-- (PLPlaylist *)selectedPlaylist
+- (PLBookmark *)createBookmarkAtPosition:(NSTimeInterval)position forTrack:(PLTrack *)track
 {
-    NSString *selectedPlaylistUuid = [[PLDefaultsManager sharedManager] selectedPlaylistUuid];
-    if (selectedPlaylistUuid)
-        return [self playlistWithUuid:selectedPlaylistUuid];
-    return nil;
-}
-
-- (void)selectPlaylist:(PLPlaylist *)playlist
-{
-    [[PLDefaultsManager sharedManager] setSelectedPlaylistUuid:playlist.uuid];
-    [[NSNotificationCenter defaultCenter] postNotificationName:PLSelectedPlaylistChange object:nil];
-}
-
-- (PLPlaylist *)bookmarkPlaylist
-{
-    NSString *bookmarkPlaylistUuid = [[PLDefaultsManager sharedManager] bookmarkPlaylistUuid];
-    if (bookmarkPlaylistUuid)
-        return [self playlistWithUuid:bookmarkPlaylistUuid];
-    return nil;
-}
-
-- (void)setBookmarkPlaylist:(PLPlaylist *)playlist
-{
-    [[PLDefaultsManager sharedManager] setBookmarkPlaylistUuid:playlist.uuid];
-}
-
-// todo: unify all finds vs. creates
-- (PLPlaylist *)findPlaylistWithName:(NSString *)name
-{
-    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
-    [self setupQueryForPlaylistWithName:name fetchRequest:fetchRequest];
-    
-    NSError *error;
-    NSArray *result = [self.context executeFetchRequest:fetchRequest error:&error];
-    return [result count] == 1 ? result[0] : nil;
-}
-
-- (PLPlaylist *)playlistWithUuid:(NSString *)uuid
-{
-    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
-    [self setupQueryForPlaylistWithUuid:uuid fetchRequest:fetchRequest];
-    
-    NSError *error;
-    NSArray *result = [self.context executeFetchRequest:fetchRequest error:&error];
-    return [result count] == 1 ? result[0] : nil;
-}
-
-- (PLTrack *)trackWithPersistentId:(NSNumber *)persistentId
-{
-    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
-    [self setupQueryForTrackWithPersistentID:persistentId fetchRequest:fetchRequest];
-
-    NSError *error;
-    NSArray *result = [self.context executeFetchRequest:fetchRequest error:&error];
-    if ([result count] == 1)
-        return result[0];
-
-    return [PLTrack trackWithPersistentId:persistentId inContext:self.context];
-}
-
-- (PLTrack *)trackWithFilePath:(NSString *)filePath
-{
-    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
-    [self setupQueryForTrackWithFilePath:filePath fetchRequest:fetchRequest];
-
-    NSError *error;
-    NSArray *result = [self.context executeFetchRequest:fetchRequest error:&error];
-    if ([result count] == 1)
-        return result[0];
-
-    return [PLTrack trackWithFilePath:filePath inContext:self.context];
-}
-
-- (PLTrack *)trackWithDownloadURL:(NSString *)downloadURL
-{
-    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
-    [self setupQueryForTrackWithDownloadURL:downloadURL fetchRequest:fetchRequest];
-
-    NSError *error;
-    NSArray *result = [self.context executeFetchRequest:fetchRequest error:&error];
-    if ([result count] == 1)
-        return result[0];
-
-    return [PLTrack trackWithDownloadURL:downloadURL inContext:self.context];
-}
-
-- (PLTrack *)trackWithObjectID:(NSString *)objectID
-{
-    NSURL *objectIDURL = [NSURL URLWithString:objectID];
-    NSManagedObjectID *managedObjectID = [self.context.persistentStoreCoordinator managedObjectIDForURIRepresentation:objectIDURL];
-    if (managedObjectID == nil)
-        return nil;
-
-    return (PLTrack *)[self.context existingObjectWithID:managedObjectID error:nil];
-}
-
-- (BOOL)existsTrackWithFilePath:(NSString *)filePath
-{
-    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
-    [self setupQueryForTrackWithFilePath:filePath fetchRequest:fetchRequest];
-    
-    NSUInteger count = [self.context countForFetchRequest:fetchRequest error:nil];
-    return count > 0;
-}
-
-- (PLTrack *)nextTrackToMirror
-{
-    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
-    [self setupQueryForTrackToMirror:fetchRequest];
-
-    NSError *error;
-    NSArray *result = [self.context executeFetchRequest:fetchRequest error:&error];
-    if ([result count] >= 1)
-        return result[0];
-
-    return nil;
-}
-
-- (PLBookmark *)addBookmarkAtPosition:(NSTimeInterval)position forTrack:(PLTrack *)track
-{
-    PLBookmark *bookmark = [NSEntityDescription insertNewObjectForEntityForName:@"PLBookmark" inManagedObjectContext:self.context];
+    PLBookmark *bookmark = [NSEntityDescription insertNewObjectForEntityForName:[PLBookmark entityName] inManagedObjectContext:self.context];
     bookmark.position = [NSNumber numberWithDouble:position];
     bookmark.track = track;
     bookmark.timestamp = [NSDate date];
     return bookmark;
 }
 
-- (PLPlaylistSong *)songWithTrack:(PLTrack *)track onPlaylist:(PLPlaylist *)playlist
+- (PLPlaylist *)findPlaylistWithUuid:(NSString *)uuid
 {
-    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
-    [self setupQueryForSongWithTrack:track onPlaylist:playlist fetchRequest:fetchRequest];
+    NSFetchRequest *fetchRequest = [self queryForPlaylistWithUuid:uuid];
+    
+    NSError *error;
+    NSArray *result = [self.context executeFetchRequest:fetchRequest error:&error];
+    return [result count] == 1 ? result[0] : nil;
+}
 
+- (PLPlaylist *)findPlaylistWithName:(NSString *)name
+{
+    NSFetchRequest *fetchRequest = [self queryForPlaylistWithName:name];
+    
+    NSError *error;
+    NSArray *result = [self.context executeFetchRequest:fetchRequest error:&error];
+    return result[0];
+}
+
+- (PLTrack *)findOrCreateTrackWithPersistentId:(NSNumber *)persistentId
+{
+    NSFetchRequest *fetchRequest = [self queryForTrackWithPersistentID:persistentId];
+    
+    NSError *error;
+    NSArray *result = [self.context executeFetchRequest:fetchRequest error:&error];
+    if ([result count] == 1)
+        return result[0];
+    
+    return [PLTrack trackWithPersistentId:persistentId inContext:self.context];
+}
+
+- (PLTrack *)findOrCreateTrackWithFilePath:(NSString *)filePath
+{
+    NSFetchRequest *fetchRequest = [self queryForTrackWithFilePath:filePath];
+    
+    NSError *error;
+    NSArray *result = [self.context executeFetchRequest:fetchRequest error:&error];
+    if ([result count] == 1)
+        return result[0];
+    
+    return [PLTrack trackWithFilePath:filePath inContext:self.context];
+}
+
+- (PLTrack *)findOrCreateTrackWithDownloadURL:(NSString *)downloadURL
+{
+    NSFetchRequest *fetchRequest = [self queryForTrackWithDownloadURL:downloadURL];
+    
+    NSError *error;
+    NSArray *result = [self.context executeFetchRequest:fetchRequest error:&error];
+    if ([result count] == 1)
+        return result[0];
+    
+    return [PLTrack trackWithDownloadURL:downloadURL inContext:self.context];
+}
+
+- (PLTrack *)findTrackWithObjectID:(NSString *)objectID
+{
+    NSURL *objectIDURL = [NSURL URLWithString:objectID];
+    NSManagedObjectID *managedObjectID = [self.context.persistentStoreCoordinator managedObjectIDForURIRepresentation:objectIDURL];
+    if (managedObjectID == nil)
+        return nil;
+    
+    return (PLTrack *)[self.context existingObjectWithID:managedObjectID error:nil];
+}
+
+- (PLTrack *)findNextTrackToMirror
+{
+    NSFetchRequest *fetchRequest = [self queryForNextTrackToMirror];
+    
+    NSError *error;
+    NSArray *result = [self.context executeFetchRequest:fetchRequest error:&error];
+    if ([result count] >= 1)
+        return result[0];
+    
+    return nil;
+}
+
+- (PLPlaylistSong *)findSongWithTrack:(PLTrack *)track onPlaylist:(PLPlaylist *)playlist
+{
+    NSFetchRequest *fetchRequest = [self queryForSongWithTrack:track onPlaylist:playlist];
+    
     NSError *error;
     NSArray *result = [self.context executeFetchRequest:fetchRequest error:&error];
     if (error != nil || [result count] == 0)
         return nil;
-
+    
     return [result lastObject];
 }
 
-- (NSFetchedResultsController *)fetchedResultsControllerForAllPlaylists {
-	NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
-    
-    [self setupQueryForAllPlaylists:fetchRequest];
-    
+- (BOOL)existsTrackWithFilePath:(NSString *)filePath
+{
+    NSFetchRequest *fetchRequest = [self queryForTrackWithFilePath:filePath];
+    return [self.context countForFetchRequest:fetchRequest error:nil] > 0;
+}
+
+
+- (NSFetchedResultsController *)fetchedResultsControllerForAllPlaylists
+{
 	return [[NSFetchedResultsController alloc]
-            initWithFetchRequest:fetchRequest
+            initWithFetchRequest:[self queryForAllPlaylists]
             managedObjectContext:self.context
             sectionNameKeyPath:nil
             cacheName:nil];
 }
 
-- (NSFetchedResultsController *)fetchedResultsControllerForAllBookmarks {
-	NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
-    
-    [self setupQueryForAllBookmarks:fetchRequest];
-    
+- (NSFetchedResultsController *)fetchedResultsControllerForAllBookmarks
+{
 	return [[NSFetchedResultsController alloc]
-            initWithFetchRequest:fetchRequest
+            initWithFetchRequest:[self queryForAllBookmarks]
             managedObjectContext:self.context
             sectionNameKeyPath:nil
             cacheName:nil];
 }
 
-
-- (NSFetchedResultsController *)fetchedResultsControllerForSongsOfPlaylist:(PLPlaylist *)playlist {
-	NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
-    
-    [self setupQueryForSongsOfPlaylist:playlist fetchRequest:fetchRequest];
-    
+- (NSFetchedResultsController *)fetchedResultsControllerForSongsOfPlaylist:(PLPlaylist *)playlist
+{
 	return [[NSFetchedResultsController alloc]
-            initWithFetchRequest:fetchRequest
+            initWithFetchRequest:[self queryForSongsOfPlaylist:playlist]
             managedObjectContext:self.context
             sectionNameKeyPath:nil
             cacheName:nil];
 }
+
 
 - (NSArray *)allEntities:(NSString *)entityName
 {
@@ -293,93 +259,165 @@ NSString * const PLSelectedPlaylistChange = @"PLSelectedPlaylistChange";
 }
 
 
-- (void)setupQueryForAllPlaylists:(NSFetchRequest *)fetchRequest  {
-    [fetchRequest setEntity:[NSEntityDescription entityForName:@"PLPlaylist" inManagedObjectContext:self.context]];
+- (PLPlaylist *)selectedPlaylist
+{
+    NSString *selectedPlaylistUuid = [[PLDefaultsManager sharedManager] selectedPlaylistUuid];
+    if (selectedPlaylistUuid)
+        return [self findPlaylistWithUuid:selectedPlaylistUuid];
+    return nil;
+}
+
+- (void)selectPlaylist:(PLPlaylist *)playlist
+{
+    [[PLDefaultsManager sharedManager] setSelectedPlaylistUuid:playlist.uuid];
+    [[NSNotificationCenter defaultCenter] postNotificationName:PLSelectedPlaylistChange object:nil];
+}
+
+- (PLPlaylist *)bookmarkPlaylist
+{
+    NSString *bookmarkPlaylistUuid = [[PLDefaultsManager sharedManager] bookmarkPlaylistUuid];
+    if (bookmarkPlaylistUuid)
+        return [self findPlaylistWithUuid:bookmarkPlaylistUuid];
+    return nil;
+}
+
+- (void)setBookmarkPlaylist:(PLPlaylist *)playlist
+{
+    [[PLDefaultsManager sharedManager] setBookmarkPlaylistUuid:playlist.uuid];
+}
+
+
+#pragma mark -- Setup for queries
+
+- (NSFetchRequest *)queryForAllPlaylists
+{
+    NSFetchRequest *fetchRequest = [NSFetchRequest new];
     
-    NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"name" ascending:YES];
-    NSArray *sortDescriptors = [[NSArray alloc] initWithObjects:sortDescriptor, nil];
-    [fetchRequest setSortDescriptors:sortDescriptors];
-}
-
-- (void)setupQueryForAllBookmarks:(NSFetchRequest *)fetchRequest  {
-    [fetchRequest setEntity:[NSEntityDescription entityForName:@"PLBookmark" inManagedObjectContext:self.context]];
-    
-    NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"timestamp" ascending:NO];
-    NSArray *sortDescriptors = [[NSArray alloc] initWithObjects:sortDescriptor, nil];
-    [fetchRequest setSortDescriptors:sortDescriptors];
-}
-
-
-- (void)setupQueryForSongsOfPlaylist:(PLPlaylist *)playlist fetchRequest:(NSFetchRequest *)fetchRequest {
-    [fetchRequest setEntity:[NSEntityDescription entityForName:@"PLPlaylistSong" inManagedObjectContext:self.context]];
-
-    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"playlist=%@", playlist];
-    [fetchRequest setPredicate:predicate];
-    
-    NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"order" ascending:YES];
-    NSArray *sortDescriptors = [[NSArray alloc] initWithObjects:sortDescriptor, nil];
-    [fetchRequest setSortDescriptors:sortDescriptors];
-}
-
-- (void)setupQueryForTrackWithPersistentID:(NSNumber *)persistentID fetchRequest:(NSFetchRequest *)fetchRequest
-{
-    [fetchRequest setEntity:[NSEntityDescription entityForName:@"PLTrack" inManagedObjectContext:self.context]];
-
-    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"persistentId=%@", persistentID];
-    [fetchRequest setPredicate:predicate];
-}
-
-- (void)setupQueryForTrackWithFilePath:(NSString *)filePath fetchRequest:(NSFetchRequest *)fetchRequest
-{
-    [fetchRequest setEntity:[NSEntityDescription entityForName:@"PLTrack" inManagedObjectContext:self.context]];
-
-    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"filePath=%@", filePath];
-    [fetchRequest setPredicate:predicate];
-}
-
-- (void)setupQueryForTrackWithDownloadURL:(NSString *)downloadURL fetchRequest:(NSFetchRequest *)fetchRequest
-{
-    [fetchRequest setEntity:[NSEntityDescription entityForName:@"PLTrack" inManagedObjectContext:self.context]];
-
-    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"downloadURL=%@", downloadURL];
-    [fetchRequest setPredicate:predicate];
-}
-
-- (void)setupQueryForTrackToMirror:(NSFetchRequest *)fetchRequest
-{
-    [fetchRequest setEntity:[NSEntityDescription entityForName:@"PLTrack" inManagedObjectContext:self.context]];
-
-    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"persistentId != 0 AND filePath = nil"];
-    [fetchRequest setPredicate:predicate];
-}
-
-- (void)setupQueryForSongWithTrack:(PLTrack *)track onPlaylist:(PLPlaylist *)playlist fetchRequest:(NSFetchRequest *)fetchRequest
-{
-    [fetchRequest setEntity:[NSEntityDescription entityForName:@"PLPlaylistSong" inManagedObjectContext:self.context]];
-
-    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"track=%@ AND playlist=%@", track, playlist];
-    [fetchRequest setPredicate:predicate];
-}
-
-- (void)setupQueryForPlaylistWithName:(NSString *)name fetchRequest:(NSFetchRequest *)fetchRequest
-{
     [fetchRequest setEntity:[NSEntityDescription entityForName:[PLPlaylist entityName] inManagedObjectContext:self.context]];
     
-    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"name=%@", name];
-    [fetchRequest setPredicate:predicate];
+    NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@instanceKey(PLPlaylist, name) ascending:YES];
+    NSArray *sortDescriptors = [[NSArray alloc] initWithObjects:sortDescriptor, nil];
+    [fetchRequest setSortDescriptors:sortDescriptors];
+    
+    return fetchRequest;
 }
 
-- (void)setupQueryForPlaylistWithUuid:(NSString *)uuid fetchRequest:(NSFetchRequest *)fetchRequest
+- (NSFetchRequest *)queryForAllBookmarks
 {
+    NSFetchRequest *fetchRequest = [NSFetchRequest new];
+    
+    [fetchRequest setEntity:[NSEntityDescription entityForName:[PLBookmark entityName] inManagedObjectContext:self.context]];
+    
+    NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@instanceKey(PLBookmark, timestamp) ascending:NO];
+    NSArray *sortDescriptors = [[NSArray alloc] initWithObjects:sortDescriptor, nil];
+    [fetchRequest setSortDescriptors:sortDescriptors];
+    
+    return fetchRequest;
+}
+
+- (NSFetchRequest *)queryForSongsOfPlaylist:(PLPlaylist *)playlist
+{
+    NSFetchRequest *fetchRequest = [NSFetchRequest new];
+    
+    [fetchRequest setEntity:[NSEntityDescription entityForName:[PLPlaylistSong entityName] inManagedObjectContext:self.context]];
+
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"%K = %@", @instanceKey(PLPlaylistSong, playlist), playlist];
+    [fetchRequest setPredicate:predicate];
+    
+    NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@instanceKey(PLPlaylistSong, order) ascending:YES];
+    NSArray *sortDescriptors = [[NSArray alloc] initWithObjects:sortDescriptor, nil];
+    [fetchRequest setSortDescriptors:sortDescriptors];
+    
+    return fetchRequest;
+}
+
+- (NSFetchRequest *)queryForTrackWithPersistentID:(NSNumber *)persistentID
+{
+    NSFetchRequest *fetchRequest = [NSFetchRequest new];
+    
+    [fetchRequest setEntity:[NSEntityDescription entityForName:[PLTrack entityName] inManagedObjectContext:self.context]];
+
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"%K = %@", @instanceKey(PLTrack, persistentId), persistentID];
+    [fetchRequest setPredicate:predicate];
+    
+    return fetchRequest;
+}
+
+- (NSFetchRequest *)queryForTrackWithFilePath:(NSString *)filePath
+{
+    NSFetchRequest *fetchRequest = [NSFetchRequest new];
+
+    [fetchRequest setEntity:[NSEntityDescription entityForName:[PLTrack entityName] inManagedObjectContext:self.context]];
+
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"%K = %@", @instanceKey(PLTrack, filePath), filePath];
+    [fetchRequest setPredicate:predicate];
+    
+    return fetchRequest;
+}
+
+- (NSFetchRequest *)queryForTrackWithDownloadURL:(NSString *)downloadURL
+{
+    NSFetchRequest *fetchRequest = [NSFetchRequest new];
+    
+    [fetchRequest setEntity:[NSEntityDescription entityForName:[PLTrack entityName] inManagedObjectContext:self.context]];
+
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"%K = %@", @instanceKey(PLTrack, downloadURL), downloadURL];
+    [fetchRequest setPredicate:predicate];
+    
+    return fetchRequest;
+}
+
+- (NSFetchRequest *)queryForNextTrackToMirror
+{
+    NSFetchRequest *fetchRequest = [NSFetchRequest new];
+
+    [fetchRequest setEntity:[NSEntityDescription entityForName:[PLTrack entityName] inManagedObjectContext:self.context]];
+
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"%K != 0 AND %K = nil", @instanceKey(PLTrack, persistentId), @instanceKey(PLTrack, filePath)];
+    [fetchRequest setPredicate:predicate];
+    
+    return fetchRequest;
+}
+
+- (NSFetchRequest *)queryForSongWithTrack:(PLTrack *)track onPlaylist:(PLPlaylist *)playlist
+{
+    NSFetchRequest *fetchRequest = [NSFetchRequest new];
+
+    [fetchRequest setEntity:[NSEntityDescription entityForName:[PLPlaylistSong entityName] inManagedObjectContext:self.context]];
+
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"%K = %@ AND %K = %@", @instanceKey(PLPlaylistSong, track), track, @instanceKey(PLPlaylistSong, playlist), playlist];
+    [fetchRequest setPredicate:predicate];
+    
+    return fetchRequest;
+}
+
+- (NSFetchRequest *)queryForPlaylistWithName:(NSString *)name
+{
+    NSFetchRequest *fetchRequest = [NSFetchRequest new];
+
     [fetchRequest setEntity:[NSEntityDescription entityForName:[PLPlaylist entityName] inManagedObjectContext:self.context]];
     
-    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"uuid = %@", uuid];
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"%K = %@", @instanceKey(PLPlaylist, name), name];
     [fetchRequest setPredicate:predicate];
+    
+    return fetchRequest;
+}
+
+- (NSFetchRequest *)queryForPlaylistWithUuid:(NSString *)uuid
+{
+    NSFetchRequest *fetchRequest = [NSFetchRequest new];
+
+    [fetchRequest setEntity:[NSEntityDescription entityForName:[PLPlaylist entityName] inManagedObjectContext:self.context]];
+    
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"%K = %@", @instanceKey(PLPlaylist, uuid), uuid];
+    [fetchRequest setPredicate:predicate];
+    
+    return fetchRequest;
 }
 
 
-
-- (void)dealloc {
+- (void)dealloc
+{
     [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 

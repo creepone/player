@@ -109,7 +109,7 @@ NSString * const PLBackgroundSessionIdentifier = @"at.iosapps.Player.BackgroundS
     NSString *trackId = downloadTask.taskDescription;
     [self.tasks removeObjectForKey:trackId];
     
-    PLTrack *track = [[PLDataAccess sharedDataAccess] trackWithObjectID:trackId];
+    PLTrack *track = [[PLDataAccess sharedDataAccess] findTrackWithObjectID:trackId];
     if (track == nil)
         return;
     
@@ -118,7 +118,7 @@ NSString * const PLBackgroundSessionIdentifier = @"at.iosapps.Player.BackgroundS
     
     RACSignal *workSignal = [[PLFileImport moveToDocumentsFolder:location underFileName:targetFileName]
         flattenMap:^RACStream *(NSURL *fileURL) {
-            PLTrack *track = [[PLDataAccess sharedDataAccess] trackWithObjectID:trackId];
+            PLTrack *track = [[PLDataAccess sharedDataAccess] findTrackWithObjectID:trackId];
             track.filePath = [PLUtils pathFromDocuments:fileURL];
             [track loadMetadataFromAsset];
             track.downloadStatus = PLTrackDownloadStatusDone;
@@ -155,7 +155,7 @@ NSString * const PLBackgroundSessionIdentifier = @"at.iosapps.Player.BackgroundS
     
     [self.tasks removeObjectForKey:trackId];
     
-    PLTrack *track = [[PLDataAccess sharedDataAccess] trackWithObjectID:trackId];
+    PLTrack *track = [[PLDataAccess sharedDataAccess] findTrackWithObjectID:trackId];
     
     BOOL wasCancelled = [error.domain isEqualToString:NSURLErrorDomain] && error.code == -999;
     track.downloadStatus = wasCancelled ? PLTrackDownloadStatusIdle : PLTrackDownloadStatusError;
@@ -176,8 +176,8 @@ NSString * const PLBackgroundSessionIdentifier = @"at.iosapps.Player.BackgroundS
     PLDataAccess *dataAccess = [PLDataAccess sharedDataAccess];
     PLPlaylist *playlist = [dataAccess selectedPlaylist];
     
-    PLTrack *track = [dataAccess trackWithDownloadURL:[downloadURL absoluteString]];
-    PLPlaylistSong *playlistSong = [dataAccess songWithTrack:track onPlaylist:playlist];
+    PLTrack *track = [dataAccess findOrCreateTrackWithDownloadURL:[downloadURL absoluteString]];
+    PLPlaylistSong *playlistSong = [dataAccess findSongWithTrack:track onPlaylist:playlist];
     if (!playlistSong)
         [playlist addTrack:track];
     
@@ -208,7 +208,7 @@ NSString * const PLBackgroundSessionIdentifier = @"at.iosapps.Player.BackgroundS
         
         self.tasks[trackId] = [PLTaskInfo infoForTask:downloadTask];
         
-        PLTrack *track = [[PLDataAccess sharedDataAccess] trackWithObjectID:trackId];
+        PLTrack *track = [[PLDataAccess sharedDataAccess] findTrackWithObjectID:trackId];
         track.downloadStatus = PLTrackDownloadStatusDownloading;
         
         return [[PLDataAccess sharedDataAccess] saveChangesSignal];

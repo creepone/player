@@ -130,7 +130,7 @@
         return;
     
     // add the song to the playlist if it's not there
-    PLPlaylistSong *playlistSong = [dataAccess songWithTrack:bookmark.track onPlaylist:bookmarkPlaylist];
+    PLPlaylistSong *playlistSong = [dataAccess findSongWithTrack:bookmark.track onPlaylist:bookmarkPlaylist];
     if (!playlistSong)
         playlistSong = [bookmarkPlaylist addTrack:bookmark.track];
 

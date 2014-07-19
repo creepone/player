@@ -60,7 +60,7 @@ static NSString * const kExportPresetName = @"exportPresetName";
     return [RACSignal createSignal:^RACDisposable *(id <RACSubscriber> subscriber) {
 
         PLDataAccess *dataAccess = [PLDataAccess sharedDataAccess];
-        PLTrack *track = [dataAccess nextTrackToMirror];
+        PLTrack *track = [dataAccess findNextTrackToMirror];
 
         if (track)
             [subscriber sendNext:track];
