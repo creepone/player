@@ -63,7 +63,9 @@ NSString * const PLImageFormatNameLargeArtwork = @"PLImageFormatNameLargeArtwork
             [subscriber sendNext:image];
             [subscriber sendCompleted];
         }];
-        return nil;
+        return [RACDisposable disposableWithBlock:^{
+            [cache cancelImageRetrievalForEntity:entity withFormatName:formatName];
+        }];
     }];
 }
 
@@ -75,7 +77,13 @@ NSString * const PLImageFormatNameLargeArtwork = @"PLImageFormatNameLargeArtwork
 
 - (RACSignal *)smallArtworkForFileWithURL:(NSURL *)fileURL
 {
-    PLCachedArtwork *entity = [[PLCachedArtwork alloc] initWithFileURL:fileURL];
+    PLCachedArtwork *entity = [[PLCachedArtwork alloc] initWithURL:fileURL];
+    return [self imageForEntity:entity formatName:PLImageFormatNameSmallArtwork];
+}
+
+- (RACSignal *)smallArtworkForDownloadURL:(NSURL *)downloadURL
+{
+    PLCachedArtwork *entity = [[PLCachedArtwork alloc] initWithURL:downloadURL];
     return [self imageForEntity:entity formatName:PLImageFormatNameSmallArtwork];
 }
 
@@ -87,7 +95,7 @@ NSString * const PLImageFormatNameLargeArtwork = @"PLImageFormatNameLargeArtwork
 
 - (RACSignal *)largeArtworkForFileWithURL:(NSURL *)fileURL
 {
-    PLCachedArtwork *entity = [[PLCachedArtwork alloc] initWithFileURL:fileURL];
+    PLCachedArtwork *entity = [[PLCachedArtwork alloc] initWithURL:fileURL];
     return [self imageForEntity:entity formatName:PLImageFormatNameLargeArtwork];
 }
 
@@ -96,14 +104,23 @@ NSString * const PLImageFormatNameLargeArtwork = @"PLImageFormatNameLargeArtwork
     NSURL *imageURL = [entity sourceImageURLWithFormatName:formatName];
     CGSize size = [self sizeForImageFormat:formatName];
 
+    __block BOOL hasImage;
+    
     if ([entity isKindOfClass:[PLCachedArtwork class]]) {
-        UIImage *image = [PLCachedArtwork imageForURL:imageURL size:size];
-        completionBlock(image);
+        [[PLCachedArtwork imageForURL:imageURL size:size] subscribeNext:^(UIImage *image) {
+            completionBlock(image);
+            hasImage = YES;
+        }
+        completed:^{
+            if (!hasImage)
+                completionBlock(nil);
+        }];
     }
 }
 
 - (void)imageCache:(FICImageCache *)imageCache cancelImageLoadingForEntity:(id <FICEntity>)entity withFormatName:(NSString *)formatName
 {
+    // todo: implement by keeping track of subscriptions in a dictionary keyed by the combination of entity's uuid and formatName, then disposing it here
 }
 
 - (void)imageCache:(FICImageCache *)imageCache errorDidOccurWithMessage:(NSString *)errorMessage

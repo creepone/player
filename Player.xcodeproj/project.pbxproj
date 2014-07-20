@@ -61,6 +61,12 @@
 		C3437569166BE531006EC87D /* jbl_confirm.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = C3437568166BE531006EC87D /* jbl_confirm.mp3 */; };
 		C343756B166BE5ED006EC87D /* jbl_confirm.caf in Resources */ = {isa = PBXBuildFile; fileRef = C343756A166BE5ED006EC87D /* jbl_confirm.caf */; };
 		C343756D166BE661006EC87D /* jbl_confirm.aiff in Resources */ = {isa = PBXBuildFile; fileRef = C343756C166BE661006EC87D /* jbl_confirm.aiff */; };
+		C34BD654197BAC09007138B8 /* PLNetworkManager.m in Sources */ = {isa = PBXBuildFile; fileRef = C34BD653197BAC09007138B8 /* PLNetworkManager.m */; };
+		C34BD658197BBE55007138B8 /* PLPodcastOldEpisode.m in Sources */ = {isa = PBXBuildFile; fileRef = C34BD657197BBE55007138B8 /* PLPodcastOldEpisode.m */; };
+		C34BD65B197BBE56007138B8 /* PLPodcastPin.m in Sources */ = {isa = PBXBuildFile; fileRef = C34BD65A197BBE56007138B8 /* PLPodcastPin.m */; };
+		C34BD65D197BC018007138B8 /* Mapping1_4.xcmappingmodel in Sources */ = {isa = PBXBuildFile; fileRef = C34BD65C197BC018007138B8 /* Mapping1_4.xcmappingmodel */; };
+		C34BD65F197BC034007138B8 /* Mapping2_4.xcmappingmodel in Sources */ = {isa = PBXBuildFile; fileRef = C34BD65E197BC034007138B8 /* Mapping2_4.xcmappingmodel */; };
+		C34BD661197BC05A007138B8 /* Mapping3_4.xcmappingmodel in Sources */ = {isa = PBXBuildFile; fileRef = C34BD660197BC05A007138B8 /* Mapping3_4.xcmappingmodel */; };
 		C3544850165922C80083D703 /* SliderCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C354484F165922C80083D703 /* SliderCell.m */; };
 		C378CD76194C505A001D0593 /* PLRouter.m in Sources */ = {isa = PBXBuildFile; fileRef = C378CD75194C505A001D0593 /* PLRouter.m */; };
 		C378CD78194C51D5001D0593 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C378CD77194C51D5001D0593 /* Main.storyboard */; };
@@ -139,8 +145,6 @@
 		C3CC2CEF197A7BC20013FC57 /* XCTAsyncTestCase.m in Sources */ = {isa = PBXBuildFile; fileRef = C3CC2CEE197A7BC20013FC57 /* XCTAsyncTestCase.m */; };
 		C3CC2CF2197A7C1F0013FC57 /* PLTestCase.m in Sources */ = {isa = PBXBuildFile; fileRef = C3CC2CF1197A7C1F0013FC57 /* PLTestCase.m */; };
 		C3CC2CFA197AA9050013FC57 /* PLMigrationManager+Migrations.m in Sources */ = {isa = PBXBuildFile; fileRef = C3CC2CF9197AA9050013FC57 /* PLMigrationManager+Migrations.m */; };
-		C3CC2CFE197AB76E0013FC57 /* Mapping1_3.xcmappingmodel in Sources */ = {isa = PBXBuildFile; fileRef = C3CC2CFD197AB76E0013FC57 /* Mapping1_3.xcmappingmodel */; };
-		C3CC2D00197AB79F0013FC57 /* Mapping2_3.xcmappingmodel in Sources */ = {isa = PBXBuildFile; fileRef = C3CC2CFF197AB79F0013FC57 /* Mapping2_3.xcmappingmodel */; };
 		C3D1A65A16CFC337006D3E5F /* PLPlaylistSelectViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C3D1A65916CFC337006D3E5F /* PLPlaylistSelectViewController.m */; };
 		C3F1A13518E83F6F00A82EAC /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C3F1A13418E83F6F00A82EAC /* Images.xcassets */; };
 		C3F539F3195A047300409CC4 /* PLDownloadManager.m in Sources */ = {isa = PBXBuildFile; fileRef = C3F539F2195A047300409CC4 /* PLDownloadManager.m */; };
@@ -264,6 +268,16 @@
 		C3437568166BE531006EC87D /* jbl_confirm.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = jbl_confirm.mp3; sourceTree = "<group>"; };
 		C343756A166BE5ED006EC87D /* jbl_confirm.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = jbl_confirm.caf; sourceTree = "<group>"; };
 		C343756C166BE661006EC87D /* jbl_confirm.aiff */ = {isa = PBXFileReference; lastKnownFileType = audio.aiff; path = jbl_confirm.aiff; sourceTree = "<group>"; };
+		C34BD652197BAC09007138B8 /* PLNetworkManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PLNetworkManager.h; sourceTree = "<group>"; };
+		C34BD653197BAC09007138B8 /* PLNetworkManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PLNetworkManager.m; sourceTree = "<group>"; };
+		C34BD655197BBD6E007138B8 /* Model 4.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "Model 4.xcdatamodel"; sourceTree = "<group>"; };
+		C34BD656197BBE55007138B8 /* PLPodcastOldEpisode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PLPodcastOldEpisode.h; sourceTree = "<group>"; };
+		C34BD657197BBE55007138B8 /* PLPodcastOldEpisode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PLPodcastOldEpisode.m; sourceTree = "<group>"; };
+		C34BD659197BBE56007138B8 /* PLPodcastPin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PLPodcastPin.h; sourceTree = "<group>"; };
+		C34BD65A197BBE56007138B8 /* PLPodcastPin.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PLPodcastPin.m; sourceTree = "<group>"; };
+		C34BD65C197BC018007138B8 /* Mapping1_4.xcmappingmodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcmappingmodel; path = Mapping1_4.xcmappingmodel; sourceTree = "<group>"; };
+		C34BD65E197BC034007138B8 /* Mapping2_4.xcmappingmodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcmappingmodel; path = Mapping2_4.xcmappingmodel; sourceTree = "<group>"; };
+		C34BD660197BC05A007138B8 /* Mapping3_4.xcmappingmodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcmappingmodel; path = Mapping3_4.xcmappingmodel; sourceTree = "<group>"; };
 		C354484E165922C80083D703 /* SliderCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SliderCell.h; sourceTree = "<group>"; };
 		C354484F165922C80083D703 /* SliderCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SliderCell.m; sourceTree = "<group>"; };
 		C378CD74194C505A001D0593 /* PLRouter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PLRouter.h; sourceTree = "<group>"; };
@@ -401,8 +415,6 @@
 		C3CC2CF8197AA9050013FC57 /* PLMigrationManager+Migrations.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "PLMigrationManager+Migrations.h"; sourceTree = "<group>"; };
 		C3CC2CF9197AA9050013FC57 /* PLMigrationManager+Migrations.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "PLMigrationManager+Migrations.m"; sourceTree = "<group>"; };
 		C3CC2CFC197AB32B0013FC57 /* Model 3.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "Model 3.xcdatamodel"; sourceTree = "<group>"; };
-		C3CC2CFD197AB76E0013FC57 /* Mapping1_3.xcmappingmodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcmappingmodel; path = Mapping1_3.xcmappingmodel; sourceTree = "<group>"; };
-		C3CC2CFF197AB79F0013FC57 /* Mapping2_3.xcmappingmodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcmappingmodel; path = Mapping2_3.xcmappingmodel; sourceTree = "<group>"; };
 		C3CF9FD418B52EF4004EE4A1 /* revision.prefix */ = {isa = PBXFileReference; lastKnownFileType = text; path = revision.prefix; sourceTree = "<group>"; };
 		C3CF9FD518B52EF4004EE4A1 /* prebuild.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = prebuild.sh; sourceTree = "<group>"; };
 		C3CF9FD618B52EF4004EE4A1 /* deploy.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = deploy.sh; sourceTree = "<group>"; };
@@ -497,6 +509,8 @@
 				C3F539F1195A047300409CC4 /* PLDownloadManager.h */,
 				C3F539F2195A047300409CC4 /* PLDownloadManager.m */,
 				C3CC2C84197138230013FC57 /* PLDownloadProvider.h */,
+				C34BD652197BAC09007138B8 /* PLNetworkManager.h */,
+				C34BD653197BAC09007138B8 /* PLNetworkManager.m */,
 			);
 			name = Network;
 			sourceTree = "<group>";
@@ -1030,6 +1044,10 @@
 		C3BC5ACA1656C808002DA837 /* Entities */ = {
 			isa = PBXGroup;
 			children = (
+				C34BD659197BBE56007138B8 /* PLPodcastPin.h */,
+				C34BD65A197BBE56007138B8 /* PLPodcastPin.m */,
+				C34BD656197BBE55007138B8 /* PLPodcastOldEpisode.h */,
+				C34BD657197BBE55007138B8 /* PLPodcastOldEpisode.m */,
 				C3840099193879E600D6A930 /* PLTrack.h */,
 				C384009A193879E600D6A930 /* PLTrack.m */,
 				C3BC5ADA1656CA4E002DA837 /* PLPlaylistSong.h */,
@@ -1292,8 +1310,9 @@
 		C3CC2CF4197A99B40013FC57 /* Mappings */ = {
 			isa = PBXGroup;
 			children = (
-				C3CC2CFD197AB76E0013FC57 /* Mapping1_3.xcmappingmodel */,
-				C3CC2CFF197AB79F0013FC57 /* Mapping2_3.xcmappingmodel */,
+				C34BD65C197BC018007138B8 /* Mapping1_4.xcmappingmodel */,
+				C34BD65E197BC034007138B8 /* Mapping2_4.xcmappingmodel */,
+				C34BD660197BC05A007138B8 /* Mapping3_4.xcmappingmodel */,
 			);
 			name = Mappings;
 			sourceTree = "<group>";
@@ -1525,6 +1544,7 @@
 				C3BC5ABD1656C4E7002DA837 /* PLBookmarksViewController.m in Sources */,
 				C3CC2CC4197A56E70013FC57 /* PLFileSharingCellViewModel.m in Sources */,
 				C3CC2C8D19713EEC0013FC57 /* PLCloudImport.m in Sources */,
+				C34BD661197BC05A007138B8 /* Mapping3_4.xcmappingmodel in Sources */,
 				C3CC2CC7197A59E70013FC57 /* PLFileSharingManager.m in Sources */,
 				C3BC5AC21656C4EF002DA837 /* PLSettingsViewController.m in Sources */,
 				C3CC2CAF19797EA90013FC57 /* PLNowPlayingManager.m in Sources */,
@@ -1533,12 +1553,14 @@
 				C3BC5AD61656CA4E002DA837 /* PLPlaylist.m in Sources */,
 				C3BC5ADC1656CA4E002DA837 /* PLPlaylistSong.m in Sources */,
 				C3BC5ADF1656CA73002DA837 /* PLCoreDataStack.m in Sources */,
+				C34BD65F197BC034007138B8 /* Mapping2_4.xcmappingmodel in Sources */,
 				C3BC5AE21656CACC002DA837 /* PLDataAccess.m in Sources */,
 				C3BC5AE71656CC24002DA837 /* PLMigrationManager.m in Sources */,
 				C3BC5AEB1656CCC9002DA837 /* PLDefaultsManager.m in Sources */,
 				C378CD80194C61CF001D0593 /* PLPlaylistSongCell.m in Sources */,
 				C3BC5B011658DE07002DA837 /* PLAlerts.m in Sources */,
 				C378CDD6195F0EF4001D0593 /* PLTrackCellViewModel.m in Sources */,
+				C34BD65D197BC018007138B8 /* Mapping1_4.xcmappingmodel in Sources */,
 				C3BC5B041658E76A002DA837 /* NSString+Extensions.m in Sources */,
 				C378CD7C194C52A6001D0593 /* PLPlaylistSongsViewController.m in Sources */,
 				C3BC5B14165912F6002DA837 /* PLPlayer.m in Sources */,
@@ -1546,6 +1568,7 @@
 				C3CC2C9F197299970013FC57 /* PLOneDriveManager.m in Sources */,
 				C3CC18CD191FABD30026E681 /* PLTracksViewController.m in Sources */,
 				C3544850165922C80083D703 /* SliderCell.m in Sources */,
+				C34BD658197BBE55007138B8 /* PLPodcastOldEpisode.m in Sources */,
 				C3D1A65A16CFC337006D3E5F /* PLPlaylistSelectViewController.m in Sources */,
 				C3FCEC2E16FF0AD3008CD497 /* PLPlaylistSongViewController.m in Sources */,
 				696C14355BFE9EF3A322E84C /* PLColors.m in Sources */,
@@ -1555,10 +1578,10 @@
 				696C15F960FE4C012828606D /* PLActivityViewController.m in Sources */,
 				696C1688959910200C8E162E /* PLSelectFromMusicLibraryActivity.m in Sources */,
 				C3A4D67C193E40320060B704 /* PLFileImport.m in Sources */,
-				C3CC2CFE197AB76E0013FC57 /* Mapping1_3.xcmappingmodel in Sources */,
 				C3CC18C4191F65350026E681 /* PLMusicLibraryViewController.m in Sources */,
 				696C1E705DB79F2E2990D98A /* UIView+PLExtensions.m in Sources */,
 				C3CC2CB9197A54EA0013FC57 /* PLFileSharingCell.m in Sources */,
+				C34BD65B197BBE56007138B8 /* PLPodcastPin.m in Sources */,
 				696C150707F3BDB3401223BA /* PLConstraints.m in Sources */,
 				696C1ADFA4D617995455F30F /* PLDownloadFromDropboxActivity.m in Sources */,
 				C3F539F3195A047300409CC4 /* PLDownloadManager.m in Sources */,
@@ -1588,12 +1611,12 @@
 				C3CC18CA191F7B850026E681 /* PLTrackGroupCell.m in Sources */,
 				C3CC18D3191FC5990026E681 /* PLTrackCell.m in Sources */,
 				696C1409FF66555E089505A1 /* NSArray+PLExtensions.m in Sources */,
-				C3CC2D00197AB79F0013FC57 /* Mapping2_3.xcmappingmodel in Sources */,
 				C3381FFB19670EE700DA2B7B /* PLCloudItemsViewModel.m in Sources */,
 				C3381FFE19670FCD00DA2B7B /* PLCloudItemCellViewModel.m in Sources */,
 				696C159390EB7A51269C2399 /* NSString+PLExtensions.m in Sources */,
 				696C169A25ECD6B14186B438 /* PLEntity.m in Sources */,
 				C338200A1968365100DA2B7B /* PLDropboxPathAsset.m in Sources */,
+				C34BD654197BAC09007138B8 /* PLNetworkManager.m in Sources */,
 				C3CC2C87197139A10013FC57 /* PLServiceContainer+Registrations.m in Sources */,
 				696C1FBF6134FDF5DE3BD2C6 /* PLLegacySongTableViewCell.m in Sources */,
 				696C12295CFEA1F9814E8AC8 /* PLPlaylistSongCellViewModel.m in Sources */,
@@ -1875,11 +1898,12 @@
 		C3BC5ACB1656C81C002DA837 /* Model.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
+				C34BD655197BBD6E007138B8 /* Model 4.xcdatamodel */,
 				C3CC2CFC197AB32B0013FC57 /* Model 3.xcdatamodel */,
 				C3CC2CF3197A99670013FC57 /* Model 2.xcdatamodel */,
 				C3BC5ACC1656C81C002DA837 /* Model.xcdatamodel */,
 			);
-			currentVersion = C3CC2CFC197AB32B0013FC57 /* Model 3.xcdatamodel */;
+			currentVersion = C34BD655197BBD6E007138B8 /* Model 4.xcdatamodel */;
 			path = Model.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;

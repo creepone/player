@@ -1,4 +1,8 @@
-podcasts
+podcasts:
+UISearchDisplayController
+https://www.apple.com/itunes/affiliates/resources/documentation/itunes-store-web-service-search-api.html
+https://itunes.apple.com/search?term=ubercast&media=podcast
+https://github.com/CEWendel/SWTableViewCell
 
 test migration @ veronika's iphone
 flatten migration sequence to the latest model

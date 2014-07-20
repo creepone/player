@@ -2,6 +2,8 @@
 #import "PLPlaylistSong.h"
 #import "PLBookmark.h"
 #import "PLTrack.h"
+#import "PLPodcastPin.h"
+#import "PLPodcastOldEpisode.h"
 
 extern NSString * const PLSelectedPlaylistChange;
 
