@@ -67,6 +67,13 @@
 		C34BD65D197BC018007138B8 /* Mapping1_4.xcmappingmodel in Sources */ = {isa = PBXBuildFile; fileRef = C34BD65C197BC018007138B8 /* Mapping1_4.xcmappingmodel */; };
 		C34BD65F197BC034007138B8 /* Mapping2_4.xcmappingmodel in Sources */ = {isa = PBXBuildFile; fileRef = C34BD65E197BC034007138B8 /* Mapping2_4.xcmappingmodel */; };
 		C34BD661197BC05A007138B8 /* Mapping3_4.xcmappingmodel in Sources */ = {isa = PBXBuildFile; fileRef = C34BD660197BC05A007138B8 /* Mapping3_4.xcmappingmodel */; };
+		C34BD66C197BC2EA007138B8 /* Podcasts.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C34BD66B197BC2EA007138B8 /* Podcasts.storyboard */; };
+		C34BD670197BC379007138B8 /* PLPodcastsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C34BD66F197BC379007138B8 /* PLPodcastsViewController.m */; };
+		C34BD674197BC3E3007138B8 /* PLPodcastsViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = C34BD673197BC3E3007138B8 /* PLPodcastsViewModel.m */; };
+		C34BD677197BDEBF007138B8 /* PLPodcastsManager.m in Sources */ = {isa = PBXBuildFile; fileRef = C34BD676197BDEBF007138B8 /* PLPodcastsManager.m */; };
+		C34BD67A197BDFBF007138B8 /* PLPodcast.m in Sources */ = {isa = PBXBuildFile; fileRef = C34BD679197BDFBF007138B8 /* PLPodcast.m */; };
+		C34BD67E197BF353007138B8 /* PLPodcastCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C34BD67D197BF353007138B8 /* PLPodcastCell.m */; };
+		C34BD681197BF3D2007138B8 /* PLPodcastCellViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = C34BD680197BF3D2007138B8 /* PLPodcastCellViewModel.m */; };
 		C3544850165922C80083D703 /* SliderCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C354484F165922C80083D703 /* SliderCell.m */; };
 		C378CD76194C505A001D0593 /* PLRouter.m in Sources */ = {isa = PBXBuildFile; fileRef = C378CD75194C505A001D0593 /* PLRouter.m */; };
 		C378CD78194C51D5001D0593 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C378CD77194C51D5001D0593 /* Main.storyboard */; };
@@ -186,14 +193,14 @@
 		696C1414B69DC381029EE20D /* PLBackgroundProcessProgress.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PLBackgroundProcessProgress.h; sourceTree = "<group>"; };
 		696C1426B1C214592AD07A07 /* PLFetchedResultsUpdate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PLFetchedResultsUpdate.h; sourceTree = "<group>"; };
 		696C143FEC9667A8B106C5AE /* PLFileSharingActivity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PLFileSharingActivity.m; path = Player/PLFileSharingActivity.m; sourceTree = "<group>"; };
-		696C146AEE2E2953E78DFD15 /* PLDownloadPodcastActivity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PLDownloadPodcastActivity.m; sourceTree = "<group>"; };
+		696C146AEE2E2953E78DFD15 /* PLDownloadPodcastActivity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PLDownloadPodcastActivity.m; path = Player/PLDownloadPodcastActivity.m; sourceTree = "<group>"; };
 		696C1500B3FE45191DAA56E0 /* PLCachedArtwork.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PLCachedArtwork.m; sourceTree = "<group>"; };
 		696C150BD38DBFE750DEEE04 /* PLBackgroundProcess.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PLBackgroundProcess.m; sourceTree = "<group>"; };
 		696C154AEE9EE86422D272E3 /* PLEntity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PLEntity.h; sourceTree = "<group>"; };
 		696C154DBBACAD9E008A4737 /* PLImportActivityViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PLImportActivityViewController.h; sourceTree = "<group>"; };
 		696C1663900DCC34F758B7A1 /* UITableView+PLExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITableView+PLExtensions.m"; sourceTree = "<group>"; };
 		696C16A4D226E0A5EC204C36 /* PLErrorManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PLErrorManager.h; sourceTree = "<group>"; };
-		696C16B1CAB1C03543A4485C /* PLDownloadPodcastActivity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PLDownloadPodcastActivity.h; sourceTree = "<group>"; };
+		696C16B1CAB1C03543A4485C /* PLDownloadPodcastActivity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PLDownloadPodcastActivity.h; path = Player/PLDownloadPodcastActivity.h; sourceTree = "<group>"; };
 		696C17062B46F55CD8C4E0F3 /* PLPlaylistSongsViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PLPlaylistSongsViewModel.m; sourceTree = "<group>"; };
 		696C1721722D6B0C3765AAA1 /* UIViewController+PLErrorExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+PLErrorExtensions.h"; sourceTree = "<group>"; };
 		696C173E18677F6CD43519DF /* PLTrackGroupCellViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PLTrackGroupCellViewModel.m; sourceTree = "<group>"; };
@@ -278,6 +285,19 @@
 		C34BD65C197BC018007138B8 /* Mapping1_4.xcmappingmodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcmappingmodel; path = Mapping1_4.xcmappingmodel; sourceTree = "<group>"; };
 		C34BD65E197BC034007138B8 /* Mapping2_4.xcmappingmodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcmappingmodel; path = Mapping2_4.xcmappingmodel; sourceTree = "<group>"; };
 		C34BD660197BC05A007138B8 /* Mapping3_4.xcmappingmodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcmappingmodel; path = Mapping3_4.xcmappingmodel; sourceTree = "<group>"; };
+		C34BD66B197BC2EA007138B8 /* Podcasts.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Podcasts.storyboard; sourceTree = "<group>"; };
+		C34BD66E197BC379007138B8 /* PLPodcastsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PLPodcastsViewController.h; path = Player/PLPodcastsViewController.h; sourceTree = "<group>"; };
+		C34BD66F197BC379007138B8 /* PLPodcastsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PLPodcastsViewController.m; path = Player/PLPodcastsViewController.m; sourceTree = "<group>"; };
+		C34BD672197BC3E3007138B8 /* PLPodcastsViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PLPodcastsViewModel.h; path = Player/PLPodcastsViewModel.h; sourceTree = "<group>"; };
+		C34BD673197BC3E3007138B8 /* PLPodcastsViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PLPodcastsViewModel.m; path = Player/PLPodcastsViewModel.m; sourceTree = "<group>"; };
+		C34BD675197BDEBF007138B8 /* PLPodcastsManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PLPodcastsManager.h; path = Player/PLPodcastsManager.h; sourceTree = "<group>"; };
+		C34BD676197BDEBF007138B8 /* PLPodcastsManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PLPodcastsManager.m; path = Player/PLPodcastsManager.m; sourceTree = "<group>"; };
+		C34BD678197BDFBF007138B8 /* PLPodcast.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PLPodcast.h; path = Player/PLPodcast.h; sourceTree = "<group>"; };
+		C34BD679197BDFBF007138B8 /* PLPodcast.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PLPodcast.m; path = Player/PLPodcast.m; sourceTree = "<group>"; };
+		C34BD67C197BF353007138B8 /* PLPodcastCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PLPodcastCell.h; path = Player/PLPodcastCell.h; sourceTree = "<group>"; };
+		C34BD67D197BF353007138B8 /* PLPodcastCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PLPodcastCell.m; path = Player/PLPodcastCell.m; sourceTree = "<group>"; };
+		C34BD67F197BF3D2007138B8 /* PLPodcastCellViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PLPodcastCellViewModel.h; path = Player/PLPodcastCellViewModel.h; sourceTree = "<group>"; };
+		C34BD680197BF3D2007138B8 /* PLPodcastCellViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PLPodcastCellViewModel.m; path = Player/PLPodcastCellViewModel.m; sourceTree = "<group>"; };
 		C354484E165922C80083D703 /* SliderCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SliderCell.h; sourceTree = "<group>"; };
 		C354484F165922C80083D703 /* SliderCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SliderCell.m; sourceTree = "<group>"; };
 		C378CD74194C505A001D0593 /* PLRouter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PLRouter.h; sourceTree = "<group>"; };
@@ -684,6 +704,68 @@
 			path = Player;
 			sourceTree = "<group>";
 		};
+		C34BD662197BC1D5007138B8 /* Podcast Import */ = {
+			isa = PBXGroup;
+			children = (
+				C34BD663197BC1EA007138B8 /* Model */,
+				C34BD664197BC21A007138B8 /* View */,
+				C34BD671197BC3CB007138B8 /* ViewModel */,
+			);
+			name = "Podcast Import";
+			sourceTree = "<group>";
+		};
+		C34BD663197BC1EA007138B8 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				696C16B1CAB1C03543A4485C /* PLDownloadPodcastActivity.h */,
+				696C146AEE2E2953E78DFD15 /* PLDownloadPodcastActivity.m */,
+				C34BD675197BDEBF007138B8 /* PLPodcastsManager.h */,
+				C34BD676197BDEBF007138B8 /* PLPodcastsManager.m */,
+				C34BD678197BDFBF007138B8 /* PLPodcast.h */,
+				C34BD679197BDFBF007138B8 /* PLPodcast.m */,
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
+		C34BD664197BC21A007138B8 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				C34BD66B197BC2EA007138B8 /* Podcasts.storyboard */,
+				C34BD67B197BF33A007138B8 /* Views */,
+				C34BD66D197BC352007138B8 /* ViewControllers */,
+			);
+			name = View;
+			sourceTree = "<group>";
+		};
+		C34BD66D197BC352007138B8 /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				C34BD66E197BC379007138B8 /* PLPodcastsViewController.h */,
+				C34BD66F197BC379007138B8 /* PLPodcastsViewController.m */,
+			);
+			name = ViewControllers;
+			sourceTree = "<group>";
+		};
+		C34BD671197BC3CB007138B8 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				C34BD672197BC3E3007138B8 /* PLPodcastsViewModel.h */,
+				C34BD673197BC3E3007138B8 /* PLPodcastsViewModel.m */,
+				C34BD67F197BF3D2007138B8 /* PLPodcastCellViewModel.h */,
+				C34BD680197BF3D2007138B8 /* PLPodcastCellViewModel.m */,
+			);
+			name = ViewModel;
+			sourceTree = "<group>";
+		};
+		C34BD67B197BF33A007138B8 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				C34BD67C197BF353007138B8 /* PLPodcastCell.h */,
+				C34BD67D197BF353007138B8 /* PLPodcastCell.m */,
+			);
+			name = Views;
+			sourceTree = "<group>";
+		};
 		C354484C165922B90083D703 /* Cells */ = {
 			isa = PBXGroup;
 			children = (
@@ -858,8 +940,6 @@
 				696C13ED65045480BDB66BE0 /* PLActivity.h */,
 				696C107644FDE533B6B072AE /* PLDownloadURLActivity.h */,
 				696C1AD27942A80B8A9896C5 /* PLDownloadURLActivity.m */,
-				696C16B1CAB1C03543A4485C /* PLDownloadPodcastActivity.h */,
-				696C146AEE2E2953E78DFD15 /* PLDownloadPodcastActivity.m */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -1199,6 +1279,7 @@
 				C378CDC3195F060A001D0593 /* Music Library Import */,
 				C3CC2C8919713E4B0013FC57 /* Cloud Import */,
 				C3CC2CB1197A535D0013FC57 /* iTunes File Sharing Import */,
+				C34BD662197BC1D5007138B8 /* Podcast Import */,
 			);
 			name = Import;
 			sourceTree = "<group>";
@@ -1428,6 +1509,7 @@
 				C3BC5A361656B772002DA837 /* InfoPlist.strings in Resources */,
 				C3F1A13518E83F6F00A82EAC /* Images.xcassets in Resources */,
 				C3BC5A3E1656B772002DA837 /* Default.png in Resources */,
+				C34BD66C197BC2EA007138B8 /* Podcasts.storyboard in Resources */,
 				C3BC5A401656B772002DA837 /* Default@2x.png in Resources */,
 				C3BC5A421656B772002DA837 /* Default-568h@2x.png in Resources */,
 				C3CC18DB19227CD30026E681 /* icon.png in Resources */,
@@ -1543,6 +1625,7 @@
 				C3BC5AB21656C284002DA837 /* PLPlayerViewController.m in Sources */,
 				C3BC5ABD1656C4E7002DA837 /* PLBookmarksViewController.m in Sources */,
 				C3CC2CC4197A56E70013FC57 /* PLFileSharingCellViewModel.m in Sources */,
+				C34BD67A197BDFBF007138B8 /* PLPodcast.m in Sources */,
 				C3CC2C8D19713EEC0013FC57 /* PLCloudImport.m in Sources */,
 				C34BD661197BC05A007138B8 /* Mapping3_4.xcmappingmodel in Sources */,
 				C3CC2CC7197A59E70013FC57 /* PLFileSharingManager.m in Sources */,
@@ -1555,7 +1638,9 @@
 				C3BC5ADF1656CA73002DA837 /* PLCoreDataStack.m in Sources */,
 				C34BD65F197BC034007138B8 /* Mapping2_4.xcmappingmodel in Sources */,
 				C3BC5AE21656CACC002DA837 /* PLDataAccess.m in Sources */,
+				C34BD681197BF3D2007138B8 /* PLPodcastCellViewModel.m in Sources */,
 				C3BC5AE71656CC24002DA837 /* PLMigrationManager.m in Sources */,
+				C34BD674197BC3E3007138B8 /* PLPodcastsViewModel.m in Sources */,
 				C3BC5AEB1656CCC9002DA837 /* PLDefaultsManager.m in Sources */,
 				C378CD80194C61CF001D0593 /* PLPlaylistSongCell.m in Sources */,
 				C3BC5B011658DE07002DA837 /* PLAlerts.m in Sources */,
@@ -1576,8 +1661,10 @@
 				696C1F72E45C6A9B4C528C3C /* PLActivityView.m in Sources */,
 				696C1F1FF839CDC5DB90DE97 /* PLButton.m in Sources */,
 				696C15F960FE4C012828606D /* PLActivityViewController.m in Sources */,
+				C34BD67E197BF353007138B8 /* PLPodcastCell.m in Sources */,
 				696C1688959910200C8E162E /* PLSelectFromMusicLibraryActivity.m in Sources */,
 				C3A4D67C193E40320060B704 /* PLFileImport.m in Sources */,
+				C34BD677197BDEBF007138B8 /* PLPodcastsManager.m in Sources */,
 				C3CC18C4191F65350026E681 /* PLMusicLibraryViewController.m in Sources */,
 				696C1E705DB79F2E2990D98A /* UIView+PLExtensions.m in Sources */,
 				C3CC2CB9197A54EA0013FC57 /* PLFileSharingCell.m in Sources */,
@@ -1604,6 +1691,7 @@
 				696C1B8D690CECA9499F257E /* PLMediaLibrarySearch.m in Sources */,
 				C3381FF719670E6600DA2B7B /* PLCloudItemsViewController.m in Sources */,
 				696C177E0F2230FE3DDA991B /* PLMediaItemTrackGroup.m in Sources */,
+				C34BD670197BC379007138B8 /* PLPodcastsViewController.m in Sources */,
 				696C13068CF01B07191595AB /* PLImageCache.m in Sources */,
 				696C153A17367E75E95611F2 /* PLCachedArtwork.m in Sources */,
 				696C1B378A7D2749C756064C /* PLMediaItemTrack.m in Sources */,

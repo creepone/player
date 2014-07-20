@@ -3,6 +3,7 @@
 
 @interface PLTableViewProgress() <UITableViewDataSource, UITableViewDelegate> {
     UITableView *_tableView;
+    UIView *_originalFooterView;
     BOOL _originalScrollEnabled;
     __weak id<UITableViewDataSource> _originalDataSource;
     __weak id<UITableViewDelegate> _originalDelegate;
@@ -21,6 +22,7 @@
         _originalDataSource = tableView.dataSource;
         _originalDelegate = tableView.delegate;
         _originalRowHeight = tableView.rowHeight;
+        _originalFooterView = tableView.tableFooterView;
         _tableView = tableView;
     }
     return self;
@@ -33,6 +35,10 @@
 
 + (PLTableViewProgress *)showInTableView:(UITableView *)tableView afterGraceTime:(NSTimeInterval)graceTime
 {
+    // already showing in the given table view
+    if ([tableView.delegate isKindOfClass:[PLTableViewProgress class]])
+        return (PLTableViewProgress *)tableView.delegate;
+    
     PLTableViewProgress *progress = [[PLTableViewProgress alloc] initWithTableView:tableView];
     [progress showIn:graceTime];
     return progress;
@@ -54,6 +60,10 @@
         tableView.delegate = self;
         tableView.scrollEnabled = NO;
         tableView.rowHeight = 98.f;
+        
+        // remove the extra separators under the table view
+        tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
+        
         [tableView reloadData];
     });
 }
@@ -75,6 +85,7 @@
     _tableView.delegate = _originalDelegate;
     _tableView.dataSource = _originalDataSource;
     _tableView.rowHeight = _originalRowHeight;
+    _tableView.tableFooterView = _originalFooterView;
 }
 
 @end

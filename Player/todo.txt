@@ -7,6 +7,8 @@ https://github.com/CEWendel/SWTableViewCell
 test migration @ veronika's iphone
 flatten migration sequence to the latest model
 
+update the now playing info on position change (e.g. going back)
+
 long term:
 refactor the "Activity View" to use MVVM
 set allowsCellularAccess based on a configuration setting

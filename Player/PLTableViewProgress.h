@@ -8,4 +8,6 @@
  */
 + (PLTableViewProgress *)showInTableView:(UITableView *)tableView;
 
++ (PLTableViewProgress *)showInTableView:(UITableView *)tableView afterGraceTime:(NSTimeInterval)graceTime;
+
 @end
