@@ -22,8 +22,12 @@
 - (NSUInteger)cellsCount;
 - (NSString *)cellIdentifier;
 - (CGFloat)cellHeight;
+- (UITableViewCellEditingStyle)cellEditingStyle;
 - (PLPodcastCellViewModel *)cellViewModelAt:(NSIndexPath *)indexPath;;
+- (void)selectAt:(NSIndexPath *)indexPath;
+- (void)removeAt:(NSIndexPath *)indexPath;
 
 - (void)setSearchTermSignal:(RACSignal *)searchTermSignal;
+- (RACSignal *)updatesSignal;
 
 @end

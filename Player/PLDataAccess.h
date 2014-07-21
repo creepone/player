@@ -44,6 +44,11 @@ extern NSString * const PLSelectedPlaylistChange;
 - (PLBookmark *)createBookmarkAtPosition:(NSTimeInterval)position forTrack:(PLTrack *)track;
 
 /**
+ Creates and delivers a podcast pin created from the given podcast.
+ */
+- (PLPodcastPin *)createPodcastPin:(PLPodcast *)podcast;
+
+/**
  Delivers the first playlist with the given name, if one exists. Otherwise, nil is returned.
  */
 - (PLPlaylist *)findPlaylistWithName:(NSString *)name;
@@ -69,9 +74,24 @@ extern NSString * const PLSelectedPlaylistChange;
 - (PLTrack *)findTrackWithObjectID:(NSString *)objectID;
 
 /**
+ Delivers a podcast pin with the given feed URL, if any exists, nil otherwise.
+ */
+- (PLPodcastPin *)findPodcastPinWithFeedURL:(NSString *)feedURL;
+
+/**
  Returns YES if there is a track with the given file path.
  */
 - (BOOL)existsTrackWithFilePath:(NSString *)filePath;
+
+/**
+ Returns YES if there is a podcast pin with the given feed URL.
+ */
+- (BOOL)existsPodcastPinWithFeedURL:(NSString *)feedURL;
+
+/**
+ Returns the highest value of the order property amongst existing podcast pins
+ */
+- (NSNumber *)findHighestPodcastPinOrder;
 
 /**
  Delivers the first found track (or nil if none found) with a persistentId without a file URL (i.e. a track yet to be mirrored)
@@ -86,6 +106,7 @@ extern NSString * const PLSelectedPlaylistChange;
 - (NSFetchedResultsController *)fetchedResultsControllerForAllPlaylists;
 - (NSFetchedResultsController *)fetchedResultsControllerForAllBookmarks;
 - (NSFetchedResultsController *)fetchedResultsControllerForSongsOfPlaylist:(PLPlaylist *)playlist;
+- (NSFetchedResultsController *)fetchedResultsControllerForAllPodcastPins;
 
 - (NSArray *)allEntities:(NSString *)entityName;
 - (NSArray *)allEntities:(NSString *)entityName sortedBy:(NSString *)key;

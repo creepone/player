@@ -3,10 +3,13 @@
 #import "PLPodcastsViewModel.h"
 #import "PLTableViewProgress.h"
 #import "PLPodcastCell.h"
+#import "UITableView+PLExtensions.h"
+#import "PLUtils.h"
 
 @interface PLPodcastsViewController () <UISearchDisplayDelegate> {
     PLTableViewProgress *_searchingProgress;
     RACSubject *_searchTermSubject;
+    BOOL _isVisible;
 }
 
 @end
@@ -23,15 +26,30 @@
     [self setupBindings];
 }
 
-- (void)viewWillAppear:(BOOL)animated
+- (void)viewDidAppear:(BOOL)animated
 {
-    [super viewWillAppear:animated];
+    [super viewDidAppear:animated];
     [self.tableView reloadData];
+    _isVisible = YES;
+}
+
+- (void)viewWillDisappear:(BOOL)animated
+{
+    [super viewWillDisappear:animated];
+    _isVisible = NO;
 }
 
 - (void)setupBindings
 {
-    [self rac_liftSelector:@selector(setSearching:) withSignals:[RACObserve(self.viewModel, isSearching) takeUntil:self.rac_willDeallocSignal], nil];
+    @weakify(self);
+    
+    [self rac_liftSelector:@selector(setSearching:) withSignals:[[RACObserve(self.viewModel, isSearching) distinctUntilChanged] takeUntil:self.rac_willDeallocSignal], nil];
+    [[[RACObserve(self.viewModel, isShowingSearch) filter:[PLUtils isFalsePredicate]] takeUntil:self.rac_willDeallocSignal] subscribeNext:^(id _) { @strongify(self); [self hideSearch]; }];
+    
+    [_viewModel.updatesSignal subscribeNext:^(NSArray *updates) { @strongify(self);
+        if (self && self->_isVisible && !self.viewModel.isShowingSearch)
+            [self.tableView pl_applyUpdates:updates];
+    }];
 }
 
 - (void)setSearching:(BOOL)searching
@@ -42,6 +60,12 @@
     
     if (!searching)
         [searchTableView reloadData];
+}
+
+- (void)hideSearch
+{
+    if ([self.searchDisplayController isActive])
+        [self.searchDisplayController setActive:NO animated:YES];
 }
 
 - (IBAction)tappedDone:(id)sender
@@ -79,6 +103,24 @@
     return cell;
 }
 
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    [self.viewModel selectAt:indexPath];
+}
+
+- (UITableViewCellEditingStyle)tableView:(UITableView *)tableView editingStyleForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return [self.viewModel cellEditingStyle];
+}
+
+- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if (editingStyle == UITableViewCellEditingStyleDelete) {
+        [self.viewModel removeAt:indexPath];
+    }
+}
+
 #pragma mark -- Search display delegate 
 
 - (void)searchDisplayController:(UISearchDisplayController *)controller didLoadSearchResultsTableView:(UITableView *)tableView
@@ -102,10 +144,11 @@
     [self.viewModel setSearchTermSignal:_searchTermSubject];
 }
 
-- (void)searchDisplayControllerWillEndSearch:(UISearchDisplayController *)controller
+- (void)searchDisplayControllerDidEndSearch:(UISearchDisplayController *)controller
 {
     _searchTermSubject = nil;
     self.viewModel.isShowingSearch = NO;
+    [self.tableView reloadData];
 }
 
 @end

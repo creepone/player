@@ -3,6 +3,7 @@
 #import "PLServiceContainer.h"
 #import "PLNetworkManager.h"
 #import "PLPodcast.h"
+#import "PLDataAccess.h"
 
 @implementation PLPodcastsManager
 
@@ -11,6 +12,8 @@
     NSString *escapedSearchTerm = [[searchTerm stringByReplacingOccurrencesOfString:@" " withString:@"+"] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
     NSString *searchURLString = [NSString stringWithFormat:@"https://itunes.apple.com/search?term=%@&media=podcast", escapedSearchTerm];
 
+    PLDataAccess *dataAccess = [PLDataAccess sharedDataAccess];
+    
     return [[PLResolve(PLNetworkManager) getJSONFromURL:[NSURL URLWithString:searchURLString]] map:^id(id json) {
         NSMutableArray *podcasts = [NSMutableArray array];
         
@@ -26,6 +29,7 @@
                     podcast.artist = podcastJson[@"artistName"];
                     podcast.feedURL = [NSURL URLWithString:podcastJson[@"feedUrl"]];
                     podcast.artworkURL = [NSURL URLWithString:podcastJson[@"artworkUrl100"]];
+                    podcast.pinned = [dataAccess existsPodcastPinWithFeedURL:podcastJson[@"feedUrl"]];
                     [podcasts addObject:podcast];
                 }
             }

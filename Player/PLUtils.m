@@ -98,6 +98,11 @@
     return ^BOOL(id value) { return [value boolValue]; };
 }
 
++ (PLPredicate)isFalsePredicate
+{
+    return ^BOOL(id value) { return ![value boolValue]; };
+}
+
 + (NSString *)generateUuid
 {
     // create a new UUID which you own

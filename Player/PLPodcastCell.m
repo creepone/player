@@ -9,7 +9,6 @@
 @property (strong, nonatomic) IBOutlet UIImageView *imageViewArtwork;
 @property (strong, nonatomic) IBOutlet UILabel *labelTitle;
 @property (strong, nonatomic) IBOutlet UILabel *labelArtist;
-@property (strong, nonatomic) IBOutlet UILabel *labelInfo;
 
 @end
 
@@ -32,7 +31,12 @@
     [observer addKeyPath:@keypath(_viewModel.titleText) handler:^(id value) { @strongify(self); self.labelTitle.text = value; }];
     [observer addKeyPath:@keypath(_viewModel.artistText) handler:^(id value) { @strongify(self); self.labelArtist.text = value; }];
     [observer addKeyPath:@keypath(_viewModel.imageArtwork) handler:^(id value) { @strongify(self); self.imageViewArtwork.image = value; }];
-    [observer addKeyPath:@keypath(_viewModel.infoText) handler:^(id value) { @strongify(self); self.labelInfo.attributedText = value; }];
+    [observer addKeyPath:@keypath(_viewModel.alpha) handler:^(id value) { @strongify(self);
+        CGFloat alpha = [value floatValue];
+        self.labelTitle.alpha = alpha;
+        self.labelArtist.alpha = alpha;
+        self.imageViewArtwork.alpha = alpha;
+    }];
     
     _viewModelObserver = observer;
 }

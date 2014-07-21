@@ -6,5 +6,6 @@
 @dynamic downloadURL;
 @dynamic guid;
 @dynamic podcastPin;
+@dynamic order;
 
 @end

@@ -64,9 +64,6 @@
 		C34BD654197BAC09007138B8 /* PLNetworkManager.m in Sources */ = {isa = PBXBuildFile; fileRef = C34BD653197BAC09007138B8 /* PLNetworkManager.m */; };
 		C34BD658197BBE55007138B8 /* PLPodcastOldEpisode.m in Sources */ = {isa = PBXBuildFile; fileRef = C34BD657197BBE55007138B8 /* PLPodcastOldEpisode.m */; };
 		C34BD65B197BBE56007138B8 /* PLPodcastPin.m in Sources */ = {isa = PBXBuildFile; fileRef = C34BD65A197BBE56007138B8 /* PLPodcastPin.m */; };
-		C34BD65D197BC018007138B8 /* Mapping1_4.xcmappingmodel in Sources */ = {isa = PBXBuildFile; fileRef = C34BD65C197BC018007138B8 /* Mapping1_4.xcmappingmodel */; };
-		C34BD65F197BC034007138B8 /* Mapping2_4.xcmappingmodel in Sources */ = {isa = PBXBuildFile; fileRef = C34BD65E197BC034007138B8 /* Mapping2_4.xcmappingmodel */; };
-		C34BD661197BC05A007138B8 /* Mapping3_4.xcmappingmodel in Sources */ = {isa = PBXBuildFile; fileRef = C34BD660197BC05A007138B8 /* Mapping3_4.xcmappingmodel */; };
 		C34BD66C197BC2EA007138B8 /* Podcasts.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C34BD66B197BC2EA007138B8 /* Podcasts.storyboard */; };
 		C34BD670197BC379007138B8 /* PLPodcastsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C34BD66F197BC379007138B8 /* PLPodcastsViewController.m */; };
 		C34BD674197BC3E3007138B8 /* PLPodcastsViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = C34BD673197BC3E3007138B8 /* PLPodcastsViewModel.m */; };
@@ -74,6 +71,10 @@
 		C34BD67A197BDFBF007138B8 /* PLPodcast.m in Sources */ = {isa = PBXBuildFile; fileRef = C34BD679197BDFBF007138B8 /* PLPodcast.m */; };
 		C34BD67E197BF353007138B8 /* PLPodcastCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C34BD67D197BF353007138B8 /* PLPodcastCell.m */; };
 		C34BD681197BF3D2007138B8 /* PLPodcastCellViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = C34BD680197BF3D2007138B8 /* PLPodcastCellViewModel.m */; };
+		C34BD684197D7164007138B8 /* Mapping1_5.xcmappingmodel in Sources */ = {isa = PBXBuildFile; fileRef = C34BD683197D7164007138B8 /* Mapping1_5.xcmappingmodel */; };
+		C34BD686197D7172007138B8 /* Mapping2_5.xcmappingmodel in Sources */ = {isa = PBXBuildFile; fileRef = C34BD685197D7172007138B8 /* Mapping2_5.xcmappingmodel */; };
+		C34BD688197D717E007138B8 /* Mapping3_5.xcmappingmodel in Sources */ = {isa = PBXBuildFile; fileRef = C34BD687197D717E007138B8 /* Mapping3_5.xcmappingmodel */; };
+		C34BD68A197D718D007138B8 /* Mapping4_5.xcmappingmodel in Sources */ = {isa = PBXBuildFile; fileRef = C34BD689197D718D007138B8 /* Mapping4_5.xcmappingmodel */; };
 		C3544850165922C80083D703 /* SliderCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C354484F165922C80083D703 /* SliderCell.m */; };
 		C378CD76194C505A001D0593 /* PLRouter.m in Sources */ = {isa = PBXBuildFile; fileRef = C378CD75194C505A001D0593 /* PLRouter.m */; };
 		C378CD78194C51D5001D0593 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C378CD77194C51D5001D0593 /* Main.storyboard */; };
@@ -282,9 +283,6 @@
 		C34BD657197BBE55007138B8 /* PLPodcastOldEpisode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PLPodcastOldEpisode.m; sourceTree = "<group>"; };
 		C34BD659197BBE56007138B8 /* PLPodcastPin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PLPodcastPin.h; sourceTree = "<group>"; };
 		C34BD65A197BBE56007138B8 /* PLPodcastPin.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PLPodcastPin.m; sourceTree = "<group>"; };
-		C34BD65C197BC018007138B8 /* Mapping1_4.xcmappingmodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcmappingmodel; path = Mapping1_4.xcmappingmodel; sourceTree = "<group>"; };
-		C34BD65E197BC034007138B8 /* Mapping2_4.xcmappingmodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcmappingmodel; path = Mapping2_4.xcmappingmodel; sourceTree = "<group>"; };
-		C34BD660197BC05A007138B8 /* Mapping3_4.xcmappingmodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcmappingmodel; path = Mapping3_4.xcmappingmodel; sourceTree = "<group>"; };
 		C34BD66B197BC2EA007138B8 /* Podcasts.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Podcasts.storyboard; sourceTree = "<group>"; };
 		C34BD66E197BC379007138B8 /* PLPodcastsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PLPodcastsViewController.h; path = Player/PLPodcastsViewController.h; sourceTree = "<group>"; };
 		C34BD66F197BC379007138B8 /* PLPodcastsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PLPodcastsViewController.m; path = Player/PLPodcastsViewController.m; sourceTree = "<group>"; };
@@ -298,6 +296,11 @@
 		C34BD67D197BF353007138B8 /* PLPodcastCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PLPodcastCell.m; path = Player/PLPodcastCell.m; sourceTree = "<group>"; };
 		C34BD67F197BF3D2007138B8 /* PLPodcastCellViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PLPodcastCellViewModel.h; path = Player/PLPodcastCellViewModel.h; sourceTree = "<group>"; };
 		C34BD680197BF3D2007138B8 /* PLPodcastCellViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PLPodcastCellViewModel.m; path = Player/PLPodcastCellViewModel.m; sourceTree = "<group>"; };
+		C34BD682197D701A007138B8 /* Model 5.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "Model 5.xcdatamodel"; sourceTree = "<group>"; };
+		C34BD683197D7164007138B8 /* Mapping1_5.xcmappingmodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcmappingmodel; path = Mapping1_5.xcmappingmodel; sourceTree = "<group>"; };
+		C34BD685197D7172007138B8 /* Mapping2_5.xcmappingmodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcmappingmodel; path = Mapping2_5.xcmappingmodel; sourceTree = "<group>"; };
+		C34BD687197D717E007138B8 /* Mapping3_5.xcmappingmodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcmappingmodel; path = Mapping3_5.xcmappingmodel; sourceTree = "<group>"; };
+		C34BD689197D718D007138B8 /* Mapping4_5.xcmappingmodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcmappingmodel; path = Mapping4_5.xcmappingmodel; sourceTree = "<group>"; };
 		C354484E165922C80083D703 /* SliderCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SliderCell.h; sourceTree = "<group>"; };
 		C354484F165922C80083D703 /* SliderCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SliderCell.m; sourceTree = "<group>"; };
 		C378CD74194C505A001D0593 /* PLRouter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PLRouter.h; sourceTree = "<group>"; };
@@ -1391,9 +1394,10 @@
 		C3CC2CF4197A99B40013FC57 /* Mappings */ = {
 			isa = PBXGroup;
 			children = (
-				C34BD65C197BC018007138B8 /* Mapping1_4.xcmappingmodel */,
-				C34BD65E197BC034007138B8 /* Mapping2_4.xcmappingmodel */,
-				C34BD660197BC05A007138B8 /* Mapping3_4.xcmappingmodel */,
+				C34BD683197D7164007138B8 /* Mapping1_5.xcmappingmodel */,
+				C34BD685197D7172007138B8 /* Mapping2_5.xcmappingmodel */,
+				C34BD687197D717E007138B8 /* Mapping3_5.xcmappingmodel */,
+				C34BD689197D718D007138B8 /* Mapping4_5.xcmappingmodel */,
 			);
 			name = Mappings;
 			sourceTree = "<group>";
@@ -1623,11 +1627,11 @@
 				C3BC5A991656B959002DA837 /* PLPlaylistViewController.m in Sources */,
 				C3CC2CC1197A56210013FC57 /* PLFileSharingViewModel.m in Sources */,
 				C3BC5AB21656C284002DA837 /* PLPlayerViewController.m in Sources */,
+				C34BD688197D717E007138B8 /* Mapping3_5.xcmappingmodel in Sources */,
 				C3BC5ABD1656C4E7002DA837 /* PLBookmarksViewController.m in Sources */,
 				C3CC2CC4197A56E70013FC57 /* PLFileSharingCellViewModel.m in Sources */,
 				C34BD67A197BDFBF007138B8 /* PLPodcast.m in Sources */,
 				C3CC2C8D19713EEC0013FC57 /* PLCloudImport.m in Sources */,
-				C34BD661197BC05A007138B8 /* Mapping3_4.xcmappingmodel in Sources */,
 				C3CC2CC7197A59E70013FC57 /* PLFileSharingManager.m in Sources */,
 				C3BC5AC21656C4EF002DA837 /* PLSettingsViewController.m in Sources */,
 				C3CC2CAF19797EA90013FC57 /* PLNowPlayingManager.m in Sources */,
@@ -1636,16 +1640,15 @@
 				C3BC5AD61656CA4E002DA837 /* PLPlaylist.m in Sources */,
 				C3BC5ADC1656CA4E002DA837 /* PLPlaylistSong.m in Sources */,
 				C3BC5ADF1656CA73002DA837 /* PLCoreDataStack.m in Sources */,
-				C34BD65F197BC034007138B8 /* Mapping2_4.xcmappingmodel in Sources */,
 				C3BC5AE21656CACC002DA837 /* PLDataAccess.m in Sources */,
 				C34BD681197BF3D2007138B8 /* PLPodcastCellViewModel.m in Sources */,
 				C3BC5AE71656CC24002DA837 /* PLMigrationManager.m in Sources */,
 				C34BD674197BC3E3007138B8 /* PLPodcastsViewModel.m in Sources */,
 				C3BC5AEB1656CCC9002DA837 /* PLDefaultsManager.m in Sources */,
 				C378CD80194C61CF001D0593 /* PLPlaylistSongCell.m in Sources */,
+				C34BD68A197D718D007138B8 /* Mapping4_5.xcmappingmodel in Sources */,
 				C3BC5B011658DE07002DA837 /* PLAlerts.m in Sources */,
 				C378CDD6195F0EF4001D0593 /* PLTrackCellViewModel.m in Sources */,
-				C34BD65D197BC018007138B8 /* Mapping1_4.xcmappingmodel in Sources */,
 				C3BC5B041658E76A002DA837 /* NSString+Extensions.m in Sources */,
 				C378CD7C194C52A6001D0593 /* PLPlaylistSongsViewController.m in Sources */,
 				C3BC5B14165912F6002DA837 /* PLPlayer.m in Sources */,
@@ -1678,6 +1681,7 @@
 				C33820011967220200DA2B7B /* DBRestClient+RACSignalSupport.m in Sources */,
 				C384009B193879E600D6A930 /* PLTrack.m in Sources */,
 				696C1C38A95357371CFEE558 /* PLDownloadURLActivity.m in Sources */,
+				C34BD686197D7172007138B8 /* Mapping2_5.xcmappingmodel in Sources */,
 				C3CC2C9219718A190013FC57 /* PLGDrivePathAsset.m in Sources */,
 				C3381F9A19609F8600DA2B7B /* PLDropboxManager.m in Sources */,
 				696C1F9C8C8A7886A8530949 /* PLDownloadPodcastActivity.m in Sources */,
@@ -1689,6 +1693,7 @@
 				696C197C7FC7F02EAB520C14 /* PLUtils.m in Sources */,
 				C3CC2C9619728FDB0013FC57 /* PLDownloadFromOneDriveActivity.m in Sources */,
 				696C1B8D690CECA9499F257E /* PLMediaLibrarySearch.m in Sources */,
+				C34BD684197D7164007138B8 /* Mapping1_5.xcmappingmodel in Sources */,
 				C3381FF719670E6600DA2B7B /* PLCloudItemsViewController.m in Sources */,
 				696C177E0F2230FE3DDA991B /* PLMediaItemTrackGroup.m in Sources */,
 				C34BD670197BC379007138B8 /* PLPodcastsViewController.m in Sources */,
@@ -1986,12 +1991,13 @@
 		C3BC5ACB1656C81C002DA837 /* Model.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
+				C34BD682197D701A007138B8 /* Model 5.xcdatamodel */,
 				C34BD655197BBD6E007138B8 /* Model 4.xcdatamodel */,
 				C3CC2CFC197AB32B0013FC57 /* Model 3.xcdatamodel */,
 				C3CC2CF3197A99670013FC57 /* Model 2.xcdatamodel */,
 				C3BC5ACC1656C81C002DA837 /* Model.xcdatamodel */,
 			);
-			currentVersion = C34BD655197BBD6E007138B8 /* Model 4.xcdatamodel */;
+			currentVersion = C34BD682197D701A007138B8 /* Model 5.xcdatamodel */;
 			path = Model.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;

@@ -7,7 +7,7 @@
 #import "PLFetchedResultsControllerDelegate.h"
 #import "PLRouter.h"
 
-@interface PLPlaylistSongsViewModel() <NSFetchedResultsControllerDelegate> {
+@interface PLPlaylistSongsViewModel() {
     NSFetchedResultsController *_fetchedResultsController;
     PLFetchedResultsControllerDelegate *_fetchedResultsControllerDelegate;
 }
@@ -34,8 +34,7 @@
 
 - (NSUInteger)songsCount
 {
-    id <NSFetchedResultsSectionInfo> sectionInfo = [[_fetchedResultsController sections] objectAtIndex:0];
-    return [sectionInfo numberOfObjects];
+    return [_fetchedResultsController.sections[0] numberOfObjects];
 }
 
 - (PLPlaylistSongCellViewModel *)songViewModelAt:(NSIndexPath *)indexPath

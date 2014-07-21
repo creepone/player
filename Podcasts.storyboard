@@ -22,91 +22,51 @@
                             </connections>
                         </searchBar>
                         <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="podcastCell" rowHeight="96" id="sBW-hx-HUC" customClass="PLPodcastCell">
-                                <rect key="frame" x="0.0" y="130" width="320" height="96"/>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="podcastCell" rowHeight="60" id="waY-Zl-c5J" customClass="PLPodcastCell">
+                                <rect key="frame" x="0.0" y="130" width="320" height="60"/>
                                 <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="sBW-hx-HUC" id="6lv-XF-YY2">
-                                    <rect key="frame" x="0.0" y="0.0" width="320" height="95"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="waY-Zl-c5J" id="POX-gv-UA1">
+                                    <rect key="frame" x="0.0" y="0.0" width="320" height="59"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="DefaultArtwork" translatesAutoresizingMaskIntoConstraints="NO" id="O3D-0h-epN">
-                                            <rect key="frame" x="4" y="4" width="88" height="88"/>
-                                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="DefaultArtwork" translatesAutoresizingMaskIntoConstraints="NO" id="xHk-6B-bmE">
+                                            <rect key="frame" x="4" y="4" width="49" height="49"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <constraints>
-                                                <constraint firstAttribute="height" constant="88" id="euU-vN-KHA"/>
-                                                <constraint firstAttribute="width" constant="88" id="gsL-y7-Mfp"/>
+                                                <constraint firstAttribute="height" constant="49" id="5Pt-4O-mvv"/>
+                                                <constraint firstAttribute="width" constant="49" id="IHm-Is-BbQ"/>
                                             </constraints>
                                         </imageView>
-                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="The Fountainhead" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="R36-3R-q3X">
-                                            <rect key="frame" x="104" y="19" width="206" height="21"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                            <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
-                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Ayn Rand" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vsN-oB-wCF">
-                                            <rect key="frame" x="104" y="39" width="206" height="18"/>
+                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="The Fountainhead" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pKn-MF-H7H">
+                                            <rect key="frame" x="61" y="12" width="249" height="18"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="drQ-Rp-kf9">
-                                            <rect key="frame" x="104" y="55" width="206" height="24"/>
+                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Ayn Rand" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TRr-8l-vBu">
+                                            <rect key="frame" x="61" y="30" width="249" height="15"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                            <attributedString key="attributedText">
-                                                <fragment content="10">
-                                                    <attributes>
-                                                        <color key="NSColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
-                                                        <font key="NSFont" size="13" name="HelveticaNeue-Bold"/>
-                                                        <font key="NSOriginalFont" size="13" name="HelveticaNeue-Bold"/>
-                                                        <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
-                                                    </attributes>
-                                                </fragment>
-                                                <fragment content=" tracks, ">
-                                                    <attributes>
-                                                        <color key="NSColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
-                                                        <font key="NSFont" size="13" name="HelveticaNeue"/>
-                                                        <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
-                                                    </attributes>
-                                                </fragment>
-                                                <fragment content="2:20">
-                                                    <attributes>
-                                                        <color key="NSColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
-                                                        <font key="NSFont" size="13" name="HelveticaNeue-Bold"/>
-                                                        <font key="NSOriginalFont" size="13" name="HelveticaNeue-Bold"/>
-                                                        <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
-                                                    </attributes>
-                                                </fragment>
-                                                <fragment content=" hrs">
-                                                    <attributes>
-                                                        <color key="NSColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
-                                                        <font key="NSFont" size="13" name="HelveticaNeue"/>
-                                                        <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
-                                                    </attributes>
-                                                </fragment>
-                                            </attributedString>
+                                            <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                     </subviews>
                                     <constraints>
-                                        <constraint firstItem="O3D-0h-epN" firstAttribute="leading" secondItem="6lv-XF-YY2" secondAttribute="leading" constant="4" id="2i3-M8-hY8"/>
-                                        <constraint firstAttribute="trailing" secondItem="R36-3R-q3X" secondAttribute="trailing" constant="10" id="9Ik-Nx-bXz"/>
-                                        <constraint firstItem="R36-3R-q3X" firstAttribute="leading" secondItem="O3D-0h-epN" secondAttribute="trailing" constant="12" id="9Q9-ov-1qD"/>
-                                        <constraint firstItem="drQ-Rp-kf9" firstAttribute="top" secondItem="vsN-oB-wCF" secondAttribute="bottom" constant="-2" id="DVW-e1-C3s"/>
-                                        <constraint firstItem="O3D-0h-epN" firstAttribute="top" secondItem="6lv-XF-YY2" secondAttribute="top" constant="4" id="GZw-GU-QHs"/>
-                                        <constraint firstItem="drQ-Rp-kf9" firstAttribute="leading" secondItem="O3D-0h-epN" secondAttribute="trailing" constant="12" id="Gfg-8F-Vjr"/>
-                                        <constraint firstItem="vsN-oB-wCF" firstAttribute="leading" secondItem="O3D-0h-epN" secondAttribute="trailing" constant="12" id="M7N-Jd-nT9"/>
-                                        <constraint firstAttribute="bottom" secondItem="drQ-Rp-kf9" secondAttribute="bottom" constant="16" id="Vt3-7d-K94"/>
-                                        <constraint firstAttribute="trailing" secondItem="drQ-Rp-kf9" secondAttribute="trailing" constant="10" id="aCR-mF-g9S"/>
-                                        <constraint firstItem="R36-3R-q3X" firstAttribute="top" secondItem="6lv-XF-YY2" secondAttribute="top" constant="19" id="ek4-dZ-mfo"/>
-                                        <constraint firstItem="vsN-oB-wCF" firstAttribute="top" secondItem="R36-3R-q3X" secondAttribute="bottom" constant="-1" id="fZR-Wn-nJL"/>
-                                        <constraint firstAttribute="trailing" secondItem="vsN-oB-wCF" secondAttribute="trailing" constant="10" id="spg-Bg-3jW"/>
+                                        <constraint firstItem="xHk-6B-bmE" firstAttribute="leading" secondItem="POX-gv-UA1" secondAttribute="leading" constant="4" id="4UI-5J-liy"/>
+                                        <constraint firstItem="pKn-MF-H7H" firstAttribute="leading" secondItem="xHk-6B-bmE" secondAttribute="trailing" constant="8" id="TLB-HG-Xxy"/>
+                                        <constraint firstItem="TRr-8l-vBu" firstAttribute="top" secondItem="pKn-MF-H7H" secondAttribute="bottom" id="Wqc-st-KrK"/>
+                                        <constraint firstItem="pKn-MF-H7H" firstAttribute="top" secondItem="POX-gv-UA1" secondAttribute="top" constant="12" id="a5I-aU-m5I"/>
+                                        <constraint firstAttribute="trailing" secondItem="TRr-8l-vBu" secondAttribute="trailing" constant="10" id="bD1-zA-qJp"/>
+                                        <constraint firstAttribute="trailing" secondItem="pKn-MF-H7H" secondAttribute="trailing" constant="10" id="bfJ-o8-1mN"/>
+                                        <constraint firstItem="TRr-8l-vBu" firstAttribute="leading" secondItem="xHk-6B-bmE" secondAttribute="trailing" constant="8" id="msS-GE-Ka1"/>
+                                        <constraint firstItem="xHk-6B-bmE" firstAttribute="top" secondItem="POX-gv-UA1" secondAttribute="top" constant="4" id="wQ0-RC-ib3"/>
                                     </constraints>
                                 </tableViewCellContentView>
                                 <connections>
-                                    <outlet property="imageViewArtwork" destination="O3D-0h-epN" id="kf2-zB-Pc8"/>
-                                    <outlet property="labelArtist" destination="vsN-oB-wCF" id="b8V-ne-4LR"/>
-                                    <outlet property="labelInfo" destination="drQ-Rp-kf9" id="37O-oi-e7E"/>
-                                    <outlet property="labelTitle" destination="R36-3R-q3X" id="c8v-vU-kcp"/>
+                                    <outlet property="imageViewArtwork" destination="xHk-6B-bmE" id="K9P-77-zFg"/>
+                                    <outlet property="labelArtist" destination="TRr-8l-vBu" id="2ye-cF-ycT"/>
+                                    <outlet property="labelTitle" destination="pKn-MF-H7H" id="hHw-5W-4QZ"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
