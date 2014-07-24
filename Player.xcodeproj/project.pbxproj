@@ -75,6 +75,7 @@
 		C34BD686197D7172007138B8 /* Mapping2_5.xcmappingmodel in Sources */ = {isa = PBXBuildFile; fileRef = C34BD685197D7172007138B8 /* Mapping2_5.xcmappingmodel */; };
 		C34BD688197D717E007138B8 /* Mapping3_5.xcmappingmodel in Sources */ = {isa = PBXBuildFile; fileRef = C34BD687197D717E007138B8 /* Mapping3_5.xcmappingmodel */; };
 		C34BD68A197D718D007138B8 /* Mapping4_5.xcmappingmodel in Sources */ = {isa = PBXBuildFile; fileRef = C34BD689197D718D007138B8 /* Mapping4_5.xcmappingmodel */; };
+		C34BD68D198023A1007138B8 /* PLPodcastsSearchViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = C34BD68C198023A1007138B8 /* PLPodcastsSearchViewModel.m */; };
 		C3544850165922C80083D703 /* SliderCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C354484F165922C80083D703 /* SliderCell.m */; };
 		C378CD76194C505A001D0593 /* PLRouter.m in Sources */ = {isa = PBXBuildFile; fileRef = C378CD75194C505A001D0593 /* PLRouter.m */; };
 		C378CD78194C51D5001D0593 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C378CD77194C51D5001D0593 /* Main.storyboard */; };
@@ -301,6 +302,8 @@
 		C34BD685197D7172007138B8 /* Mapping2_5.xcmappingmodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcmappingmodel; path = Mapping2_5.xcmappingmodel; sourceTree = "<group>"; };
 		C34BD687197D717E007138B8 /* Mapping3_5.xcmappingmodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcmappingmodel; path = Mapping3_5.xcmappingmodel; sourceTree = "<group>"; };
 		C34BD689197D718D007138B8 /* Mapping4_5.xcmappingmodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcmappingmodel; path = Mapping4_5.xcmappingmodel; sourceTree = "<group>"; };
+		C34BD68B198023A1007138B8 /* PLPodcastsSearchViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PLPodcastsSearchViewModel.h; path = Player/PLPodcastsSearchViewModel.h; sourceTree = "<group>"; };
+		C34BD68C198023A1007138B8 /* PLPodcastsSearchViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PLPodcastsSearchViewModel.m; path = Player/PLPodcastsSearchViewModel.m; sourceTree = "<group>"; };
 		C354484E165922C80083D703 /* SliderCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SliderCell.h; sourceTree = "<group>"; };
 		C354484F165922C80083D703 /* SliderCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SliderCell.m; sourceTree = "<group>"; };
 		C378CD74194C505A001D0593 /* PLRouter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PLRouter.h; sourceTree = "<group>"; };
@@ -756,6 +759,8 @@
 				C34BD673197BC3E3007138B8 /* PLPodcastsViewModel.m */,
 				C34BD67F197BF3D2007138B8 /* PLPodcastCellViewModel.h */,
 				C34BD680197BF3D2007138B8 /* PLPodcastCellViewModel.m */,
+				C34BD68B198023A1007138B8 /* PLPodcastsSearchViewModel.h */,
+				C34BD68C198023A1007138B8 /* PLPodcastsSearchViewModel.m */,
 			);
 			name = ViewModel;
 			sourceTree = "<group>";
@@ -1698,6 +1703,7 @@
 				696C177E0F2230FE3DDA991B /* PLMediaItemTrackGroup.m in Sources */,
 				C34BD670197BC379007138B8 /* PLPodcastsViewController.m in Sources */,
 				696C13068CF01B07191595AB /* PLImageCache.m in Sources */,
+				C34BD68D198023A1007138B8 /* PLPodcastsSearchViewModel.m in Sources */,
 				696C153A17367E75E95611F2 /* PLCachedArtwork.m in Sources */,
 				696C1B378A7D2749C756064C /* PLMediaItemTrack.m in Sources */,
 				696C1F292F5CDB0A7156E3AD /* NSObject+PLExtensions.m in Sources */,

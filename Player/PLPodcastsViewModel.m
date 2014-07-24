@@ -7,14 +7,13 @@
 #import "PLPodcast.h"
 #import "PLDataAccess.h"
 #import "PLPodcastCellViewModel.h"
+#import "PLPodcastsSearchViewModel.h"
 
 @interface PLPodcastsViewModel() {
-    RACDisposable *_searchDisposable;
     NSFetchedResultsController *_fetchedResultsController;
     PLFetchedResultsControllerDelegate *_fetchedResultsControllerDelegate;
+    PLPodcastsSearchViewModel *_searchViewModel;
 }
-
-@property (nonatomic, strong) NSArray *foundPodcasts;
 
 @end
 
@@ -24,6 +23,7 @@
 {
     self = [super init];
     if (self) {
+        _searchViewModel = [PLPodcastsSearchViewModel new];
         _fetchedResultsController = [[PLDataAccess sharedDataAccess] fetchedResultsControllerForAllPodcastPins];
         _fetchedResultsControllerDelegate = [[PLFetchedResultsControllerDelegate alloc] initWithFetchedResultsController:_fetchedResultsController];
         
@@ -35,48 +35,13 @@
     return self;
 }
 
-- (void)setIsShowingSearch:(BOOL)isShowingSearch
+- (PLPodcastsSearchViewModel *)searchViewModel
 {
-    _isShowingSearch = isShowingSearch;
-    
-    if (!isShowingSearch) {
-        [_searchDisposable dispose];
-        _searchDisposable = nil;
-        self.isSearching = NO;
-    }
+    return _searchViewModel;
 }
-
-- (void)setSearchTermSignal:(RACSignal *)searchTermSignal
-{
-    [_searchDisposable dispose];
-    
-    @weakify(self);
-    _searchDisposable = [[[[[searchTermSignal doNext:^(id _) { @strongify(self);
-        self.isSearching = YES;
-    }]
-    throttle:0.5]
-    map:^id(NSString *searchTerm) {
-        if ([searchTerm length] == 0)
-            return [RACSignal return:[NSArray array]];
-        
-        return [[PLResolve(PLPodcastsManager) searchForPodcasts:searchTerm] catch:^RACSignal *(NSError *error) {
-            [PLErrorManager logError:error];
-            return [RACSignal return:[NSArray array]];
-        }];
-    }] switchToLatest]
-    subscribeNext:^(NSArray *podcasts) { @strongify(self);
-        self.foundPodcasts = podcasts;
-        self.isSearching = NO;
-    }];
-}
-
-
 
 - (NSUInteger)cellsCount
 {
-    if (self.isShowingSearch)
-        return [self.foundPodcasts count];
-    
     return [_fetchedResultsController.sections[0] numberOfObjects];
 }
 
@@ -92,37 +57,22 @@
 
 - (UITableViewCellEditingStyle)cellEditingStyle
 {
-    return self.isShowingSearch ? UITableViewCellEditingStyleNone : UITableViewCellEditingStyleDelete;
+    return UITableViewCellEditingStyleDelete;
 }
 
 - (PLPodcastCellViewModel *)cellViewModelAt:(NSIndexPath *)indexPath
 {
-    if (self.isShowingSearch) {
-        PLPodcast *podcast = self.foundPodcasts[indexPath.row];
-        return [[PLPodcastCellViewModel alloc] initWithPodcast:podcast];
-    }
-    
     PLPodcastPin *podcastPin = [_fetchedResultsController objectAtIndexPath:indexPath];
     return [[PLPodcastCellViewModel alloc] initWithPodcastPin:podcastPin];
 }
 
 - (void)selectAt:(NSIndexPath *)indexPath
 {
-    if (self.isShowingSearch) {
-        PLDataAccess *dataAccess = [PLDataAccess sharedDataAccess];
-        PLPodcast *podcast = self.foundPodcasts[indexPath.row];
-        PLPodcastPin *pin = podcast.pinned ? [dataAccess findPodcastPinWithFeedURL:[podcast.feedURL absoluteString]] : [dataAccess createPodcastPin:podcast];
-        pin.order = [[dataAccess findHighestPodcastPinOrder] intValue] + 1;
-        [[dataAccess saveChangesSignal] subscribeError:[PLErrorManager logErrorVoidBlock]];
-        self.isShowingSearch = NO;
-    }
+    // todo: implement
 }
 
 - (void)removeAt:(NSIndexPath *)indexPath
 {
-    if (self.isShowingSearch)
-        return;
-    
     PLDataAccess *dataAccess = [PLDataAccess sharedDataAccess];
     PLPodcastPin *podcastPin = [_fetchedResultsController objectAtIndexPath:indexPath];
     [podcastPin remove];

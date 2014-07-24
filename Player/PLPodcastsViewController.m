@@ -5,6 +5,7 @@
 #import "PLPodcastCell.h"
 #import "UITableView+PLExtensions.h"
 #import "PLUtils.h"
+#import "PLPodcastsSearchViewModel.h"
 
 @interface PLPodcastsViewController () <UISearchDisplayDelegate> {
     PLTableViewProgress *_searchingProgress;
@@ -43,11 +44,11 @@
 {
     @weakify(self);
     
-    [self rac_liftSelector:@selector(setSearching:) withSignals:[[RACObserve(self.viewModel, isSearching) distinctUntilChanged] takeUntil:self.rac_willDeallocSignal], nil];
-    [[[RACObserve(self.viewModel, isShowingSearch) filter:[PLUtils isFalsePredicate]] takeUntil:self.rac_willDeallocSignal] subscribeNext:^(id _) { @strongify(self); [self hideSearch]; }];
+    [self rac_liftSelector:@selector(setSearching:) withSignals:[[RACObserve(self.viewModel.searchViewModel, isSearching) distinctUntilChanged] takeUntil:self.rac_willDeallocSignal], nil];
+    [[self.viewModel.searchViewModel.dismissSignal takeUntil:self.rac_willDeallocSignal] subscribeNext:^(id _) { @strongify(self); [self hideSearch]; }];
     
     [_viewModel.updatesSignal subscribeNext:^(NSArray *updates) { @strongify(self);
-        if (self && self->_isVisible && !self.viewModel.isShowingSearch)
+        if (self && self->_isVisible && !self.searchDisplayController.isActive)
             [self.tableView pl_applyUpdates:updates];
     }];
 }
@@ -76,6 +77,14 @@
 
 #pragma mark -- Table view data source
 
+- (id <PLPodcastsTableViewModel>)tableViewModel:(UITableView *)tableView
+{
+    if (tableView == self.tableView)
+        return self.viewModel;
+    else
+        return self.viewModel.searchViewModel;
+}
+
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
     return 1;
@@ -83,21 +92,27 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return [self.viewModel cellsCount];
+    return [[self tableViewModel:tableView] cellsCount];
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return [self.viewModel cellHeight];
+    return [[self tableViewModel:tableView] cellHeight];
+}
+
+- (UITableViewCellEditingStyle)tableView:(UITableView *)tableView editingStyleForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return [[self tableViewModel:tableView] cellEditingStyle];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:self.viewModel.cellIdentifier];
+    NSString *cellIdentifier = [[self tableViewModel:tableView] cellIdentifier];
+    UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:cellIdentifier];
     
     if ([cell isKindOfClass:[PLPodcastCell class]]) {
         PLPodcastCell *podcastCell = (PLPodcastCell *)cell;
-        podcastCell.viewModel = [self.viewModel cellViewModelAt:indexPath];
+        podcastCell.viewModel = [[self tableViewModel:tableView] cellViewModelAt:indexPath];
     }
         
     return cell;
@@ -106,18 +121,13 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
-    [self.viewModel selectAt:indexPath];
-}
-
-- (UITableViewCellEditingStyle)tableView:(UITableView *)tableView editingStyleForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    return [self.viewModel cellEditingStyle];
+    [[self tableViewModel:tableView] selectAt:indexPath];
 }
 
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (editingStyle == UITableViewCellEditingStyleDelete) {
-        [self.viewModel removeAt:indexPath];
+        [[self tableViewModel:tableView] removeAt:indexPath];
     }
 }
 
@@ -127,7 +137,6 @@
 {
     // remove the extra separators under the table view
     tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
-    
     tableView.separatorInset = UIEdgeInsetsZero;
 }
 
@@ -140,14 +149,13 @@
 - (void)searchDisplayControllerWillBeginSearch:(UISearchDisplayController *)controller
 {
     _searchTermSubject = [RACSubject subject];
-    self.viewModel.isShowingSearch = YES;
-    [self.viewModel setSearchTermSignal:_searchTermSubject];
+    [self.viewModel.searchViewModel setSearchTermSignal:_searchTermSubject];
 }
 
 - (void)searchDisplayControllerDidEndSearch:(UISearchDisplayController *)controller
 {
     _searchTermSubject = nil;
-    self.viewModel.isShowingSearch = NO;
+    [self.viewModel.searchViewModel setSearchTermSignal:nil];
     [self.tableView reloadData];
 }
 
