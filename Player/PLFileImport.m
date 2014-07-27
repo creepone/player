@@ -9,7 +9,7 @@
 + (RACSignal *)importFile:(NSURL *)fileURL
 {
     return [[self moveToDocumentsFolder:fileURL] flattenMap:^RACStream *(NSURL *targetFileURL) {
-        PLDataAccess *dataAccess = [PLDataAccess sharedDataAccess];
+        id<PLDataAccess> dataAccess = [PLDataAccess sharedDataAccess];
         PLTrack *track = [dataAccess findOrCreateTrackWithFilePath:[PLUtils pathFromDocuments:targetFileURL]];
         PLPlaylistSong *playlistSong = [[dataAccess selectedPlaylist] addTrack:track];
         [[PLPlayer sharedPlayer] setCurrentSong:playlistSong];

@@ -7,12 +7,12 @@
 
 extern NSString * const PLSelectedPlaylistChange;
 
-@interface PLDataAccess : NSObject
+@protocol PLDataAccess <NSObject>
 
 @property (nonatomic, readonly) NSManagedObjectContext *context;
 
 /**
- Initializes a new instance of the data access. If "useNewContext" flag is set, a new managed object context will be 
+ Initializes a new instance of the data access. If "useNewContext" flag is set, a new managed object context will be
  created and used for all the queries operations etc. If the flag is not set, the global context for the application
  will be reused.
  */
@@ -26,7 +26,7 @@ extern NSString * const PLSelectedPlaylistChange;
 /**
  Shared data access instance that uses the global managed object context for its operations.
  */
-+ (PLDataAccess *)sharedDataAccess;
++ (id<PLDataAccess>)sharedDataAccess;
 
 - (BOOL)saveChanges:(NSError **)error;
 - (RACSignal *)saveChangesSignal;
@@ -116,4 +116,7 @@ extern NSString * const PLSelectedPlaylistChange;
 - (PLPlaylist *)bookmarkPlaylist;
 - (void)setBookmarkPlaylist:(PLPlaylist *)playlist;
 
+@end
+
+@interface PLDataAccess : NSObject <PLDataAccess>
 @end

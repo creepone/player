@@ -20,48 +20,37 @@
     return self;
 }
 
-- (RACSignal *)getJSONFromURL:(NSURL *)url
+- (RACSignal *)imageFromURL:(NSURL *)imageURL
 {
-    return [[[self getDataFromURL:url] flattenMap:^RACStream*(NSData *data) {
-        NSError *error;
-        id json = [NSJSONSerialization JSONObjectWithData:data options:0 error:&error];
-        return error ? [RACSignal error:error] : [RACSignal return:json];
-    }] deliverOn:[RACScheduler mainThreadScheduler]];
-}
-
-- (RACSignal *)getXMLFromURL:(NSURL *)url
-{
-    return [[[self getDataFromURL:url] map:^id(NSData *data) {
-        return [RXMLElement elementFromXMLData:data];
-    }] deliverOn:[RACScheduler mainThreadScheduler]];
-}
-
-- (RACSignal *)getImageFromURL:(NSURL *)url
-{
-    return [[[self getDataFromURL:url] map:^id(NSData *data) {
-        return [UIImage imageWithData:data];
-    }] deliverOn:[RACScheduler mainThreadScheduler]];
+    return [[[self getDataFromURL:imageURL] map:^id(id value) { return [UIImage imageWithData:value];}] deliverOn:[RACScheduler mainThreadScheduler]];
 }
 
 - (RACSignal *)getDataFromURL:(NSURL *)url
 {
     return [RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
-        NSURLSessionDataTask *task = [_session dataTaskWithURL:url completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
-            if (error) {
-                [subscriber sendError:error];
-                return;
-            }
+        
+        __block NSURLSessionDataTask *task;
+        
+        RACDisposable *schedulerDisposable = [[RACScheduler scheduler] schedule:^{
+            task = [_session dataTaskWithURL:url completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
+                if (error) {
+                    [subscriber sendError:error];
+                    return;
+                }
+                
+                [subscriber sendNext:data];
+                [subscriber sendCompleted];
+            }];
             
-            [subscriber sendNext:data];
-            [subscriber sendCompleted];
+            [task resume];
         }];
         
-        [task resume];
-
-        return [RACDisposable disposableWithBlock:^{
-            if (task.state == NSURLSessionTaskStateRunning)
+        RACDisposable *taskDisposable = [RACDisposable disposableWithBlock:^{
+            if (task && task.state == NSURLSessionTaskStateRunning)
                 [task cancel];
         }];
+        
+        return [RACCompoundDisposable compoundDisposableWithDisposables:@[schedulerDisposable, taskDisposable]];
     }];
 }
 

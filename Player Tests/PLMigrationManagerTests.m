@@ -16,12 +16,16 @@
 
 - (void)setUp
 {
+    [super setUp];
+    
     for (NSString *storePath in [PLMigrationManager dataStorePathsVersion:PLCurrentDataStoreVersion])
         [PLTestUtils removeFileAtPath:storePath];
 }
 
 - (void)tearDown
 {
+    [super tearDown];
+    
     for(int version = 1; version <= PLCurrentDataStoreVersion; version++) {
         for (NSString *storePath in [PLMigrationManager dataStorePathsVersion:version])
             [PLTestUtils removeFileAtPath:storePath];

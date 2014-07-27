@@ -4,6 +4,7 @@
 #import "PLAppDelegate.h"
 #import "PLDefaultsManager.h"
 #import "PLErrorManager.h"
+#import "PLServiceContainer.h"
 
 #define instanceKey(OBJECT, PATH) (keypath(((OBJECT *)nil), PATH))
 
@@ -39,12 +40,9 @@ NSString * const PLSelectedPlaylistChange = @"PLSelectedPlaylistChange";
 }
 
 
-+ (PLDataAccess *)sharedDataAccess
++ (id<PLDataAccess>)sharedDataAccess
 {
-    static dispatch_once_t once;
-    static PLDataAccess *sharedDataAccess;
-    dispatch_once(&once, ^ { sharedDataAccess = [[self alloc] init]; });
-    return sharedDataAccess;
+    return PLResolve(PLDataAccess);
 }
 
 - (NSManagedObjectContext *)context

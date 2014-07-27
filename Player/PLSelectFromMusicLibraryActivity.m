@@ -52,7 +52,7 @@
 
 - (RACSignal *)importSongs:(NSArray *)persistentIds
 {
-    PLDataAccess *dataAccess = [PLDataAccess sharedDataAccess];
+    id<PLDataAccess> dataAccess = [PLDataAccess sharedDataAccess];
 
     for (NSNumber *persistentId in persistentIds) {
         PLTrack *track = [dataAccess findOrCreateTrackWithPersistentId:persistentId];

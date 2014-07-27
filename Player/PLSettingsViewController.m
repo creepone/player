@@ -230,7 +230,7 @@
 }
 
 - (void)didSelectPlaylist:(PLPlaylist *)playlist {
-    PLDataAccess *dataAccess = [PLDataAccess sharedDataAccess];
+    id<PLDataAccess> dataAccess = [PLDataAccess sharedDataAccess];
     [dataAccess setBookmarkPlaylist:playlist];
     
     NSError *error;

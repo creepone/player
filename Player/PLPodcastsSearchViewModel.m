@@ -86,7 +86,7 @@
 
 - (void)selectAt:(NSIndexPath *)indexPath
 {
-    PLDataAccess *dataAccess = [PLDataAccess sharedDataAccess];
+    id<PLDataAccess> dataAccess = [PLDataAccess sharedDataAccess];
     PLPodcast *podcast = self.foundPodcasts[indexPath.row];
     PLPodcastPin *pin = podcast.pinned ? [dataAccess findPodcastPinWithFeedURL:[podcast.feedURL absoluteString]] : [dataAccess createPodcastPin:podcast];
     pin.order = [[dataAccess findHighestPodcastPinOrder] intValue] + 1;

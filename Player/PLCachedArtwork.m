@@ -104,7 +104,7 @@
         return [RACSignal empty];
     }
     
-    return [PLResolve(PLNetworkManager) getImageFromURL:imageURL];
+    return [PLResolve(PLNetworkManager) imageFromURL:imageURL];    
 }
 
 @end

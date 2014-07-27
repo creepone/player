@@ -4,17 +4,13 @@ https://www.apple.com/itunes/affiliates/resources/documentation/itunes-store-web
 https://itunes.apple.com/search?term=ubercast&media=podcast
 https://github.com/CEWendel/SWTableViewCell
 
-podcast list flashes because list is loaded twice @ beginning
-
-re-think the empty screen (error / no data) design
-show explanation on an empty screen (add new podcasts by searching)
-
-add a toolbar with a plus button that just starts the search and later a filter (filters down to podcasts with new episodes)
-
 saving scroll position
 
 flatten migration sequence to the latest model
 update the now playing info on position change (e.g. going back)
+
+show explanation on an empty screen (add new podcasts by searching)
+add a toolbar with a plus button that just starts the search and later a filter (filters down to podcasts with new episodes)
 
 long term:
 refactor the "Activity View" to use MVVM

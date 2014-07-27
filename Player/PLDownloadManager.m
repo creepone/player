@@ -173,7 +173,7 @@ NSString * const PLBackgroundSessionIdentifier = @"at.iosapps.Player.BackgroundS
 
 - (RACSignal *)addTrackToDownload:(NSURL *)downloadURL withTitle:(NSString *)title
 {
-    PLDataAccess *dataAccess = [PLDataAccess sharedDataAccess];
+    id<PLDataAccess> dataAccess = [PLDataAccess sharedDataAccess];
     PLPlaylist *playlist = [dataAccess selectedPlaylist];
     
     PLTrack *track = [dataAccess findOrCreateTrackWithDownloadURL:[downloadURL absoluteString]];

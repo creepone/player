@@ -211,7 +211,7 @@
 }
 
 - (void)makeBookmark {
-    PLDataAccess *dataAccess = [PLDataAccess sharedDataAccess];
+    id<PLDataAccess> dataAccess = [PLDataAccess sharedDataAccess];
     [dataAccess createBookmarkAtPosition:self.currentPosition forTrack:self.currentSong.track];
     [self save];
 
@@ -239,7 +239,7 @@
 
 - (void)moveToNextAndPlay
 {
-    PLDataAccess *dataAccess = [PLDataAccess sharedDataAccess];
+    id<PLDataAccess> dataAccess = [PLDataAccess sharedDataAccess];
     PLPlaylist *playlist = [dataAccess selectedPlaylist];
     [playlist moveToNextSong];
     

@@ -6,6 +6,7 @@
 #import "PLFileSharingManager.h"
 #import "PLNetworkManager.h"
 #import "PLPodcastsManager.h"
+#import "PLDataAccess.h"
 
 @implementation PLServiceContainer (Registrations)
 
@@ -19,6 +20,7 @@
     [self registerInstance:[PLFileSharingManager new] underProtocol:@protocol(PLFileSharingManager)];
     [self registerInstance:[PLNetworkManager new] underProtocol:@protocol(PLNetworkManager)];
     [self registerInstance:[PLPodcastsManager new] underProtocol:@protocol(PLPodcastsManager)];
+    [self registerInstance:[PLDataAccess new] underProtocol:@protocol(PLDataAccess)];
 }
 
 @end

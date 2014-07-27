@@ -22,7 +22,7 @@
     if (self) {
         self.artistText = podcast.artist;
         self.titleText = podcast.title;
-        RAC(self, imageArtwork) = [PLResolve(PLNetworkManager) getImageFromURL:podcast.artworkURL];
+        RAC(self, imageArtwork) = [PLResolve(PLNetworkManager) imageFromURL:podcast.artworkURL];
         self.alpha = podcast.pinned ? 0.5 : 1.0;
     }
     return self;
@@ -34,7 +34,7 @@
     if (self) {
         self.artistText = podcastPin.artist;
         self.titleText = podcastPin.title;
-        RAC(self, imageArtwork) = [PLResolve(PLNetworkManager) getImageFromURL:[NSURL URLWithString:podcastPin.artworkURL]];
+        RAC(self, imageArtwork) = [PLResolve(PLNetworkManager) imageFromURL:[NSURL URLWithString:podcastPin.artworkURL]];
         self.alpha = 1.0;
     }
     return self;

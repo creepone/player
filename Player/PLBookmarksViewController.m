@@ -120,7 +120,7 @@
     PLPlayer *player = [PLPlayer sharedPlayer];
     [player stop];
     
-    PLDataAccess *dataAccess = [PLDataAccess sharedDataAccess];
+    id<PLDataAccess> dataAccess = [PLDataAccess sharedDataAccess];
     PLPlaylist *bookmarkPlaylist = [dataAccess bookmarkPlaylist];
     
     PLBookmark *bookmark = [_fetchedResultsController objectAtIndexPath:indexPath];
@@ -158,7 +158,7 @@
 
 - (void)deleteAtIndexPath:(NSIndexPath *)indexPath {
     NSError *error;
-    PLDataAccess *dataAccess = [PLDataAccess sharedDataAccess];
+    id<PLDataAccess> dataAccess = [PLDataAccess sharedDataAccess];
     
     PLBookmark *bookmark = [_fetchedResultsController objectAtIndexPath:indexPath];
     [bookmark remove];

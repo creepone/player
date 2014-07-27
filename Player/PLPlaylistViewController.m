@@ -148,7 +148,7 @@
         if ([name pl_isEmptyOrWhitespace])
             return;
         
-        PLDataAccess *dataAccess = [PLDataAccess sharedDataAccess];
+        id<PLDataAccess> dataAccess = [PLDataAccess sharedDataAccess];
         [dataAccess createPlaylistWithName:name];
         
         NSError *error;
@@ -159,7 +159,7 @@
 
 - (void)deleteAtIndexPath:(NSIndexPath *)indexPath {
     NSError *error;
-    PLDataAccess *dataAccess = [PLDataAccess sharedDataAccess];
+    id<PLDataAccess> dataAccess = [PLDataAccess sharedDataAccess];
     
     if (_singleMode) {
         PLPlaylistSong *song = [_songsFetchedResultsController objectAtIndexPath:indexPath];

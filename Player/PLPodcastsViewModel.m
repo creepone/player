@@ -73,7 +73,7 @@
 
 - (void)removeAt:(NSIndexPath *)indexPath
 {
-    PLDataAccess *dataAccess = [PLDataAccess sharedDataAccess];
+    id<PLDataAccess> dataAccess = [PLDataAccess sharedDataAccess];
     PLPodcastPin *podcastPin = [_fetchedResultsController objectAtIndexPath:indexPath];
     [podcastPin remove];
     [[dataAccess saveChangesSignal] subscribeError:[PLErrorManager logErrorVoidBlock]];

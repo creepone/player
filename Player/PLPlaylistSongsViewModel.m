@@ -19,7 +19,7 @@
 {
     self = [super init];
     if (self) {
-        PLDataAccess *dataAccess = [PLDataAccess sharedDataAccess];
+        id<PLDataAccess> dataAccess = [PLDataAccess sharedDataAccess];
         PLPlaylist *selectedPlaylist = [dataAccess selectedPlaylist];
         _fetchedResultsController = [dataAccess fetchedResultsControllerForSongsOfPlaylist:selectedPlaylist];
         _fetchedResultsControllerDelegate = [[PLFetchedResultsControllerDelegate alloc] initWithFetchedResultsController:_fetchedResultsController];
@@ -69,7 +69,7 @@
 
 - (RACSignal *)moveSongFrom:(NSIndexPath *)fromIndexPath to:(NSIndexPath *)toIndexPath
 {    
-    PLDataAccess *dataAccess = [PLDataAccess sharedDataAccess];
+    id<PLDataAccess> dataAccess = [PLDataAccess sharedDataAccess];
     PLPlaylist *selectedPlaylist = [dataAccess selectedPlaylist];
     
     NSInteger indexFrom = [fromIndexPath row];

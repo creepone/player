@@ -10,7 +10,7 @@
 @interface PLPodcastsViewController () <UISearchDisplayDelegate> {
     PLTableViewProgress *_searchingProgress;
     RACSubject *_searchTermSubject;
-    BOOL _isVisible;
+    NSNumber *_isVisible;
 }
 
 @end
@@ -30,14 +30,15 @@
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
-    [self.tableView reloadData];
-    _isVisible = YES;
+    if (_isVisible != nil)
+        [self.tableView reloadData];
+    _isVisible = @YES;
 }
 
 - (void)viewWillDisappear:(BOOL)animated
 {
     [super viewWillDisappear:animated];
-    _isVisible = NO;
+    _isVisible = @NO;
 }
 
 - (void)setupBindings
@@ -48,13 +49,13 @@
     [[self.viewModel.searchViewModel.dismissSignal takeUntil:self.rac_willDeallocSignal] subscribeNext:^(id _) { @strongify(self); [self hideSearch]; }];
     
     [_viewModel.updatesSignal subscribeNext:^(NSArray *updates) { @strongify(self);
-        if (self && self->_isVisible && !self.searchDisplayController.isActive)
+        if (self && [self->_isVisible boolValue] && !self.searchDisplayController.isActive)
             [self.tableView pl_applyUpdates:updates];
     }];
 }
 
 - (void)setSearching:(BOOL)searching
-{
+{    
     UITableView *searchTableView = self.searchDisplayController.searchResultsTableView;
     
     _searchingProgress = searching ? [PLTableViewProgress showInTableView:searchTableView afterGraceTime:0.0] : nil;

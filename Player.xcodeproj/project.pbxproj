@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		01FC034E079B4BA896C8C3B1 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2F7BD0A371C24EA3853F30EA /* libPods.a */; };
 		696C103AFE37906F58AE8524 /* PLPlaylistSongsViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 696C17062B46F55CD8C4E0F3 /* PLPlaylistSongsViewModel.m */; };
 		696C10A3093038033BA242D1 /* PLTracksViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 696C1EE9C22410FB27CF3DDE /* PLTracksViewModel.m */; };
 		696C12295CFEA1F9814E8AC8 /* PLPlaylistSongCellViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 696C1B64873859724C208B95 /* PLPlaylistSongCellViewModel.m */; };
@@ -48,6 +47,7 @@
 		696C1FBF6134FDF5DE3BD2C6 /* PLLegacySongTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 696C17D6C827B6995026B0FA /* PLLegacySongTableViewCell.m */; };
 		696C1FC71A11624AE1D6F4F6 /* PLBackgroundProcessProgress.m in Sources */ = {isa = PBXBuildFile; fileRef = 696C1F6362232CF71408E756 /* PLBackgroundProcessProgress.m */; };
 		696C1FCAE33C027584502130 /* PLFetchedResultsUpdate.m in Sources */ = {isa = PBXBuildFile; fileRef = 696C1B7CB3806FA7AF21905E /* PLFetchedResultsUpdate.m */; };
+		9DD7F19E6BCD431CA709207E /* libPods-test.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 152E0A659704492BBB8FA78F /* libPods-test.a */; };
 		C3381F9A19609F8600DA2B7B /* PLDropboxManager.m in Sources */ = {isa = PBXBuildFile; fileRef = C3381F9919609F8600DA2B7B /* PLDropboxManager.m */; };
 		C3381FE61965BB7D00DA2B7B /* PLKVOObserver.m in Sources */ = {isa = PBXBuildFile; fileRef = C3381FE51965BB7D00DA2B7B /* PLKVOObserver.m */; };
 		C3381FF0196707E100DA2B7B /* CloudImport.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C3381FEF196707E100DA2B7B /* CloudImport.storyboard */; };
@@ -76,6 +76,11 @@
 		C34BD688197D717E007138B8 /* Mapping3_5.xcmappingmodel in Sources */ = {isa = PBXBuildFile; fileRef = C34BD687197D717E007138B8 /* Mapping3_5.xcmappingmodel */; };
 		C34BD68A197D718D007138B8 /* Mapping4_5.xcmappingmodel in Sources */ = {isa = PBXBuildFile; fileRef = C34BD689197D718D007138B8 /* Mapping4_5.xcmappingmodel */; };
 		C34BD68D198023A1007138B8 /* PLPodcastsSearchViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = C34BD68C198023A1007138B8 /* PLPodcastsSearchViewModel.m */; };
+		C34BD6961984F0C8007138B8 /* PLPodcastEpisode.m in Sources */ = {isa = PBXBuildFile; fileRef = C34BD6951984F0C8007138B8 /* PLPodcastEpisode.m */; };
+		C34BD69A1984F200007138B8 /* PLPodcastManagerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C34BD6991984F200007138B8 /* PLPodcastManagerTests.m */; };
+		C34BD69C1984F465007138B8 /* podcastSearch.json in Resources */ = {isa = PBXBuildFile; fileRef = C34BD69B1984F465007138B8 /* podcastSearch.json */; };
+		C34BD69F198501CC007138B8 /* libxml2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = C34BD69D198501C2007138B8 /* libxml2.dylib */; };
+		C34BD6A11985238C007138B8 /* podcastFeed.xml in Resources */ = {isa = PBXBuildFile; fileRef = C34BD6A01985238C007138B8 /* podcastFeed.xml */; };
 		C3544850165922C80083D703 /* SliderCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C354484F165922C80083D703 /* SliderCell.m */; };
 		C378CD76194C505A001D0593 /* PLRouter.m in Sources */ = {isa = PBXBuildFile; fileRef = C378CD75194C505A001D0593 /* PLRouter.m */; };
 		C378CD78194C51D5001D0593 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C378CD77194C51D5001D0593 /* Main.storyboard */; };
@@ -158,7 +163,7 @@
 		C3F1A13518E83F6F00A82EAC /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C3F1A13418E83F6F00A82EAC /* Images.xcassets */; };
 		C3F539F3195A047300409CC4 /* PLDownloadManager.m in Sources */ = {isa = PBXBuildFile; fileRef = C3F539F2195A047300409CC4 /* PLDownloadManager.m */; };
 		C3FCEC2E16FF0AD3008CD497 /* PLPlaylistSongViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C3FCEC2D16FF0AD3008CD497 /* PLPlaylistSongViewController.m */; };
-		C9C79EB53A7F4DF38B0DC6E7 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2F7BD0A371C24EA3853F30EA /* libPods.a */; };
+		EF26B9B3F9D24987B46B5597 /* libPods-default.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 26E21AADB0AF4D49AC4231C4 /* libPods-default.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -172,7 +177,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		2F7BD0A371C24EA3853F30EA /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		01E42663E530468BA76AD455 /* Pods-test.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-test.xcconfig"; path = "Pods/Pods-test.xcconfig"; sourceTree = "<group>"; };
+		152E0A659704492BBB8FA78F /* libPods-test.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-test.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		26E21AADB0AF4D49AC4231C4 /* libPods-default.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-default.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		696C1046C87A0138396351B9 /* PLActivityView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PLActivityView.m; sourceTree = "<group>"; };
 		696C1066234718178E912F08 /* PLTrackGroupsViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PLTrackGroupsViewModel.h; sourceTree = "<group>"; };
 		696C107644FDE533B6B072AE /* PLDownloadURLActivity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PLDownloadURLActivity.h; sourceTree = "<group>"; };
@@ -255,6 +262,7 @@
 		696C1FC517E0B1E486397B42 /* PLActivityViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PLActivityViewController.h; sourceTree = "<group>"; };
 		696C1FE29357EB7961765F29 /* PLMediaMirror.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PLMediaMirror.h; sourceTree = "<group>"; };
 		696C1FE69CD877A0A21E876F /* PLImportActivityViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PLImportActivityViewController.m; sourceTree = "<group>"; };
+		B35D38FF89034B298E9DBB9C /* Pods-default.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-default.xcconfig"; path = "Pods/Pods-default.xcconfig"; sourceTree = "<group>"; };
 		C3381F9819609F8600DA2B7B /* PLDropboxManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PLDropboxManager.h; path = Player/PLDropboxManager.h; sourceTree = "<group>"; };
 		C3381F9919609F8600DA2B7B /* PLDropboxManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PLDropboxManager.m; path = Player/PLDropboxManager.m; sourceTree = "<group>"; };
 		C3381FE41965BB7D00DA2B7B /* PLKVOObserver.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PLKVOObserver.h; sourceTree = "<group>"; };
@@ -304,6 +312,12 @@
 		C34BD689197D718D007138B8 /* Mapping4_5.xcmappingmodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcmappingmodel; path = Mapping4_5.xcmappingmodel; sourceTree = "<group>"; };
 		C34BD68B198023A1007138B8 /* PLPodcastsSearchViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PLPodcastsSearchViewModel.h; path = Player/PLPodcastsSearchViewModel.h; sourceTree = "<group>"; };
 		C34BD68C198023A1007138B8 /* PLPodcastsSearchViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PLPodcastsSearchViewModel.m; path = Player/PLPodcastsSearchViewModel.m; sourceTree = "<group>"; };
+		C34BD6941984F0C8007138B8 /* PLPodcastEpisode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PLPodcastEpisode.h; sourceTree = "<group>"; };
+		C34BD6951984F0C8007138B8 /* PLPodcastEpisode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PLPodcastEpisode.m; sourceTree = "<group>"; };
+		C34BD6991984F200007138B8 /* PLPodcastManagerTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PLPodcastManagerTests.m; sourceTree = "<group>"; };
+		C34BD69B1984F465007138B8 /* podcastSearch.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = podcastSearch.json; sourceTree = "<group>"; };
+		C34BD69D198501C2007138B8 /* libxml2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libxml2.dylib; path = usr/lib/libxml2.dylib; sourceTree = SDKROOT; };
+		C34BD6A01985238C007138B8 /* podcastFeed.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = podcastFeed.xml; sourceTree = "<group>"; };
 		C354484E165922C80083D703 /* SliderCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SliderCell.h; sourceTree = "<group>"; };
 		C354484F165922C80083D703 /* SliderCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SliderCell.m; sourceTree = "<group>"; };
 		C378CD74194C505A001D0593 /* PLRouter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PLRouter.h; sourceTree = "<group>"; };
@@ -451,7 +465,6 @@
 		C3F539F2195A047300409CC4 /* PLDownloadManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PLDownloadManager.m; sourceTree = "<group>"; };
 		C3FCEC2C16FF0AD3008CD497 /* PLPlaylistSongViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PLPlaylistSongViewController.h; sourceTree = "<group>"; };
 		C3FCEC2D16FF0AD3008CD497 /* PLPlaylistSongViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PLPlaylistSongViewController.m; sourceTree = "<group>"; };
-		F6B73325E5724C3CA11B6803 /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -460,7 +473,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C3CC2CA41972CA820013FC57 /* LiveSDK.framework in Frameworks */,
-				C9C79EB53A7F4DF38B0DC6E7 /* libPods.a in Frameworks */,
+				EF26B9B3F9D24987B46B5597 /* libPods-default.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -468,10 +481,11 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C34BD69F198501CC007138B8 /* libxml2.dylib in Frameworks */,
 				C3CC2CD2197A71700013FC57 /* XCTest.framework in Frameworks */,
 				C3CC2CD6197A71710013FC57 /* UIKit.framework in Frameworks */,
 				C3CC2CD4197A71700013FC57 /* Foundation.framework in Frameworks */,
-				01FC034E079B4BA896C8C3B1 /* libPods.a in Frameworks */,
+				9DD7F19E6BCD431CA709207E /* libPods-test.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -729,6 +743,8 @@
 				C34BD676197BDEBF007138B8 /* PLPodcastsManager.m */,
 				C34BD678197BDFBF007138B8 /* PLPodcast.h */,
 				C34BD679197BDFBF007138B8 /* PLPodcast.m */,
+				C34BD6941984F0C8007138B8 /* PLPodcastEpisode.h */,
+				C34BD6951984F0C8007138B8 /* PLPodcastEpisode.m */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -772,6 +788,15 @@
 				C34BD67D197BF353007138B8 /* PLPodcastCell.m */,
 			);
 			name = Views;
+			sourceTree = "<group>";
+		};
+		C34BD6971984F141007138B8 /* Data */ = {
+			isa = PBXGroup;
+			children = (
+				C34BD69B1984F465007138B8 /* podcastSearch.json */,
+				C34BD6A01985238C007138B8 /* podcastFeed.xml */,
+			);
+			name = Data;
 			sourceTree = "<group>";
 		};
 		C354484C165922B90083D703 /* Cells */ = {
@@ -1019,7 +1044,8 @@
 				C3CC2CD7197A71710013FC57 /* Tests */,
 				C3BC5A2A1656B772002DA837 /* Frameworks */,
 				C3BC5A281656B772002DA837 /* Products */,
-				F6B73325E5724C3CA11B6803 /* Pods.xcconfig */,
+				B35D38FF89034B298E9DBB9C /* Pods-default.xcconfig */,
+				01E42663E530468BA76AD455 /* Pods-test.xcconfig */,
 			);
 			sourceTree = "<group>";
 		};
@@ -1035,11 +1061,13 @@
 		C3BC5A2A1656B772002DA837 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				C34BD69D198501C2007138B8 /* libxml2.dylib */,
 				C3CC2CA31972CA820013FC57 /* LiveSDK.framework */,
-				2F7BD0A371C24EA3853F30EA /* libPods.a */,
 				C3CC2CD1197A71700013FC57 /* XCTest.framework */,
 				C3CC2CD3197A71700013FC57 /* Foundation.framework */,
 				C3CC2CD5197A71710013FC57 /* UIKit.framework */,
+				26E21AADB0AF4D49AC4231C4 /* libPods-default.a */,
+				152E0A659704492BBB8FA78F /* libPods-test.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -1357,9 +1385,11 @@
 		C3CC2CD7197A71710013FC57 /* Tests */ = {
 			isa = PBXGroup;
 			children = (
+				C34BD6971984F141007138B8 /* Data */,
 				C3CC2CE8197A78BD0013FC57 /* Utils */,
 				C3CC2CD8197A71710013FC57 /* Supporting Files */,
 				C3CC2CE6197A77D10013FC57 /* PLMigrationManagerTests.m */,
+				C34BD6991984F200007138B8 /* PLPodcastManagerTests.m */,
 			);
 			name = Tests;
 			path = "Player Tests";
@@ -1548,7 +1578,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C34BD69C1984F465007138B8 /* podcastSearch.json in Resources */,
 				C3CC2CDC197A71710013FC57 /* InfoPlist.strings in Resources */,
+				C34BD6A11985238C007138B8 /* podcastFeed.xml in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1597,7 +1629,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Pods-resources.sh\"\n";
+			shellScript = "\"${SRCROOT}/Pods/Pods-test-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		F0CABAB3F387423BBD882EEE /* Copy Pods Resources */ = {
@@ -1612,7 +1644,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Pods-resources.sh\"\n";
+			shellScript = "\"${SRCROOT}/Pods/Pods-default-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -1673,6 +1705,7 @@
 				696C1688959910200C8E162E /* PLSelectFromMusicLibraryActivity.m in Sources */,
 				C3A4D67C193E40320060B704 /* PLFileImport.m in Sources */,
 				C34BD677197BDEBF007138B8 /* PLPodcastsManager.m in Sources */,
+				C34BD6961984F0C8007138B8 /* PLPodcastEpisode.m in Sources */,
 				C3CC18C4191F65350026E681 /* PLMusicLibraryViewController.m in Sources */,
 				696C1E705DB79F2E2990D98A /* UIView+PLExtensions.m in Sources */,
 				C3CC2CB9197A54EA0013FC57 /* PLFileSharingCell.m in Sources */,
@@ -1743,6 +1776,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C34BD69A1984F200007138B8 /* PLPodcastManagerTests.m in Sources */,
 				C3CC2CE7197A77D10013FC57 /* PLMigrationManagerTests.m in Sources */,
 				C3CC2CEB197A78CD0013FC57 /* PLTestUtils.m in Sources */,
 				C3CC2CEF197A7BC20013FC57 /* XCTAsyncTestCase.m in Sources */,
@@ -1842,7 +1876,7 @@
 		};
 		C3BC5A4C1656B772002DA837 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = F6B73325E5724C3CA11B6803 /* Pods.xcconfig */;
+			baseConfigurationReference = B35D38FF89034B298E9DBB9C /* Pods-default.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
@@ -1860,6 +1894,7 @@
 				INFOPLIST_PREFIX_HEADER = revision.prefix;
 				INFOPLIST_PREPROCESS = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_NAME = Baladeur;
 				USER_HEADER_SEARCH_PATHS = "\"${PROJECT_DIR}/Pods\"/**";
 				WRAPPER_EXTENSION = app;
@@ -1868,7 +1903,7 @@
 		};
 		C3BC5A4D1656B772002DA837 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = F6B73325E5724C3CA11B6803 /* Pods.xcconfig */;
+			baseConfigurationReference = B35D38FF89034B298E9DBB9C /* Pods-default.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
@@ -1894,7 +1929,7 @@
 		};
 		C3CC2CE3197A71710013FC57 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = F6B73325E5724C3CA11B6803 /* Pods.xcconfig */;
+			baseConfigurationReference = 01E42663E530468BA76AD455 /* Pods-test.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/Baladeur.app/Baladeur";
 				CLANG_ENABLE_MODULES = YES;
@@ -1922,6 +1957,7 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				INFOPLIST_FILE = "Player Tests/Player Tests-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUNDLE_LOADER)";
 				WRAPPER_EXTENSION = xctest;
@@ -1930,7 +1966,7 @@
 		};
 		C3CC2CE4197A71710013FC57 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = F6B73325E5724C3CA11B6803 /* Pods.xcconfig */;
+			baseConfigurationReference = 01E42663E530468BA76AD455 /* Pods-test.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/Baladeur.app/Baladeur";
 				CLANG_ENABLE_MODULES = YES;
