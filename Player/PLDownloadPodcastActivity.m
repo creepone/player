@@ -4,6 +4,9 @@
 #import "PLPodcastsViewController.h"
 #import "PLUtils.h"
 #import "PLProgressHUD.h"
+#import "PLPodcastEpisode.h"
+#import "PLDownloadManager.h"
+#import "PLDataAccess.h"
 
 @implementation PLDownloadPodcastActivity
 
@@ -40,10 +43,12 @@
     return [[[[RACObserve(viewModel, dismissed) filter:[PLUtils isTruePredicate]] take:1] then:^RACSignal *{
     
         progress = [PLProgressHUD showWithStatus:@"Adding episodes"]; // todo: localize
-
-        // todo: enqueue download of the selected episodes
         
-        return [RACSignal empty];
+        return [[viewModel.selection.rac_sequence signalWithScheduler:[RACScheduler mainThreadScheduler]] flattenMap:^RACStream *(PLPodcastEpisode *episode) {
+            return [[[PLDownloadManager sharedManager] addTrackToDownload:episode.downloadURL withTitle:nil] then:^RACSignal *{
+                return [episode markAsOld];
+            }];
+        }];
     }]
     finally:^{
         [progress dispose];

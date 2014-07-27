@@ -8,11 +8,13 @@
 #import "PLDataAccess.h"
 #import "PLPodcastCellViewModel.h"
 #import "PLPodcastsSearchViewModel.h"
+#import "PLPodcastEpisodesViewModel.h"
 
 @interface PLPodcastsViewModel() {
     NSFetchedResultsController *_fetchedResultsController;
     PLFetchedResultsControllerDelegate *_fetchedResultsControllerDelegate;
     PLPodcastsSearchViewModel *_searchViewModel;
+    NSMutableDictionary *_selection;
 }
 
 @end
@@ -23,7 +25,8 @@
 {
     self = [super init];
     if (self) {
-        _searchViewModel = [PLPodcastsSearchViewModel new];
+        _selection = [NSMutableDictionary dictionary];
+        _searchViewModel = [[PLPodcastsSearchViewModel alloc] initWithSelection:_selection];
         _fetchedResultsController = [[PLDataAccess sharedDataAccess] fetchedResultsControllerForAllPodcastPins];
         _fetchedResultsControllerDelegate = [[PLFetchedResultsControllerDelegate alloc] initWithFetchedResultsController:_fetchedResultsController];
         
@@ -33,6 +36,11 @@
             [PLErrorManager logError:error];
     }
     return self;
+}
+
+- (NSArray *)selection
+{
+    return [_selection allValues];
 }
 
 - (PLPodcastsSearchViewModel *)searchViewModel
@@ -66,11 +74,6 @@
     return [[PLPodcastCellViewModel alloc] initWithPodcastPin:podcastPin];
 }
 
-- (void)selectAt:(NSIndexPath *)indexPath
-{
-    // todo: implement
-}
-
 - (void)removeAt:(NSIndexPath *)indexPath
 {
     id<PLDataAccess> dataAccess = [PLDataAccess sharedDataAccess];
@@ -82,6 +85,12 @@
 - (RACSignal *)updatesSignal
 {
     return _fetchedResultsControllerDelegate.updatesSignal;
+}
+
+- (PLPodcastEpisodesViewModel *)episodesViewModelAt:(NSIndexPath *)indexPath
+{
+    PLPodcastPin *podcastPin = [_fetchedResultsController objectAtIndexPath:indexPath];
+    return [[PLPodcastEpisodesViewModel alloc] initWithPodcastPin:podcastPin selection:_selection];
 }
 
 @end

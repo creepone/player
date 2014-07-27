@@ -5,6 +5,8 @@
 #import "PLPodcastPin.h"
 #import "PLPodcastOldEpisode.h"
 
+@class PLPodcastEpisode;
+
 extern NSString * const PLSelectedPlaylistChange;
 
 @protocol PLDataAccess <NSObject>
@@ -74,6 +76,11 @@ extern NSString * const PLSelectedPlaylistChange;
 - (PLTrack *)findTrackWithObjectID:(NSString *)objectID;
 
 /**
+ Delivers an old podcast episode for the given episode. If it already exists, it is simply returned, otherwise a new one is created.
+ */
+- (PLPodcastOldEpisode *)findOrCreatePodcastOldEpisodeByEpisode:(PLPodcastEpisode *)episode;
+
+/**
  Delivers a podcast pin with the given feed URL, if any exists, nil otherwise.
  */
 - (PLPodcastPin *)findPodcastPinWithFeedURL:(NSString *)feedURL;
@@ -89,9 +96,19 @@ extern NSString * const PLSelectedPlaylistChange;
 - (BOOL)existsPodcastPinWithFeedURL:(NSString *)feedURL;
 
 /**
+ Returns YES if there is an old podcast episode with the given GUID.
+ */
+- (BOOL)existsPodcastOldEpisodeWithGuid:(NSString *)guid;
+
+/**
  Returns the highest value of the order property amongst existing podcast pins
  */
 - (NSNumber *)findHighestPodcastPinOrder;
+
+/**
+ Returns the highest value of the order property amongst existing old podcast episodes
+ */
+- (NSNumber *)findHighestOldEpisodeOrder;
 
 /**
  Delivers the first found track (or nil if none found) with a persistentId without a file URL (i.e. a track yet to be mirrored)
@@ -107,6 +124,7 @@ extern NSString * const PLSelectedPlaylistChange;
 - (NSFetchedResultsController *)fetchedResultsControllerForAllBookmarks;
 - (NSFetchedResultsController *)fetchedResultsControllerForSongsOfPlaylist:(PLPlaylist *)playlist;
 - (NSFetchedResultsController *)fetchedResultsControllerForAllPodcastPins;
+- (NSFetchedResultsController *)fetchedResultsControllerForEpisodesOfPodcast:(PLPodcastPin *)podcast;
 
 - (NSArray *)allEntities:(NSString *)entityName;
 - (NSArray *)allEntities:(NSString *)entityName sortedBy:(NSString *)key;

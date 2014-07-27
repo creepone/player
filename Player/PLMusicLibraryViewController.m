@@ -3,22 +3,12 @@
 #import "PLMusicLibraryViewModel.h"
 #import "PLTrackGroupsViewModel.h"
 
-@interface PLMusicLibraryViewController ()
-
-- (IBAction)dismiss:(UIStoryboardSegue *)segue;
-
-@end
-
 @implementation PLMusicLibraryViewController
-
-- (void)viewDidLoad
-{
-    [super viewDidLoad];
-}
 
 - (IBAction)dismiss:(UIStoryboardSegue *)segue
 {
     self.viewModel.dismissed = YES;
+    [self.navigationController popToRootViewControllerAnimated:NO];
     [self.presentingViewController dismissViewControllerAnimated:YES completion:nil];
 }
 

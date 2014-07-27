@@ -10,6 +10,7 @@
 @dynamic feedURL;
 @dynamic oldEpisodes;
 @dynamic order;
+@dynamic countNewEpisodes;
 
 + (instancetype)podcastPinFromPodcast:(PLPodcast *)podcast inContext:(NSManagedObjectContext *)context
 {
@@ -23,7 +24,6 @@
 
 - (void)remove
 {
-    // todo: remove episodes
     [self.managedObjectContext deleteObject:self];
 }
 

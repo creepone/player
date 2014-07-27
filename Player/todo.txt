@@ -4,6 +4,10 @@ https://www.apple.com/itunes/affiliates/resources/documentation/itunes-store-web
 https://itunes.apple.com/search?term=ubercast&media=podcast
 https://github.com/CEWendel/SWTableViewCell
 
+implement targetFileName for a track and use it for podcasts
+right buttons in the episodes list become visible when rotating the device
+episodes count determining and caching
+
 saving scroll position
 
 flatten migration sequence to the latest model

@@ -22,6 +22,7 @@
     self = [super init];
     if (self) {
         self.selectionStyle = UITableViewCellSelectionStyleNone;
+        self.separatorInset = UIEdgeInsetsZero;
 
         _progressView = [[FFCircularProgressView alloc] init];
         _progressView.tintColor = [PLColors themeColor];

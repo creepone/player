@@ -71,16 +71,22 @@
 		C34BD67A197BDFBF007138B8 /* PLPodcast.m in Sources */ = {isa = PBXBuildFile; fileRef = C34BD679197BDFBF007138B8 /* PLPodcast.m */; };
 		C34BD67E197BF353007138B8 /* PLPodcastCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C34BD67D197BF353007138B8 /* PLPodcastCell.m */; };
 		C34BD681197BF3D2007138B8 /* PLPodcastCellViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = C34BD680197BF3D2007138B8 /* PLPodcastCellViewModel.m */; };
-		C34BD684197D7164007138B8 /* Mapping1_5.xcmappingmodel in Sources */ = {isa = PBXBuildFile; fileRef = C34BD683197D7164007138B8 /* Mapping1_5.xcmappingmodel */; };
-		C34BD686197D7172007138B8 /* Mapping2_5.xcmappingmodel in Sources */ = {isa = PBXBuildFile; fileRef = C34BD685197D7172007138B8 /* Mapping2_5.xcmappingmodel */; };
-		C34BD688197D717E007138B8 /* Mapping3_5.xcmappingmodel in Sources */ = {isa = PBXBuildFile; fileRef = C34BD687197D717E007138B8 /* Mapping3_5.xcmappingmodel */; };
-		C34BD68A197D718D007138B8 /* Mapping4_5.xcmappingmodel in Sources */ = {isa = PBXBuildFile; fileRef = C34BD689197D718D007138B8 /* Mapping4_5.xcmappingmodel */; };
 		C34BD68D198023A1007138B8 /* PLPodcastsSearchViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = C34BD68C198023A1007138B8 /* PLPodcastsSearchViewModel.m */; };
 		C34BD6961984F0C8007138B8 /* PLPodcastEpisode.m in Sources */ = {isa = PBXBuildFile; fileRef = C34BD6951984F0C8007138B8 /* PLPodcastEpisode.m */; };
 		C34BD69A1984F200007138B8 /* PLPodcastManagerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C34BD6991984F200007138B8 /* PLPodcastManagerTests.m */; };
 		C34BD69C1984F465007138B8 /* podcastSearch.json in Resources */ = {isa = PBXBuildFile; fileRef = C34BD69B1984F465007138B8 /* podcastSearch.json */; };
 		C34BD69F198501CC007138B8 /* libxml2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = C34BD69D198501C2007138B8 /* libxml2.dylib */; };
 		C34BD6A11985238C007138B8 /* podcastFeed.xml in Resources */ = {isa = PBXBuildFile; fileRef = C34BD6A01985238C007138B8 /* podcastFeed.xml */; };
+		C34BD6A419853067007138B8 /* PLPodcastEpisodesViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = C34BD6A319853067007138B8 /* PLPodcastEpisodesViewModel.m */; };
+		C34BD6A71985308F007138B8 /* PLPodcastEpisodesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C34BD6A61985308F007138B8 /* PLPodcastEpisodesViewController.m */; };
+		C34BD6AA19853DA0007138B8 /* PLPodcastEpisodeCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C34BD6A919853DA0007138B8 /* PLPodcastEpisodeCell.m */; };
+		C34BD6AD19853E51007138B8 /* PLPodcastEpisodeCellViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = C34BD6AC19853E51007138B8 /* PLPodcastEpisodeCellViewModel.m */; };
+		C34BD6B019856385007138B8 /* UITableViewCell+PLExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = C34BD6AF19856385007138B8 /* UITableViewCell+PLExtensions.m */; };
+		C34BD6B319856D67007138B8 /* Mapping1_6.xcmappingmodel in Sources */ = {isa = PBXBuildFile; fileRef = C34BD6B219856D67007138B8 /* Mapping1_6.xcmappingmodel */; };
+		C34BD6B519856D8A007138B8 /* Mapping2_6.xcmappingmodel in Sources */ = {isa = PBXBuildFile; fileRef = C34BD6B419856D8A007138B8 /* Mapping2_6.xcmappingmodel */; };
+		C34BD6B719856D99007138B8 /* Mapping3_6.xcmappingmodel in Sources */ = {isa = PBXBuildFile; fileRef = C34BD6B619856D99007138B8 /* Mapping3_6.xcmappingmodel */; };
+		C34BD6B919856DA6007138B8 /* Mapping4_6.xcmappingmodel in Sources */ = {isa = PBXBuildFile; fileRef = C34BD6B819856DA6007138B8 /* Mapping4_6.xcmappingmodel */; };
+		C34BD6BB19856DB2007138B8 /* Mapping5_6.xcmappingmodel in Sources */ = {isa = PBXBuildFile; fileRef = C34BD6BA19856DB2007138B8 /* Mapping5_6.xcmappingmodel */; };
 		C3544850165922C80083D703 /* SliderCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C354484F165922C80083D703 /* SliderCell.m */; };
 		C378CD76194C505A001D0593 /* PLRouter.m in Sources */ = {isa = PBXBuildFile; fileRef = C378CD75194C505A001D0593 /* PLRouter.m */; };
 		C378CD78194C51D5001D0593 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C378CD77194C51D5001D0593 /* Main.storyboard */; };
@@ -306,10 +312,6 @@
 		C34BD67F197BF3D2007138B8 /* PLPodcastCellViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PLPodcastCellViewModel.h; path = Player/PLPodcastCellViewModel.h; sourceTree = "<group>"; };
 		C34BD680197BF3D2007138B8 /* PLPodcastCellViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PLPodcastCellViewModel.m; path = Player/PLPodcastCellViewModel.m; sourceTree = "<group>"; };
 		C34BD682197D701A007138B8 /* Model 5.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "Model 5.xcdatamodel"; sourceTree = "<group>"; };
-		C34BD683197D7164007138B8 /* Mapping1_5.xcmappingmodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcmappingmodel; path = Mapping1_5.xcmappingmodel; sourceTree = "<group>"; };
-		C34BD685197D7172007138B8 /* Mapping2_5.xcmappingmodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcmappingmodel; path = Mapping2_5.xcmappingmodel; sourceTree = "<group>"; };
-		C34BD687197D717E007138B8 /* Mapping3_5.xcmappingmodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcmappingmodel; path = Mapping3_5.xcmappingmodel; sourceTree = "<group>"; };
-		C34BD689197D718D007138B8 /* Mapping4_5.xcmappingmodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcmappingmodel; path = Mapping4_5.xcmappingmodel; sourceTree = "<group>"; };
 		C34BD68B198023A1007138B8 /* PLPodcastsSearchViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PLPodcastsSearchViewModel.h; path = Player/PLPodcastsSearchViewModel.h; sourceTree = "<group>"; };
 		C34BD68C198023A1007138B8 /* PLPodcastsSearchViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PLPodcastsSearchViewModel.m; path = Player/PLPodcastsSearchViewModel.m; sourceTree = "<group>"; };
 		C34BD6941984F0C8007138B8 /* PLPodcastEpisode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PLPodcastEpisode.h; sourceTree = "<group>"; };
@@ -318,6 +320,22 @@
 		C34BD69B1984F465007138B8 /* podcastSearch.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = podcastSearch.json; sourceTree = "<group>"; };
 		C34BD69D198501C2007138B8 /* libxml2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libxml2.dylib; path = usr/lib/libxml2.dylib; sourceTree = SDKROOT; };
 		C34BD6A01985238C007138B8 /* podcastFeed.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = podcastFeed.xml; sourceTree = "<group>"; };
+		C34BD6A219853067007138B8 /* PLPodcastEpisodesViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PLPodcastEpisodesViewModel.h; sourceTree = "<group>"; };
+		C34BD6A319853067007138B8 /* PLPodcastEpisodesViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PLPodcastEpisodesViewModel.m; sourceTree = "<group>"; };
+		C34BD6A51985308F007138B8 /* PLPodcastEpisodesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PLPodcastEpisodesViewController.h; sourceTree = "<group>"; };
+		C34BD6A61985308F007138B8 /* PLPodcastEpisodesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PLPodcastEpisodesViewController.m; sourceTree = "<group>"; };
+		C34BD6A819853DA0007138B8 /* PLPodcastEpisodeCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PLPodcastEpisodeCell.h; path = Player/PLPodcastEpisodeCell.h; sourceTree = "<group>"; };
+		C34BD6A919853DA0007138B8 /* PLPodcastEpisodeCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PLPodcastEpisodeCell.m; path = Player/PLPodcastEpisodeCell.m; sourceTree = "<group>"; };
+		C34BD6AB19853E51007138B8 /* PLPodcastEpisodeCellViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PLPodcastEpisodeCellViewModel.h; path = Player/PLPodcastEpisodeCellViewModel.h; sourceTree = "<group>"; };
+		C34BD6AC19853E51007138B8 /* PLPodcastEpisodeCellViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PLPodcastEpisodeCellViewModel.m; path = Player/PLPodcastEpisodeCellViewModel.m; sourceTree = "<group>"; };
+		C34BD6AE19856385007138B8 /* UITableViewCell+PLExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITableViewCell+PLExtensions.h"; sourceTree = "<group>"; };
+		C34BD6AF19856385007138B8 /* UITableViewCell+PLExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITableViewCell+PLExtensions.m"; sourceTree = "<group>"; };
+		C34BD6B119856CF1007138B8 /* Model 6.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "Model 6.xcdatamodel"; sourceTree = "<group>"; };
+		C34BD6B219856D67007138B8 /* Mapping1_6.xcmappingmodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcmappingmodel; path = Mapping1_6.xcmappingmodel; sourceTree = "<group>"; };
+		C34BD6B419856D8A007138B8 /* Mapping2_6.xcmappingmodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcmappingmodel; path = Mapping2_6.xcmappingmodel; sourceTree = "<group>"; };
+		C34BD6B619856D99007138B8 /* Mapping3_6.xcmappingmodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcmappingmodel; path = Mapping3_6.xcmappingmodel; sourceTree = "<group>"; };
+		C34BD6B819856DA6007138B8 /* Mapping4_6.xcmappingmodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcmappingmodel; path = Mapping4_6.xcmappingmodel; sourceTree = "<group>"; };
+		C34BD6BA19856DB2007138B8 /* Mapping5_6.xcmappingmodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcmappingmodel; path = Mapping5_6.xcmappingmodel; sourceTree = "<group>"; };
 		C354484E165922C80083D703 /* SliderCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SliderCell.h; sourceTree = "<group>"; };
 		C354484F165922C80083D703 /* SliderCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SliderCell.m; sourceTree = "<group>"; };
 		C378CD74194C505A001D0593 /* PLRouter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PLRouter.h; sourceTree = "<group>"; };
@@ -521,6 +539,8 @@
 				696C1DB0C3355E2EB3D24D03 /* UITableView+PLExtensions.h */,
 				C3CC2CA9197445810013FC57 /* PLProgressHUD.h */,
 				C3CC2CAA197445810013FC57 /* PLProgressHUD.m */,
+				C34BD6AE19856385007138B8 /* UITableViewCell+PLExtensions.h */,
+				C34BD6AF19856385007138B8 /* UITableViewCell+PLExtensions.m */,
 			);
 			name = Utils;
 			sourceTree = "<group>";
@@ -558,10 +578,10 @@
 		696C18143D38E8EFE93A49E8 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
-				696C1B7CB3806FA7AF21905E /* PLFetchedResultsUpdate.m */,
 				696C1426B1C214592AD07A07 /* PLFetchedResultsUpdate.h */,
-				696C131DDE2F8669C019BECF /* PLFetchedResultsControllerDelegate.m */,
+				696C1B7CB3806FA7AF21905E /* PLFetchedResultsUpdate.m */,
 				696C17B309027630A590861F /* PLFetchedResultsControllerDelegate.h */,
+				696C131DDE2F8669C019BECF /* PLFetchedResultsControllerDelegate.m */,
 			);
 			name = Utils;
 			sourceTree = "<group>";
@@ -764,6 +784,8 @@
 			children = (
 				C34BD66E197BC379007138B8 /* PLPodcastsViewController.h */,
 				C34BD66F197BC379007138B8 /* PLPodcastsViewController.m */,
+				C34BD6A51985308F007138B8 /* PLPodcastEpisodesViewController.h */,
+				C34BD6A61985308F007138B8 /* PLPodcastEpisodesViewController.m */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -777,6 +799,10 @@
 				C34BD680197BF3D2007138B8 /* PLPodcastCellViewModel.m */,
 				C34BD68B198023A1007138B8 /* PLPodcastsSearchViewModel.h */,
 				C34BD68C198023A1007138B8 /* PLPodcastsSearchViewModel.m */,
+				C34BD6A219853067007138B8 /* PLPodcastEpisodesViewModel.h */,
+				C34BD6A319853067007138B8 /* PLPodcastEpisodesViewModel.m */,
+				C34BD6AB19853E51007138B8 /* PLPodcastEpisodeCellViewModel.h */,
+				C34BD6AC19853E51007138B8 /* PLPodcastEpisodeCellViewModel.m */,
 			);
 			name = ViewModel;
 			sourceTree = "<group>";
@@ -786,6 +812,8 @@
 			children = (
 				C34BD67C197BF353007138B8 /* PLPodcastCell.h */,
 				C34BD67D197BF353007138B8 /* PLPodcastCell.m */,
+				C34BD6A819853DA0007138B8 /* PLPodcastEpisodeCell.h */,
+				C34BD6A919853DA0007138B8 /* PLPodcastEpisodeCell.m */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -1429,10 +1457,11 @@
 		C3CC2CF4197A99B40013FC57 /* Mappings */ = {
 			isa = PBXGroup;
 			children = (
-				C34BD683197D7164007138B8 /* Mapping1_5.xcmappingmodel */,
-				C34BD685197D7172007138B8 /* Mapping2_5.xcmappingmodel */,
-				C34BD687197D717E007138B8 /* Mapping3_5.xcmappingmodel */,
-				C34BD689197D718D007138B8 /* Mapping4_5.xcmappingmodel */,
+				C34BD6B219856D67007138B8 /* Mapping1_6.xcmappingmodel */,
+				C34BD6B419856D8A007138B8 /* Mapping2_6.xcmappingmodel */,
+				C34BD6B619856D99007138B8 /* Mapping3_6.xcmappingmodel */,
+				C34BD6B819856DA6007138B8 /* Mapping4_6.xcmappingmodel */,
+				C34BD6BA19856DB2007138B8 /* Mapping5_6.xcmappingmodel */,
 			);
 			name = Mappings;
 			sourceTree = "<group>";
@@ -1664,17 +1693,19 @@
 				C3BC5A991656B959002DA837 /* PLPlaylistViewController.m in Sources */,
 				C3CC2CC1197A56210013FC57 /* PLFileSharingViewModel.m in Sources */,
 				C3BC5AB21656C284002DA837 /* PLPlayerViewController.m in Sources */,
-				C34BD688197D717E007138B8 /* Mapping3_5.xcmappingmodel in Sources */,
 				C3BC5ABD1656C4E7002DA837 /* PLBookmarksViewController.m in Sources */,
 				C3CC2CC4197A56E70013FC57 /* PLFileSharingCellViewModel.m in Sources */,
 				C34BD67A197BDFBF007138B8 /* PLPodcast.m in Sources */,
 				C3CC2C8D19713EEC0013FC57 /* PLCloudImport.m in Sources */,
+				C34BD6A71985308F007138B8 /* PLPodcastEpisodesViewController.m in Sources */,
 				C3CC2CC7197A59E70013FC57 /* PLFileSharingManager.m in Sources */,
+				C34BD6B019856385007138B8 /* UITableViewCell+PLExtensions.m in Sources */,
 				C3BC5AC21656C4EF002DA837 /* PLSettingsViewController.m in Sources */,
 				C3CC2CAF19797EA90013FC57 /* PLNowPlayingManager.m in Sources */,
 				C3BC5ACD1656C81C002DA837 /* Model.xcdatamodeld in Sources */,
 				C3BC5AD31656CA4D002DA837 /* PLBookmark.m in Sources */,
 				C3BC5AD61656CA4E002DA837 /* PLPlaylist.m in Sources */,
+				C34BD6B319856D67007138B8 /* Mapping1_6.xcmappingmodel in Sources */,
 				C3BC5ADC1656CA4E002DA837 /* PLPlaylistSong.m in Sources */,
 				C3BC5ADF1656CA73002DA837 /* PLCoreDataStack.m in Sources */,
 				C3BC5AE21656CACC002DA837 /* PLDataAccess.m in Sources */,
@@ -1683,15 +1714,17 @@
 				C34BD674197BC3E3007138B8 /* PLPodcastsViewModel.m in Sources */,
 				C3BC5AEB1656CCC9002DA837 /* PLDefaultsManager.m in Sources */,
 				C378CD80194C61CF001D0593 /* PLPlaylistSongCell.m in Sources */,
-				C34BD68A197D718D007138B8 /* Mapping4_5.xcmappingmodel in Sources */,
 				C3BC5B011658DE07002DA837 /* PLAlerts.m in Sources */,
 				C378CDD6195F0EF4001D0593 /* PLTrackCellViewModel.m in Sources */,
 				C3BC5B041658E76A002DA837 /* NSString+Extensions.m in Sources */,
+				C34BD6A419853067007138B8 /* PLPodcastEpisodesViewModel.m in Sources */,
 				C378CD7C194C52A6001D0593 /* PLPlaylistSongsViewController.m in Sources */,
 				C3BC5B14165912F6002DA837 /* PLPlayer.m in Sources */,
 				C3CC2C83197128A40013FC57 /* PLServiceContainer.m in Sources */,
+				C34BD6B919856DA6007138B8 /* Mapping4_6.xcmappingmodel in Sources */,
 				C3CC2C9F197299970013FC57 /* PLOneDriveManager.m in Sources */,
 				C3CC18CD191FABD30026E681 /* PLTracksViewController.m in Sources */,
+				C34BD6B519856D8A007138B8 /* Mapping2_6.xcmappingmodel in Sources */,
 				C3544850165922C80083D703 /* SliderCell.m in Sources */,
 				C34BD658197BBE55007138B8 /* PLPodcastOldEpisode.m in Sources */,
 				C3D1A65A16CFC337006D3E5F /* PLPlaylistSelectViewController.m in Sources */,
@@ -1719,7 +1752,7 @@
 				C33820011967220200DA2B7B /* DBRestClient+RACSignalSupport.m in Sources */,
 				C384009B193879E600D6A930 /* PLTrack.m in Sources */,
 				696C1C38A95357371CFEE558 /* PLDownloadURLActivity.m in Sources */,
-				C34BD686197D7172007138B8 /* Mapping2_5.xcmappingmodel in Sources */,
+				C34BD6AD19853E51007138B8 /* PLPodcastEpisodeCellViewModel.m in Sources */,
 				C3CC2C9219718A190013FC57 /* PLGDrivePathAsset.m in Sources */,
 				C3381F9A19609F8600DA2B7B /* PLDropboxManager.m in Sources */,
 				696C1F9C8C8A7886A8530949 /* PLDownloadPodcastActivity.m in Sources */,
@@ -1731,7 +1764,6 @@
 				696C197C7FC7F02EAB520C14 /* PLUtils.m in Sources */,
 				C3CC2C9619728FDB0013FC57 /* PLDownloadFromOneDriveActivity.m in Sources */,
 				696C1B8D690CECA9499F257E /* PLMediaLibrarySearch.m in Sources */,
-				C34BD684197D7164007138B8 /* Mapping1_5.xcmappingmodel in Sources */,
 				C3381FF719670E6600DA2B7B /* PLCloudItemsViewController.m in Sources */,
 				696C177E0F2230FE3DDA991B /* PLMediaItemTrackGroup.m in Sources */,
 				C34BD670197BC379007138B8 /* PLPodcastsViewController.m in Sources */,
@@ -1755,11 +1787,13 @@
 				696C16CE03E0D6A5D2CF72AF /* PLImportActivityViewController.m in Sources */,
 				696C1DF8E8A5D182F7F07621 /* PLBackgroundProcess.m in Sources */,
 				696C1A7540982F010E4E85CD /* PLTrackGroupCellViewModel.m in Sources */,
+				C34BD6BB19856DB2007138B8 /* Mapping5_6.xcmappingmodel in Sources */,
 				696C1FC71A11624AE1D6F4F6 /* PLBackgroundProcessProgress.m in Sources */,
 				696C1F37827BDCC5942F540F /* PLMediaMirror.m in Sources */,
 				696C103AFE37906F58AE8524 /* PLPlaylistSongsViewModel.m in Sources */,
 				C3CC2CA21972B9510013FC57 /* PLOneDrivePathAsset.m in Sources */,
 				696C1FCAE33C027584502130 /* PLFetchedResultsUpdate.m in Sources */,
+				C34BD6AA19853DA0007138B8 /* PLPodcastEpisodeCell.m in Sources */,
 				696C14C3B0C607930E2E9DBD /* PLFetchedResultsControllerDelegate.m in Sources */,
 				696C1BDC652AD70EC4358087 /* UITableView+PLExtensions.m in Sources */,
 				696C12CF6D6221B60CEB7C1F /* PLTrackGroupsViewModel.m in Sources */,
@@ -1768,6 +1802,7 @@
 				696C10A3093038033BA242D1 /* PLTracksViewModel.m in Sources */,
 				C3381FE61965BB7D00DA2B7B /* PLKVOObserver.m in Sources */,
 				696C1D76AA5FA9B96D261F18 /* PLMusicLibraryViewModel.m in Sources */,
+				C34BD6B719856D99007138B8 /* Mapping3_6.xcmappingmodel in Sources */,
 				696C1ED23B36804F25FA57AA /* PLNotificationObserver.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -2033,13 +2068,14 @@
 		C3BC5ACB1656C81C002DA837 /* Model.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
+				C34BD6B119856CF1007138B8 /* Model 6.xcdatamodel */,
 				C34BD682197D701A007138B8 /* Model 5.xcdatamodel */,
 				C34BD655197BBD6E007138B8 /* Model 4.xcdatamodel */,
 				C3CC2CFC197AB32B0013FC57 /* Model 3.xcdatamodel */,
 				C3CC2CF3197A99670013FC57 /* Model 2.xcdatamodel */,
 				C3BC5ACC1656C81C002DA837 /* Model.xcdatamodel */,
 			);
-			currentVersion = C34BD682197D701A007138B8 /* Model 5.xcdatamodel */;
+			currentVersion = C34BD6B119856CF1007138B8 /* Model 6.xcdatamodel */;
 			path = Model.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;

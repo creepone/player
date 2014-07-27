@@ -5,6 +5,8 @@
 
 @interface PLPodcastsSearchViewModel : NSObject <PLPodcastsTableViewModel>
 
+- (instancetype)initWithSelection:(NSMutableDictionary *)selection;
+
 /**
  * Returns YES if the search (i.e. loading the search results) is currently in progress, NO otherwise.
  */

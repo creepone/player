@@ -19,6 +19,7 @@
 #import "PLOneDriveManager.h"
 #import "PLProgressHUD.h"
 #import "PLNowPlayingManager.h"
+#import "PLDataAccess.h"
 
 @interface PLAppDelegate()
 

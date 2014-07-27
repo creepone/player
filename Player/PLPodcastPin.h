@@ -9,6 +9,7 @@
 @property (nonatomic, retain) NSString * artworkURL;
 @property (nonatomic, retain) NSString * feedURL;
 @property (nonatomic, retain) NSSet *oldEpisodes;
+@property (nonatomic, assign) int16_t countNewEpisodes;
 @property (nonatomic, assign) int64_t order;
 
 + (instancetype)podcastPinFromPodcast:(PLPodcast *)podcast inContext:(NSManagedObjectContext *)context;

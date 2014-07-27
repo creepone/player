@@ -1,20 +1,21 @@
 #import <Foundation/Foundation.h>
 
-@class RACSignal, PLPodcastCellViewModel, PLPodcastsSearchViewModel;
+@class RACSignal, PLPodcastCellViewModel, PLPodcastsSearchViewModel, PLPodcastEpisodesViewModel;
 
-@protocol PLPodcastsTableViewModel
+@protocol PLPodcastsTableViewModel <NSObject>
 
 - (NSUInteger)cellsCount;
 - (NSString *)cellIdentifier;
 - (CGFloat)cellHeight;
 - (UITableViewCellEditingStyle)cellEditingStyle;
 - (PLPodcastCellViewModel *)cellViewModelAt:(NSIndexPath *)indexPath;
-- (void)selectAt:(NSIndexPath *)indexPath;
-- (void)removeAt:(NSIndexPath *)indexPath;
+- (PLPodcastEpisodesViewModel *)episodesViewModelAt:(NSIndexPath *)indexPath;
 
 @end
 
 @interface PLPodcastsViewModel : NSObject <PLPodcastsTableViewModel>
+
+- (NSArray *)selection;
 
 /**
  * Returns YES if the corresponding view has been dismissed, NO otherwise.
@@ -23,5 +24,6 @@
 
 - (PLPodcastsSearchViewModel *)searchViewModel;
 - (RACSignal *)updatesSignal;
+- (void)removeAt:(NSIndexPath *)indexPath;
 
 @end

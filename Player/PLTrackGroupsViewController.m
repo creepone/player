@@ -39,7 +39,6 @@
         self->_tableViewProgress = nil;
         [self.tableView reloadData];
     }];
-
 }
 
 #pragma mark - Table view data source

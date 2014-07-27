@@ -205,6 +205,7 @@ PODS:
     - ReactiveCocoa/Core
   - SSZipArchive (0.3.1)
   - SVProgressHUD (1.0)
+  - SWTableViewCell (0.3.0)
   - TSMessages (0.9.9):
     - HexColors
 
@@ -221,6 +222,7 @@ DEPENDENCIES:
   - ReactiveCocoa (from `https://raw.githubusercontent.com/creepone/ReactiveCocoa/private/ReactiveCocoa.podspec.json`)
   - SSZipArchive (~> 0.3)
   - SVProgressHUD (~> 1.0)
+  - SWTableViewCell (~> 0.3.0)
   - TSMessages (~> 0.9.9)
 
 EXTERNAL SOURCES:
@@ -243,6 +245,7 @@ SPEC CHECKSUMS:
   ReactiveCocoa: d62de1d789eca0db8fd464bbfe7a350189ffebe7
   SSZipArchive: 6dc0ea3fe4b55574bee23c9f01d7c0f8437d59ef
   SVProgressHUD: 5034c6e22b8c2ca3e09402e48d41ed0340aa1c50
+  SWTableViewCell: 1725f7607ce4c154264c18aeb78e4636b11b0b29
   TSMessages: 2999ef55e532378692e9d14d32da2bb60e285129
 
 COCOAPODS: 0.33.1

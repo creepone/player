@@ -6,11 +6,13 @@
 #import "UITableView+PLExtensions.h"
 #import "PLUtils.h"
 #import "PLPodcastsSearchViewModel.h"
+#import "PLPodcastEpisodesViewController.h"
+#import "UITableViewCell+PLExtensions.h"
 
 @interface PLPodcastsViewController () <UISearchDisplayDelegate> {
     PLTableViewProgress *_searchingProgress;
     RACSubject *_searchTermSubject;
-    NSNumber *_isVisible;
+    BOOL _isVisible;
 }
 
 @end
@@ -30,15 +32,13 @@
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
-    if (_isVisible != nil)
-        [self.tableView reloadData];
-    _isVisible = @YES;
+    _isVisible = YES;
 }
 
 - (void)viewWillDisappear:(BOOL)animated
 {
     [super viewWillDisappear:animated];
-    _isVisible = @NO;
+    _isVisible = NO;
 }
 
 - (void)setupBindings
@@ -49,7 +49,7 @@
     [[self.viewModel.searchViewModel.dismissSignal takeUntil:self.rac_willDeallocSignal] subscribeNext:^(id _) { @strongify(self); [self hideSearch]; }];
     
     [_viewModel.updatesSignal subscribeNext:^(NSArray *updates) { @strongify(self);
-        if (self && [self->_isVisible boolValue] && !self.searchDisplayController.isActive)
+        if (self && self->_isVisible && !self.searchDisplayController.isActive)
             [self.tableView pl_applyUpdates:updates];
     }];
 }
@@ -70,10 +70,22 @@
         [self.searchDisplayController setActive:NO animated:YES];
 }
 
-- (IBAction)tappedDone:(id)sender
+- (IBAction)dismiss:(UIStoryboardSegue *)segue
 {
     self.viewModel.dismissed = YES;
+    [self.navigationController popToRootViewControllerAnimated:NO];
     [self.presentingViewController dismissViewControllerAnimated:YES completion:nil];
+}
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    if ([segue.identifier isEqualToString:@"podcast"]) {
+        PLPodcastEpisodesViewController *podcastsVc = [segue destinationViewController];
+        UITableViewCell *cell = (UITableViewCell *)sender;
+        UITableView *tableView = [cell pl_tableView];
+        NSIndexPath *indexPath = [tableView indexPathForCell:sender];
+        podcastsVc.viewModel = [[self tableViewModel:tableView] episodesViewModelAt:indexPath];
+    }
 }
 
 #pragma mark -- Table view data source
@@ -119,16 +131,14 @@
     return cell;
 }
 
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    [tableView deselectRowAtIndexPath:indexPath animated:YES];
-    [[self tableViewModel:tableView] selectAt:indexPath];
-}
-
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    id<PLPodcastsTableViewModel> tableViewModel = [self tableViewModel:tableView];
+    
     if (editingStyle == UITableViewCellEditingStyleDelete) {
-        [[self tableViewModel:tableView] removeAt:indexPath];
+        if ([tableViewModel isKindOfClass:[PLPodcastsViewModel class]]) {
+            [(PLPodcastsViewModel *)tableViewModel removeAt:indexPath];
+        }
     }
 }
 

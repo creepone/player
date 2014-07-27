@@ -9,6 +9,15 @@
     }]];
 }
 
+- (id)pl_find:(BOOL (^)(id obj))predicate
+{
+    NSInteger index = [self indexOfObjectPassingTest:^BOOL(id obj, NSUInteger idx, BOOL *stop) {
+        return predicate(obj);
+    }];
+    
+    return index == NSNotFound ? nil : self[index];
+}
+
 - (NSArray *)pl_map:(id (^)(id obj))projection
 {
     NSMutableArray *result = [NSMutableArray array];

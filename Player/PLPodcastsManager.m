@@ -57,9 +57,18 @@
         [rootElement iterate:@"channel.item" usingBlock:^(RXMLElement *itemElement) {
             
             PLPodcastEpisode *episode = [PLPodcastEpisode new];
+            episode.podcastFeedURL = feedURL;
         
             RXMLElement *titleElement = [itemElement child:@"title"];
             episode.title = titleElement.text;
+            
+            RXMLElement *subtitleElement = [itemElement child:@"subtitle"];
+            episode.subtitle = subtitleElement.text;
+            
+            if (episode.subtitle == nil) {
+                RXMLElement *summaryElement = [itemElement child:@"summary"];
+                episode.subtitle = summaryElement.text;
+            }
             
             RXMLElement *guidElement = [itemElement child:@"guid"];
             episode.guid = guidElement.text;
@@ -67,6 +76,7 @@
             RXMLElement *enclosureElement = [itemElement child:@"enclosure"];
             NSString *downloadURL = [enclosureElement attribute:@"url"];
             episode.downloadURL = [NSURL URLWithString:downloadURL];
+            
             
             [episodes addObject:episode];
         }];

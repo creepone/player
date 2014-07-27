@@ -40,6 +40,7 @@
     update.changeType = type;
     update.indexPath = indexPath;
     update.targetIndexPath = newIndexPath;
+    update.object = anObject;
     [_updates addObject:update];
 
 }

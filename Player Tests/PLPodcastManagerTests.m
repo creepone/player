@@ -82,11 +82,13 @@
 
         PLPodcastEpisode *episode1 = episodes[0];
         XCTAssertEqualObjects(episode1.title, @"Debug 42: Swift roundtable");
+        XCTAssertEqualObjects(episode1.subtitle, @"Natalia Berdys of Foodoo Kitchen, Don Melton, former director of internet technology at Apple, and Brent Simmons of Vesper join Guy and Rene to talk about Swift, its future, Sprite Kit, and more!");
         XCTAssertEqualObjects(episode1.downloadURL, [NSURL URLWithString:@"http://traffic.libsyn.com/zenandtech/debug42.mp3"]);
         XCTAssertEqualObjects(episode1.guid, @"8514B3FA-5BB5-4DFC-B3AA-A9A09385F960");
 
         PLPodcastEpisode *episode2 = episodes[1];
         XCTAssertEqualObjects(episode2.title, @"Debug 41: Nitin Ganatra episode III: iPhone to iPad");
+        XCTAssertEqualObjects(episode2.subtitle, @"In part 3 of the Nitin Ganatra trilogy, the former Director of iOS apps at Apple talks to Guy and Rene about iOS interface and API decisions, scaling to iPad, life after Apple, and what comes next.");
         XCTAssertEqualObjects(episode2.downloadURL, [NSURL URLWithString:@"http://traffic.libsyn.com/zenandtech/debug41.mp3"]);
         XCTAssertEqualObjects(episode2.guid, @"D7DA0492-C966-4BCA-B5F0-3C875119899C");
 

@@ -5,5 +5,6 @@
 @property (nonatomic, assign) NSFetchedResultsChangeType changeType;
 @property (nonatomic, strong) NSIndexPath *indexPath;
 @property (nonatomic, strong) NSIndexPath *targetIndexPath;
+@property (nonatomic, strong) id object;
 
 @end

@@ -6,8 +6,10 @@
 #import "PLPodcastCellViewModel.h"
 #import "PLPodcast.h"
 #import "PLDataAccess.h"
+#import "PLPodcastEpisodesViewModel.h"
 
 @interface PLPodcastsSearchViewModel() {
+    NSMutableDictionary *_selection;
     RACDisposable *_searchDisposable;
     RACSubject *_dismissSubject;
 }
@@ -18,10 +20,11 @@
 
 @implementation PLPodcastsSearchViewModel
 
-- (instancetype)init
+- (instancetype)initWithSelection:(NSMutableDictionary *)selection
 {
     self = [super init];
     if (self) {
+        _selection = selection;
         _dismissSubject = [RACSubject subject];
     }
     return self;
@@ -84,20 +87,16 @@
     return [[PLPodcastCellViewModel alloc] initWithPodcast:podcast];
 }
 
-- (void)selectAt:(NSIndexPath *)indexPath
+- (PLPodcastEpisodesViewModel *)episodesViewModelAt:(NSIndexPath *)indexPath
 {
     id<PLDataAccess> dataAccess = [PLDataAccess sharedDataAccess];
     PLPodcast *podcast = self.foundPodcasts[indexPath.row];
     PLPodcastPin *pin = podcast.pinned ? [dataAccess findPodcastPinWithFeedURL:[podcast.feedURL absoluteString]] : [dataAccess createPodcastPin:podcast];
-    pin.order = [[dataAccess findHighestPodcastPinOrder] intValue] + 1;
+    pin.order = [[dataAccess findHighestPodcastPinOrder] longLongValue] + 1;
     [[dataAccess saveChangesSignal] subscribeError:[PLErrorManager logErrorVoidBlock]];
-    
     [_dismissSubject sendNext:@(YES)];
-}
-
-- (void)removeAt:(NSIndexPath *)indexPath
-{
-    // noop
+    
+    return [[PLPodcastEpisodesViewModel alloc] initWithPodcastPin:pin selection:_selection];
 }
 
 - (RACSignal *)dismissSignal

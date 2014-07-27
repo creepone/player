@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="5064" systemVersion="13C1021" minimumToolsVersion="Xcode 4.3" macOSVersion="Automatic" iOSVersion="Automatic">
+    <entity name="PLBookmark" representedClassName="PLBookmark" syncable="YES">
+        <attribute name="position" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
+        <attribute name="timestamp" optional="YES" attributeType="Date" syncable="YES"/>
+        <relationship name="track" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="PLTrack" inverseName="bookmarks" inverseEntity="PLTrack" syncable="YES"/>
+    </entity>
+    <entity name="PLPlaylist" representedClassName="PLPlaylist" syncable="YES">
+        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="position" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <attribute name="uuid" optional="YES" attributeType="String" indexed="YES" syncable="YES"/>
+        <relationship name="songs" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="PLPlaylistSong" inverseName="playlist" inverseEntity="PLPlaylistSong" syncable="YES"/>
+    </entity>
+    <entity name="PLPlaylistSong" representedClassName="PLPlaylistSong" syncable="YES">
+        <attribute name="order" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <attribute name="playbackRate" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
+        <attribute name="position" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
+        <relationship name="playlist" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="PLPlaylist" inverseName="songs" inverseEntity="PLPlaylist" syncable="YES"/>
+        <relationship name="track" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="PLTrack" inverseName="playlistSongs" inverseEntity="PLTrack" syncable="YES"/>
+    </entity>
+    <entity name="PLPodcastOldEpisode" representedClassName="PLPodcastOldEpisode" syncable="YES">
+        <attribute name="downloadURL" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="guid" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="order" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
+        <attribute name="subtitle" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="podcastPin" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="PLPodcastPin" inverseName="oldEpisodes" inverseEntity="PLPodcastPin" syncable="YES"/>
+    </entity>
+    <entity name="PLPodcastPin" representedClassName="PLPodcastPin" syncable="YES">
+        <attribute name="artist" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="artworkURL" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="countNewEpisodes" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <attribute name="feedURL" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="order" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
+        <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="oldEpisodes" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="PLPodcastOldEpisode" inverseName="podcastPin" inverseEntity="PLPodcastOldEpisode" syncable="YES"/>
+    </entity>
+    <entity name="PLTrack" representedClassName="PLTrack" syncable="YES">
+        <attribute name="artist" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="downloadStatus" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <attribute name="downloadURL" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="duration" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
+        <attribute name="filePath" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="persistentId" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
+        <attribute name="played" optional="YES" attributeType="Boolean" syncable="YES"/>
+        <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="bookmarks" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="PLBookmark" inverseName="track" inverseEntity="PLBookmark" syncable="YES"/>
+        <relationship name="playlistSongs" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="PLPlaylistSong" inverseName="track" inverseEntity="PLPlaylistSong" syncable="YES"/>
+    </entity>
+    <elements>
+        <element name="PLBookmark" positionX="0" positionY="0" width="128" height="88"/>
+        <element name="PLPlaylist" positionX="0" positionY="0" width="128" height="105"/>
+        <element name="PLPlaylistSong" positionX="0" positionY="0" width="128" height="118"/>
+        <element name="PLPodcastOldEpisode" positionX="18" positionY="126" width="128" height="135"/>
+        <element name="PLPodcastPin" positionX="9" positionY="117" width="128" height="150"/>
+        <element name="PLTrack" positionX="9" positionY="72" width="128" height="195"/>
+    </elements>
+</model>

@@ -35,7 +35,7 @@
 - (RACSignal *)performActivity
 {
     UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"MusicLibrary" bundle:nil];
-    UIViewController *rootViewController = [UIApplication sharedApplication].delegate.window.rootViewController;
+    UIViewController *rootViewController = [[[UIApplication sharedApplication] keyWindow] rootViewController];
 
     UINavigationController *navigationController = storyboard.instantiateInitialViewController;
 
