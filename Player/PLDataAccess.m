@@ -6,8 +6,7 @@
 #import "PLErrorManager.h"
 #import "PLServiceContainer.h"
 #import "PLPodcastEpisode.h"
-
-#define instanceKey(OBJECT, PATH) (keypath(((OBJECT *)nil), PATH))
+#import "PLUtils.h"
 
 @interface PLDataAccess() {
     NSManagedObjectContext *_context;
@@ -155,7 +154,7 @@ NSString * const PLSelectedPlaylistChange = @"PLSelectedPlaylistChange";
     return [PLTrack trackWithFilePath:filePath inContext:self.context];
 }
 
-- (PLTrack *)findOrCreateTrackWithDownloadURL:(NSString *)downloadURL
+- (PLTrack *)findOrCreateTrackWithDownloadURL:(NSString *)downloadURL title:(NSString *)title
 {
     NSFetchRequest *fetchRequest = [self queryForTrackWithDownloadURL:downloadURL];
     
@@ -164,7 +163,7 @@ NSString * const PLSelectedPlaylistChange = @"PLSelectedPlaylistChange";
     if ([result count] == 1)
         return result[0];
     
-    return [PLTrack trackWithDownloadURL:downloadURL inContext:self.context];
+    return [PLTrack trackWithDownloadURL:downloadURL title:title inContext:self.context];
 }
 
 - (PLPodcastOldEpisode *)findOrCreatePodcastOldEpisodeByEpisode:(PLPodcastEpisode *)episode

@@ -26,7 +26,7 @@
     return [self initWithCloudManager:cloudManager selection:[PLPathAssetSet set] parent:cloudManager.rootAsset];
 }
 
-- (instancetype)initWithCloudManager:(id<PLCloudManager>)cloudManager selection:(PLPathAssetSet *)selection parent:(PLDropboxPathAsset *)parent
+- (instancetype)initWithCloudManager:(id<PLCloudManager>)cloudManager selection:(PLPathAssetSet *)selection parent:(id<PLPathAsset>)parent
 {
     self = [super init];
     if (self) {
@@ -36,7 +36,7 @@
         
         _navigationSubject = [RACSubject subject];
         
-        self.title = _parent.isRoot ? @"Add to playlist" : _parent.title; // todo: localize
+        self.title = _parent.isRoot ? @"Add to playlist" : _parent.fileName; // todo: localize
         
         [self loadItems];
     }

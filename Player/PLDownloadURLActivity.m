@@ -3,6 +3,7 @@
 #import "PLTrack.h"
 #import "PLDataAccess.h"
 #import "PLDownloadManager.h"
+#import "PLUtils.h"
 
 @implementation PLDownloadURLActivity
 
@@ -34,7 +35,8 @@
             return nil;
 
         NSURL *downloadURL = [NSURL URLWithString:[[alertView textFieldAtIndex:0] text]];
-        return [[PLDownloadManager sharedManager] addTrackToDownload:downloadURL withTitle:nil];
+        NSString *title = [PLUtils fileNameFromURL:downloadURL];
+        return [[PLDownloadManager sharedManager] addTrackToDownload:downloadURL withTitle:title];
     }];
 }
 

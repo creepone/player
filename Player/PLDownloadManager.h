@@ -33,6 +33,7 @@ extern NSString * const PLBackgroundSessionIdentifier;
  and enqueues its download.
  */
 - (RACSignal *)addTrackToDownload:(NSURL *)downloadURL withTitle:(NSString *)title;
+- (RACSignal *)addTrackToDownload:(NSURL *)downloadURL withTitle:(NSString *)title targetFileName:(NSString *)targetFileName;
 
 /**
  Creates and starts a download task for the given track. 

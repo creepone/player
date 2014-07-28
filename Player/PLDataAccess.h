@@ -67,8 +67,9 @@ extern NSString * const PLSelectedPlaylistChange;
 
 /**
  Delivers a track with the given download URL. If it already exists, it is simply returned, otherwise a new one is created.
+ The given title is used only in case the track does not exists as the new track's (temporary) title.
  */
-- (PLTrack *)findOrCreateTrackWithDownloadURL:(NSString *)downloadURL;
+- (PLTrack *)findOrCreateTrackWithDownloadURL:(NSString *)downloadURL title:(NSString *)title;
 
 /**
  Delivers a track with the given managed object ID, if any exists, nil otherwise.

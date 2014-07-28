@@ -2,6 +2,8 @@
 
 typedef BOOL (^PLPredicate)(id);
 
+#define instanceKey(OBJECT, PATH) (keypath(((OBJECT *)nil), PATH))
+
 @interface PLUtils : NSObject
 
 /**

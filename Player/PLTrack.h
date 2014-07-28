@@ -26,7 +26,7 @@ typedef NS_ENUM(int16_t, PLTrackDownloadStatus) {
 
 + (PLTrack *)trackWithPersistentId:(NSNumber *)persistentId inContext:(NSManagedObjectContext *)context;
 + (PLTrack *)trackWithFilePath:(NSString *)filePath inContext:(NSManagedObjectContext *)context;
-+ (PLTrack *)trackWithDownloadURL:(NSString *)downloadURL inContext:(NSManagedObjectContext *)context;
++ (PLTrack *)trackWithDownloadURL:(NSString *)downloadURL title:(NSString *)title inContext:(NSManagedObjectContext *)context;
 
 - (void)remove;
 

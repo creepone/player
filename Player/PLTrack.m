@@ -37,12 +37,13 @@
     return track;
 }
 
-+ (PLTrack *)trackWithDownloadURL:(NSString *)downloadURL inContext:(NSManagedObjectContext *)context
++ (PLTrack *)trackWithDownloadURL:(NSString *)downloadURL title:(NSString *)title inContext:(NSManagedObjectContext *)context
 {
     PLTrack *track = [NSEntityDescription insertNewObjectForEntityForName:[self entityName] inManagedObjectContext:context];
     track.downloadStatus = PLTrackDownloadStatusIdle;
     track.downloadURL = downloadURL;
-    track.title = [PLUtils fileNameFromURL:[NSURL URLWithString:downloadURL]];;
+    track.title = title;
+    track.targetFileName = [PLUtils fileNameFromURL:[NSURL URLWithString:downloadURL]];
     return track;
 }
 

@@ -32,7 +32,7 @@
     return _parent == nil ? @"root" : [NSString stringWithFormat:@"%@/%@", _parent.path, _driveFile.identifier];
 }
 
-- (NSString *)title
+- (NSString *)fileName
 {
     return _driveFile.title;
 }

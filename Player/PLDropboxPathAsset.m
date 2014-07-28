@@ -31,7 +31,7 @@
     return _metadata ? _metadata.path : @"/";
 }
 
-- (NSString *)title
+- (NSString *)fileName
 {
     return [_metadata.path lastPathComponent];
 }

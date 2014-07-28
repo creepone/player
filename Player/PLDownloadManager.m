@@ -113,10 +113,7 @@ NSString * const PLBackgroundSessionIdentifier = @"at.iosapps.Player.BackgroundS
     if (track == nil)
         return;
     
-    // todo: maybe we should store the targetFileName separately, in case we ever want to use a different title
-    NSString *targetFileName = track.title;
-    
-    RACSignal *workSignal = [[PLFileImport moveToDocumentsFolder:location underFileName:targetFileName]
+    RACSignal *workSignal = [[PLFileImport moveToDocumentsFolder:location underFileName:track.targetFileName]
         flattenMap:^RACStream *(NSURL *fileURL) {
             PLTrack *track = [[PLDataAccess sharedDataAccess] findTrackWithObjectID:trackId];
             track.filePath = [PLUtils pathFromDocuments:fileURL];
@@ -173,20 +170,25 @@ NSString * const PLBackgroundSessionIdentifier = @"at.iosapps.Player.BackgroundS
 
 - (RACSignal *)addTrackToDownload:(NSURL *)downloadURL withTitle:(NSString *)title
 {
+    return [self addTrackToDownload:downloadURL withTitle:title targetFileName:nil];
+}
+
+- (RACSignal *)addTrackToDownload:(NSURL *)downloadURL withTitle:(NSString *)title targetFileName:(NSString *)targetFileName
+{
     id<PLDataAccess> dataAccess = [PLDataAccess sharedDataAccess];
     PLPlaylist *playlist = [dataAccess selectedPlaylist];
     
-    PLTrack *track = [dataAccess findOrCreateTrackWithDownloadURL:[downloadURL absoluteString]];
+    PLTrack *track = [dataAccess findOrCreateTrackWithDownloadURL:[downloadURL absoluteString] title:title];
     PLPlaylistSong *playlistSong = [dataAccess findSongWithTrack:track onPlaylist:playlist];
     if (!playlistSong)
         [playlist addTrack:track];
     
     // do not enqueue the download if the track already existed
     if (!track.isInserted)
-        return [dataAccess saveChangesSignal] ;
+        return [dataAccess saveChangesSignal];
     
-    if (title)
-        track.title = title;
+    if (targetFileName != nil)
+        track.targetFileName = targetFileName;
     
     return [[dataAccess saveChangesSignal] then:^RACSignal *{
         return [self enqueueDownloadOfTrack:track];

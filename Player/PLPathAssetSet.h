@@ -2,10 +2,18 @@
 
 @protocol PLPathAsset <NSObject>
 
+/**
+ Represents a logical path of the asset. This does not have to correspond to any file system path, but
+ it has to have the property that a child's path has the parent's path as a prefix.
+ */
 - (NSString *)path;
-- (NSString *)title;
-- (id<PLPathAsset>)parent;
 
+/**
+ The file name of the asset. Used for the actual physical file when it gets downloaded and created locally.
+ */
+- (NSString *)fileName;
+
+- (id<PLPathAsset>)parent;
 @property (nonatomic, weak) NSArray *siblings;
 
 - (BOOL)isRoot;

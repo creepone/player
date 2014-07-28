@@ -45,7 +45,7 @@
     return _info;
 }
 
-- (NSString *)title
+- (NSString *)fileName
 {
     return _info[@"name"];
 }

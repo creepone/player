@@ -5,6 +5,7 @@
 #import "PLErrorManager.h"
 #import "PLGDrivePathAsset.h"
 #import "NSArray+PLExtensions.h"
+#import "PLUtils.h"
 
 @interface PLGDriveManager() {
     GTLServiceDrive *_driveService;
@@ -130,8 +131,8 @@ static NSString *kClientID = @"210955112623-cqjrd6qt7d1fgl9fvclct69kgrtjd2nu.app
                 [subscriber sendError:error];
                 return;
             }
-            NSSortDescriptor *sortDescriptorFolder = [NSSortDescriptor sortDescriptorWithKey:@"isDirectory" ascending:NO];
-            NSSortDescriptor *sortDescriptorTitle = [NSSortDescriptor sortDescriptorWithKey:@"title" ascending:YES];
+            NSSortDescriptor *sortDescriptorFolder = [NSSortDescriptor sortDescriptorWithKey:@instanceKey(PLGDrivePathAsset, isDirectory) ascending:NO];
+            NSSortDescriptor *sortDescriptorTitle = [NSSortDescriptor sortDescriptorWithKey:@instanceKey(PLGDrivePathAsset, fileName) ascending:YES];
 
             NSArray *items = [[files.items pl_map:^id(GTLDriveFile *file) {
                 return [[PLGDrivePathAsset alloc] initWithDriveFile:file parent:asset];
