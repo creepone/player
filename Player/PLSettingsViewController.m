@@ -53,7 +53,7 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    NSInteger rows = 7;
+    NSInteger rows = 6;
     if (![MFMailComposeViewController canSendMail])
         rows--;
     return rows;
@@ -95,18 +95,6 @@
             cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
         }
         else if (indexPath.row == 3) {
-            cell.textLabel.text = @"Delete unused tracks";
-            
-            UISwitch *switchUnusedTracks = [[UISwitch alloc] init];
-            switchUnusedTracks.on = [[PLDefaultsManager sharedManager] removeUnusedTracks];
-            
-            [[switchUnusedTracks rac_signalForControlEvents:UIControlEventValueChanged] subscribeNext:^(UISwitch *switchUnusedTracks) {
-                [[PLDefaultsManager sharedManager] setRemoveUnusedTracks:switchUnusedTracks.on];
-            }];
-
-            cell.accessoryView = switchUnusedTracks;
-        }
-        else if (indexPath.row == 4) {
             cell.textLabel.text = @"Mirror iTunes tracks";
 
             UISwitch *switchMirrorTracks = [[UISwitch alloc] init];
@@ -118,11 +106,11 @@
 
             cell.accessoryView = switchMirrorTracks;
         }
-        else if (indexPath.row == 5) {
+        else if (indexPath.row == 4) {
             cell.textLabel.text = @"Switch to new";
             cell.accessoryType = UITableViewCellAccessoryNone;
         }
-        else if (indexPath.row == 6) {
+        else if (indexPath.row == 5) {
             cell.textLabel.text = @"Send logs";
             cell.accessoryType = UITableViewCellAccessoryNone;
         }
@@ -186,10 +174,10 @@
         alert.tag = GoBackAlert;
         [alert show];
     }
-    else if (indexPath.row == 5) {
+    else if (indexPath.row == 4) {
         [PLRouter showNew];
     }
-    else if (indexPath.row == 6) {
+    else if (indexPath.row == 5) {
         NSString *archivePath = [PLLogging archiveLogs];
         NSData *archiveData = [NSData dataWithContentsOfFile:archivePath];
         

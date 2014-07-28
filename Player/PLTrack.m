@@ -14,6 +14,7 @@
 @dynamic downloadStatus;
 @dynamic filePath;
 @dynamic downloadURL;
+@dynamic targetFileName;
 @dynamic played;
 @dynamic playlistSongs;
 @dynamic duration;

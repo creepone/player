@@ -82,11 +82,6 @@
 		C34BD6AA19853DA0007138B8 /* PLPodcastEpisodeCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C34BD6A919853DA0007138B8 /* PLPodcastEpisodeCell.m */; };
 		C34BD6AD19853E51007138B8 /* PLPodcastEpisodeCellViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = C34BD6AC19853E51007138B8 /* PLPodcastEpisodeCellViewModel.m */; };
 		C34BD6B019856385007138B8 /* UITableViewCell+PLExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = C34BD6AF19856385007138B8 /* UITableViewCell+PLExtensions.m */; };
-		C34BD6B319856D67007138B8 /* Mapping1_6.xcmappingmodel in Sources */ = {isa = PBXBuildFile; fileRef = C34BD6B219856D67007138B8 /* Mapping1_6.xcmappingmodel */; };
-		C34BD6B519856D8A007138B8 /* Mapping2_6.xcmappingmodel in Sources */ = {isa = PBXBuildFile; fileRef = C34BD6B419856D8A007138B8 /* Mapping2_6.xcmappingmodel */; };
-		C34BD6B719856D99007138B8 /* Mapping3_6.xcmappingmodel in Sources */ = {isa = PBXBuildFile; fileRef = C34BD6B619856D99007138B8 /* Mapping3_6.xcmappingmodel */; };
-		C34BD6B919856DA6007138B8 /* Mapping4_6.xcmappingmodel in Sources */ = {isa = PBXBuildFile; fileRef = C34BD6B819856DA6007138B8 /* Mapping4_6.xcmappingmodel */; };
-		C34BD6BB19856DB2007138B8 /* Mapping5_6.xcmappingmodel in Sources */ = {isa = PBXBuildFile; fileRef = C34BD6BA19856DB2007138B8 /* Mapping5_6.xcmappingmodel */; };
 		C3544850165922C80083D703 /* SliderCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C354484F165922C80083D703 /* SliderCell.m */; };
 		C378CD76194C505A001D0593 /* PLRouter.m in Sources */ = {isa = PBXBuildFile; fileRef = C378CD75194C505A001D0593 /* PLRouter.m */; };
 		C378CD78194C51D5001D0593 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C378CD77194C51D5001D0593 /* Main.storyboard */; };
@@ -293,7 +288,6 @@
 		C343756C166BE661006EC87D /* jbl_confirm.aiff */ = {isa = PBXFileReference; lastKnownFileType = audio.aiff; path = jbl_confirm.aiff; sourceTree = "<group>"; };
 		C34BD652197BAC09007138B8 /* PLNetworkManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PLNetworkManager.h; sourceTree = "<group>"; };
 		C34BD653197BAC09007138B8 /* PLNetworkManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PLNetworkManager.m; sourceTree = "<group>"; };
-		C34BD655197BBD6E007138B8 /* Model 4.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "Model 4.xcdatamodel"; sourceTree = "<group>"; };
 		C34BD656197BBE55007138B8 /* PLPodcastOldEpisode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PLPodcastOldEpisode.h; sourceTree = "<group>"; };
 		C34BD657197BBE55007138B8 /* PLPodcastOldEpisode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PLPodcastOldEpisode.m; sourceTree = "<group>"; };
 		C34BD659197BBE56007138B8 /* PLPodcastPin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PLPodcastPin.h; sourceTree = "<group>"; };
@@ -311,7 +305,6 @@
 		C34BD67D197BF353007138B8 /* PLPodcastCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PLPodcastCell.m; path = Player/PLPodcastCell.m; sourceTree = "<group>"; };
 		C34BD67F197BF3D2007138B8 /* PLPodcastCellViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PLPodcastCellViewModel.h; path = Player/PLPodcastCellViewModel.h; sourceTree = "<group>"; };
 		C34BD680197BF3D2007138B8 /* PLPodcastCellViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PLPodcastCellViewModel.m; path = Player/PLPodcastCellViewModel.m; sourceTree = "<group>"; };
-		C34BD682197D701A007138B8 /* Model 5.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "Model 5.xcdatamodel"; sourceTree = "<group>"; };
 		C34BD68B198023A1007138B8 /* PLPodcastsSearchViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PLPodcastsSearchViewModel.h; path = Player/PLPodcastsSearchViewModel.h; sourceTree = "<group>"; };
 		C34BD68C198023A1007138B8 /* PLPodcastsSearchViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PLPodcastsSearchViewModel.m; path = Player/PLPodcastsSearchViewModel.m; sourceTree = "<group>"; };
 		C34BD6941984F0C8007138B8 /* PLPodcastEpisode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PLPodcastEpisode.h; sourceTree = "<group>"; };
@@ -330,12 +323,7 @@
 		C34BD6AC19853E51007138B8 /* PLPodcastEpisodeCellViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PLPodcastEpisodeCellViewModel.m; path = Player/PLPodcastEpisodeCellViewModel.m; sourceTree = "<group>"; };
 		C34BD6AE19856385007138B8 /* UITableViewCell+PLExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITableViewCell+PLExtensions.h"; sourceTree = "<group>"; };
 		C34BD6AF19856385007138B8 /* UITableViewCell+PLExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITableViewCell+PLExtensions.m"; sourceTree = "<group>"; };
-		C34BD6B119856CF1007138B8 /* Model 6.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "Model 6.xcdatamodel"; sourceTree = "<group>"; };
-		C34BD6B219856D67007138B8 /* Mapping1_6.xcmappingmodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcmappingmodel; path = Mapping1_6.xcmappingmodel; sourceTree = "<group>"; };
-		C34BD6B419856D8A007138B8 /* Mapping2_6.xcmappingmodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcmappingmodel; path = Mapping2_6.xcmappingmodel; sourceTree = "<group>"; };
-		C34BD6B619856D99007138B8 /* Mapping3_6.xcmappingmodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcmappingmodel; path = Mapping3_6.xcmappingmodel; sourceTree = "<group>"; };
-		C34BD6B819856DA6007138B8 /* Mapping4_6.xcmappingmodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcmappingmodel; path = Mapping4_6.xcmappingmodel; sourceTree = "<group>"; };
-		C34BD6BA19856DB2007138B8 /* Mapping5_6.xcmappingmodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcmappingmodel; path = Mapping5_6.xcmappingmodel; sourceTree = "<group>"; };
+		C34BD6BC1986BDC8007138B8 /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
 		C354484E165922C80083D703 /* SliderCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SliderCell.h; sourceTree = "<group>"; };
 		C354484F165922C80083D703 /* SliderCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SliderCell.m; sourceTree = "<group>"; };
 		C378CD74194C505A001D0593 /* PLRouter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PLRouter.h; sourceTree = "<group>"; };
@@ -381,7 +369,6 @@
 		C3BC5ABF1656C4EF002DA837 /* PLSettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PLSettingsViewController.h; sourceTree = "<group>"; };
 		C3BC5AC01656C4EF002DA837 /* PLSettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PLSettingsViewController.m; sourceTree = "<group>"; };
 		C3BC5AC11656C4EF002DA837 /* PLSettingsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PLSettingsViewController.xib; sourceTree = "<group>"; };
-		C3BC5ACC1656C81C002DA837 /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
 		C3BC5AD11656CA4D002DA837 /* PLBookmark.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PLBookmark.h; sourceTree = "<group>"; };
 		C3BC5AD21656CA4D002DA837 /* PLBookmark.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PLBookmark.m; sourceTree = "<group>"; };
 		C3BC5AD41656CA4E002DA837 /* PLPlaylist.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PLPlaylist.h; sourceTree = "<group>"; };
@@ -469,10 +456,8 @@
 		C3CC2CEE197A7BC20013FC57 /* XCTAsyncTestCase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XCTAsyncTestCase.m; sourceTree = "<group>"; };
 		C3CC2CF0197A7C1F0013FC57 /* PLTestCase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PLTestCase.h; sourceTree = "<group>"; };
 		C3CC2CF1197A7C1F0013FC57 /* PLTestCase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PLTestCase.m; sourceTree = "<group>"; };
-		C3CC2CF3197A99670013FC57 /* Model 2.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "Model 2.xcdatamodel"; sourceTree = "<group>"; };
 		C3CC2CF8197AA9050013FC57 /* PLMigrationManager+Migrations.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "PLMigrationManager+Migrations.h"; sourceTree = "<group>"; };
 		C3CC2CF9197AA9050013FC57 /* PLMigrationManager+Migrations.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "PLMigrationManager+Migrations.m"; sourceTree = "<group>"; };
-		C3CC2CFC197AB32B0013FC57 /* Model 3.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "Model 3.xcdatamodel"; sourceTree = "<group>"; };
 		C3CF9FD418B52EF4004EE4A1 /* revision.prefix */ = {isa = PBXFileReference; lastKnownFileType = text; path = revision.prefix; sourceTree = "<group>"; };
 		C3CF9FD518B52EF4004EE4A1 /* prebuild.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = prebuild.sh; sourceTree = "<group>"; };
 		C3CF9FD618B52EF4004EE4A1 /* deploy.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = deploy.sh; sourceTree = "<group>"; };
@@ -1454,22 +1439,9 @@
 			name = Lib;
 			sourceTree = "<group>";
 		};
-		C3CC2CF4197A99B40013FC57 /* Mappings */ = {
-			isa = PBXGroup;
-			children = (
-				C34BD6B219856D67007138B8 /* Mapping1_6.xcmappingmodel */,
-				C34BD6B419856D8A007138B8 /* Mapping2_6.xcmappingmodel */,
-				C34BD6B619856D99007138B8 /* Mapping3_6.xcmappingmodel */,
-				C34BD6B819856DA6007138B8 /* Mapping4_6.xcmappingmodel */,
-				C34BD6BA19856DB2007138B8 /* Mapping5_6.xcmappingmodel */,
-			);
-			name = Mappings;
-			sourceTree = "<group>";
-		};
 		C3CC2CFB197AA9250013FC57 /* Migration */ = {
 			isa = PBXGroup;
 			children = (
-				C3CC2CF4197A99B40013FC57 /* Mappings */,
 				C3BC5AE51656CC24002DA837 /* PLMigrationManager.h */,
 				C3BC5AE61656CC24002DA837 /* PLMigrationManager.m */,
 				C3CC2CF8197AA9050013FC57 /* PLMigrationManager+Migrations.h */,
@@ -1705,7 +1677,6 @@
 				C3BC5ACD1656C81C002DA837 /* Model.xcdatamodeld in Sources */,
 				C3BC5AD31656CA4D002DA837 /* PLBookmark.m in Sources */,
 				C3BC5AD61656CA4E002DA837 /* PLPlaylist.m in Sources */,
-				C34BD6B319856D67007138B8 /* Mapping1_6.xcmappingmodel in Sources */,
 				C3BC5ADC1656CA4E002DA837 /* PLPlaylistSong.m in Sources */,
 				C3BC5ADF1656CA73002DA837 /* PLCoreDataStack.m in Sources */,
 				C3BC5AE21656CACC002DA837 /* PLDataAccess.m in Sources */,
@@ -1721,10 +1692,8 @@
 				C378CD7C194C52A6001D0593 /* PLPlaylistSongsViewController.m in Sources */,
 				C3BC5B14165912F6002DA837 /* PLPlayer.m in Sources */,
 				C3CC2C83197128A40013FC57 /* PLServiceContainer.m in Sources */,
-				C34BD6B919856DA6007138B8 /* Mapping4_6.xcmappingmodel in Sources */,
 				C3CC2C9F197299970013FC57 /* PLOneDriveManager.m in Sources */,
 				C3CC18CD191FABD30026E681 /* PLTracksViewController.m in Sources */,
-				C34BD6B519856D8A007138B8 /* Mapping2_6.xcmappingmodel in Sources */,
 				C3544850165922C80083D703 /* SliderCell.m in Sources */,
 				C34BD658197BBE55007138B8 /* PLPodcastOldEpisode.m in Sources */,
 				C3D1A65A16CFC337006D3E5F /* PLPlaylistSelectViewController.m in Sources */,
@@ -1787,7 +1756,6 @@
 				696C16CE03E0D6A5D2CF72AF /* PLImportActivityViewController.m in Sources */,
 				696C1DF8E8A5D182F7F07621 /* PLBackgroundProcess.m in Sources */,
 				696C1A7540982F010E4E85CD /* PLTrackGroupCellViewModel.m in Sources */,
-				C34BD6BB19856DB2007138B8 /* Mapping5_6.xcmappingmodel in Sources */,
 				696C1FC71A11624AE1D6F4F6 /* PLBackgroundProcessProgress.m in Sources */,
 				696C1F37827BDCC5942F540F /* PLMediaMirror.m in Sources */,
 				696C103AFE37906F58AE8524 /* PLPlaylistSongsViewModel.m in Sources */,
@@ -1802,7 +1770,6 @@
 				696C10A3093038033BA242D1 /* PLTracksViewModel.m in Sources */,
 				C3381FE61965BB7D00DA2B7B /* PLKVOObserver.m in Sources */,
 				696C1D76AA5FA9B96D261F18 /* PLMusicLibraryViewModel.m in Sources */,
-				C34BD6B719856D99007138B8 /* Mapping3_6.xcmappingmodel in Sources */,
 				696C1ED23B36804F25FA57AA /* PLNotificationObserver.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -2068,14 +2035,9 @@
 		C3BC5ACB1656C81C002DA837 /* Model.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
-				C34BD6B119856CF1007138B8 /* Model 6.xcdatamodel */,
-				C34BD682197D701A007138B8 /* Model 5.xcdatamodel */,
-				C34BD655197BBD6E007138B8 /* Model 4.xcdatamodel */,
-				C3CC2CFC197AB32B0013FC57 /* Model 3.xcdatamodel */,
-				C3CC2CF3197A99670013FC57 /* Model 2.xcdatamodel */,
-				C3BC5ACC1656C81C002DA837 /* Model.xcdatamodel */,
+				C34BD6BC1986BDC8007138B8 /* Model.xcdatamodel */,
 			);
-			currentVersion = C34BD6B119856CF1007138B8 /* Model 6.xcdatamodel */;
+			currentVersion = C34BD6BC1986BDC8007138B8 /* Model.xcdatamodel */;
 			path = Model.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;

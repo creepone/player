@@ -7,7 +7,7 @@
 #import "PLUtils.h"
 #import "PLErrorManager.h"
 
-const long PLCurrentDataStoreVersion = 6;
+const long PLCurrentDataStoreVersion = 1;
 
 @implementation PLMigrationManager
 

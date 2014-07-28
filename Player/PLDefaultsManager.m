@@ -8,7 +8,6 @@ static NSString *kBookmarkPlaylistUuid = @"BookmarkPlaylistUuid";
 static NSString *kPlaybackRate = @"PlaybackRate";
 static NSString *kGoBackTime = @"GoBackTime";
 static NSString *kMirrorTracks = @"MirrorTracks";
-static NSString *kRemoveUnusedTracks = @"RemoveUnusedTracks";
 
 + (PLDefaultsManager *)sharedManager
 {
@@ -95,19 +94,6 @@ static NSString *kRemoveUnusedTracks = @"RemoveUnusedTracks";
 {
     NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
     [userDefaults setBool:mirrorTracks forKey:kMirrorTracks];
-    [userDefaults synchronize];
-}
-
-- (BOOL)removeUnusedTracks
-{
-    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
-    return [userDefaults boolForKey:kRemoveUnusedTracks];
-}
-
-- (void)setRemoveUnusedTracks:(BOOL)shouldRemoveUnusedTracks
-{
-    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
-    [userDefaults setBool:shouldRemoveUnusedTracks forKey:kRemoveUnusedTracks];
     [userDefaults synchronize];
 }
 

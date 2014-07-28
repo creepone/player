@@ -16,24 +16,9 @@
 
 - (void)remove
 {
-    BOOL shouldRemoveTrack = NO;
-
     // is this a track exclusively owned by this playlist song ?
-    if ([self.track.playlistSongs count] == 1) {
-
-        PLDefaultsManager *defaultsManager = [PLDefaultsManager sharedManager];
-
-        if ([defaultsManager removeUnusedTracks])
-            shouldRemoveTrack = YES;
-
-        // is this a track that we share with the iTunes Library without mirroring it ?
-        if (![defaultsManager mirrorTracks] && self.track.persistentId && !self.track.filePath)
-            shouldRemoveTrack = YES;
-    }
-
-    if (shouldRemoveTrack) {
+    if ([self.track.playlistSongs count] == 1)
         [self.track remove];
-    }
 
     [self.managedObjectContext deleteObject:self];
 }

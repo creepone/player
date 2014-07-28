@@ -15,6 +15,7 @@ typedef NS_ENUM(int16_t, PLTrackDownloadStatus) {
 @property (nonatomic) PLTrackDownloadStatus downloadStatus;
 @property (nonatomic, retain) NSString *filePath;
 @property (nonatomic, retain) NSString *downloadURL;
+@property (nonatomic, retain) NSString *targetFileName;
 @property (nonatomic) BOOL played;
 @property (nonatomic, retain) NSSet *playlistSongs;
 

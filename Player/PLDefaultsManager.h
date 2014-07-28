@@ -15,7 +15,6 @@
 @property (nonatomic) double playbackRate;
 @property (nonatomic) double goBackTime;
 @property (nonatomic) BOOL mirrorTracks;
-@property (nonatomic) BOOL removeUnusedTracks;
 
 /**
  Registers default values for all the settings. To be called on application startup.
