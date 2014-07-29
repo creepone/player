@@ -4,6 +4,9 @@ https://www.apple.com/itunes/affiliates/resources/documentation/itunes-store-web
 https://itunes.apple.com/search?term=ubercast&media=podcast
 https://github.com/CEWendel/SWTableViewCell
 
+set artist for the podcast download track
+search button in the podcast search should force trigger search (timing issues with newly typed characters not being used ??)
+
 natural order for old podcast episodes
 mark all as old, hide old episodes
 use podcast's title as episode's subtitle fallback

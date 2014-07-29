@@ -160,7 +160,7 @@
     if (_audioPlayer != nil) {
         return [_audioPlayer rate];
     }
-    return 1.0;
+    return [[PLDefaultsManager sharedManager] playbackRate];
 }
 
 - (void)setPlaybackRate:(float)rate {
