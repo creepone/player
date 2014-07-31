@@ -12,7 +12,10 @@
         id<PLDataAccess> dataAccess = [PLDataAccess sharedDataAccess];
         PLTrack *track = [dataAccess findOrCreateTrackWithFilePath:[PLUtils pathFromDocuments:targetFileURL]];
         PLPlaylistSong *playlistSong = [[dataAccess selectedPlaylist] addTrack:track];
-        [[PLPlayer sharedPlayer] setCurrentSong:playlistSong];
+        
+        PLPlayer *player = [PLPlayer sharedPlayer];
+        [player setCurrentSong:playlistSong];
+        [player play];
         
         return [dataAccess saveChangesSignal];
     }];

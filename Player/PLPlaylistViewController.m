@@ -193,6 +193,8 @@
     
     _selectedPlaylist = playlist;
     [[PLDataAccess sharedDataAccess] selectPlaylist:playlist];
+    
+    [player setCurrentSong:playlist.currentSong];
 }
 
 

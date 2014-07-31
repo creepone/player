@@ -1,19 +1,16 @@
 #import <Foundation/Foundation.h>
 
-static NSString *kPLPlayerSongChange = @"PLPlayerSongChange";
-static NSString *kPLPlayerIsPlayingChange = @"PLPlayerIsPlayingChange";
-
 @class PLPlaylistSong;
 
 @interface PLPlayer : NSObject
 
 + (PLPlayer *)sharedPlayer;
 
-@property (nonatomic) PLPlaylistSong *currentSong;
-@property (nonatomic) NSTimeInterval currentPosition;
-@property (nonatomic) float playbackRate;
+@property (nonatomic, strong) PLPlaylistSong *currentSong;
+@property (nonatomic, assign) NSTimeInterval currentPosition;
+@property (nonatomic, assign) float playbackRate;
+@property (nonatomic, assign, readonly) BOOL isPlaying;
 
-- (BOOL)isPlaying;
 - (void)playPause;
 - (void)stop;
 - (void)play;

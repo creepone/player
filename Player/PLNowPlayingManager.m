@@ -1,12 +1,13 @@
 #import <MediaPlayer/MediaPlayer.h>
 #import <ReactiveCocoa/ReactiveCocoa.h>
 #import "PLNowPlayingManager.h"
+#import "PLUtils.h"
 #import "PLPlayer.h"
-#import "PLNotificationObserver.h"
+#import "PLKVOObserver.h"
 #import "PLDataAccess.h"
 
 @interface PLNowPlayingManager() {
-    PLNotificationObserver *_observer;
+    PLKVOObserver *_playerObserver;
     RACDisposable *_artworkSubscription;
 }
 @end
@@ -17,7 +18,7 @@
 {
     self = [super init];
     if (self) {
-        _observer = [PLNotificationObserver new];
+        _playerObserver = [PLKVOObserver observerWithTarget:[PLPlayer sharedPlayer]];
     }
     return self;
 }
@@ -25,13 +26,10 @@
 - (void)startUpdating
 {
     @weakify(self);
-    [_observer addNotification:kPLPlayerSongChange handler:^(NSNotification *notification) { @strongify(self);
-        [self updateInfo];
-    }];
-    
-    [_observer addNotification:PLSelectedPlaylistChange handler:^(NSNotification *notification) { @strongify(self);
-        [self updateInfo];
-    }];
+    [_playerObserver addKeyPath:@instanceKey(PLPlayer, currentSong) handler:^(id _) { @strongify(self); [self updateInfo]; }];
+    [_playerObserver addKeyPath:@instanceKey(PLPlayer, isPlaying) handler:^(id _) { @strongify(self); [self updateInfo]; }];
+    [_playerObserver addKeyPath:@instanceKey(PLPlayer, currentPosition) handler:^(id _) { @strongify(self); [self updateInfo]; }];
+    [_playerObserver addKeyPath:@instanceKey(PLPlayer, playbackRate) handler:^(id _) { @strongify(self); [self updateInfo]; }];
     
     [self updateInfo];
 }

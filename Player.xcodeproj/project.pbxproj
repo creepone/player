@@ -535,6 +535,8 @@
 			children = (
 				C38400981937662000D6A930 /* CoreData */,
 				696C1A30A16BABDC7CEF1C08 /* Utils */,
+				C3BC5B12165912F4002DA837 /* PLPlayer.h */,
+				C3BC5B13165912F5002DA837 /* PLPlayer.m */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -1164,8 +1166,6 @@
 			isa = PBXGroup;
 			children = (
 				C3BC5AEC1656CD2D002DA837 /* Utilities */,
-				C3BC5B12165912F4002DA837 /* PLPlayer.h */,
-				C3BC5B13165912F5002DA837 /* PLPlayer.m */,
 			);
 			name = Model;
 			sourceTree = "<group>";

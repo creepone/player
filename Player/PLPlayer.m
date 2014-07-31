@@ -4,22 +4,21 @@
 #import "PLPlayer.h"
 #import "PLDataAccess.h"
 #import "PLDefaultsManager.h"
-#import "PLAlerts.h"
 #import "PLNotificationObserver.h"
+#import "PLErrorManager.h"
+#import "NSObject+PLExtensions.h"
 
 @interface PLPlayer() <AVAudioPlayerDelegate> {
     AVAudioPlayer *_audioPlayer;
     PLNotificationObserver *_notificationObserver;
 }
 
-- (void)pause;
-- (void)save;
-
 @end
 
 @implementation PLPlayer
 
-- (id)init {
+- (id)init
+{
     self = [super init];
     if (self) {
         [[AVAudioSession sharedInstance] setCategory:AVAudioSessionCategoryPlayback error:nil];
@@ -32,219 +31,211 @@
             if (routeChangeReason == AVAudioSessionRouteChangeReasonOldDeviceUnavailable) {
                 [self pause];
             }
-        }];
+        }];        
     }
     return self;
 }
 
-+ (PLPlayer *)sharedPlayer {
++ (PLPlayer *)sharedPlayer
+{
     static dispatch_once_t once;
     static PLPlayer *sharedPlayer;
     dispatch_once(&once, ^ { sharedPlayer = [[self alloc] init]; });
     return sharedPlayer;
 }
 
-- (PLPlaylistSong *)currentSong {
+- (PLPlaylistSong *)currentPlaylistSong
+{
     PLPlaylist *playlist = [[PLDataAccess sharedDataAccess] selectedPlaylist];
     return playlist.currentSong;
 }
 
 - (void)setCurrentSong:(PLPlaylistSong *)song
 {
-    // todo: this only works if the song's playlist is currently selected. that is probably ok but later we have to deal with cases like there is no playlist etc.
-    if (song.playlist.currentSong == song)
+    if (_currentSong == song)
         return;
-
-    [self stop];
-
+    
     song.playlist.position = song.order;
-
     [self save];
     
-    [[NSNotificationCenter defaultCenter] postNotificationName:kPLPlayerSongChange object:nil];
-
-    [self play];
+    [self stop];
+    _currentSong = song;
 }
 
-- (NSTimeInterval)currentPosition {
+- (NSTimeInterval)currentPosition
+{
     if (_audioPlayer != nil)
         return _audioPlayer.currentTime;
-    else {
-        PLPlaylistSong *song = self.currentSong;
-        if (song == nil)
-            return 0;
-        return [song.position doubleValue];
-    }
+    
+    return _currentSong == nil ? 0 : [_currentSong.position doubleValue];
 }
 
-- (void)setCurrentPosition:(NSTimeInterval)position {
+- (void)setCurrentPosition:(NSTimeInterval)position
+{
     if (_audioPlayer != nil) {
         _audioPlayer.currentTime = position;
     }
-}
-
-
-- (BOOL)isPlaying {
-    return [_audioPlayer isPlaying];
-}
-
-- (void)playPause {
-    if ([_audioPlayer isPlaying])
-        [self pause];
-    else
-        [self play];
-}
-
-- (void)play {
-    PLPlaylistSong *song = self.currentSong;
-    if (song == nil)
-        return;
     
-    if (_audioPlayer == nil) {
-        NSError *error;
-        NSURL *assetURL = song.assetURL;
-        
-        if (assetURL == nil) {
-            [self moveToNextAndPlay];
-            return;
-        }
-
-        _audioPlayer = [[AVAudioPlayer alloc] initWithContentsOfURL:assetURL error:&error];
-        _audioPlayer.enableRate = YES;
-        
-        double customRate = [song.playbackRate doubleValue];
-        if (customRate > 0.01) {
-            _audioPlayer.rate = customRate;
-        }
-        else {
-            _audioPlayer.rate = [[PLDefaultsManager sharedManager] playbackRate];
-        }
-
-        [_audioPlayer setDelegate:self];
-    }
-    
-    _audioPlayer.currentTime = [song.position doubleValue];
-    [_audioPlayer play];
-    
-    [[NSNotificationCenter defaultCenter] postNotificationName:kPLPlayerIsPlayingChange object:nil];
-}
-
-- (void)stop {
-    if (_audioPlayer != nil) {
-        PLPlaylistSong *song = self.currentSong;
-        song.position = [NSNumber numberWithDouble:_audioPlayer.currentTime];
-        
-        [_audioPlayer stop];
-        [_audioPlayer setDelegate:nil];
-        _audioPlayer = nil;
-        
-        [[NSNotificationCenter defaultCenter] postNotificationName:kPLPlayerIsPlayingChange object:nil];
-        
+    if (_currentSong != nil) {
+        _currentSong.position = @(position);
         [self save];
     }
 }
 
-- (void)pause {
-    PLPlaylistSong *song = self.currentSong;
-    song.position = [NSNumber numberWithDouble:_audioPlayer.currentTime];
-
-    [_audioPlayer pause];
-    
-    [[NSNotificationCenter defaultCenter] postNotificationName:kPLPlayerIsPlayingChange object:nil];
-
-    [self save];
-}
-
 - (float)playbackRate
 {
-    if (_audioPlayer != nil) {
+    if (_audioPlayer != nil)
         return [_audioPlayer rate];
+    
+    if (_currentSong != nil) {
+        float customRate = [_currentSong.playbackRate floatValue];
+        if (customRate > 0.01)
+            return customRate;
     }
+    
     return [[PLDefaultsManager sharedManager] playbackRate];
 }
 
-- (void)setPlaybackRate:(float)rate {
+- (void)setPlaybackRate:(float)rate
+{
     if (_audioPlayer != nil) {
         [_audioPlayer setRate:rate];
     }
 }
 
-- (void)goBack {
-    double delay = [[PLDefaultsManager sharedManager] goBackTime];
+- (BOOL)isPlaying
+{
+    return [_audioPlayer isPlaying];
+}
+
+
+- (void)playPause
+{
+    if ([self isPlaying])
+        [self pause];
+    else
+        [self play];
+}
+
+- (void)play
+{
+    if (_currentSong == nil)
+        self.currentSong = self.currentPlaylistSong;
+
+    if (_currentSong == nil)
+        return;
     
-    if (_audioPlayer != nil) {
-        double position = _audioPlayer.currentTime;        
-        position = position - delay;
+    if (_audioPlayer == nil) {
+        NSError *error;
+        NSURL *assetURL = _currentSong.assetURL;
         
-        if (position >= 0) {
-            _audioPlayer.currentTime = position;
+        if (assetURL == nil) {
+            [self moveToNextAndPlay];
             return;
         }
         
-        [self stop];
+        float playbackRate = self.playbackRate;
         
-        PLPlaylist *playlist = [[PLDataAccess sharedDataAccess] selectedPlaylist];
-        
-        PLPlaylistSong *song = playlist.currentSong;
-        song.position = @0;
-        [playlist moveToPreviousSong];
+        _audioPlayer = [[AVAudioPlayer alloc] initWithContentsOfURL:assetURL error:&error];
+        _audioPlayer.enableRate = YES;
+        _audioPlayer.rate = playbackRate;
+        _audioPlayer.delegate = self;
+    }
+    
+    _audioPlayer.currentTime = [_currentSong.position doubleValue];
+    [_audioPlayer play];
+    
+    [self pl_notifyKvoForKey:@"isPlaying"];
+}
 
-        while (playlist.currentSong != song) {
-            NSTimeInterval duration = playlist.currentSong.duration;
-            position += duration;
-            
-            if (position >= 0) {
-                playlist.currentSong.position = @(position);
-                break;
-            }
-            
-            song = playlist.currentSong;
-            song.position = @0;
-            [playlist moveToPreviousSong];
-        }
-        
-        [[NSNotificationCenter defaultCenter] postNotificationName:kPLPlayerSongChange object:nil];
+- (void)stop
+{
+    if (_currentSong == nil)
+        return;
+    
+    if (_audioPlayer != nil) {
+        _currentSong.position = @(_audioPlayer.currentTime);
         [self save];
         
-        [self play];
+        [_audioPlayer stop];
+        [_audioPlayer setDelegate:nil];
+        _audioPlayer = nil;
+        
+        [self pl_notifyKvoForKey:@"isPlaying"];
     }
 }
 
-- (void)makeBookmark {
-    id<PLDataAccess> dataAccess = [PLDataAccess sharedDataAccess];
-    [dataAccess createBookmarkAtPosition:self.currentPosition forTrack:self.currentSong.track];
+- (void)pause
+{
+    if (_currentSong == nil)
+        return;
+    
+    _currentSong.position = @(_audioPlayer.currentTime);
     [self save];
 
-    // ivar
-    SystemSoundID mBeep;
+    [_audioPlayer pause];
     
-    // Create the sound ID
-    NSString *path = [[NSBundle mainBundle] pathForResource:@"jbl_confirm" ofType:@"aiff"];
-    NSURL* url = [NSURL fileURLWithPath:path];
-    AudioServicesCreateSystemSoundID((__bridge CFURLRef)url, &mBeep);
-    
-    // Play the sound
-    AudioServicesPlaySystemSound(mBeep);
-    
-    
-    // Dispose of the sound
-    //AudioServicesDisposeSystemSoundID(mBeep);
+    [self pl_notifyKvoForKey:@"isPlaying"];
 }
 
-- (void)save {
-    NSError *error;
-    [[PLDataAccess sharedDataAccess] saveChanges:&error];
-    [PLAlerts checkForDataStoreError:error];
+- (void)goBack
+{
+    if (_currentSong == nil)
+        return;
+    
+    double delay = [[PLDefaultsManager sharedManager] goBackTime];
+    
+    double position = self.currentPosition;
+    position -= delay;
+    
+    if (position >= 0) {
+        self.currentPosition = position;
+        return;
+    }
+    
+    if (_currentSong.playlist == nil) {
+        self.currentPosition = 0;
+        return;
+    }
+    
+    BOOL wasPlaying = [self isPlaying];
+    [self stop];
+    
+    PLPlaylistSong *song = _currentSong;
+    PLPlaylist *playlist = song.playlist;
+    song.position = @0;
+    [playlist moveToPreviousSong];
+    
+    while (playlist.currentSong != song) {
+        NSTimeInterval duration = playlist.currentSong.duration;
+        position += duration;
+        
+        if (position >= 0) {
+            playlist.currentSong.position = @(position);
+            break;
+        }
+        
+        song = playlist.currentSong;
+        song.position = @0;
+        [playlist moveToPreviousSong];
+    }
+    
+    self.currentSong = playlist.currentSong;
+    [self save];
+    
+    if (wasPlaying)
+        [self play];
 }
 
 - (void)moveToNextAndPlay
 {
-    id<PLDataAccess> dataAccess = [PLDataAccess sharedDataAccess];
-    PLPlaylist *playlist = [dataAccess selectedPlaylist];
+    if (_currentSong == nil || _currentSong.playlist == nil)
+        return;
+    
+    PLPlaylist *playlist = _currentSong.playlist;
     [playlist moveToNextSong];
     
-    [[NSNotificationCenter defaultCenter] postNotificationName:kPLPlayerSongChange object:nil];
-    
+    self.currentSong = playlist.currentSong;
     [self save];
     
     [_audioPlayer setDelegate:nil];
@@ -253,9 +244,36 @@
 }
 
 
+- (void)save
+{
+    NSError *error;
+    [[PLDataAccess sharedDataAccess] saveChanges:&error];
+    if (error)
+        [PLErrorManager logError:error];
+}
+
+- (void)makeBookmark
+{
+    id<PLDataAccess> dataAccess = [PLDataAccess sharedDataAccess];
+    [dataAccess createBookmarkAtPosition:self.currentPosition forTrack:self.currentSong.track];
+    [self save];
+    
+    SystemSoundID mBeep;
+    
+    NSString *path = [[NSBundle mainBundle] pathForResource:@"jbl_confirm" ofType:@"aiff"];
+    NSURL* url = [NSURL fileURLWithPath:path];
+    AudioServicesCreateSystemSoundID((__bridge CFURLRef)url, &mBeep);
+    AudioServicesPlaySystemSound(mBeep);
+    
+    // Dispose of the sound
+    // AudioServicesDisposeSystemSoundID(mBeep);
+}
+
+
 #pragma mark - AVAudioPlayerDelegate
 
-- (void)audioPlayerDidFinishPlaying:(AVAudioPlayer *)player successfully:(BOOL)flag {
+- (void)audioPlayerDidFinishPlaying:(AVAudioPlayer *)player successfully:(BOOL)flag
+{
     [player setDelegate:nil];
     
     PLPlaylistSong *song = self.currentSong;
@@ -265,21 +283,23 @@
     [self moveToNextAndPlay];
 }
 
-- (void)audioPlayerBeginInterruption:(AVAudioPlayer *)player {
+- (void)audioPlayerBeginInterruption:(AVAudioPlayer *)player
+{
     PLPlaylistSong *song = self.currentSong;
     song.position = [NSNumber numberWithDouble:_audioPlayer.currentTime];
     [self save];
 }
 
-- (void)audioPlayerEndInterruption:(AVAudioPlayer *)player withOptions:(NSUInteger)flags {
+- (void)audioPlayerEndInterruption:(AVAudioPlayer *)player withOptions:(NSUInteger)flags
+{
     if(flags == AVAudioSessionInterruptionOptionShouldResume){
         [self play];
     }
 }
 
 
-
-- (void)dealloc {
+- (void)dealloc
+{
     [_audioPlayer setDelegate:nil];
 }
 

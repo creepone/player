@@ -1,8 +1,4 @@
-podcasts:
-UISearchDisplayController
-https://www.apple.com/itunes/affiliates/resources/documentation/itunes-store-web-service-search-api.html
-https://itunes.apple.com/search?term=ubercast&media=podcast
-https://github.com/CEWendel/SWTableViewCell
+think about what should happen when the selected playlist changes. currently we keep playing the song from the old playlist which might be kinda confusing..
 
 set artist for the podcast download track
 search button in the podcast search should force trigger search (timing issues with newly typed characters not being used ??)

@@ -18,6 +18,7 @@
     RACDisposable *_imageArtworkSubscription;
     PLKVOObserver *_downloadStatusObserver;
     PLKVOObserver *_downloadProgressObserver;
+    PLKVOObserver *_playerObserver;
 }
 
 @property (strong, nonatomic, readwrite) UIImage *imageArtwork;
@@ -45,14 +46,15 @@
             [self setupObservingDownload];
 
         _notificationObserver = [PLNotificationObserver observer];
+        _playerObserver = [PLKVOObserver observerWithTarget:[PLPlayer sharedPlayer]];
 
         @weakify(self);
-        [_notificationObserver addNotification:kPLPlayerSongChange handler:^(id _) { @strongify(self);
+        [_playerObserver addKeyPath:@instanceKey(PLPlayer, currentSong) handler:^(id _) { @strongify(self);
             [self pl_notifyKvoForKey:@"backgroundColor"];
             [self setupUpdatingProgress];
         }];
-
-        [_notificationObserver addNotification:kPLPlayerIsPlayingChange handler:^(id _) { @strongify(self);
+        
+        [_playerObserver addKeyPath:@instanceKey(PLPlayer, isPlaying) handler:^(id _) { @strongify(self);
             [self setupUpdatingProgress];
         }];
 
@@ -150,7 +152,8 @@
 {
     [self pl_notifyKvoForKeys:@[ @"playbackProgress", @"durationText" ]];
 
-    if (![[PLPlayer sharedPlayer] isPlaying] || ![self isSongCurrent]) {
+    PLPlayer *player = [PLPlayer sharedPlayer];
+    if (!player.isPlaying || player.currentSong != _playlistSong) {
         [self stopUpdatingProgress];
         return;
     }
@@ -175,12 +178,15 @@
 
 - (BOOL)isSongCurrent
 {
-    return _playlistSong.playlist.currentSong == _playlistSong;
+    BOOL value = _playlistSong.playlist.currentSong == _playlistSong;
+    DDLogVerbose(@"is song %@ current = %@", _playlistSong.order, @(value));
+    return value;
 }
 
 - (NSTimeInterval)position
 {
-    return [self isSongCurrent] ? [[PLPlayer sharedPlayer] currentPosition] : [_playlistSong.position doubleValue];
+    PLPlayer *player = [PLPlayer sharedPlayer];
+    return player.currentSong == _playlistSong ? player.currentPosition : [_playlistSong.position doubleValue];
 }
 
 
@@ -223,6 +229,7 @@
 {
     _downloadStatusObserver = nil;
     _downloadProgressObserver = nil;
+    _playerObserver = nil;
     [self stopUpdatingProgress];
 }
 

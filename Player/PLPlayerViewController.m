@@ -7,10 +7,12 @@
 #import "PLUtils.h"
 #import "NSString+Extensions.h"
 #import "NSObject+PLExtensions.h"
+#import "PLKVOObserver.h"
 
 
 @interface PLPlayerViewController () {
     BOOL _isShown;
+    PLKVOObserver *_playerObserver;
 }
 
 - (void)reloadData;
@@ -25,6 +27,7 @@
     if (self) {
         self.title = @"Player";
         self.tabBarItem.image = [UIImage imageNamed:@"music"];
+        
     }
     return self;
 }
@@ -40,8 +43,11 @@
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reloadData) name:kPLPlayerSongChange object:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reloadData) name:kPLPlayerIsPlayingChange object:nil];
+    _playerObserver = [PLKVOObserver observerWithTarget:[PLPlayer sharedPlayer]];
+    
+    @weakify(self);
+    [_playerObserver addKeyPath:@instanceKey(PLPlayer, currentSong) handler:^(id _) { @strongify(self); [self reloadData]; }];
+    [_playerObserver addKeyPath:@instanceKey(PLPlayer, isPlaying) handler:^(id _) { @strongify(self); [self reloadData]; }];
     
     _isShown = YES;
     [self reloadData];
@@ -51,8 +57,7 @@
 - (void)viewWillDisappear:(BOOL)animated {
     [super viewWillDisappear:animated];
     
-    [[NSNotificationCenter defaultCenter] removeObserver:self];
-    
+    _playerObserver = nil;
     _isShown = NO;
 }
 
