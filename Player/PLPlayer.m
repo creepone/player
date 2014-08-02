@@ -141,9 +141,9 @@
         _audioPlayer.rate = playbackRate;
         _audioPlayer.delegate = self;
     }
-    
-    _audioPlayer.currentTime = [_currentSong.position doubleValue];
+
     [_audioPlayer play];
+    _audioPlayer.currentTime = [_currentSong.position doubleValue];;
     
     [self pl_notifyKvoForKey:@"isPlaying"];
 }
@@ -170,10 +170,10 @@
     if (_currentSong == nil)
         return;
     
+    [_audioPlayer pause];
+    
     _currentSong.position = @(_audioPlayer.currentTime);
     [self save];
-
-    [_audioPlayer pause];
     
     [self pl_notifyKvoForKey:@"isPlaying"];
 }

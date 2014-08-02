@@ -30,10 +30,9 @@ extern NSString * const PLBackgroundSessionIdentifier;
 
 /**
  Adds a new track (if not present yet) with the given download URL and title to the selected playlist
- and enqueues its download.
+ and enqueues its download. Set nil to use the default targetFileName.
  */
-- (RACSignal *)addTrackToDownload:(NSURL *)downloadURL withTitle:(NSString *)title;
-- (RACSignal *)addTrackToDownload:(NSURL *)downloadURL withTitle:(NSString *)title targetFileName:(NSString *)targetFileName;
+- (RACSignal *)addTrackToDownload:(NSURL *)downloadURL withTitle:(NSString *)title artist:(NSString *)artist targetFileName:(NSString *)targetFileName;
 
 /**
  Creates and starts a download task for the given track. 

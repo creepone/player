@@ -178,9 +178,7 @@
 
 - (BOOL)isSongCurrent
 {
-    BOOL value = _playlistSong.playlist.currentSong == _playlistSong;
-    DDLogVerbose(@"is song %@ current = %@", _playlistSong.order, @(value));
-    return value;
+    return _playlistSong.playlist.currentSong == _playlistSong;
 }
 
 - (NSTimeInterval)position

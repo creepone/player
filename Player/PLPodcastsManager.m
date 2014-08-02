@@ -47,8 +47,11 @@
         }];
 }
 
-- (RACSignal *)episodesInFeed:(NSURL *)feedURL
-{    
+- (RACSignal *)episodesForPodcast:(id<PLPodcastPin>)podcastPin
+{
+    NSURL *feedURL = [NSURL URLWithString:podcastPin.feedURL];
+    NSString *artist = podcastPin.artist;
+    
     return [[[PLResolve(PLNetworkManager) getDataFromURL:feedURL] flattenMap:^RACStream *(NSData *data) {
         RXMLElement *rootElement = [RXMLElement elementFromXMLData:data];
         
@@ -58,6 +61,7 @@
             
             PLPodcastEpisode *episode = [PLPodcastEpisode new];
             episode.podcastFeedURL = feedURL;
+            episode.artist = artist;
         
             RXMLElement *titleElement = [itemElement child:@"title"];
             episode.title = titleElement.text;
@@ -68,6 +72,21 @@
             if (episode.subtitle == nil) {
                 RXMLElement *summaryElement = [itemElement child:@"summary"];
                 episode.subtitle = summaryElement.text;
+            }
+            
+            if (episode.subtitle == nil) {
+                RXMLElement *podcastSummaryElement = [rootElement child:@"channel.summary"];
+                episode.subtitle = podcastSummaryElement.text;
+            }
+            
+            if (episode.subtitle == nil) {
+                RXMLElement *podcastDescriptionElement = [rootElement child:@"channel.description"];
+                episode.subtitle = podcastDescriptionElement.text;
+            }
+            
+            if (episode.subtitle == nil) {
+                RXMLElement *podcastTitleElement = [rootElement child:@"channel.title"];
+                episode.subtitle = podcastTitleElement.text;
             }
             
             RXMLElement *guidElement = [itemElement child:@"guid"];

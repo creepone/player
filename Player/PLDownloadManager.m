@@ -175,6 +175,11 @@ NSString * const PLBackgroundSessionIdentifier = @"at.iosapps.Player.BackgroundS
 
 - (RACSignal *)addTrackToDownload:(NSURL *)downloadURL withTitle:(NSString *)title targetFileName:(NSString *)targetFileName
 {
+    return [self addTrackToDownload:downloadURL withTitle:title artist:nil targetFileName:targetFileName];
+}
+
+- (RACSignal *)addTrackToDownload:(NSURL *)downloadURL withTitle:(NSString *)title artist:(NSString *)artist targetFileName:(NSString *)targetFileName
+{
     id<PLDataAccess> dataAccess = [PLDataAccess sharedDataAccess];
     PLPlaylist *playlist = [dataAccess selectedPlaylist];
     
@@ -189,6 +194,8 @@ NSString * const PLBackgroundSessionIdentifier = @"at.iosapps.Player.BackgroundS
     
     if (targetFileName != nil)
         track.targetFileName = targetFileName;
+    
+    track.artist = artist;
     
     return [[dataAccess saveChangesSignal] then:^RACSignal *{
         return [self enqueueDownloadOfTrack:track];

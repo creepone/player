@@ -26,15 +26,15 @@
 - (void)startUpdating
 {
     @weakify(self);
-    [_playerObserver addKeyPath:@instanceKey(PLPlayer, currentSong) handler:^(id _) { @strongify(self); [self updateInfo]; }];
-    [_playerObserver addKeyPath:@instanceKey(PLPlayer, isPlaying) handler:^(id _) { @strongify(self); [self updateInfo]; }];
-    [_playerObserver addKeyPath:@instanceKey(PLPlayer, currentPosition) handler:^(id _) { @strongify(self); [self updateInfo]; }];
-    [_playerObserver addKeyPath:@instanceKey(PLPlayer, playbackRate) handler:^(id _) { @strongify(self); [self updateInfo]; }];
+    [_playerObserver addKeyPath:@instanceKey(PLPlayer, currentSong) handler:^(id _) { @strongify(self); [self updateInfo:@"currentSong"]; }];
+    [_playerObserver addKeyPath:@instanceKey(PLPlayer, isPlaying) handler:^(id _) { @strongify(self); [self updateInfo:@"isPlaying"]; }];
+    [_playerObserver addKeyPath:@instanceKey(PLPlayer, currentPosition) handler:^(id _) { @strongify(self); [self updateInfo:@"currentPosition"]; }];
+    [_playerObserver addKeyPath:@instanceKey(PLPlayer, playbackRate) handler:^(id _) { @strongify(self); [self updateInfo:@"playbackRate"]; }];
     
-    [self updateInfo];
+    [self updateInfo:@"start"];
 }
 
-- (void)updateInfo
+- (void)updateInfo:(NSString *)reason
 {
     [_artworkSubscription dispose];
     
@@ -43,6 +43,7 @@
     PLTrack *track = [[player currentSong] track];
     
     if (track == nil) {
+        DDLogInfo(@"Updated now playing (%@) to nil", reason);
         infoCenter.nowPlayingInfo = nil;
         return;
     }
@@ -56,6 +57,8 @@
     }];
     
     infoCenter.nowPlayingInfo = info;
+    
+    DDLogInfo(@"Updated now playing (%@) = %@", reason, info);
     
     _artworkSubscription = [track.largeArtwork subscribeNext:^(UIImage *artwork) {
         if (artwork != nil) {

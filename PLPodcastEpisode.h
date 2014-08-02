@@ -10,6 +10,7 @@
 @property (nonatomic, retain) NSString *guid;
 
 @property (nonatomic, retain) NSURL *podcastFeedURL;
+@property (nonatomic, retain) NSString *artist;
 
 - (RACSignal *)markAsOld;
 

@@ -18,7 +18,7 @@
     RACSubject *_newEpisodesUpdatesSubject;
     NSArray *_allEpisodes;
     NSMutableArray *_newEpisodes;
-    NSMutableDictionary *_selection;
+    NSMutableArray *_selection;
 }
 
 @property (nonatomic, assign, readwrite) BOOL ready;
@@ -27,7 +27,7 @@
 
 @implementation PLPodcastEpisodesViewModel
 
-- (instancetype)initWithPodcastPin:(PLPodcastPin *)podcastPin selection:(NSMutableDictionary *)selection
+- (instancetype)initWithPodcastPin:(PLPodcastPin *)podcastPin selection:(NSMutableArray *)selection
 {
     self = [super init];
     if (self) {
@@ -53,11 +53,9 @@
 }
 
 - (void)loadEpisodes
-{
-    NSURL *feedURL = [NSURL URLWithString:_podcastPin.feedURL];
-    
+{    
     @weakify(self);
-    [[PLResolve(PLPodcastsManager) episodesInFeed:feedURL] subscribeNext:^(NSArray *episodes) { @strongify(self);
+    [[PLResolve(PLPodcastsManager) episodesForPodcast:_podcastPin] subscribeNext:^(NSArray *episodes) { @strongify(self);
         if (!self) return;
         
         _allEpisodes = episodes;
@@ -191,28 +189,36 @@
 {
     if (indexPath.section == 0) {
         PLPodcastEpisode *episode = _newEpisodes[indexPath.row];
-        if ([self isSelected:episode.guid]) {
-            [_selection removeObjectForKey:episode.guid];
+        PLPodcastEpisode *selectedEpisode = [self findSelected:episode.guid];
+        if (selectedEpisode != nil) {
+            [_selection removeObject:selectedEpisode];
         }
         else {
-            _selection[episode.guid] = episode;
+            [_selection addObject:episode];
         }
     }
     else {
         PLPodcastOldEpisode *episode = [_fetchedResultsController objectAtIndexPath:[self firstSectionPath:indexPath]];
-        if ([self isSelected:episode.guid]) {
-            [_selection removeObjectForKey:episode.guid];
+        PLPodcastEpisode *selectedEpisode = [self findSelected:episode.guid];
+        if (selectedEpisode != nil) {
+            [_selection removeObject:selectedEpisode];
         }
         else {
-            _selection[episode.guid] = [episode episode];
+            [_selection addObject:[episode episode]];
         }
     }
 }
 
 - (BOOL)isSelected:(NSString *)guid
 {
-    return _selection[guid] != nil;
+    return [_selection pl_any:^BOOL(PLPodcastEpisode *episode) { return [episode.guid isEqualToString:guid]; }];
 }
+
+- (PLPodcastEpisode *)findSelected:(NSString *)guid
+{
+    return [_selection pl_find:^BOOL(PLPodcastEpisode *episode) { return [episode.guid isEqualToString:guid]; }];
+}
+
 
 - (NSIndexPath *)firstSectionPath:(NSIndexPath *)indexPath
 {

@@ -77,7 +77,7 @@
     if (downloadURL == nil)
         return [RACSignal empty];
     
-    return [[PLDownloadManager sharedManager] addTrackToDownload:downloadURL withTitle:asset.fileName targetFileName:asset.fileName];
+    return [[PLDownloadManager sharedManager] addTrackToDownload:downloadURL withTitle:asset.fileName artist:nil targetFileName:asset.fileName];
 }
 
 - (RACSignal *)loadChildrenRecursive:(id<PLPathAsset>)asset

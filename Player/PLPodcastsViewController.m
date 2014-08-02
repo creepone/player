@@ -45,7 +45,7 @@
 {
     @weakify(self);
     
-    [self rac_liftSelector:@selector(setSearching:) withSignals:[[RACObserve(self.viewModel.searchViewModel, isSearching) distinctUntilChanged] takeUntil:self.rac_willDeallocSignal], nil];
+    [self rac_liftSelector:@selector(setSearching:) withSignals:[RACObserve(self.viewModel.searchViewModel, isSearching) takeUntil:self.rac_willDeallocSignal], nil];
     [[self.viewModel.searchViewModel.dismissSignal takeUntil:self.rac_willDeallocSignal] subscribeNext:^(id _) { @strongify(self); [self hideSearch]; }];
     
     [_viewModel.updatesSignal subscribeNext:^(NSArray *updates) { @strongify(self);
@@ -161,6 +161,13 @@
 {
     _searchTermSubject = [RACSubject subject];
     [self.viewModel.searchViewModel setSearchTermSignal:_searchTermSubject];
+}
+
+- (void)searchDisplayControllerDidBeginSearch:(UISearchDisplayController *)controller
+{
+    NSString *lastSearchTerm = self.viewModel.searchViewModel.lastSearchTerm;
+    if ([lastSearchTerm length] > 0)
+        controller.searchBar.text = lastSearchTerm;
 }
 
 - (void)searchDisplayControllerDidEndSearch:(UISearchDisplayController *)controller

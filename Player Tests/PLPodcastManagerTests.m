@@ -63,20 +63,24 @@
     [self waitForStatus:kXCTUnitWaitStatusSuccess timeout:10];
 }
 
-- (void)testEpisodesInFeed
+- (void)testEpisodesForPodcast
 {
     NSString *feedPath = [[NSBundle bundleForClass:[self class]] pathForResource:@"podcastFeed" ofType:@"xml"];
     NSData *feedData = [NSData dataWithContentsOfFile:feedPath];
     XCTAssertNotNil(feedData);
 
-    NSURL *feedURL = [NSURL URLWithString:@"http://dummy.feed.url"];
+    NSURL *feedURL = [NSURL URLWithString:@"http://dummy.feet.url"];
     
     id networkManagerMock = OCMProtocolMock(@protocol(PLNetworkManager));
     OCMStub([networkManagerMock getDataFromURL:feedURL]).andReturn([RACSignal return:feedData]);
     [self.serviceContainer registerInstance:networkManagerMock underProtocol:@protocol(PLNetworkManager)];
     
+    id podcastPinMock = OCMProtocolMock(@protocol(PLPodcastPin));
+    OCMStub([podcastPinMock artist]).andReturn(@"testArtist");
+    OCMStub([podcastPinMock feedURL]).andReturn([feedURL absoluteString]);
+    
     PLPodcastsManager *podcastManager = [PLPodcastsManager new];
-    [[podcastManager episodesInFeed:feedURL] subscribeNext:^(NSArray *episodes) {
+    [[podcastManager episodesForPodcast:podcastPinMock] subscribeNext:^(NSArray *episodes) {
         
         XCTAssertEqual([episodes count], 48);
 
@@ -85,12 +89,20 @@
         XCTAssertEqualObjects(episode1.subtitle, @"Natalia Berdys of Foodoo Kitchen, Don Melton, former director of internet technology at Apple, and Brent Simmons of Vesper join Guy and Rene to talk about Swift, its future, Sprite Kit, and more!");
         XCTAssertEqualObjects(episode1.downloadURL, [NSURL URLWithString:@"http://traffic.libsyn.com/zenandtech/debug42.mp3"]);
         XCTAssertEqualObjects(episode1.guid, @"8514B3FA-5BB5-4DFC-B3AA-A9A09385F960");
+        XCTAssertEqualObjects(episode1.artist, @"testArtist");
+        XCTAssertEqualObjects(episode1.podcastFeedURL, feedURL);
 
         PLPodcastEpisode *episode2 = episodes[1];
         XCTAssertEqualObjects(episode2.title, @"Debug 41: Nitin Ganatra episode III: iPhone to iPad");
         XCTAssertEqualObjects(episode2.subtitle, @"In part 3 of the Nitin Ganatra trilogy, the former Director of iOS apps at Apple talks to Guy and Rene about iOS interface and API decisions, scaling to iPad, life after Apple, and what comes next.");
         XCTAssertEqualObjects(episode2.downloadURL, [NSURL URLWithString:@"http://traffic.libsyn.com/zenandtech/debug41.mp3"]);
         XCTAssertEqualObjects(episode2.guid, @"D7DA0492-C966-4BCA-B5F0-3C875119899C");
+        XCTAssertEqualObjects(episode2.artist, @"testArtist");
+        XCTAssertEqualObjects(episode2.podcastFeedURL, feedURL);
+        
+        // for the 3rd episode, the summary and subtitle tags are missing, so it should fallback to the summary of the podcast
+        PLPodcastEpisode *episode3 = episodes[2];
+        XCTAssertEqualObjects(episode3.subtitle, @"Debug is a conversational interview show about developing software and services, primarily for iPhone, iPad, Mac, and gaming. Hosted by Guy English and Rene Ritchie, it's all the great talk you get at the bar after the conference, wrapped up in convenient podcast form. Pull up a chair, hit play, join us.");
 
         [self notify:kXCTUnitWaitStatusSuccess];
 

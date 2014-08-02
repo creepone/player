@@ -14,7 +14,7 @@
     NSFetchedResultsController *_fetchedResultsController;
     PLFetchedResultsControllerDelegate *_fetchedResultsControllerDelegate;
     PLPodcastsSearchViewModel *_searchViewModel;
-    NSMutableDictionary *_selection;
+    NSMutableArray *_selection;
 }
 
 @end
@@ -25,7 +25,7 @@
 {
     self = [super init];
     if (self) {
-        _selection = [NSMutableDictionary dictionary];
+        _selection = [NSMutableArray array];
         _searchViewModel = [[PLPodcastsSearchViewModel alloc] initWithSelection:_selection];
         _fetchedResultsController = [[PLDataAccess sharedDataAccess] fetchedResultsControllerForAllPodcastPins];
         _fetchedResultsControllerDelegate = [[PLFetchedResultsControllerDelegate alloc] initWithFetchedResultsController:_fetchedResultsController];
@@ -40,7 +40,7 @@
 
 - (NSArray *)selection
 {
-    return [_selection allValues];
+    return _selection;
 }
 
 - (PLPodcastsSearchViewModel *)searchViewModel

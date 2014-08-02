@@ -1,5 +1,7 @@
 #import <Foundation/Foundation.h>
 
+@protocol PLPodcastPin;
+
 @protocol PLPodcastsManager <NSObject>
 
 /**
@@ -10,7 +12,7 @@
 /**
  Returns a signal that delivers an NSArray of PLPodcastEpisode-s in the given feed and completes.
  */
-- (RACSignal *)episodesInFeed:(NSURL *)feedURL;
+- (RACSignal *)episodesForPodcast:(id<PLPodcastPin>)podcastPin;
 
 @end
 

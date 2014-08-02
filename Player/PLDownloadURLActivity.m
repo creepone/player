@@ -36,7 +36,7 @@
 
         NSURL *downloadURL = [NSURL URLWithString:[[alertView textFieldAtIndex:0] text]];
         NSString *title = [PLUtils fileNameFromURL:downloadURL];
-        return [[PLDownloadManager sharedManager] addTrackToDownload:downloadURL withTitle:title];
+        return [[PLDownloadManager sharedManager] addTrackToDownload:downloadURL withTitle:title artist:nil targetFileName:nil];
     }];
 }
 

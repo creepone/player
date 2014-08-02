@@ -4,7 +4,7 @@
 
 @interface PLPodcastEpisodesViewModel : NSObject
 
-- (instancetype)initWithPodcastPin:(PLPodcastPin *)podcastPin selection:(NSMutableDictionary *)selection;
+- (instancetype)initWithPodcastPin:(PLPodcastPin *)podcastPin selection:(NSMutableArray *)selection;
 
 /**
  * Returns YES if the view model has loaded the episodes and is ready to use, NO otherwise.

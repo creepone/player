@@ -45,7 +45,7 @@
         progress = [PLProgressHUD showWithStatus:@"Adding episodes"]; // todo: localize
         
         return [[viewModel.selection.rac_sequence signalWithScheduler:[RACScheduler mainThreadScheduler]] flattenMap:^RACStream *(PLPodcastEpisode *episode) {
-            return [[[PLDownloadManager sharedManager] addTrackToDownload:episode.downloadURL withTitle:episode.title] then:^RACSignal *{
+            return [[[PLDownloadManager sharedManager] addTrackToDownload:episode.downloadURL withTitle:episode.title artist:episode.artist targetFileName:nil] then:^RACSignal *{
                 return [episode markAsOld];
             }];
         }];

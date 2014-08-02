@@ -9,7 +9,8 @@
 #import "PLPodcastEpisodesViewModel.h"
 
 @interface PLPodcastsSearchViewModel() {
-    NSMutableDictionary *_selection;
+    NSMutableArray *_selection;
+    NSString *_lastSearchTerm;
     RACDisposable *_searchDisposable;
     RACSubject *_dismissSubject;
 }
@@ -20,7 +21,7 @@
 
 @implementation PLPodcastsSearchViewModel
 
-- (instancetype)initWithSelection:(NSMutableDictionary *)selection
+- (instancetype)initWithSelection:(NSMutableArray *)selection
 {
     self = [super init];
     if (self) {
@@ -42,8 +43,11 @@
     }
     
     @weakify(self);
-    _searchDisposable = [[[[[searchTermSignal doNext:^(id _) { @strongify(self);
+    _searchDisposable = [[[[[searchTermSignal doNext:^(NSString *searchTerm) { @strongify(self);
+        if (!self) return;
+        
         self.isSearching = YES;
+        self->_lastSearchTerm = searchTerm;
     }]
     throttle:0.5]
     map:^id(NSString *searchTerm) {
@@ -59,6 +63,11 @@
         self.foundPodcasts = podcasts;
         self.isSearching = NO;
     }];
+}
+
+- (NSString *)lastSearchTerm
+{
+    return _lastSearchTerm;
 }
 
 - (NSUInteger)cellsCount

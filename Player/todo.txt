@@ -1,20 +1,13 @@
-think about what should happen when the selected playlist changes. currently we keep playing the song from the old playlist which might be kinda confusing..
-
-set artist for the podcast download track
-search button in the podcast search should force trigger search (timing issues with newly typed characters not being used ??)
-
 natural order for old podcast episodes
-mark all as old, hide old episodes
-use podcast's title as episode's subtitle fallback
+mark all as old after 2-3 manual markings
 
-right buttons in the episodes list become visible when rotating the device
 episodes count determining and caching
 
-saving scroll position
-update the now playing info on position change (e.g. going back)
-
 show explanation on an empty screen (add new podcasts by searching)
-add a toolbar with a plus button that just starts the search and later a filter (filters down to podcasts with new episodes)
+right buttons in the episodes list become visible when rotating the device
+
+
+saving scroll position (and other ui ?)
 
 long term:
 refactor the "Activity View" to use MVVM

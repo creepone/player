@@ -29,6 +29,7 @@
     episode.downloadURL = [NSURL URLWithString:self.downloadURL];
     episode.guid = self.guid;
     episode.podcastFeedURL = [NSURL URLWithString:self.podcastPin.feedURL];
+    episode.artist = self.podcastPin.artist;
     return episode;
 }
 
