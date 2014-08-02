@@ -107,11 +107,6 @@ extern NSString * const PLSelectedPlaylistChange;
 - (NSNumber *)findHighestPodcastPinOrder;
 
 /**
- Returns the highest value of the order property amongst existing old podcast episodes
- */
-- (NSNumber *)findHighestOldEpisodeOrder;
-
-/**
  Delivers the first found track (or nil if none found) with a persistentId without a file URL (i.e. a track yet to be mirrored)
  */
 - (PLTrack *)findNextTrackToMirror;
@@ -120,6 +115,11 @@ extern NSString * const PLSelectedPlaylistChange;
  Delivers a playlist song with the given track on the given playlist, if one exists. Otherwise, nil is returned.
  */
 - (PLPlaylistSong *)findSongWithTrack:(PLTrack *)track onPlaylist:(PLPlaylist *)playlist;
+
+/**
+ Executes the given block for each podcast pin in the data store.
+ */
+- (void)executeForEachPodcastPin:(void(^)(PLPodcastPin *))block;
 
 - (NSFetchedResultsController *)fetchedResultsControllerForAllPlaylists;
 - (NSFetchedResultsController *)fetchedResultsControllerForAllBookmarks;

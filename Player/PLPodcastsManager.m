@@ -7,7 +7,24 @@
 #import "PLPodcastEpisode.h"
 #import "PLDataAccess.h"
 
+@interface PLPodcastsManager() {
+    NSDateFormatter *_pubDateFormatter;
+}
+
+@end
+
 @implementation PLPodcastsManager
+
+- (instancetype)init
+{
+    self = [super init];
+    if (self) {
+        _pubDateFormatter = [NSDateFormatter new];
+        [_pubDateFormatter setDateFormat:@"EEE, dd MMMM yyyy HH:mm:ss Z"];
+    }
+    return self;
+}
+
 
 - (RACSignal *)searchForPodcasts:(NSString *)searchTerm
 {
@@ -96,13 +113,57 @@
             NSString *downloadURL = [enclosureElement attribute:@"url"];
             episode.downloadURL = [NSURL URLWithString:downloadURL];
             
-            
+            RXMLElement *pubDateElement = [itemElement child:@"pubDate"];
+            episode.publishDate = pubDateElement != nil ? [_pubDateFormatter dateFromString:pubDateElement.text] : nil;
+
             [episodes addObject:episode];
         }];
         
         return [RACSignal return:episodes];
         
     }] deliverOn:[RACScheduler mainThreadScheduler]];
+}
+
+- (RACSignal *)episodeGuidsForPodcast:(id<PLPodcastPin>)podcastPin
+{
+    NSURL *feedURL = [NSURL URLWithString:podcastPin.feedURL];
+    
+    return [[PLResolve(PLNetworkManager) getDataFromURL:feedURL] flattenMap:^RACStream *(NSData *data) {
+        RXMLElement *rootElement = [RXMLElement elementFromXMLData:data];
+        
+        NSMutableArray *guids = [NSMutableArray array];
+        
+        [rootElement iterate:@"channel.item" usingBlock:^(RXMLElement *itemElement) {
+            RXMLElement *guidElement = [itemElement child:@"guid"];
+            NSString *guid = guidElement.text;
+            
+            if (guid != nil)
+                [guids addObject:guid];
+        }];
+        
+        return [RACSignal return:guids];
+    }];
+}
+
+- (void)updateCounts
+{
+    [[RACScheduler scheduler] schedule:^{
+        PLDataAccess *dataAccess = [[PLDataAccess alloc] initWithNewContext:YES];
+        [dataAccess executeForEachPodcastPin:^(PLPodcastPin *podcastPin) {
+            [[self episodeGuidsForPodcast:podcastPin] subscribeNext:^(NSArray *episodeGuids) {
+            
+                int16_t countNewEpisodes = 0;
+                
+                for (NSString *episodeGuid in episodeGuids) {
+                    if (![dataAccess existsPodcastOldEpisodeWithGuid:episodeGuid])
+                        countNewEpisodes++;
+                }
+                
+                podcastPin.countNewEpisodes = countNewEpisodes;
+                [dataAccess saveChanges:nil];
+            }];
+        }];
+    }];
 }
 
 @end

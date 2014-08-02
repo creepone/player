@@ -2,6 +2,8 @@
 #import "PLPodcastEpisode.h"
 #import "PLDataAccess.h"
 
+NSString * const PLEpisodeMarkedAsNew = @"PLEpisodeMarkedAsNew";
+
 @implementation PLPodcastOldEpisode
 
 @dynamic title;
@@ -9,7 +11,7 @@
 @dynamic downloadURL;
 @dynamic guid;
 @dynamic podcastPin;
-@dynamic order;
+@dynamic publishDate;
 
 + (instancetype)oldEpisodeFromEpisode:(PLPodcastEpisode *)episode inContext:(NSManagedObjectContext *)context
 {
@@ -18,6 +20,7 @@
     oldEpisode.subtitle = episode.subtitle;
     oldEpisode.downloadURL = [episode.downloadURL absoluteString];
     oldEpisode.guid  = episode.guid;
+    oldEpisode.publishDate = episode.publishDate;
     return oldEpisode;
 }
 
@@ -30,11 +33,15 @@
     episode.guid = self.guid;
     episode.podcastFeedURL = [NSURL URLWithString:self.podcastPin.feedURL];
     episode.artist = self.podcastPin.artist;
+    episode.publishDate = self.publishDate;
     return episode;
 }
 
 - (void)remove
 {
+    NSNotification *notification = [NSNotification notificationWithName:PLEpisodeMarkedAsNew object:nil userInfo:@{ @"guid": self.guid }];
+    [[NSNotificationCenter defaultCenter] postNotification:notification];
+    
     [self.managedObjectContext deleteObject:self];
 }
 

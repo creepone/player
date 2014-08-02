@@ -14,6 +14,16 @@
  */
 - (RACSignal *)episodesForPodcast:(id<PLPodcastPin>)podcastPin;
 
+/**
+ Returns a signal that delivers an NSArray of guids of all the episodes in the given feed and completes.
+ */
+- (RACSignal *)episodeGuidsForPodcast:(id<PLPodcastPin>)podcastPin;
+
+/**
+ Updates the new episodes count for each podcast in the background.
+ */
+- (void)updateCounts;
+
 @end
 
 @interface PLPodcastsManager : NSObject <PLPodcastsManager>

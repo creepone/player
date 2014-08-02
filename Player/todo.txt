@@ -1,8 +1,3 @@
-natural order for old podcast episodes
-mark all as old after 2-3 manual markings
-
-episodes count determining and caching
-
 show explanation on an empty screen (add new podcasts by searching)
 right buttons in the episodes list become visible when rotating the device
 

@@ -7,6 +7,7 @@
 @property (strong, nonatomic, readonly) UIImage *imageArtwork;
 @property (strong, nonatomic, readonly) NSString *titleText;
 @property (strong, nonatomic, readonly) NSString *artistText;
+@property (strong, nonatomic, readonly) NSString *infoText;
 @property (assign, nonatomic, readonly) CGFloat alpha;
 
 - (instancetype)initWithPodcast:(PLPodcast *)podcast;

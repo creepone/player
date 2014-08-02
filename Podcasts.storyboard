@@ -70,6 +70,65 @@
                                     <segue destination="fbD-6Q-kJt" kind="push" identifier="podcast" id="LtL-TE-Tcb"/>
                                 </connections>
                             </tableViewCell>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="none" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="podcastMainCell" rowHeight="62" id="0AU-80-edO" customClass="PLPodcastCell">
+                                <rect key="frame" x="0.0" y="190" width="320" height="62"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="0AU-80-edO" id="ddl-Rd-oLN">
+                                    <rect key="frame" x="0.0" y="0.0" width="287" height="61"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="DefaultArtwork" translatesAutoresizingMaskIntoConstraints="NO" id="bMU-1o-Sht">
+                                            <rect key="frame" x="4" y="4" width="52" height="52"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="52" id="iKq-kT-JZG"/>
+                                                <constraint firstAttribute="height" constant="52" id="uGC-Le-gnm"/>
+                                            </constraints>
+                                        </imageView>
+                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="The Fountainhead" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0CW-oK-QRR">
+                                            <rect key="frame" x="64" y="6" width="213" height="18"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Ayn Rand" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yqL-Md-kCf">
+                                            <rect key="frame" x="64" y="24" width="213" height="15"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="12 episodes" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cRf-2t-agn">
+                                            <rect key="frame" x="64" y="39" width="213" height="14"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="11"/>
+                                            <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="yqL-Md-kCf" firstAttribute="leading" secondItem="cRf-2t-agn" secondAttribute="leading" id="3kS-kN-u8x"/>
+                                        <constraint firstItem="cRf-2t-agn" firstAttribute="top" secondItem="yqL-Md-kCf" secondAttribute="bottom" id="4ht-hQ-wpg"/>
+                                        <constraint firstItem="bMU-1o-Sht" firstAttribute="top" secondItem="ddl-Rd-oLN" secondAttribute="top" constant="4" id="6a8-Cq-kRL"/>
+                                        <constraint firstItem="0CW-oK-QRR" firstAttribute="top" secondItem="ddl-Rd-oLN" secondAttribute="top" constant="6" id="AHs-fL-tgk"/>
+                                        <constraint firstItem="yqL-Md-kCf" firstAttribute="top" secondItem="0CW-oK-QRR" secondAttribute="bottom" id="ObR-Ad-p7H"/>
+                                        <constraint firstItem="0CW-oK-QRR" firstAttribute="leading" secondItem="bMU-1o-Sht" secondAttribute="trailing" constant="8" id="Rsz-oY-sB6"/>
+                                        <constraint firstItem="yqL-Md-kCf" firstAttribute="leading" secondItem="bMU-1o-Sht" secondAttribute="trailing" constant="8" id="XQ6-vB-bsQ"/>
+                                        <constraint firstAttribute="trailing" secondItem="yqL-Md-kCf" secondAttribute="trailing" constant="10" id="dDN-ew-B9b"/>
+                                        <constraint firstAttribute="trailing" secondItem="0CW-oK-QRR" secondAttribute="trailing" constant="10" id="eoV-g6-jb8"/>
+                                        <constraint firstItem="bMU-1o-Sht" firstAttribute="leading" secondItem="ddl-Rd-oLN" secondAttribute="leading" constant="4" id="g2p-Wf-vVi"/>
+                                        <constraint firstAttribute="trailing" secondItem="cRf-2t-agn" secondAttribute="trailing" constant="10" id="tzI-uj-Ge9"/>
+                                    </constraints>
+                                </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="imageViewArtwork" destination="bMU-1o-Sht" id="QWe-PC-PLx"/>
+                                    <outlet property="labelArtist" destination="yqL-Md-kCf" id="6QU-W9-76a"/>
+                                    <outlet property="labelInfo" destination="cRf-2t-agn" id="j3A-Yz-9x3"/>
+                                    <outlet property="labelTitle" destination="0CW-oK-QRR" id="EvU-95-iMr"/>
+                                    <segue destination="fbD-6Q-kJt" kind="push" identifier="podcastMain" id="0EO-CC-3g7"/>
+                                </connections>
+                            </tableViewCell>
                         </prototypes>
                         <connections>
                             <outlet property="dataSource" destination="hGO-HH-3Vr" id="qpn-c6-WAV"/>
@@ -265,4 +324,7 @@
         <simulatedOrientationMetrics key="orientation"/>
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
+    <inferredMetricsTieBreakers>
+        <segue reference="0EO-CC-3g7"/>
+    </inferredMetricsTieBreakers>
 </document>

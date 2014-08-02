@@ -17,6 +17,7 @@ target :default do
     pod "Google-API-Client", "~> 0.1.1"
     pod "RaptureXML", "~> 1.0.1"
     pod "SWTableViewCell", "~> 0.3.0"
+    pod "M13BadgeView", "~> 1.0.3"
     link_with "Player"
 end
 

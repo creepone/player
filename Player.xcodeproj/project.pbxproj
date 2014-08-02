@@ -89,6 +89,7 @@
 		C378CD80194C61CF001D0593 /* PLPlaylistSongCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C378CD7F194C61CF001D0593 /* PLPlaylistSongCell.m */; };
 		C378CDD6195F0EF4001D0593 /* PLTrackCellViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = C378CDD5195F0EF4001D0593 /* PLTrackCellViewModel.m */; };
 		C384009B193879E600D6A930 /* PLTrack.m in Sources */ = {isa = PBXBuildFile; fileRef = C384009A193879E600D6A930 /* PLTrack.m */; };
+		C3A17038198D515D006F6684 /* Mapping1_2.xcmappingmodel in Sources */ = {isa = PBXBuildFile; fileRef = C3A17037198D515D006F6684 /* Mapping1_2.xcmappingmodel */; };
 		C3A4D67C193E40320060B704 /* PLFileImport.m in Sources */ = {isa = PBXBuildFile; fileRef = C3A4D67B193E40320060B704 /* PLFileImport.m */; };
 		C3A4D67F19433F1C0060B704 /* PLTableViewProgress.m in Sources */ = {isa = PBXBuildFile; fileRef = C3A4D67E19433F1C0060B704 /* PLTableViewProgress.m */; };
 		C3A4D682194343570060B704 /* PLProgressTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C3A4D681194343570060B704 /* PLProgressTableViewCell.m */; };
@@ -337,6 +338,8 @@
 		C378CDD5195F0EF4001D0593 /* PLTrackCellViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PLTrackCellViewModel.m; sourceTree = "<group>"; };
 		C3840099193879E600D6A930 /* PLTrack.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PLTrack.h; sourceTree = "<group>"; };
 		C384009A193879E600D6A930 /* PLTrack.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PLTrack.m; sourceTree = "<group>"; };
+		C3A17035198D5125006F6684 /* Model 2.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "Model 2.xcdatamodel"; sourceTree = "<group>"; };
+		C3A17037198D515D006F6684 /* Mapping1_2.xcmappingmodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcmappingmodel; path = Mapping1_2.xcmappingmodel; sourceTree = "<group>"; };
 		C3A4D67A193E40320060B704 /* PLFileImport.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PLFileImport.h; sourceTree = "<group>"; };
 		C3A4D67B193E40320060B704 /* PLFileImport.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PLFileImport.m; sourceTree = "<group>"; };
 		C3A4D67D19433F1C0060B704 /* PLTableViewProgress.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PLTableViewProgress.h; sourceTree = "<group>"; };
@@ -1025,6 +1028,14 @@
 			name = CoreData;
 			sourceTree = "<group>";
 		};
+		C3A17036198D514A006F6684 /* Mapping */ = {
+			isa = PBXGroup;
+			children = (
+				C3A17037198D515D006F6684 /* Mapping1_2.xcmappingmodel */,
+			);
+			name = Mapping;
+			sourceTree = "<group>";
+		};
 		C3A4D679193E401B0060B704 /* Import */ = {
 			isa = PBXGroup;
 			children = (
@@ -1442,6 +1453,7 @@
 		C3CC2CFB197AA9250013FC57 /* Migration */ = {
 			isa = PBXGroup;
 			children = (
+				C3A17036198D514A006F6684 /* Mapping */,
 				C3BC5AE51656CC24002DA837 /* PLMigrationManager.h */,
 				C3BC5AE61656CC24002DA837 /* PLMigrationManager.m */,
 				C3CC2CF8197AA9050013FC57 /* PLMigrationManager+Migrations.h */,
@@ -1741,6 +1753,7 @@
 				696C153A17367E75E95611F2 /* PLCachedArtwork.m in Sources */,
 				696C1B378A7D2749C756064C /* PLMediaItemTrack.m in Sources */,
 				696C1F292F5CDB0A7156E3AD /* NSObject+PLExtensions.m in Sources */,
+				C3A17038198D515D006F6684 /* Mapping1_2.xcmappingmodel in Sources */,
 				C3CC18CA191F7B850026E681 /* PLTrackGroupCell.m in Sources */,
 				C3CC18D3191FC5990026E681 /* PLTrackCell.m in Sources */,
 				696C1409FF66555E089505A1 /* NSArray+PLExtensions.m in Sources */,
@@ -2035,9 +2048,10 @@
 		C3BC5ACB1656C81C002DA837 /* Model.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
+				C3A17035198D5125006F6684 /* Model 2.xcdatamodel */,
 				C34BD6BC1986BDC8007138B8 /* Model.xcdatamodel */,
 			);
-			currentVersion = C34BD6BC1986BDC8007138B8 /* Model.xcdatamodel */;
+			currentVersion = C3A17035198D5125006F6684 /* Model 2.xcdatamodel */;
 			path = Model.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;

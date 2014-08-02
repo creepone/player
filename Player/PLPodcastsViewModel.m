@@ -34,6 +34,8 @@
         [_fetchedResultsController performFetch:&error];
         if (error)
             [PLErrorManager logError:error];
+        
+        [PLResolve(PLPodcastsManager) updateCounts];
     }
     return self;
 }
@@ -55,7 +57,7 @@
 
 - (NSString *)cellIdentifier
 {
-    return @"podcastCell";
+    return @"podcastMainCell";
 }
 
 - (CGFloat)cellHeight

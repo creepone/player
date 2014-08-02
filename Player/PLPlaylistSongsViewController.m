@@ -44,8 +44,7 @@
     _viewModel = viewModel;
 
     @weakify(self);
-    [_viewModel.updatesSignal subscribeNext:^(NSArray *updates) {
-        @strongify(self);
+    [_viewModel.updatesSignal subscribeNext:^(NSArray *updates) { @strongify(self);
         if (self && self->_isVisible && !self->_ignoreUpdates)
             [self.tableView pl_applyUpdates:updates];
     }];

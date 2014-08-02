@@ -99,13 +99,46 @@
         XCTAssertEqualObjects(episode2.guid, @"D7DA0492-C966-4BCA-B5F0-3C875119899C");
         XCTAssertEqualObjects(episode2.artist, @"testArtist");
         XCTAssertEqualObjects(episode2.podcastFeedURL, feedURL);
-        
+
         // for the 3rd episode, the summary and subtitle tags are missing, so it should fallback to the summary of the podcast
         PLPodcastEpisode *episode3 = episodes[2];
         XCTAssertEqualObjects(episode3.subtitle, @"Debug is a conversational interview show about developing software and services, primarily for iPhone, iPad, Mac, and gaming. Hosted by Guy English and Rene Ritchie, it's all the great talk you get at the bar after the conference, wrapped up in convenient podcast form. Pull up a chair, hit play, join us.");
 
         [self notify:kXCTUnitWaitStatusSuccess];
 
+    } error:self.onError];
+    
+    [self waitForStatus:kXCTUnitWaitStatusSuccess timeout:10];
+}
+
+- (void)testEpisodeGuidsForPodcast
+{
+    NSString *feedPath = [[NSBundle bundleForClass:[self class]] pathForResource:@"podcastFeed" ofType:@"xml"];
+    NSData *feedData = [NSData dataWithContentsOfFile:feedPath];
+    XCTAssertNotNil(feedData);
+    
+    NSURL *feedURL = [NSURL URLWithString:@"http://dummy.feet.url"];
+    
+    id networkManagerMock = OCMProtocolMock(@protocol(PLNetworkManager));
+    OCMStub([networkManagerMock getDataFromURL:feedURL]).andReturn([RACSignal return:feedData]);
+    [self.serviceContainer registerInstance:networkManagerMock underProtocol:@protocol(PLNetworkManager)];
+    
+    id podcastPinMock = OCMProtocolMock(@protocol(PLPodcastPin));
+    OCMStub([podcastPinMock feedURL]).andReturn([feedURL absoluteString]);
+    
+    PLPodcastsManager *podcastManager = [PLPodcastsManager new];
+    [[podcastManager episodeGuidsForPodcast:podcastPinMock] subscribeNext:^(NSArray *guids) {
+        
+        XCTAssertEqual([guids count], 48);
+        
+        PLPodcastEpisode *guid1 = guids[0];
+        XCTAssertEqualObjects(guid1, @"8514B3FA-5BB5-4DFC-B3AA-A9A09385F960");
+        
+        PLPodcastEpisode *guid2 = guids[1];
+        XCTAssertEqualObjects(guid2, @"D7DA0492-C966-4BCA-B5F0-3C875119899C");
+        
+        [self notify:kXCTUnitWaitStatusSuccess];
+        
     } error:self.onError];
     
     [self waitForStatus:kXCTUnitWaitStatusSuccess timeout:10];

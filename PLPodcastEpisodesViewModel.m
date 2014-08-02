@@ -9,16 +9,21 @@
 #import "PLErrorManager.h"
 #import "PLFetchedResultsUpdate.h"
 #import "PLPodcastEpisodeCellViewModel.h"
+#import "PLNotificationObserver.h"
 
 @interface PLPodcastEpisodesViewModel() {
     PLPodcastPin *_podcastPin;
     NSFetchedResultsController *_fetchedResultsController;
     PLFetchedResultsControllerDelegate *_fetchedResultsControllerDelegate;
+    PLNotificationObserver *_notificationObserver;
     
     RACSubject *_newEpisodesUpdatesSubject;
     NSArray *_allEpisodes;
     NSMutableArray *_newEpisodes;
     NSMutableArray *_selection;
+    
+    NSInteger _markedOldCount;
+    BOOL _askedToMarkAll;
 }
 
 @property (nonatomic, assign, readwrite) BOOL ready;
@@ -35,6 +40,7 @@
         _selection = selection;
         _fetchedResultsController = [[PLDataAccess sharedDataAccess] fetchedResultsControllerForEpisodesOfPodcast:podcastPin];
         _fetchedResultsControllerDelegate = [[PLFetchedResultsControllerDelegate alloc] initWithFetchedResultsController:_fetchedResultsController];
+        _notificationObserver = [PLNotificationObserver observer];
         _newEpisodesUpdatesSubject = [RACSubject subject];
         
         NSError *error;
@@ -71,41 +77,76 @@
 
 - (void)subscribeToUpdates
 {
-    [_fetchedResultsControllerDelegate.updatesSignal subscribeNext:^(NSArray *updates) {
-        for (PLFetchedResultsUpdate *update in updates) {
-            if (update.changeType == NSFetchedResultsChangeDelete) {
-                PLPodcastOldEpisode *removedOldEpisode = (PLPodcastOldEpisode *)update.object;
-                PLPodcastEpisode *episode = [_allEpisodes pl_find:^BOOL(PLPodcastEpisode *episode) {
-                    return [episode.guid isEqualToString:removedOldEpisode.guid];
-                }];
-                
-                if (episode != nil) {
-                    NSInteger index = [self indexToInsertEpisode:episode];
-                    
-                    PLFetchedResultsUpdate *update = [PLFetchedResultsUpdate new];
-                    update.changeType = NSFetchedResultsChangeInsert;
-                    update.object = episode;
-                    update.targetIndexPath = [NSIndexPath indexPathForRow:index inSection:0];
-                    [_newEpisodes insertObject:episode atIndex:index];
-                    [_newEpisodesUpdatesSubject sendNext:@[update]];
-                }
-            }
-            else if (update.changeType == NSFetchedResultsChangeInsert) {
-                PLPodcastOldEpisode *insertedOldEpisode = (PLPodcastOldEpisode *)update.object;
-                NSInteger episodeIndex = [_newEpisodes indexOfObjectPassingTest:^BOOL(PLPodcastEpisode *episode, NSUInteger idx, BOOL *stop) {
-                    return [episode.guid isEqualToString:insertedOldEpisode.guid];
-                }];
-                
-                if (episodeIndex != NSNotFound) {
-                    PLFetchedResultsUpdate *update = [PLFetchedResultsUpdate new];
-                    update.changeType = NSFetchedResultsChangeDelete;
-                    update.object = _newEpisodes[episodeIndex];
-                    update.indexPath = [NSIndexPath indexPathForRow:episodeIndex inSection:0];
-                    [_newEpisodes removeObjectAtIndex:episodeIndex];
-                    [_newEpisodesUpdatesSubject sendNext:@[update]];
-                }
-            }
+    @weakify(self);
+    
+    [_notificationObserver addNotification:PLEpisodeMarkedAsNew handler:^(NSNotification *notification) { @strongify(self);
+        if (!self) return;
+        
+        NSString *episodeGuid = notification.userInfo[@"guid"];
+        PLPodcastEpisode *episode = [self->_allEpisodes pl_find:^BOOL(PLPodcastEpisode *episode) {
+            return [episode.guid isEqualToString:episodeGuid];
+        }];
+        
+        if (episode != nil) {
+            NSInteger index = [self indexToInsertEpisode:episode];
+            
+            PLFetchedResultsUpdate *update = [PLFetchedResultsUpdate new];
+            update.changeType = NSFetchedResultsChangeInsert;
+            update.object = episode;
+            update.targetIndexPath = [NSIndexPath indexPathForRow:index inSection:0];
+            [self->_newEpisodes insertObject:episode atIndex:index];
+            [self->_newEpisodesUpdatesSubject sendNext:@[update]];
+            
+            self->_podcastPin.countNewEpisodes = [self->_newEpisodes count];
+            [[[PLDataAccess sharedDataAccess] saveChangesSignal] subscribeError:[PLErrorManager logErrorVoidBlock]];
         }
+    }];
+    
+    [_notificationObserver addNotification:PLEpisodeMarkedAsOld handler:^(NSNotification *notification) { @strongify(self);
+        if (!self) return;
+    
+        PLPodcastOldEpisode *insertedOldEpisode = (PLPodcastOldEpisode *)notification.userInfo[@"episode"];;
+        NSInteger episodeIndex = [self->_newEpisodes indexOfObjectPassingTest:^BOOL(PLPodcastEpisode *episode, NSUInteger idx, BOOL *stop) {
+            return [episode.guid isEqualToString:insertedOldEpisode.guid];
+        }];
+        
+        if (episodeIndex != NSNotFound) {
+            PLFetchedResultsUpdate *update = [PLFetchedResultsUpdate new];
+            update.changeType = NSFetchedResultsChangeDelete;
+            update.object = self->_newEpisodes[episodeIndex];
+            update.indexPath = [NSIndexPath indexPathForRow:episodeIndex inSection:0];
+            [self->_newEpisodes removeObjectAtIndex:episodeIndex];
+            [self->_newEpisodesUpdatesSubject sendNext:@[update]];
+            
+            self->_markedOldCount++;
+            
+            self->_podcastPin.countNewEpisodes = [self->_newEpisodes count];
+            [[[PLDataAccess sharedDataAccess] saveChangesSignal] subscribeError:[PLErrorManager logErrorVoidBlock]];
+            [self checkMarkAll];
+        }
+        
+    }];
+}
+
+- (void)checkMarkAll
+{
+    if (_askedToMarkAll || _markedOldCount <= 2 || [_newEpisodes count] < 2)
+        return;
+    
+    _askedToMarkAll = YES;
+        
+    // todo: localize
+    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Mark all as old" message:@"Do you want to mark all episodes as old?" delegate:nil cancelButtonTitle:NSLocalizedString(@"Common.Cancel", nil) otherButtonTitles:NSLocalizedString(@"Common.OK", nil), nil];
+    [alertView show];
+    
+    [[[alertView rac_buttonClickedSignal] take:1] subscribeNext:^(NSNumber *buttonIndex) {
+        if ([buttonIndex intValue] == alertView.cancelButtonIndex)
+            return;
+        
+        for (PLPodcastEpisode *episode in [_newEpisodes copy])
+            [episode markAsOld];
+
+        [[[PLDataAccess sharedDataAccess] saveChangesSignal] subscribeError:[PLErrorManager logErrorVoidBlock]];
     }];
 }
 
@@ -126,7 +167,8 @@
 
 - (RACSignal *)updatesSignal
 {
-    RACSignal *oldEpisodesUpdates = [_fetchedResultsControllerDelegate.updatesSignal map:^id(NSArray *updates) {
+    @weakify(self);
+    RACSignal *oldEpisodesUpdates = [_fetchedResultsControllerDelegate.updatesSignal map:^id(NSArray *updates) { @strongify(self);
         return [updates pl_map:^id(PLFetchedResultsUpdate *update) {
             PLFetchedResultsUpdate *mappedUpdate = [PLFetchedResultsUpdate new];
             mappedUpdate.changeType = update.changeType;

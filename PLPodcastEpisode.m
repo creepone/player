@@ -2,17 +2,20 @@
 #import "PLPodcastEpisode.h"
 #import "PLDataAccess.h"
 
+NSString * const PLEpisodeMarkedAsOld = @"PLEpisodeMarkedAsOld";
+
 @implementation PLPodcastEpisode
 
 - (RACSignal *)markAsOld
 {
     id<PLDataAccess> dataAccess = [PLDataAccess sharedDataAccess];
-    
     PLPodcastOldEpisode *oldEpisode = [dataAccess findOrCreatePodcastOldEpisodeByEpisode:self];
-    oldEpisode.order = [[dataAccess findHighestOldEpisodeOrder] longLongValue] + 1;
     oldEpisode.podcastPin = [dataAccess findPodcastPinWithFeedURL:[self.podcastFeedURL absoluteString]];
     
-    return [dataAccess saveChangesSignal];
+    NSNotification *notification = [NSNotification notificationWithName:PLEpisodeMarkedAsOld object:nil userInfo:@{ @"episode": oldEpisode }];
+    [[NSNotificationCenter defaultCenter] postNotification:notification];
+    
+    return [[PLDataAccess sharedDataAccess] saveChangesSignal];
 }
 
 @end

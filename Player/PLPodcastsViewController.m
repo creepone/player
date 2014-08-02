@@ -33,6 +33,7 @@
 {
     [super viewDidAppear:animated];
     _isVisible = YES;
+    [self.tableView reloadData];
 }
 
 - (void)viewWillDisappear:(BOOL)animated
@@ -79,7 +80,7 @@
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
-    if ([segue.identifier isEqualToString:@"podcast"]) {
+    if ([segue.identifier isEqualToString:@"podcast"] || [segue.identifier isEqualToString:@"podcastMain"]) {
         PLPodcastEpisodesViewController *podcastsVc = [segue destinationViewController];
         UITableViewCell *cell = (UITableViewCell *)sender;
         UITableView *tableView = [cell pl_tableView];

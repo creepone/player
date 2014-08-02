@@ -263,26 +263,19 @@ NSString * const PLSelectedPlaylistChange = @"PLSelectedPlaylistChange";
     }
 }
 
-- (NSNumber *)findHighestOldEpisodeOrder
+- (void)executeForEachPodcastPin:(void(^)(PLPodcastPin *))block
 {
-    NSFetchRequest *fetchRequest = [self queryForHighestOldEpisodeOrder];
-    
-    NSError *error;
-    NSArray *result = [self.context executeFetchRequest:fetchRequest error:&error];
-    
-    if (error) {
-        [PLErrorManager logError:error];
-        return nil;
-    }
-    
-    if ([result count] == 0) {
-        return @(0);
-    }
-    else {
-        return [result[0] valueForKey:@instanceKey(PLPodcastOldEpisode, order)];
-    }
-}
+    NSFetchRequest *fetchRequest = [self queryForAllPodcastPins];
+    fetchRequest.fetchBatchSize = 50;
 
+    NSError *error;
+    NSArray *pins = [self.context executeFetchRequest:fetchRequest error:&error];
+    if (error != nil)
+        return;
+    
+    for (PLPodcastPin *pin in pins)
+        block(pin);
+}
 
 
 - (NSFetchedResultsController *)fetchedResultsControllerForAllPlaylists
@@ -566,25 +559,6 @@ NSString * const PLSelectedPlaylistChange = @"PLSelectedPlaylistChange";
     return fetchRequest;
 }
 
-- (NSFetchRequest *)queryForHighestOldEpisodeOrder
-{
-    NSFetchRequest *fetchRequest = [NSFetchRequest new];
-    
-    [fetchRequest setEntity:[NSEntityDescription entityForName:[PLPodcastOldEpisode entityName] inManagedObjectContext:self.context]];
-    
-    NSExpression *keyPathExpression = [NSExpression expressionForKeyPath:@instanceKey(PLPodcastOldEpisode, order)];
-    NSExpression *maxExpression = [NSExpression expressionForFunction:@"max:" arguments:@[keyPathExpression]];
-    NSExpressionDescription *expressionDescription = [[NSExpressionDescription alloc] init];
-    [expressionDescription setName:@instanceKey(PLPodcastOldEpisode, order)];
-    [expressionDescription setExpression:maxExpression];
-    [expressionDescription setExpressionResultType:NSInteger64AttributeType];
-    
-    [fetchRequest setPropertiesToFetch:@[expressionDescription]];
-    [fetchRequest setResultType:NSDictionaryResultType];
-    
-    return fetchRequest;
-}
-
 - (NSFetchRequest *)queryForEpisodesOfPodcast:(PLPodcastPin *)podcast
 {
     NSFetchRequest *fetchRequest = [NSFetchRequest new];
@@ -594,7 +568,7 @@ NSString * const PLSelectedPlaylistChange = @"PLSelectedPlaylistChange";
     NSPredicate *predicate = [NSPredicate predicateWithFormat:@"%K = %@", @instanceKey(PLPodcastOldEpisode, podcastPin), podcast];
     [fetchRequest setPredicate:predicate];
     
-    NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@instanceKey(PLPodcastOldEpisode, order) ascending:NO];
+    NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@instanceKey(PLPodcastOldEpisode, publishDate) ascending:NO];
     [fetchRequest setSortDescriptors:@[sortDescriptor]];
     
     return fetchRequest;

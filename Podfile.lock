@@ -194,6 +194,7 @@ PODS:
     - libextobjc/RuntimeExtensions
   - libextobjc/RuntimeExtensions (0.4)
   - libextobjc/UmbrellaHeader (0.4)
+  - M13BadgeView (1.0.3)
   - OCMock (3.0.2)
   - RaptureXML (1.0.1)
   - ReactiveCocoa (2.3.1):
@@ -217,6 +218,7 @@ DEPENDENCIES:
   - Google-API-Client (~> 0.1.1)
   - iOS-blur (~> 0.0.5)
   - libextobjc (~> 0.4)
+  - M13BadgeView (~> 1.0.3)
   - OCMock (~> 3.0.2)
   - RaptureXML (~> 1.0.1)
   - ReactiveCocoa (from `https://raw.githubusercontent.com/creepone/ReactiveCocoa/private/ReactiveCocoa.podspec.json`)
@@ -240,6 +242,7 @@ SPEC CHECKSUMS:
   HexColors: 01384d2bbe8dc4ffa43c3b4135db6e976952d153
   iOS-blur: 5ec57b4a72e57a4f8f5f47ff3f59e56c0690b761
   libextobjc: ba42e4111f433273a886cd54f0ddaddb7f62f82f
+  M13BadgeView: ba877709e9e0f762bdd7badeb4f64e686b95531a
   OCMock: b9836ab89d8d5e66cbe6333f93857037c310ee62
   RaptureXML: b9b0aca9c68c684c189af73dd5e8f8fdeec74600
   ReactiveCocoa: d62de1d789eca0db8fd464bbfe7a350189ffebe7

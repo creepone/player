@@ -2,6 +2,8 @@
 
 @class PLPodcastEpisode, PLPodcastPin;
 
+extern NSString * const PLEpisodeMarkedAsNew;
+
 @interface PLPodcastOldEpisode : PLEntity
 
 + (instancetype)oldEpisodeFromEpisode:(PLPodcastEpisode *)episode inContext:(NSManagedObjectContext *)context;
@@ -11,7 +13,7 @@
 @property (nonatomic, retain) NSString * downloadURL;
 @property (nonatomic, retain) NSString * guid;
 @property (nonatomic, retain) PLPodcastPin *podcastPin;
-@property (nonatomic, assign) int64_t order;
+@property (nonatomic, assign) NSDate * publishDate;
 
 - (PLPodcastEpisode *)episode;
 
