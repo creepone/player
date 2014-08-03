@@ -104,7 +104,10 @@
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (editingStyle == UITableViewCellEditingStyleDelete) {
-        [[_viewModel removeSongAt:indexPath] subscribeError:[PLErrorManager logErrorVoidBlock]];
+        [[_viewModel removeSongAt:indexPath] subscribeError:[PLErrorManager logErrorVoidBlock]
+        completed:^{
+            [self.tableView reloadData];
+        }];
     }
 }
 

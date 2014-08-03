@@ -49,8 +49,10 @@
     [self removeSongsObject:song];
 
     // if the song we deleted was the current one, reset the current order
-    if (order == [self.position intValue])
-        self.position = @(0);
+    if (order == [self.position intValue]) {
+        PLPlaylistSong *songToSelect = [self findNextSong] ?: [self findFirstSong];
+        self.position = songToSelect != nil ? songToSelect.order : @(0);
+    }
 }
 
 
@@ -97,16 +99,13 @@
     }
 }
 
-- (void)moveToNextSong {
-    NSLog(@"looking for the next song...");
-    
+- (void)moveToNextSong
+{
     PLPlaylistSong *nextSong = [self findNextSong];
     if (nextSong != nil)
         self.position = nextSong.order;
     else
-        self.position = [NSNumber numberWithInt:0];
-    
-    NSLog(@"found the next song %d", [self.position intValue]);
+        self.position = @(0);
 }
 
 - (void)moveToPreviousSong {
