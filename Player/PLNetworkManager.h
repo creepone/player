@@ -10,8 +10,10 @@
 
 /**
  Returns a signal that delivers the NSData downloaded from the given URL and completes.
+ If useEmphemeral is set to YES, the download will use a session that does not cache or store cookies.
  */
 - (RACSignal *)getDataFromURL:(NSURL *)url;
+- (RACSignal *)getDataFromURL:(NSURL *)url useEphemeral:(BOOL)useEphemeral;
 
 @end
 

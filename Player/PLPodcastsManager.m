@@ -69,7 +69,7 @@
     NSURL *feedURL = [NSURL URLWithString:podcastPin.feedURL];
     NSString *artist = podcastPin.artist;
     
-    return [[[PLResolve(PLNetworkManager) getDataFromURL:feedURL] flattenMap:^RACStream *(NSData *data) {
+    return [[[PLResolve(PLNetworkManager) getDataFromURL:feedURL useEphemeral:YES] flattenMap:^RACStream *(NSData *data) {
         RXMLElement *rootElement = [RXMLElement elementFromXMLData:data];
         
         NSMutableArray * episodes = [NSMutableArray array];
@@ -128,7 +128,7 @@
 {
     NSURL *feedURL = [NSURL URLWithString:podcastPin.feedURL];
     
-    return [[PLResolve(PLNetworkManager) getDataFromURL:feedURL] flattenMap:^RACStream *(NSData *data) {
+    return [[PLResolve(PLNetworkManager) getDataFromURL:feedURL useEphemeral:YES] flattenMap:^RACStream *(NSData *data) {
         RXMLElement *rootElement = [RXMLElement elementFromXMLData:data];
         
         NSMutableArray *guids = [NSMutableArray array];

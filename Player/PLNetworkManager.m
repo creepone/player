@@ -4,6 +4,7 @@
 
 @interface PLNetworkManager() {
     NSURLSession *_session;
+    NSURLSession *_ephemeralSession;
 }
 
 @end
@@ -16,6 +17,10 @@
     if (self) {
         NSURLSessionConfiguration *configuration = [NSURLSessionConfiguration defaultSessionConfiguration];
         _session = [NSURLSession sessionWithConfiguration:configuration delegate:nil delegateQueue:[NSOperationQueue new]];
+        
+        NSURLSessionConfiguration *ephemeralConfiguration = [NSURLSessionConfiguration ephemeralSessionConfiguration];
+        _ephemeralSession = [NSURLSession sessionWithConfiguration:ephemeralConfiguration delegate:nil delegateQueue:[NSOperationQueue new]];
+        
     }
     return self;
 }
@@ -27,12 +32,18 @@
 
 - (RACSignal *)getDataFromURL:(NSURL *)url
 {
+    return [self getDataFromURL:url useEphemeral:NO];
+}
+
+- (RACSignal *)getDataFromURL:(NSURL *)url useEphemeral:(BOOL)useEphemeral
+{
     return [RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
         
         __block NSURLSessionDataTask *task;
+        NSURLSession *session = useEphemeral ? _ephemeralSession : _session;
         
         RACDisposable *schedulerDisposable = [[RACScheduler scheduler] schedule:^{
-            task = [_session dataTaskWithURL:url completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
+            task = [session dataTaskWithURL:url completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
                 if (error) {
                     [subscriber sendError:error];
                     return;
