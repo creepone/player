@@ -57,11 +57,17 @@
     PLPlaylistSong *song = [_fetchedResultsController objectAtIndexPath:indexPath];
     PLPlayer *player = [PLPlayer sharedPlayer];
 
-    if (player.currentSong == song)
+    BOOL wasCurrentSong = NO;
+    if (player.currentSong == song) {
         player.currentSong = nil;
+        wasCurrentSong = YES;
+    }
 
     PLPlaylist *playlist = song.playlist;
     [playlist removeSong:song];
+    
+    if (wasCurrentSong)
+        player.currentSong = playlist.currentSong;
     
     return [[PLDataAccess sharedDataAccess] saveChangesSignal];
 }
