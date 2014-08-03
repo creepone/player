@@ -176,19 +176,23 @@
                                     <rect key="frame" x="0.0" y="0.0" width="320" height="59"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <imageView userInteractionEnabled="NO" contentMode="right" horizontalHuggingPriority="252" verticalHuggingPriority="251" horizontalCompressionResistancePriority="751" image="ButtonAdd" translatesAutoresizingMaskIntoConstraints="NO" id="CwF-Gc-lPQ">
+                                        <imageView userInteractionEnabled="NO" contentMode="right" horizontalHuggingPriority="252" verticalHuggingPriority="251" image="ButtonAdd" translatesAutoresizingMaskIntoConstraints="NO" id="CwF-Gc-lPQ">
                                             <rect key="frame" x="289" y="18" width="23" height="23"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="23" id="7ch-R7-F98"/>
+                                                <constraint firstAttribute="height" constant="23" id="TA0-FH-FqM"/>
+                                            </constraints>
                                         </imageView>
-                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="751" text="Podcast episode" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FUe-8K-WBQ">
-                                            <rect key="frame" x="8" y="5" width="116" height="18"/>
+                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" horizontalCompressionResistancePriority="751" verticalCompressionResistancePriority="751" text="Podcast episode" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FUe-8K-WBQ">
+                                            <rect key="frame" x="8" y="5" width="276" height="18"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                             <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Some information about the podcast episode that might be somewhat longer" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="256" translatesAutoresizingMaskIntoConstraints="NO" id="1Ur-em-a1Z">
-                                            <rect key="frame" x="8" y="23" width="256" height="29"/>
+                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" horizontalCompressionResistancePriority="751" text="Some information about the podcast episode that might be somewhat longer" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="276" translatesAutoresizingMaskIntoConstraints="NO" id="1Ur-em-a1Z">
+                                            <rect key="frame" x="8" y="23" width="276" height="29"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                             <color key="textColor" red="0.11764705882352941" green="0.11764705882352941" blue="0.11764705882352941" alpha="1" colorSpace="calibratedRGB"/>
@@ -199,9 +203,9 @@
                                         <constraint firstAttribute="centerY" secondItem="CwF-Gc-lPQ" secondAttribute="centerY" id="AM5-20-5YH"/>
                                         <constraint firstItem="1Ur-em-a1Z" firstAttribute="leading" secondItem="qvn-eD-gjD" secondAttribute="leading" constant="8" id="Hs2-EC-SKR"/>
                                         <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="1Ur-em-a1Z" secondAttribute="bottom" constant="5" id="UTG-BM-IY2"/>
-                                        <constraint firstItem="CwF-Gc-lPQ" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="FUe-8K-WBQ" secondAttribute="trailing" constant="5" id="ViE-1u-OBR"/>
+                                        <constraint firstItem="CwF-Gc-lPQ" firstAttribute="leading" secondItem="FUe-8K-WBQ" secondAttribute="trailing" constant="5" id="ViE-1u-OBR"/>
                                         <constraint firstItem="FUe-8K-WBQ" firstAttribute="leading" secondItem="qvn-eD-gjD" secondAttribute="leading" constant="8" id="aaP-qf-7wk"/>
-                                        <constraint firstItem="CwF-Gc-lPQ" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="1Ur-em-a1Z" secondAttribute="trailing" constant="5" id="ekl-AD-d6x"/>
+                                        <constraint firstItem="CwF-Gc-lPQ" firstAttribute="leading" secondItem="1Ur-em-a1Z" secondAttribute="trailing" constant="5" id="ekl-AD-d6x"/>
                                         <constraint firstAttribute="trailing" secondItem="CwF-Gc-lPQ" secondAttribute="trailing" constant="8" id="kd7-HC-dyS"/>
                                         <constraint firstItem="FUe-8K-WBQ" firstAttribute="top" secondItem="qvn-eD-gjD" secondAttribute="top" constant="5" id="ldZ-ah-QM6"/>
                                         <constraint firstItem="1Ur-em-a1Z" firstAttribute="top" secondItem="FUe-8K-WBQ" secondAttribute="bottom" id="mqX-v2-bvU"/>

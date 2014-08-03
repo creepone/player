@@ -1,3 +1,5 @@
+sizing of the episode subtitle broken (also on orientation change)
+
 show explanation on an empty screen (add new podcasts by searching)
 right buttons in the episodes list become visible when rotating the device
 
