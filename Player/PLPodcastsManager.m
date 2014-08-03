@@ -113,6 +113,9 @@
             NSString *downloadURL = [enclosureElement attribute:@"url"];
             episode.downloadURL = [NSURL URLWithString:downloadURL];
             
+            if (episode.guid == nil)
+                episode.guid = downloadURL;
+            
             RXMLElement *pubDateElement = [itemElement child:@"pubDate"];
             episode.publishDate = pubDateElement != nil ? [_pubDateFormatter dateFromString:pubDateElement.text] : nil;
 
@@ -137,8 +140,18 @@
             RXMLElement *guidElement = [itemElement child:@"guid"];
             NSString *guid = guidElement.text;
             
-            if (guid != nil)
+            if (guid != nil) {
                 [guids addObject:guid];
+                return;
+            }
+            
+            RXMLElement *enclosureElement = [itemElement child:@"enclosure"];
+            NSString *downloadURL = [enclosureElement attribute:@"url"];
+
+            if (downloadURL != nil) {
+                [guids addObject:downloadURL];
+                return;
+            }
         }];
         
         return [RACSignal return:guids];
