@@ -72,7 +72,7 @@
     NSURL *feedURL = [NSURL URLWithString:@"http://dummy.feet.url"];
     
     id networkManagerMock = OCMProtocolMock(@protocol(PLNetworkManager));
-    OCMStub([networkManagerMock getDataFromURL:feedURL]).andReturn([RACSignal return:feedData]);
+    OCMStub([networkManagerMock getDataFromURL:feedURL useEphemeral:YES]).andReturn([RACSignal return:feedData]);
     [self.serviceContainer registerInstance:networkManagerMock underProtocol:@protocol(PLNetworkManager)];
     
     id podcastPinMock = OCMProtocolMock(@protocol(PLPodcastPin));
@@ -120,7 +120,7 @@
     NSURL *feedURL = [NSURL URLWithString:@"http://dummy.feet.url"];
     
     id networkManagerMock = OCMProtocolMock(@protocol(PLNetworkManager));
-    OCMStub([networkManagerMock getDataFromURL:feedURL]).andReturn([RACSignal return:feedData]);
+    OCMStub([networkManagerMock getDataFromURL:feedURL useEphemeral:YES]).andReturn([RACSignal return:feedData]);
     [self.serviceContainer registerInstance:networkManagerMock underProtocol:@protocol(PLNetworkManager)];
     
     id podcastPinMock = OCMProtocolMock(@protocol(PLPodcastPin));
