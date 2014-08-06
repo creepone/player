@@ -1,3 +1,4 @@
+#import <ReactiveCocoa/ReactiveCocoa.h>
 #import <AVFoundation/AVFoundation.h>
 #import <MediaPlayer/MediaPlayer.h>
 
@@ -11,6 +12,7 @@
 @interface PLPlayer() <AVAudioPlayerDelegate> {
     AVAudioPlayer *_audioPlayer;
     PLNotificationObserver *_notificationObserver;
+    RACDisposable *_savingPositionSubscription;
 }
 
 @end
@@ -146,6 +148,7 @@
     [_audioPlayer play];
     
     [self pl_notifyKvoForKey:@"isPlaying"];
+    [self startSavingPosition];
 }
 
 - (void)stop
@@ -154,14 +157,14 @@
         return;
     
     if (_audioPlayer != nil) {
-        _currentSong.position = @(_audioPlayer.currentTime);
-        [self save];
+        [self savePosition];
         
         [_audioPlayer stop];
         [_audioPlayer setDelegate:nil];
         _audioPlayer = nil;
         
         [self pl_notifyKvoForKey:@"isPlaying"];
+        [self stopSavingPosition];
     }
 }
 
@@ -170,12 +173,10 @@
     if (_currentSong == nil)
         return;
     
-    _currentSong.position = @(_audioPlayer.currentTime);
-    [self save];
-
+    [self savePosition];
     [_audioPlayer pause];
-    
     [self pl_notifyKvoForKey:@"isPlaying"];
+    [self stopSavingPosition];
 }
 
 - (void)goBack
@@ -250,6 +251,34 @@
     [[PLDataAccess sharedDataAccess] saveChanges:&error];
     if (error)
         [PLErrorManager logError:error];
+}
+
+- (void)savePosition
+{
+    if (_currentSong == nil || _audioPlayer == nil)
+        return;
+    
+    _currentSong.position = @(_audioPlayer.currentTime);
+    [self save];
+}
+
+- (void)startSavingPosition
+{
+    // already saving
+    if (_savingPositionSubscription)
+        return;
+    
+    _savingPositionSubscription = [[RACSignal interval:30.0 onScheduler:[RACScheduler mainThreadScheduler]] subscribeNext:^(id _) {
+        [self savePosition];
+    }];
+}
+
+- (void)stopSavingPosition
+{
+    if (_savingPositionSubscription) {
+        [_savingPositionSubscription dispose];
+        _savingPositionSubscription = nil;
+    }
 }
 
 - (void)makeBookmark

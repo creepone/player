@@ -1,3 +1,5 @@
+change 'mark new' to 'delete' if the episode is no longer in the feed
+
 show explanation on an empty screen (add new podcasts by searching)
 right buttons in the episodes list become visible when rotating the device
 
