@@ -4,7 +4,6 @@
 
 static NSString *kDataStoreVersion = @"DataStoreVersion";
 static NSString *kSelectedPlaylistUuid = @"SelectedPlaylistUuid";
-static NSString *kBookmarkPlaylistUuid = @"BookmarkPlaylistUuid";
 static NSString *kPlaybackRate = @"PlaybackRate";
 static NSString *kGoBackTime = @"GoBackTime";
 static NSString *kMirrorTracks = @"MirrorTracks";
@@ -68,19 +67,6 @@ static NSString *kMirrorTracks = @"MirrorTracks";
 {
     NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
     [userDefaults setValue:playlistUuid forKey:kSelectedPlaylistUuid];
-    [userDefaults synchronize];
-}
-
-- (NSString *)bookmarkPlaylistUuid
-{
-    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
-    return [userDefaults stringForKey:kBookmarkPlaylistUuid];
-}
-
-- (void)setBookmarkPlaylistUuid:(NSString *)playlistUuid
-{
-    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
-    [userDefaults setValue:playlistUuid forKey:kBookmarkPlaylistUuid];
     [userDefaults synchronize];
 }
 

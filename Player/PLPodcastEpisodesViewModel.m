@@ -223,7 +223,8 @@
     }
     else {
         PLPodcastOldEpisode *episode = [_fetchedResultsController objectAtIndexPath:[self firstSectionPath:indexPath]];
-        return [[PLPodcastEpisodeCellViewModel alloc] initWithPodcastOldEpisode:episode selected:[self isSelected:episode.guid]];
+        BOOL isInFeed = [_allEpisodes pl_any:^BOOL(PLPodcastEpisode *newEpisode) { return [newEpisode.guid isEqualToString:episode.guid]; }];
+        return [[PLPodcastEpisodeCellViewModel alloc] initWithPodcastOldEpisode:episode selected:[self isSelected:episode.guid] isInFeed:isInFeed];
     }
 }
 

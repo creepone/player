@@ -11,7 +11,6 @@
 @property (nonatomic) NSInteger dataStoreVersion;
 
 @property (nonatomic) NSString *selectedPlaylistUuid;
-@property (nonatomic) NSString *bookmarkPlaylistUuid;
 @property (nonatomic) double playbackRate;
 @property (nonatomic) double goBackTime;
 @property (nonatomic) BOOL mirrorTracks;

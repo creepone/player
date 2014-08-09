@@ -127,14 +127,24 @@
                                 <action selector="tappedAdd:" destination="bzV-l1-pgC" id="Jhb-DS-vCs"/>
                             </connections>
                         </barButtonItem>
-                    </toolbarItems>
-                    <navigationItem key="navigationItem" title="Baladeur" id="Pcg-1r-op0">
-                        <barButtonItem key="leftBarButtonItem" systemItem="refresh" id="9gJ-RS-IEs">
+                        <barButtonItem width="36" style="plain" systemItem="fixedSpace" id="KH4-KY-duo"/>
+                        <barButtonItem systemItem="organize" id="uyv-5F-6kq"/>
+                        <barButtonItem width="36" style="plain" systemItem="fixedSpace" id="giF-Xn-VfS"/>
+                        <barButtonItem image="Play" id="Pkv-hc-U26"/>
+                        <barButtonItem width="36" style="plain" systemItem="fixedSpace" id="1Ej-Mx-AYO"/>
+                        <barButtonItem systemItem="bookmarks" id="3PC-sE-nSE">
                             <connections>
-                                <action selector="tappedSwitch:" destination="bzV-l1-pgC" id="ilP-6r-9av"/>
+                                <action selector="tappedBookmarks:" destination="bzV-l1-pgC" id="iZp-Kb-XoW"/>
                             </connections>
                         </barButtonItem>
-                    </navigationItem>
+                        <barButtonItem width="36" style="plain" systemItem="fixedSpace" id="9fC-b6-1A4"/>
+                        <barButtonItem image="Settings" id="ct0-sf-6k5">
+                            <connections>
+                                <action selector="tappedSettings:" destination="bzV-l1-pgC" id="XEo-hF-fbx"/>
+                            </connections>
+                        </barButtonItem>
+                    </toolbarItems>
+                    <navigationItem key="navigationItem" title="Baladeur" id="Pcg-1r-op0"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0ys-GO-Jv2" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -162,6 +172,8 @@
     </scenes>
     <resources>
         <image name="DefaultArtwork" width="88" height="88"/>
+        <image name="Play" width="18" height="22"/>
+        <image name="Settings" width="22" height="22"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>

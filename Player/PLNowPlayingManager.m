@@ -4,10 +4,12 @@
 #import "PLUtils.h"
 #import "PLPlayer.h"
 #import "PLKVOObserver.h"
+#import "PLNotificationObserver.h"
 #import "PLDataAccess.h"
 
 @interface PLNowPlayingManager() {
     PLKVOObserver *_playerObserver;
+    PLNotificationObserver *_notificationObserver;
     RACDisposable *_artworkSubscription;
 }
 @end
@@ -19,6 +21,7 @@
     self = [super init];
     if (self) {
         _playerObserver = [PLKVOObserver observerWithTarget:[PLPlayer sharedPlayer]];
+        _notificationObserver = [PLNotificationObserver observer];
     }
     return self;
 }
@@ -30,6 +33,8 @@
     [_playerObserver addKeyPath:@instanceKey(PLPlayer, isPlaying) handler:^(id _) { @strongify(self); [self updateInfo:@"isPlaying"]; }];
     [_playerObserver addKeyPath:@instanceKey(PLPlayer, currentPosition) handler:^(id _) { @strongify(self); [self updateInfo:@"currentPosition"]; }];
     [_playerObserver addKeyPath:@instanceKey(PLPlayer, playbackRate) handler:^(id _) { @strongify(self); [self updateInfo:@"playbackRate"]; }];
+    
+    [_notificationObserver addNotification:PLPlayerSavedPositionNotification handler:^(id _) { @strongify(self); [self updateInfo:@"savedPosition"]; }];
     
     [self updateInfo:@"start"];
 }

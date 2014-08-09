@@ -365,19 +365,6 @@ NSString * const PLSelectedPlaylistChange = @"PLSelectedPlaylistChange";
     [[NSNotificationCenter defaultCenter] postNotificationName:PLSelectedPlaylistChange object:nil];
 }
 
-- (PLPlaylist *)bookmarkPlaylist
-{
-    NSString *bookmarkPlaylistUuid = [[PLDefaultsManager sharedManager] bookmarkPlaylistUuid];
-    if (bookmarkPlaylistUuid)
-        return [self findPlaylistWithUuid:bookmarkPlaylistUuid];
-    return nil;
-}
-
-- (void)setBookmarkPlaylist:(PLPlaylist *)playlist
-{
-    [[PLDefaultsManager sharedManager] setBookmarkPlaylistUuid:playlist.uuid];
-}
-
 
 #pragma mark -- Setup for queries
 

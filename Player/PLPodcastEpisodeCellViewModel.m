@@ -47,7 +47,7 @@
     return self;
 }
 
-- (instancetype)initWithPodcastOldEpisode:(PLPodcastOldEpisode *)episode selected:(BOOL)selected
+- (instancetype)initWithPodcastOldEpisode:(PLPodcastOldEpisode *)episode selected:(BOOL)selected isInFeed:(BOOL)isInFeed
 {
     self = [super init];
     if (self) {
@@ -55,8 +55,8 @@
         self.titleText = episode.title;
         self.subtitleText = episode.subtitle;
         
-        self.rightButtonText = @"Mark new"; // todo: localize
-        self.rightButtonBackgroundColor = [PLColors colorWithRed:4 green:192 blue:0];
+        self.rightButtonText = isInFeed ? @"Mark new" : @"Delete"; // todo: localize
+        self.rightButtonBackgroundColor = isInFeed ? [PLColors colorWithRed:4 green:192 blue:0] : [UIColor redColor];
         self.rightButtonTextColor = [UIColor whiteColor];
         
         if (selected) {

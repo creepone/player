@@ -1,14 +1,19 @@
-change 'mark new' to 'delete' if the episode is no longer in the feed
-
-show explanation on an empty screen (add new podcasts by searching)
-right buttons in the episodes list become visible when rotating the device
-
-saving scroll position (and other ui ?)
-
-long term:
-refactor the "Activity View" to use MVVM
+1.0:
 set allowsCellularAccess based on a configuration setting
-in-app purchase for votes or adding new ideas to implement
+configuration for remote control events
+show explanation on an empty podcast screen (add new podcasts by searching)
+show explanation on an empty bookmarks screen (add new podcasts by searching)
 
 app store release todos:
 activate dropbox app for public
+
+1.0+:
+saving scroll position (and other ui ?)
+advanced editing (multi selection with menu)
+    - adjusting individual track speed
+    - moving / copying between playlist
+restore position to a bookmark
+
+long term:
+refactor the "Activity View" to use MVVM
+in-app purchase for votes or adding new ideas to implement

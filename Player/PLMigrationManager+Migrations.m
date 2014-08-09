@@ -29,50 +29,17 @@
     
     migrationInfo[@"originalVersion"] = @(version);
 
-    if (version == 1 || version == 2) {
-        NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
-        
-        NSManagedObjectID *selectedPlaylistID = [context.persistentStoreCoordinator managedObjectIDForURIRepresentation:[userDefaults URLForKey:@"SelectedPlaylist"]];
-        if (selectedPlaylistID) {
-            NSManagedObject *selectedPlaylist = [context objectWithID:selectedPlaylistID];
-            migrationInfo[@"selectedPlaylistName"] = [selectedPlaylist valueForKey:@"name"];
-        }
-        
-        NSManagedObjectID *bookmarkPlaylistID = [context.persistentStoreCoordinator managedObjectIDForURIRepresentation:[userDefaults URLForKey:@"BookmarkPlaylist"]];
-        if (bookmarkPlaylistID) {
-            NSManagedObject *bookmarkPlaylist = [context objectWithID:bookmarkPlaylistID];
-            migrationInfo[@"bookmarkPlaylistName"] = [bookmarkPlaylist valueForKey:@"name"];
-        }
-    }
+    // pre migration steps
     
     [context save:nil];
 }
 
 + (void)postMigrateWithInfo:(NSDictionary *)migrationInfo
 {
-    NSInteger originalVersion = [migrationInfo[@"originalVersion"] integerValue];
+    // NSInteger originalVersion = [migrationInfo[@"originalVersion"] integerValue];
     PLDataAccess *dataAccess = [[PLDataAccess alloc] initWithContext:[self contextForCurrentVersion]];
 
-    if (originalVersion < 3) {
-        NSArray *playlists = [dataAccess allEntities:[PLPlaylist entityName]];
-        for (PLPlaylist *playlist in playlists) {
-            playlist.uuid = [PLUtils generateUuid];
-        }
-    
-        NSString *selectedPlaylistName = migrationInfo[@"selectedPlaylistName"];
-        if (selectedPlaylistName) {
-            PLPlaylist *selectedPlaylist = [dataAccess findPlaylistWithName:selectedPlaylistName];
-            if (selectedPlaylist)
-                [dataAccess selectPlaylist:selectedPlaylist];
-        }
-        
-        NSString *bookmarkPlaylistName = migrationInfo[@"bookmarkPlaylistName"];
-        if (bookmarkPlaylistName) {
-            PLPlaylist *bookmarkPlaylist = [dataAccess findPlaylistWithName:bookmarkPlaylistName];
-            if (bookmarkPlaylist)
-                [dataAccess setBookmarkPlaylist:bookmarkPlaylist];
-        }
-    }
+    // post migration steps
     
     [dataAccess saveChanges:nil];
 }

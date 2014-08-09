@@ -4,14 +4,17 @@
 #import "PLPlaylistSongCell.h"
 #import "PLErrorManager.h"
 #import "UITableView+PLExtensions.h"
+#import "PLBookmarksViewController.h"
+#import "PLBookmarksViewModel.h"
 
 @interface PLPlaylistSongsViewController () {
     PLPlaylistSongsViewModel *_viewModel;
     BOOL _ignoreUpdates, _isVisible;
 }
 
-- (IBAction)tappedSwitch:(id)sender;
 - (IBAction)tappedAdd:(id)sender;
+- (IBAction)tappedSettings:(id)sender;
+- (IBAction)tappedBookmarks:(id)sender;
 
 @end
 
@@ -111,15 +114,25 @@
     }
 }
 
+- (IBAction)tappedAdd:(id)sender
+{
+    [_viewModel.addCommand execute:nil];
+}
 
-- (IBAction)tappedSwitch:(id)sender
+- (IBAction)tappedSettings:(id)sender
 {
     [_viewModel.switchCommand execute:nil];
 }
 
-- (IBAction)tappedAdd:(id)sender
+- (IBAction)tappedBookmarks:(id)sender
 {
-    [_viewModel.addCommand execute:nil];
+    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Bookmarks" bundle:nil];
+    UINavigationController *navigationController = [storyboard instantiateInitialViewController];
+    
+    PLBookmarksViewController *bookmarksVc = navigationController.viewControllers[0];
+    bookmarksVc.viewModel = [PLBookmarksViewModel new];
+    
+    [self presentViewController:navigationController animated:YES completion:nil];
 }
 
 @end

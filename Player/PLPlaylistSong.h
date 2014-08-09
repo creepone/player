@@ -1,9 +1,10 @@
 #import "PLEntity.h"
+#import "PLTrackWithPosition.h"
 
 @class PLPlaylist, PLTrack, MPMediaItem;
 @class RACSignal;
 
-@interface PLPlaylistSong : PLEntity
+@interface PLPlaylistSong : PLEntity <PLTrackWithPosition>
 
 @property (nonatomic, retain) NSNumber * order;
 @property (nonatomic, retain) NSNumber * position;

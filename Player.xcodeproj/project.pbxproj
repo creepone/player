@@ -90,6 +90,12 @@
 		C378CDD6195F0EF4001D0593 /* PLTrackCellViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = C378CDD5195F0EF4001D0593 /* PLTrackCellViewModel.m */; };
 		C384009B193879E600D6A930 /* PLTrack.m in Sources */ = {isa = PBXBuildFile; fileRef = C384009A193879E600D6A930 /* PLTrack.m */; };
 		C3A17038198D515D006F6684 /* Mapping1_2.xcmappingmodel in Sources */ = {isa = PBXBuildFile; fileRef = C3A17037198D515D006F6684 /* Mapping1_2.xcmappingmodel */; };
+		C3A1703D1996586E006F6684 /* Bookmarks.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C3A1703C1996586E006F6684 /* Bookmarks.storyboard */; };
+		C3A170401996591A006F6684 /* PLBookmarkCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C3A1703F1996591A006F6684 /* PLBookmarkCell.m */; };
+		C3A1704419965A2D006F6684 /* PLBookmarkCellViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = C3A1704319965A2D006F6684 /* PLBookmarkCellViewModel.m */; };
+		C3A1704919965E6A006F6684 /* PLBookmarkSong.m in Sources */ = {isa = PBXBuildFile; fileRef = C3A1704819965E6A006F6684 /* PLBookmarkSong.m */; };
+		C3A1704D19966161006F6684 /* PLBookmarksViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C3A1704C19966161006F6684 /* PLBookmarksViewController.m */; };
+		C3A170501996618E006F6684 /* PLBookmarksViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = C3A1704F1996618E006F6684 /* PLBookmarksViewModel.m */; };
 		C3A4D67C193E40320060B704 /* PLFileImport.m in Sources */ = {isa = PBXBuildFile; fileRef = C3A4D67B193E40320060B704 /* PLFileImport.m */; };
 		C3A4D67F19433F1C0060B704 /* PLTableViewProgress.m in Sources */ = {isa = PBXBuildFile; fileRef = C3A4D67E19433F1C0060B704 /* PLTableViewProgress.m */; };
 		C3A4D682194343570060B704 /* PLProgressTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C3A4D681194343570060B704 /* PLProgressTableViewCell.m */; };
@@ -107,8 +113,6 @@
 		C3BC5AB51656C2D7002DA837 /* music.png in Resources */ = {isa = PBXBuildFile; fileRef = C3BC5AB41656C2D7002DA837 /* music.png */; };
 		C3BC5AB71656C480002DA837 /* settings.png in Resources */ = {isa = PBXBuildFile; fileRef = C3BC5AB61656C480002DA837 /* settings.png */; };
 		C3BC5AB91656C4D8002DA837 /* bookmark.png in Resources */ = {isa = PBXBuildFile; fileRef = C3BC5AB81656C4D8002DA837 /* bookmark.png */; };
-		C3BC5ABD1656C4E7002DA837 /* PLBookmarksViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C3BC5ABB1656C4E7002DA837 /* PLBookmarksViewController.m */; };
-		C3BC5ABE1656C4E7002DA837 /* PLBookmarksViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C3BC5ABC1656C4E7002DA837 /* PLBookmarksViewController.xib */; };
 		C3BC5AC21656C4EF002DA837 /* PLSettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C3BC5AC01656C4EF002DA837 /* PLSettingsViewController.m */; };
 		C3BC5AC31656C4EF002DA837 /* PLSettingsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C3BC5AC11656C4EF002DA837 /* PLSettingsViewController.xib */; };
 		C3BC5ACD1656C81C002DA837 /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = C3BC5ACB1656C81C002DA837 /* Model.xcdatamodeld */; };
@@ -161,7 +165,6 @@
 		C3CC2CEF197A7BC20013FC57 /* XCTAsyncTestCase.m in Sources */ = {isa = PBXBuildFile; fileRef = C3CC2CEE197A7BC20013FC57 /* XCTAsyncTestCase.m */; };
 		C3CC2CF2197A7C1F0013FC57 /* PLTestCase.m in Sources */ = {isa = PBXBuildFile; fileRef = C3CC2CF1197A7C1F0013FC57 /* PLTestCase.m */; };
 		C3CC2CFA197AA9050013FC57 /* PLMigrationManager+Migrations.m in Sources */ = {isa = PBXBuildFile; fileRef = C3CC2CF9197AA9050013FC57 /* PLMigrationManager+Migrations.m */; };
-		C3D1A65A16CFC337006D3E5F /* PLPlaylistSelectViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C3D1A65916CFC337006D3E5F /* PLPlaylistSelectViewController.m */; };
 		C3F1A13518E83F6F00A82EAC /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C3F1A13418E83F6F00A82EAC /* Images.xcassets */; };
 		C3F539F3195A047300409CC4 /* PLDownloadManager.m in Sources */ = {isa = PBXBuildFile; fileRef = C3F539F2195A047300409CC4 /* PLDownloadManager.m */; };
 		C3FCEC2E16FF0AD3008CD497 /* PLPlaylistSongViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C3FCEC2D16FF0AD3008CD497 /* PLPlaylistSongViewController.m */; };
@@ -340,6 +343,18 @@
 		C384009A193879E600D6A930 /* PLTrack.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PLTrack.m; sourceTree = "<group>"; };
 		C3A17035198D5125006F6684 /* Model 2.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "Model 2.xcdatamodel"; sourceTree = "<group>"; };
 		C3A17037198D515D006F6684 /* Mapping1_2.xcmappingmodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcmappingmodel; path = Mapping1_2.xcmappingmodel; sourceTree = "<group>"; };
+		C3A1703C1996586E006F6684 /* Bookmarks.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = Bookmarks.storyboard; path = Player/Bookmarks.storyboard; sourceTree = "<group>"; };
+		C3A1703E1996591A006F6684 /* PLBookmarkCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PLBookmarkCell.h; path = Player/PLBookmarkCell.h; sourceTree = "<group>"; };
+		C3A1703F1996591A006F6684 /* PLBookmarkCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PLBookmarkCell.m; path = Player/PLBookmarkCell.m; sourceTree = "<group>"; };
+		C3A1704219965A2D006F6684 /* PLBookmarkCellViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PLBookmarkCellViewModel.h; sourceTree = "<group>"; };
+		C3A1704319965A2D006F6684 /* PLBookmarkCellViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PLBookmarkCellViewModel.m; sourceTree = "<group>"; };
+		C3A1704519965BE0006F6684 /* PLTrackWithPosition.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PLTrackWithPosition.h; sourceTree = "<group>"; };
+		C3A1704719965E6A006F6684 /* PLBookmarkSong.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PLBookmarkSong.h; path = Player/PLBookmarkSong.h; sourceTree = "<group>"; };
+		C3A1704819965E6A006F6684 /* PLBookmarkSong.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PLBookmarkSong.m; path = Player/PLBookmarkSong.m; sourceTree = "<group>"; };
+		C3A1704B19966161006F6684 /* PLBookmarksViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PLBookmarksViewController.h; sourceTree = "<group>"; };
+		C3A1704C19966161006F6684 /* PLBookmarksViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PLBookmarksViewController.m; sourceTree = "<group>"; };
+		C3A1704E1996618E006F6684 /* PLBookmarksViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PLBookmarksViewModel.h; path = Player/PLBookmarksViewModel.h; sourceTree = "<group>"; };
+		C3A1704F1996618E006F6684 /* PLBookmarksViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PLBookmarksViewModel.m; path = Player/PLBookmarksViewModel.m; sourceTree = "<group>"; };
 		C3A4D67A193E40320060B704 /* PLFileImport.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PLFileImport.h; sourceTree = "<group>"; };
 		C3A4D67B193E40320060B704 /* PLFileImport.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PLFileImport.m; sourceTree = "<group>"; };
 		C3A4D67D19433F1C0060B704 /* PLTableViewProgress.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PLTableViewProgress.h; sourceTree = "<group>"; };
@@ -366,9 +381,6 @@
 		C3BC5AB41656C2D7002DA837 /* music.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = music.png; sourceTree = "<group>"; };
 		C3BC5AB61656C480002DA837 /* settings.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = settings.png; sourceTree = "<group>"; };
 		C3BC5AB81656C4D8002DA837 /* bookmark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bookmark.png; sourceTree = "<group>"; };
-		C3BC5ABA1656C4E7002DA837 /* PLBookmarksViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PLBookmarksViewController.h; sourceTree = "<group>"; };
-		C3BC5ABB1656C4E7002DA837 /* PLBookmarksViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PLBookmarksViewController.m; sourceTree = "<group>"; };
-		C3BC5ABC1656C4E7002DA837 /* PLBookmarksViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PLBookmarksViewController.xib; sourceTree = "<group>"; };
 		C3BC5ABF1656C4EF002DA837 /* PLSettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PLSettingsViewController.h; sourceTree = "<group>"; };
 		C3BC5AC01656C4EF002DA837 /* PLSettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PLSettingsViewController.m; sourceTree = "<group>"; };
 		C3BC5AC11656C4EF002DA837 /* PLSettingsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PLSettingsViewController.xib; sourceTree = "<group>"; };
@@ -464,8 +476,6 @@
 		C3CF9FD418B52EF4004EE4A1 /* revision.prefix */ = {isa = PBXFileReference; lastKnownFileType = text; path = revision.prefix; sourceTree = "<group>"; };
 		C3CF9FD518B52EF4004EE4A1 /* prebuild.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = prebuild.sh; sourceTree = "<group>"; };
 		C3CF9FD618B52EF4004EE4A1 /* deploy.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = deploy.sh; sourceTree = "<group>"; };
-		C3D1A65816CFC337006D3E5F /* PLPlaylistSelectViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PLPlaylistSelectViewController.h; sourceTree = "<group>"; };
-		C3D1A65916CFC337006D3E5F /* PLPlaylistSelectViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PLPlaylistSelectViewController.m; sourceTree = "<group>"; };
 		C3F1A13418E83F6F00A82EAC /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = Player/Images.xcassets; sourceTree = "<group>"; };
 		C3F539F1195A047300409CC4 /* PLDownloadManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PLDownloadManager.h; sourceTree = "<group>"; };
 		C3F539F2195A047300409CC4 /* PLDownloadManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PLDownloadManager.m; sourceTree = "<group>"; };
@@ -538,8 +548,6 @@
 			children = (
 				C38400981937662000D6A930 /* CoreData */,
 				696C1A30A16BABDC7CEF1C08 /* Utils */,
-				C3BC5B12165912F4002DA837 /* PLPlayer.h */,
-				C3BC5B13165912F5002DA837 /* PLPlayer.m */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -921,10 +929,10 @@
 		C378CDCB195F0836001D0593 /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
-				696C12E93800D96F5AFEE66A /* PLPlaylistSongCellViewModel.h */,
-				696C1B64873859724C208B95 /* PLPlaylistSongCellViewModel.m */,
 				696C1DCA168EE30B89EDD143 /* PLPlaylistSongsViewModel.h */,
 				696C17062B46F55CD8C4E0F3 /* PLPlaylistSongsViewModel.m */,
+				696C12E93800D96F5AFEE66A /* PLPlaylistSongCellViewModel.h */,
+				696C1B64873859724C208B95 /* PLPlaylistSongCellViewModel.m */,
 			);
 			name = ViewModel;
 			sourceTree = "<group>";
@@ -1036,6 +1044,64 @@
 			name = Mapping;
 			sourceTree = "<group>";
 		};
+		C3A170391996579C006F6684 /* Bookmarks */ = {
+			isa = PBXGroup;
+			children = (
+				C3A1704619965DFC006F6684 /* Model */,
+				C3A1703A199657BA006F6684 /* View */,
+				C3A1704119965A16006F6684 /* ViewModel */,
+			);
+			name = Bookmarks;
+			sourceTree = "<group>";
+		};
+		C3A1703A199657BA006F6684 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				C3A1703C1996586E006F6684 /* Bookmarks.storyboard */,
+				C3A1703B199657ED006F6684 /* Views */,
+				C3A1704A1996612F006F6684 /* ViewControllers */,
+			);
+			name = View;
+			sourceTree = "<group>";
+		};
+		C3A1703B199657ED006F6684 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				C3A1703E1996591A006F6684 /* PLBookmarkCell.h */,
+				C3A1703F1996591A006F6684 /* PLBookmarkCell.m */,
+			);
+			name = Views;
+			sourceTree = "<group>";
+		};
+		C3A1704119965A16006F6684 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				C3A1704E1996618E006F6684 /* PLBookmarksViewModel.h */,
+				C3A1704F1996618E006F6684 /* PLBookmarksViewModel.m */,
+				C3A1704219965A2D006F6684 /* PLBookmarkCellViewModel.h */,
+				C3A1704319965A2D006F6684 /* PLBookmarkCellViewModel.m */,
+			);
+			name = ViewModel;
+			sourceTree = "<group>";
+		};
+		C3A1704619965DFC006F6684 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				C3A1704719965E6A006F6684 /* PLBookmarkSong.h */,
+				C3A1704819965E6A006F6684 /* PLBookmarkSong.m */,
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
+		C3A1704A1996612F006F6684 /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				C3A1704B19966161006F6684 /* PLBookmarksViewController.h */,
+				C3A1704C19966161006F6684 /* PLBookmarksViewController.m */,
+			);
+			name = ViewControllers;
+			sourceTree = "<group>";
+		};
 		C3A4D679193E401B0060B704 /* Import */ = {
 			isa = PBXGroup;
 			children = (
@@ -1061,6 +1127,7 @@
 			children = (
 				C378CDC8195F07DE001D0593 /* Shared */,
 				C378CDC9195F07F0001D0593 /* Main (Playlist) */,
+				C3A170391996579C006F6684 /* Bookmarks */,
 				C3CC2CB0197A53490013FC57 /* Import */,
 				C34ADCDC19164CBE00A07EBB /* Legacy */,
 				C3BC5A3A1656B772002DA837 /* PLAppDelegate.h */,
@@ -1138,12 +1205,8 @@
 				C3BC5A971656B959002DA837 /* PLPlaylistViewController.m */,
 				C3BC5AAF1656C284002DA837 /* PLPlayerViewController.h */,
 				C3BC5AB01656C284002DA837 /* PLPlayerViewController.m */,
-				C3BC5ABA1656C4E7002DA837 /* PLBookmarksViewController.h */,
-				C3BC5ABB1656C4E7002DA837 /* PLBookmarksViewController.m */,
 				C3BC5ABF1656C4EF002DA837 /* PLSettingsViewController.h */,
 				C3BC5AC01656C4EF002DA837 /* PLSettingsViewController.m */,
-				C3D1A65816CFC337006D3E5F /* PLPlaylistSelectViewController.h */,
-				C3D1A65916CFC337006D3E5F /* PLPlaylistSelectViewController.m */,
 				C3FCEC2C16FF0AD3008CD497 /* PLPlaylistSongViewController.h */,
 				C3FCEC2D16FF0AD3008CD497 /* PLPlaylistSongViewController.m */,
 			);
@@ -1165,7 +1228,6 @@
 			isa = PBXGroup;
 			children = (
 				C3BC5B1F165921AD002DA837 /* SliderCell.xib */,
-				C3BC5ABC1656C4E7002DA837 /* PLBookmarksViewController.xib */,
 				C3BC5AC11656C4EF002DA837 /* PLSettingsViewController.xib */,
 				C3BC5AB11656C284002DA837 /* PLPlayerViewController.xib */,
 				C3BC5A981656B959002DA837 /* PLPlaylistViewController.xib */,
@@ -1326,8 +1388,11 @@
 		C3CC2CAC19797E970013FC57 /* Playback */ = {
 			isa = PBXGroup;
 			children = (
+				C3BC5B12165912F4002DA837 /* PLPlayer.h */,
+				C3BC5B13165912F5002DA837 /* PLPlayer.m */,
 				C3CC2CAD19797EA90013FC57 /* PLNowPlayingManager.h */,
 				C3CC2CAE19797EA90013FC57 /* PLNowPlayingManager.m */,
+				C3A1704519965BE0006F6684 /* PLTrackWithPosition.h */,
 			);
 			name = Playback;
 			sourceTree = "<group>";
@@ -1565,6 +1630,7 @@
 				C3BC5A401656B772002DA837 /* Default@2x.png in Resources */,
 				C3BC5A421656B772002DA837 /* Default-568h@2x.png in Resources */,
 				C3CC18DB19227CD30026E681 /* icon.png in Resources */,
+				C3A1703D1996586E006F6684 /* Bookmarks.storyboard in Resources */,
 				C3CC18BF191F60EC0026E681 /* MusicLibrary.storyboard in Resources */,
 				C3381FF0196707E100DA2B7B /* CloudImport.storyboard in Resources */,
 				C3CC18B8191E43300026E681 /* Localizable.strings in Resources */,
@@ -1576,7 +1642,6 @@
 				C3BC5AB71656C480002DA837 /* settings.png in Resources */,
 				C3CC2CB5197A53AF0013FC57 /* FileSharingImport.storyboard in Resources */,
 				C3BC5AB91656C4D8002DA837 /* bookmark.png in Resources */,
-				C3BC5ABE1656C4E7002DA837 /* PLBookmarksViewController.xib in Resources */,
 				C3BC5AC31656C4EF002DA837 /* PLSettingsViewController.xib in Resources */,
 				C3BC5B0C1658FC0E002DA837 /* default_artwork.jpg in Resources */,
 				C3BC5B0E1659002C002DA837 /* todo.txt in Resources */,
@@ -1677,9 +1742,9 @@
 				C3BC5A991656B959002DA837 /* PLPlaylistViewController.m in Sources */,
 				C3CC2CC1197A56210013FC57 /* PLFileSharingViewModel.m in Sources */,
 				C3BC5AB21656C284002DA837 /* PLPlayerViewController.m in Sources */,
-				C3BC5ABD1656C4E7002DA837 /* PLBookmarksViewController.m in Sources */,
 				C3CC2CC4197A56E70013FC57 /* PLFileSharingCellViewModel.m in Sources */,
 				C34BD67A197BDFBF007138B8 /* PLPodcast.m in Sources */,
+				C3A1704419965A2D006F6684 /* PLBookmarkCellViewModel.m in Sources */,
 				C3CC2C8D19713EEC0013FC57 /* PLCloudImport.m in Sources */,
 				C34BD6A71985308F007138B8 /* PLPodcastEpisodesViewController.m in Sources */,
 				C3CC2CC7197A59E70013FC57 /* PLFileSharingManager.m in Sources */,
@@ -1698,17 +1763,18 @@
 				C3BC5AEB1656CCC9002DA837 /* PLDefaultsManager.m in Sources */,
 				C378CD80194C61CF001D0593 /* PLPlaylistSongCell.m in Sources */,
 				C3BC5B011658DE07002DA837 /* PLAlerts.m in Sources */,
+				C3A170501996618E006F6684 /* PLBookmarksViewModel.m in Sources */,
 				C378CDD6195F0EF4001D0593 /* PLTrackCellViewModel.m in Sources */,
 				C3BC5B041658E76A002DA837 /* NSString+Extensions.m in Sources */,
 				C34BD6A419853067007138B8 /* PLPodcastEpisodesViewModel.m in Sources */,
 				C378CD7C194C52A6001D0593 /* PLPlaylistSongsViewController.m in Sources */,
+				C3A1704919965E6A006F6684 /* PLBookmarkSong.m in Sources */,
 				C3BC5B14165912F6002DA837 /* PLPlayer.m in Sources */,
 				C3CC2C83197128A40013FC57 /* PLServiceContainer.m in Sources */,
 				C3CC2C9F197299970013FC57 /* PLOneDriveManager.m in Sources */,
 				C3CC18CD191FABD30026E681 /* PLTracksViewController.m in Sources */,
 				C3544850165922C80083D703 /* SliderCell.m in Sources */,
 				C34BD658197BBE55007138B8 /* PLPodcastOldEpisode.m in Sources */,
-				C3D1A65A16CFC337006D3E5F /* PLPlaylistSelectViewController.m in Sources */,
 				C3FCEC2E16FF0AD3008CD497 /* PLPlaylistSongViewController.m in Sources */,
 				696C14355BFE9EF3A322E84C /* PLColors.m in Sources */,
 				C338200619680E4800DA2B7B /* PLPathAssetSet.m in Sources */,
@@ -1772,11 +1838,13 @@
 				696C1FC71A11624AE1D6F4F6 /* PLBackgroundProcessProgress.m in Sources */,
 				696C1F37827BDCC5942F540F /* PLMediaMirror.m in Sources */,
 				696C103AFE37906F58AE8524 /* PLPlaylistSongsViewModel.m in Sources */,
+				C3A170401996591A006F6684 /* PLBookmarkCell.m in Sources */,
 				C3CC2CA21972B9510013FC57 /* PLOneDrivePathAsset.m in Sources */,
 				696C1FCAE33C027584502130 /* PLFetchedResultsUpdate.m in Sources */,
 				C34BD6AA19853DA0007138B8 /* PLPodcastEpisodeCell.m in Sources */,
 				696C14C3B0C607930E2E9DBD /* PLFetchedResultsControllerDelegate.m in Sources */,
 				696C1BDC652AD70EC4358087 /* UITableView+PLExtensions.m in Sources */,
+				C3A1704D19966161006F6684 /* PLBookmarksViewController.m in Sources */,
 				696C12CF6D6221B60CEB7C1F /* PLTrackGroupsViewModel.m in Sources */,
 				C3CC2CFA197AA9050013FC57 /* PLMigrationManager+Migrations.m in Sources */,
 				C3381FF419670DA100DA2B7B /* PLCloudItemCell.m in Sources */,

@@ -1,6 +1,5 @@
 #import <ReactiveCocoa/ReactiveCocoa.h>
 #import "PLRouter.h"
-#import "PLBookmarksViewController.h"
 #import "PLSettingsViewController.h"
 #import "PLPlayerViewController.h"
 #import "PLPlaylistViewController.h"
@@ -13,10 +12,9 @@
     UIViewController *playlistViewController = [[PLPlaylistViewController alloc] initWithNibName:@"PLPlaylistViewController" bundle:nil];
     UIViewController *playerViewController = [[PLPlayerViewController alloc] initWithNibName:@"PLPlayerViewController" bundle:nil];
     UIViewController *settingsViewController = [[PLSettingsViewController alloc] initWithNibName:@"PLSettingsViewController" bundle:nil];
-    UIViewController *bookmarksViewController = [[PLBookmarksViewController alloc] initWithNibName:@"PLBookmarksViewController" bundle:nil];
 
     UITabBarController *tabBarController = [[UITabBarController alloc] init];
-    tabBarController.viewControllers = @[playlistViewController, playerViewController, bookmarksViewController, settingsViewController];
+    tabBarController.viewControllers = @[playlistViewController, playerViewController, settingsViewController];
 
     UIWindow *window = [[UIApplication sharedApplication] keyWindow];
     window.rootViewController = tabBarController;

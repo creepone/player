@@ -17,6 +17,8 @@
 
 @end
 
+NSString * const PLPlayerSavedPositionNotification = @"PLPlayerSavedPositionNotification";
+
 @implementation PLPlayer
 
 - (id)init
@@ -52,7 +54,7 @@
     return playlist.currentSong;
 }
 
-- (void)setCurrentSong:(PLPlaylistSong *)song
+- (void)setCurrentSong:(id<PLTrackWithPosition>)song
 {
     if (_currentSong == song)
         return;
@@ -129,7 +131,7 @@
     
     if (_audioPlayer == nil) {
         NSError *error;
-        NSURL *assetURL = _currentSong.assetURL;
+        NSURL *assetURL = _currentSong.track.assetURL;
         
         if (assetURL == nil) {
             [self moveToNextAndPlay];
@@ -230,8 +232,13 @@
 
 - (void)moveToNextAndPlay
 {
-    if (_currentSong == nil || _currentSong.playlist == nil)
+    if (_currentSong == nil)
         return;
+    
+    if (_currentSong.playlist == nil) {
+        self.currentSong = nil;
+        return;
+    }
     
     PLPlaylist *playlist = _currentSong.playlist;
     [playlist moveToNextSong];
@@ -270,6 +277,7 @@
     
     _savingPositionSubscription = [[RACSignal interval:30.0 onScheduler:[RACScheduler mainThreadScheduler]] subscribeNext:^(id _) {
         [self savePosition];
+        [[NSNotificationCenter defaultCenter] postNotificationName:PLPlayerSavedPositionNotification object:nil];
     }];
 }
 
@@ -303,11 +311,13 @@
 
 - (void)audioPlayerDidFinishPlaying:(AVAudioPlayer *)player successfully:(BOOL)flag
 {
+    DDLogVerbose(@"finished playing");
+    
     [player setDelegate:nil];
     
     PLPlaylistSong *song = self.currentSong;
     song.position = [NSNumber numberWithDouble:0.0];
-    song.played = YES;
+    song.track.played = YES;
     
     [self moveToNextAndPlay];
 }

@@ -3,7 +3,6 @@
 
 #import "PLSettingsViewController.h"
 #import "PLDefaultsManager.h"
-#import "PLPlaylistSelectViewController.h"
 #import "PLPlayer.h"
 #import "PLDataAccess.h"
 #import "PLAlerts.h"
@@ -15,7 +14,7 @@
 
 #define GoBackAlert 22
 
-@interface PLSettingsViewController () <UITableViewDataSource, UITableViewDelegate, UIAlertViewDelegate, PLPlaylistSelectViewControllerDelegate, MFMailComposeViewControllerDelegate>
+@interface PLSettingsViewController () <UITableViewDataSource, UITableViewDelegate, UIAlertViewDelegate, MFMailComposeViewControllerDelegate>
 
 @end
 
@@ -53,7 +52,7 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    NSInteger rows = 6;
+    NSInteger rows = 5;
     if (![MFMailComposeViewController canSendMail])
         rows--;
     return rows;
@@ -81,20 +80,11 @@
         }
         
         if (indexPath.row == 1) {
-            cell.textLabel.text = @"Bookmark playlist";
-            
-            PLPlaylist *bookmarkPlaylist = [[PLDataAccess sharedDataAccess] bookmarkPlaylist];
-            if (bookmarkPlaylist != nil)
-                cell.detailTextLabel.text = [bookmarkPlaylist name];
-            
-            cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-        }
-        else if (indexPath.row == 2) {
             cell.textLabel.text = @"Go back time";
             cell.detailTextLabel.text = [NSString stringWithFormat:@"%.0f", [[PLDefaultsManager sharedManager] goBackTime]];
             cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
         }
-        else if (indexPath.row == 3) {
+        else if (indexPath.row == 2) {
             cell.textLabel.text = @"Mirror iTunes tracks";
 
             UISwitch *switchMirrorTracks = [[UISwitch alloc] init];
@@ -106,11 +96,11 @@
 
             cell.accessoryView = switchMirrorTracks;
         }
-        else if (indexPath.row == 4) {
+        else if (indexPath.row == 3) {
             cell.textLabel.text = @"Switch to new";
             cell.accessoryType = UITableViewCellAccessoryNone;
         }
-        else if (indexPath.row == 5) {
+        else if (indexPath.row == 4) {
             cell.textLabel.text = @"Send logs";
             cell.accessoryType = UITableViewCellAccessoryNone;
         }
@@ -162,22 +152,15 @@
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     
     if (indexPath.row == 1) {
-        PLPlaylistSelectViewController *psvc = [[PLPlaylistSelectViewController alloc] init];
-        [psvc setDelegate:self];
-        
-        UINavigationController *nc = [[UINavigationController alloc] initWithRootViewController:psvc];
-        [self presentViewController:nc animated:YES completion:NULL];
-    }
-    else if (indexPath.row == 2) {
         UIAlertView * alert = [[UIAlertView alloc] initWithTitle:@"Go back time" message:@"Enter the new go back time" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:@"Cancel", nil];
         alert.alertViewStyle = UIAlertViewStylePlainTextInput;
         alert.tag = GoBackAlert;
         [alert show];
     }
-    else if (indexPath.row == 4) {
+    else if (indexPath.row == 3) {
         [PLRouter showNew];
     }
-    else if (indexPath.row == 5) {
+    else if (indexPath.row == 4) {
         NSString *archivePath = [PLLogging archiveLogs];
         NSData *archiveData = [NSData dataWithContentsOfFile:archivePath];
         
@@ -215,17 +198,6 @@
             [self.tableView reloadData];
         }
     }
-}
-
-- (void)didSelectPlaylist:(PLPlaylist *)playlist {
-    id<PLDataAccess> dataAccess = [PLDataAccess sharedDataAccess];
-    [dataAccess setBookmarkPlaylist:playlist];
-    
-    NSError *error;
-    [dataAccess saveChanges:&error];
-    [PLAlerts checkForDataStoreError:error];
-    
-    [self.tableView reloadData];
 }
 
 @end

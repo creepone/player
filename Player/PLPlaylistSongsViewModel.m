@@ -47,9 +47,14 @@
 {
     PLPlaylistSong *playlistSong = [_fetchedResultsController objectAtIndexPath:indexPath];
     PLPlayer *player = [PLPlayer sharedPlayer];
-
-    [player setCurrentSong:playlistSong];
-    [player play];
+    
+    if (player.currentSong != playlistSong || !player.isPlaying) {
+        [player setCurrentSong:playlistSong];
+        [player play];
+    }
+    else {
+        [player pause];
+    }
 }
 
 - (RACSignal *)removeSongAt:(NSIndexPath *)indexPath

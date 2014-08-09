@@ -132,8 +132,6 @@ extern NSString * const PLSelectedPlaylistChange;
 
 - (PLPlaylist *)selectedPlaylist;
 - (void)selectPlaylist:(PLPlaylist *)playlist;
-- (PLPlaylist *)bookmarkPlaylist;
-- (void)setBookmarkPlaylist:(PLPlaylist *)playlist;
 
 @end
 

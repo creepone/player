@@ -5,7 +5,7 @@
 @interface PLPodcastEpisodeCellViewModel : NSObject
 
 - (instancetype)initWithPodcastEpisode:(PLPodcastEpisode *)episode selected:(BOOL)selected;
-- (instancetype)initWithPodcastOldEpisode:(PLPodcastOldEpisode *)episode selected:(BOOL)selected;
+- (instancetype)initWithPodcastOldEpisode:(PLPodcastOldEpisode *)episode selected:(BOOL)selected isInFeed:(BOOL)isInFeed;
 
 @property (nonatomic, strong, readonly) NSString *titleText;
 @property (nonatomic, strong, readonly) NSString *subtitleText;
