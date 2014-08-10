@@ -6,15 +6,20 @@
 #import "UITableView+PLExtensions.h"
 #import "PLBookmarksViewController.h"
 #import "PLBookmarksViewModel.h"
+#import "PLPlaylistsViewController.h"
+#import "PLPlaylistsViewModel.h"
+#import "PLNotificationObserver.h"
+#import "PLDataAccess.h"
 
 @interface PLPlaylistSongsViewController () {
-    PLPlaylistSongsViewModel *_viewModel;
     BOOL _ignoreUpdates, _isVisible;
+    PLNotificationObserver *_notificationObserver;
 }
 
 - (IBAction)tappedAdd:(id)sender;
 - (IBAction)tappedSettings:(id)sender;
 - (IBAction)tappedBookmarks:(id)sender;
+- (IBAction)tappedPlaylists:(id)sender;
 
 @end
 
@@ -25,7 +30,15 @@
     [super viewDidLoad];
     self.navigationItem.rightBarButtonItem = self.editButtonItem;
     
-    [self setupBindings:[PLPlaylistSongsViewModel new]];
+    @weakify(self);
+    _notificationObserver = [[PLNotificationObserver alloc] init];
+    [_notificationObserver addNotification:PLSelectedPlaylistChange handler:^(id _){ @strongify(self);
+        [self updateViewModel];
+        [self.tableView reloadData];
+    }];
+    
+    [self updateViewModel];
+    [self setupBindings];
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -42,10 +55,21 @@
 }
 
 
-- (void)setupBindings:(PLPlaylistSongsViewModel *)viewModel
+- (void)updateViewModel
+{
+    [self setViewModel:[[PLPlaylistSongsViewModel alloc] initWithPlaylist:[[PLDataAccess sharedDataAccess] selectedPlaylist]]];
+}
+
+- (void)setViewModel:(PLPlaylistSongsViewModel *)viewModel
 {
     _viewModel = viewModel;
+    [self setupBindings];
+}
 
+- (void)setupBindings
+{
+    self.title = _viewModel.title;
+    
     @weakify(self);
     [_viewModel.updatesSignal subscribeNext:^(NSArray *updates) { @strongify(self);
         if (self && self->_isVisible && !self->_ignoreUpdates)
@@ -131,6 +155,17 @@
     
     PLBookmarksViewController *bookmarksVc = navigationController.viewControllers[0];
     bookmarksVc.viewModel = [PLBookmarksViewModel new];
+    
+    [self presentViewController:navigationController animated:YES completion:nil];
+}
+
+- (IBAction)tappedPlaylists:(id)sender
+{
+    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Playlists" bundle:nil];
+    UINavigationController *navigationController = [storyboard instantiateInitialViewController];
+    
+    PLPlaylistsViewController *bookmarksVc = navigationController.viewControllers[0];
+    bookmarksVc.viewModel = [PLPlaylistsViewModel new];
     
     [self presentViewController:navigationController animated:YES completion:nil];
 }

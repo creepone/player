@@ -1,9 +1,12 @@
 #import <Foundation/Foundation.h>
 
-@class PLPlaylistSongCellViewModel;
+@class PLPlaylistSongCellViewModel, PLPlaylist;
 
 @interface PLPlaylistSongsViewModel : NSObject
 
+- (instancetype)initWithPlaylist:(PLPlaylist *)playlist;
+
+- (NSString *)title;
 - (NSUInteger)songsCount;
 - (PLPlaylistSongCellViewModel *)songViewModelAt:(NSIndexPath *)indexPath;
 - (void)selectSongAt:(NSIndexPath *)indexPath;

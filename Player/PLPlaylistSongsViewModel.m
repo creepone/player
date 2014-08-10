@@ -8,6 +8,7 @@
 #import "PLRouter.h"
 
 @interface PLPlaylistSongsViewModel() {
+    PLPlaylist *_playlist;
     NSFetchedResultsController *_fetchedResultsController;
     PLFetchedResultsControllerDelegate *_fetchedResultsControllerDelegate;
 }
@@ -15,13 +16,12 @@
 
 @implementation PLPlaylistSongsViewModel
 
-- (instancetype)init
+- (instancetype)initWithPlaylist:(PLPlaylist *)playlist
 {
     self = [super init];
     if (self) {
-        id<PLDataAccess> dataAccess = [PLDataAccess sharedDataAccess];
-        PLPlaylist *selectedPlaylist = [dataAccess selectedPlaylist];
-        _fetchedResultsController = [dataAccess fetchedResultsControllerForSongsOfPlaylist:selectedPlaylist];
+        _playlist = playlist;
+        _fetchedResultsController = [[PLDataAccess sharedDataAccess] fetchedResultsControllerForSongsOfPlaylist:playlist];
         _fetchedResultsControllerDelegate = [[PLFetchedResultsControllerDelegate alloc] initWithFetchedResultsController:_fetchedResultsController];
 
         NSError *error;
@@ -30,6 +30,11 @@
             [PLErrorManager logError:error];
     }
     return self;
+}
+
+- (NSString *)title
+{
+    return _playlist.name;
 }
 
 - (NSUInteger)songsCount

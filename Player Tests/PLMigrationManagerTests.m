@@ -46,7 +46,7 @@
         PLDataAccess *dataAccess = [[PLDataAccess alloc] initWithContext:context];
         
         PLPlaylist *playlist = [dataAccess selectedPlaylist];
-        XCTAssertEqualObjects(playlist.name, @"Default");
+        XCTAssertEqualObjects(playlist.name, @"Baladeur");
         XCTAssertEqualObjects(playlist.position, @(0));
         
         [self notify:kXCTUnitWaitStatusSuccess];

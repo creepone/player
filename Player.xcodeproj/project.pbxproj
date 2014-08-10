@@ -96,6 +96,11 @@
 		C3A1704919965E6A006F6684 /* PLBookmarkSong.m in Sources */ = {isa = PBXBuildFile; fileRef = C3A1704819965E6A006F6684 /* PLBookmarkSong.m */; };
 		C3A1704D19966161006F6684 /* PLBookmarksViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C3A1704C19966161006F6684 /* PLBookmarksViewController.m */; };
 		C3A170501996618E006F6684 /* PLBookmarksViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = C3A1704F1996618E006F6684 /* PLBookmarksViewModel.m */; };
+		C3A170551997B379006F6684 /* Playlists.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C3A170541997B379006F6684 /* Playlists.storyboard */; };
+		C3A1705B1997B6A8006F6684 /* PLPlaylistCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C3A1705A1997B6A8006F6684 /* PLPlaylistCell.m */; };
+		C3A1705E1997B76C006F6684 /* PLPlaylistCellViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = C3A1705D1997B76C006F6684 /* PLPlaylistCellViewModel.m */; };
+		C3A170611997B965006F6684 /* PLPlaylistsViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = C3A170601997B965006F6684 /* PLPlaylistsViewModel.m */; };
+		C3A170641997BA55006F6684 /* PLPlaylistsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C3A170631997BA55006F6684 /* PLPlaylistsViewController.m */; };
 		C3A4D67C193E40320060B704 /* PLFileImport.m in Sources */ = {isa = PBXBuildFile; fileRef = C3A4D67B193E40320060B704 /* PLFileImport.m */; };
 		C3A4D67F19433F1C0060B704 /* PLTableViewProgress.m in Sources */ = {isa = PBXBuildFile; fileRef = C3A4D67E19433F1C0060B704 /* PLTableViewProgress.m */; };
 		C3A4D682194343570060B704 /* PLProgressTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C3A4D681194343570060B704 /* PLProgressTableViewCell.m */; };
@@ -355,6 +360,15 @@
 		C3A1704C19966161006F6684 /* PLBookmarksViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PLBookmarksViewController.m; sourceTree = "<group>"; };
 		C3A1704E1996618E006F6684 /* PLBookmarksViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PLBookmarksViewModel.h; path = Player/PLBookmarksViewModel.h; sourceTree = "<group>"; };
 		C3A1704F1996618E006F6684 /* PLBookmarksViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PLBookmarksViewModel.m; path = Player/PLBookmarksViewModel.m; sourceTree = "<group>"; };
+		C3A170541997B379006F6684 /* Playlists.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Playlists.storyboard; sourceTree = "<group>"; };
+		C3A170591997B6A8006F6684 /* PLPlaylistCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PLPlaylistCell.h; sourceTree = "<group>"; };
+		C3A1705A1997B6A8006F6684 /* PLPlaylistCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PLPlaylistCell.m; sourceTree = "<group>"; };
+		C3A1705C1997B76C006F6684 /* PLPlaylistCellViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PLPlaylistCellViewModel.h; sourceTree = "<group>"; };
+		C3A1705D1997B76C006F6684 /* PLPlaylistCellViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PLPlaylistCellViewModel.m; sourceTree = "<group>"; };
+		C3A1705F1997B965006F6684 /* PLPlaylistsViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PLPlaylistsViewModel.h; sourceTree = "<group>"; };
+		C3A170601997B965006F6684 /* PLPlaylistsViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PLPlaylistsViewModel.m; sourceTree = "<group>"; };
+		C3A170621997BA55006F6684 /* PLPlaylistsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PLPlaylistsViewController.h; sourceTree = "<group>"; };
+		C3A170631997BA55006F6684 /* PLPlaylistsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PLPlaylistsViewController.m; sourceTree = "<group>"; };
 		C3A4D67A193E40320060B704 /* PLFileImport.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PLFileImport.h; sourceTree = "<group>"; };
 		C3A4D67B193E40320060B704 /* PLFileImport.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PLFileImport.m; sourceTree = "<group>"; };
 		C3A4D67D19433F1C0060B704 /* PLTableViewProgress.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PLTableViewProgress.h; sourceTree = "<group>"; };
@@ -906,13 +920,14 @@
 			path = Player;
 			sourceTree = "<group>";
 		};
-		C378CDC9195F07F0001D0593 /* Main (Playlist) */ = {
+		C378CDC9195F07F0001D0593 /* Main */ = {
 			isa = PBXGroup;
 			children = (
-				C378CDCA195F082F001D0593 /* View */,
-				C378CDCB195F0836001D0593 /* ViewModel */,
+				C3A170511997B31C006F6684 /* Main Screen (Playlist) */,
+				C3A170521997B341006F6684 /* Playlists */,
+				C3A170391996579C006F6684 /* Bookmarks */,
 			);
-			name = "Main (Playlist)";
+			name = Main;
 			path = Player;
 			sourceTree = "<group>";
 		};
@@ -1052,6 +1067,7 @@
 				C3A1704119965A16006F6684 /* ViewModel */,
 			);
 			name = Bookmarks;
+			path = ..;
 			sourceTree = "<group>";
 		};
 		C3A1703A199657BA006F6684 /* View */ = {
@@ -1102,6 +1118,63 @@
 			name = ViewControllers;
 			sourceTree = "<group>";
 		};
+		C3A170511997B31C006F6684 /* Main Screen (Playlist) */ = {
+			isa = PBXGroup;
+			children = (
+				C378CDCA195F082F001D0593 /* View */,
+				C378CDCB195F0836001D0593 /* ViewModel */,
+			);
+			name = "Main Screen (Playlist)";
+			sourceTree = "<group>";
+		};
+		C3A170521997B341006F6684 /* Playlists */ = {
+			isa = PBXGroup;
+			children = (
+				C3A170531997B35D006F6684 /* View */,
+				C3A170581997B631006F6684 /* ViewModel */,
+			);
+			name = Playlists;
+			sourceTree = "<group>";
+		};
+		C3A170531997B35D006F6684 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				C3A170541997B379006F6684 /* Playlists.storyboard */,
+				C3A170561997B61E006F6684 /* Views */,
+				C3A170571997B626006F6684 /* ViewControllers */,
+			);
+			name = View;
+			sourceTree = "<group>";
+		};
+		C3A170561997B61E006F6684 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				C3A170591997B6A8006F6684 /* PLPlaylistCell.h */,
+				C3A1705A1997B6A8006F6684 /* PLPlaylistCell.m */,
+			);
+			name = Views;
+			sourceTree = "<group>";
+		};
+		C3A170571997B626006F6684 /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				C3A170621997BA55006F6684 /* PLPlaylistsViewController.h */,
+				C3A170631997BA55006F6684 /* PLPlaylistsViewController.m */,
+			);
+			name = ViewControllers;
+			sourceTree = "<group>";
+		};
+		C3A170581997B631006F6684 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				C3A1705F1997B965006F6684 /* PLPlaylistsViewModel.h */,
+				C3A170601997B965006F6684 /* PLPlaylistsViewModel.m */,
+				C3A1705C1997B76C006F6684 /* PLPlaylistCellViewModel.h */,
+				C3A1705D1997B76C006F6684 /* PLPlaylistCellViewModel.m */,
+			);
+			name = ViewModel;
+			sourceTree = "<group>";
+		};
 		C3A4D679193E401B0060B704 /* Import */ = {
 			isa = PBXGroup;
 			children = (
@@ -1126,8 +1199,7 @@
 			isa = PBXGroup;
 			children = (
 				C378CDC8195F07DE001D0593 /* Shared */,
-				C378CDC9195F07F0001D0593 /* Main (Playlist) */,
-				C3A170391996579C006F6684 /* Bookmarks */,
+				C378CDC9195F07F0001D0593 /* Main */,
 				C3CC2CB0197A53490013FC57 /* Import */,
 				C34ADCDC19164CBE00A07EBB /* Legacy */,
 				C3BC5A3A1656B772002DA837 /* PLAppDelegate.h */,
@@ -1630,6 +1702,7 @@
 				C3BC5A401656B772002DA837 /* Default@2x.png in Resources */,
 				C3BC5A421656B772002DA837 /* Default-568h@2x.png in Resources */,
 				C3CC18DB19227CD30026E681 /* icon.png in Resources */,
+				C3A170551997B379006F6684 /* Playlists.storyboard in Resources */,
 				C3A1703D1996586E006F6684 /* Bookmarks.storyboard in Resources */,
 				C3CC18BF191F60EC0026E681 /* MusicLibrary.storyboard in Resources */,
 				C3381FF0196707E100DA2B7B /* CloudImport.storyboard in Resources */,
@@ -1738,12 +1811,14 @@
 				C3CC2CBD197A558D0013FC57 /* PLFileSharingViewController.m in Sources */,
 				C3A4D67F19433F1C0060B704 /* PLTableViewProgress.m in Sources */,
 				C3A4D682194343570060B704 /* PLProgressTableViewCell.m in Sources */,
+				C3A170611997B965006F6684 /* PLPlaylistsViewModel.m in Sources */,
 				C3CC2CCA197A5A320013FC57 /* PLFileSharingItem.m in Sources */,
 				C3BC5A991656B959002DA837 /* PLPlaylistViewController.m in Sources */,
 				C3CC2CC1197A56210013FC57 /* PLFileSharingViewModel.m in Sources */,
 				C3BC5AB21656C284002DA837 /* PLPlayerViewController.m in Sources */,
 				C3CC2CC4197A56E70013FC57 /* PLFileSharingCellViewModel.m in Sources */,
 				C34BD67A197BDFBF007138B8 /* PLPodcast.m in Sources */,
+				C3A1705E1997B76C006F6684 /* PLPlaylistCellViewModel.m in Sources */,
 				C3A1704419965A2D006F6684 /* PLBookmarkCellViewModel.m in Sources */,
 				C3CC2C8D19713EEC0013FC57 /* PLCloudImport.m in Sources */,
 				C34BD6A71985308F007138B8 /* PLPodcastEpisodesViewController.m in Sources */,
@@ -1777,6 +1852,7 @@
 				C34BD658197BBE55007138B8 /* PLPodcastOldEpisode.m in Sources */,
 				C3FCEC2E16FF0AD3008CD497 /* PLPlaylistSongViewController.m in Sources */,
 				696C14355BFE9EF3A322E84C /* PLColors.m in Sources */,
+				C3A1705B1997B6A8006F6684 /* PLPlaylistCell.m in Sources */,
 				C338200619680E4800DA2B7B /* PLPathAssetSet.m in Sources */,
 				696C1F72E45C6A9B4C528C3C /* PLActivityView.m in Sources */,
 				696C1F1FF839CDC5DB90DE97 /* PLButton.m in Sources */,
@@ -1791,6 +1867,7 @@
 				C3CC2CB9197A54EA0013FC57 /* PLFileSharingCell.m in Sources */,
 				C34BD65B197BBE56007138B8 /* PLPodcastPin.m in Sources */,
 				696C150707F3BDB3401223BA /* PLConstraints.m in Sources */,
+				C3A170641997BA55006F6684 /* PLPlaylistsViewController.m in Sources */,
 				696C1ADFA4D617995455F30F /* PLDownloadFromDropboxActivity.m in Sources */,
 				C3F539F3195A047300409CC4 /* PLDownloadManager.m in Sources */,
 				696C1C17D8D7CEA11E7A5928 /* PLDownloadFromGDriveActivity.m in Sources */,

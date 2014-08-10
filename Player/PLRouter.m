@@ -4,6 +4,8 @@
 #import "PLPlayerViewController.h"
 #import "PLPlaylistViewController.h"
 #import "PLImportActivityViewController.h"
+#import "PLPlaylistSongsViewController.h"
+#import "PLPlaylistSongsViewModel.h"
 
 @implementation PLRouter
 

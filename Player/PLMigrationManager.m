@@ -98,8 +98,8 @@ const long PLCurrentDataStoreVersion = 2;
 {
     return [RACSignal createSignal:^RACDisposable *(id <RACSubscriber> subscriber) {
         PLPlaylist *playlist = [NSEntityDescription insertNewObjectForEntityForName:@"PLPlaylist" inManagedObjectContext:context];
-        playlist.name = @"Default";
-        playlist.position = [NSNumber numberWithInt:0];
+        playlist.name = @"Baladeur";
+        playlist.position = @0;
 
         NSError *error;
         if (![context save:&error]) {

@@ -128,7 +128,11 @@
                             </connections>
                         </barButtonItem>
                         <barButtonItem width="36" style="plain" systemItem="fixedSpace" id="KH4-KY-duo"/>
-                        <barButtonItem systemItem="organize" id="uyv-5F-6kq"/>
+                        <barButtonItem systemItem="organize" id="uyv-5F-6kq">
+                            <connections>
+                                <action selector="tappedPlaylists:" destination="bzV-l1-pgC" id="tyQ-UV-hAR"/>
+                            </connections>
+                        </barButtonItem>
                         <barButtonItem width="36" style="plain" systemItem="fixedSpace" id="giF-Xn-VfS"/>
                         <barButtonItem image="Play" id="Pkv-hc-U26"/>
                         <barButtonItem width="36" style="plain" systemItem="fixedSpace" id="1Ej-Mx-AYO"/>

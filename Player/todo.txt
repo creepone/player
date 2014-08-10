@@ -1,8 +1,16 @@
+next:
+do not allow the deletion of the last playlist
+introduce order for PLPlaylist + migration (assign alphabetically)
+reordering in UI, assigning the lowest order to new playlists (so that they appear on top)
+rudimentary adding of playlists with an alert, remove old UI
+editing playlist name and adding playlists inline
+
 1.0:
 set allowsCellularAccess based on a configuration setting
 configuration for remote control events
 show explanation on an empty podcast screen (add new podcasts by searching)
 show explanation on an empty bookmarks screen (add new podcasts by searching)
+flatten data model
 
 app store release todos:
 activate dropbox app for public
@@ -17,3 +25,5 @@ restore position to a bookmark
 long term:
 refactor the "Activity View" to use MVVM
 in-app purchase for votes or adding new ideas to implement
+
+icon caching problem: when the view model is recreated using the same underlying object, often an image is repeatedly loaded only to be replaced with its exact copy
