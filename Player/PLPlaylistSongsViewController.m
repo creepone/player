@@ -14,6 +14,8 @@
 @interface PLPlaylistSongsViewController () {
     BOOL _ignoreUpdates, _isVisible;
     PLNotificationObserver *_notificationObserver;
+    PLPlaylistSongsViewModel *_viewModel;
+    RACDisposable *_updatesSignalSubscription;
 }
 
 - (IBAction)tappedAdd:(id)sender;
@@ -57,12 +59,7 @@
 
 - (void)updateViewModel
 {
-    [self setViewModel:[[PLPlaylistSongsViewModel alloc] initWithPlaylist:[[PLDataAccess sharedDataAccess] selectedPlaylist]]];
-}
-
-- (void)setViewModel:(PLPlaylistSongsViewModel *)viewModel
-{
-    _viewModel = viewModel;
+    _viewModel = [[PLPlaylistSongsViewModel alloc] initWithPlaylist:[[PLDataAccess sharedDataAccess] selectedPlaylist]];
     [self setupBindings];
 }
 
@@ -71,7 +68,8 @@
     self.title = _viewModel.title;
     
     @weakify(self);
-    [_viewModel.updatesSignal subscribeNext:^(NSArray *updates) { @strongify(self);
+    [_updatesSignalSubscription dispose];
+    _updatesSignalSubscription = [_viewModel.updatesSignal subscribeNext:^(NSArray *updates) { @strongify(self);
         if (self && self->_isVisible && !self->_ignoreUpdates)
             [self.tableView pl_applyUpdates:updates];
     }];
