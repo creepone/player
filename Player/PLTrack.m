@@ -2,11 +2,11 @@
 #import <ReactiveCocoa/ReactiveCocoa.h>
 #import "PLTrack.h"
 #import "PLMediaLibrarySearch.h"
-#import "NSString+Extensions.h"
 #import "PLImageCache.h"
 #import "PLErrorManager.h"
 #import "PLDownloadManager.h"
 #import "PLUtils.h"
+#import "NSString+PLExtensions.h"
 
 @implementation PLTrack
 

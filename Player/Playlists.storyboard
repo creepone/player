@@ -72,10 +72,14 @@
         <!--Navigation Controller-->
         <scene sceneID="0eR-mv-2oD">
             <objects>
-                <navigationController definesPresentationContext="YES" id="LS6-gU-l7J" sceneMemberID="viewController">
+                <navigationController definesPresentationContext="YES" toolbarHidden="NO" id="LS6-gU-l7J" sceneMemberID="viewController">
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="uDe-fW-y9I">
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
+                    <toolbar key="toolbar" opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="qEJ-qh-ud2">
+                        <rect key="frame" x="0.0" y="524" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </toolbar>
                     <connections>
                         <segue destination="XCo-IQ-X0H" kind="relationship" relationship="rootViewController" id="aee-Fd-acH"/>
                     </connections>

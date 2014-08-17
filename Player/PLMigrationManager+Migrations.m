@@ -37,11 +37,30 @@
 + (void)postMigrateWithInfo:(NSDictionary *)migrationInfo
 {
     // NSInteger originalVersion = [migrationInfo[@"originalVersion"] integerValue];
-    PLDataAccess *dataAccess = [[PLDataAccess alloc] initWithContext:[self contextForCurrentVersion]];
+    // PLDataAccess *dataAccess = [[PLDataAccess alloc] initWithContext:[self contextForCurrentVersion]];
+    NSManagedObjectContext *context = [self contextForCurrentVersion];
 
     // post migration steps
     
-    [dataAccess saveChanges:nil];
+    NSFetchRequest *fetchRequest = [NSFetchRequest new];
+    [fetchRequest setEntity:[NSEntityDescription entityForName:[PLPlaylist entityName] inManagedObjectContext:context]];
+    
+    NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@instanceKey(PLPlaylist, name) ascending:YES];
+    [fetchRequest setSortDescriptors:@[sortDescriptor]];
+    [fetchRequest setFetchBatchSize:50];
+    
+    NSError *error;
+    NSArray *playlists = [context executeFetchRequest:fetchRequest error:&error];
+    if (error != nil)
+        return;
+    
+    int order = 0;
+    for (PLPlaylist *playlist in playlists) {
+        order++;
+        playlist.order = @(order);
+    }
+    
+    [context save:nil];
 }
 
 

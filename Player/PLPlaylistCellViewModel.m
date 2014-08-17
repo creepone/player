@@ -37,7 +37,7 @@
     
     NSUInteger tracksCount = [_playlist.songs count];
     if (tracksCount > 0)
-        return [NSString stringWithFormat:@"%lu tracks, %@", tracksCount, [PLUtils formatDuration:totalDuration]]; // todo: localize
+        return [NSString stringWithFormat:@"%lu tracks, %@", (unsigned long)tracksCount, [PLUtils formatDuration:totalDuration]]; // todo: localize
     
     return @"0 tracks"; // todo: localize
 }

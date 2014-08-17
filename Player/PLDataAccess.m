@@ -95,7 +95,12 @@ NSString * const PLSelectedPlaylistChange = @"PLSelectedPlaylistChange";
 
 - (PLPlaylist *)createPlaylistWithName:(NSString *)name
 {
-    return [PLPlaylist playlistWithName:name inContext:self.context];
+    PLPlaylist *playlist = [PLPlaylist playlistWithName:name inContext:self.context];
+    
+    int lowestExistingOrder = [[self findLowestPlaylistOrder] intValue];
+    playlist.order = @(--lowestExistingOrder);
+    
+    return playlist;
 }
 
 - (PLBookmark *)createBookmarkAtPosition:(NSTimeInterval)position forTrack:(PLTrack *)track
@@ -263,6 +268,26 @@ NSString * const PLSelectedPlaylistChange = @"PLSelectedPlaylistChange";
     }
 }
 
+- (NSNumber *)findLowestPlaylistOrder
+{
+    NSFetchRequest *fetchRequest = [self queryForLowestPlaylistOrder];
+    
+    NSError *error;
+    NSArray *result = [self.context executeFetchRequest:fetchRequest error:&error];
+    
+    if (error) {
+        [PLErrorManager logError:error];
+        return nil;
+    }
+    
+    if ([result count] == 0) {
+        return @(0);
+    }
+    else {
+        return [result[0] valueForKey:@instanceKey(PLPlaylist, order)];
+    }
+}
+
 - (void)executeForEachPodcastPin:(void(^)(PLPodcastPin *))block
 {
     NSFetchRequest *fetchRequest = [self queryForAllPodcastPins];
@@ -374,7 +399,7 @@ NSString * const PLSelectedPlaylistChange = @"PLSelectedPlaylistChange";
     
     [fetchRequest setEntity:[NSEntityDescription entityForName:[PLPlaylist entityName] inManagedObjectContext:self.context]];
     
-    NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@instanceKey(PLPlaylist, name) ascending:YES];
+    NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@instanceKey(PLPlaylist, order) ascending:YES];
     [fetchRequest setSortDescriptors:@[sortDescriptor]];
     
     return fetchRequest;
@@ -537,6 +562,25 @@ NSString * const PLSelectedPlaylistChange = @"PLSelectedPlaylistChange";
     NSExpression *maxExpression = [NSExpression expressionForFunction:@"max:" arguments:@[keyPathExpression]];
     NSExpressionDescription *expressionDescription = [[NSExpressionDescription alloc] init];
     [expressionDescription setName:@instanceKey(PLPodcastPin, order)];
+    [expressionDescription setExpression:maxExpression];
+    [expressionDescription setExpressionResultType:NSInteger64AttributeType];
+    
+    [fetchRequest setPropertiesToFetch:@[expressionDescription]];
+    [fetchRequest setResultType:NSDictionaryResultType];
+    
+    return fetchRequest;
+}
+
+- (NSFetchRequest *)queryForLowestPlaylistOrder
+{
+    NSFetchRequest *fetchRequest = [NSFetchRequest new];
+    
+    [fetchRequest setEntity:[NSEntityDescription entityForName:[PLPlaylist entityName] inManagedObjectContext:self.context]];
+    
+    NSExpression *keyPathExpression = [NSExpression expressionForKeyPath:@instanceKey(PLPlaylist, order)];
+    NSExpression *maxExpression = [NSExpression expressionForFunction:@"min:" arguments:@[keyPathExpression]];
+    NSExpressionDescription *expressionDescription = [[NSExpressionDescription alloc] init];
+    [expressionDescription setName:@instanceKey(PLPlaylist, order)];
     [expressionDescription setExpression:maxExpression];
     [expressionDescription setExpressionResultType:NSInteger64AttributeType];
     

@@ -5,6 +5,7 @@
 
 @interface PLPlaylist : PLEntity
 
+@property (nonatomic, retain) NSNumber * order;
 @property (nonatomic, retain) NSString * uuid;
 @property (nonatomic, retain) NSString * name;
 @property (nonatomic, retain) NSNumber * position;

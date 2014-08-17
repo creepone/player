@@ -12,6 +12,7 @@
 
 @implementation PLPlaylist
 
+@dynamic order;
 @dynamic uuid;
 @dynamic name;
 @dynamic position;

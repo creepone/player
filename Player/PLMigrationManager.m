@@ -7,7 +7,7 @@
 #import "PLUtils.h"
 #import "PLErrorManager.h"
 
-const long PLCurrentDataStoreVersion = 2;
+const long PLCurrentDataStoreVersion = 3;
 
 @implementation PLMigrationManager
 
@@ -66,7 +66,7 @@ const long PLCurrentDataStoreVersion = 2;
         NSString *momdPath = [[NSBundle mainBundle] pathForResource:@"Model" ofType:@"momd"];
         NSString *resourceSubpath = [momdPath lastPathComponent];
         
-        NSString *momName = version == 1 ? @"Model" : [NSString stringWithFormat:@"Model %ld", version];
+        NSString *momName = version == 1 ? @"Model" : [NSString stringWithFormat:@"Model %ld", (long)version];
         NSString *momPath = [[NSBundle mainBundle] pathForResource:momName ofType:@"mom" inDirectory:resourceSubpath];
         NSURL *momURL = [NSURL fileURLWithPath:momPath];
         
@@ -90,8 +90,9 @@ const long PLCurrentDataStoreVersion = 2;
 
 + (NSString *)dataStoreNameVersion:(NSInteger)version
 {
-    return [NSString stringWithFormat:@".Player%ld.sqlite", version];
+    return [NSString stringWithFormat:@".Player%ld.sqlite", (long)version];
 }
+
 
 
 + (RACSignal *)createDefaultObjectsInContext:(NSManagedObjectContext *)context

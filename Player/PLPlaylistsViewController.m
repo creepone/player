@@ -6,7 +6,9 @@
 #import "PLPlaylistCellViewModel.h"
 #import "PLErrorManager.h"
 
-@interface PLPlaylistsViewController ()
+@interface PLPlaylistsViewController () {
+    BOOL _ignoreUpdates;
+}
 
 - (IBAction)tappedAdd:(id)sender;
 
@@ -30,7 +32,8 @@
 {
     @weakify(self);
     [self.viewModel.updatesSignal subscribeNext:^(NSArray *updates) { @strongify(self);
-        [self.tableView pl_applyUpdates:updates];
+        if (self && !self->_ignoreUpdates)
+            [self.tableView pl_applyUpdates:updates];
     }];
 }
 
@@ -49,7 +52,10 @@
 
 - (UITableViewCellEditingStyle)tableView:(UITableView *)tableView editingStyleForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return [tableView isEditing] ? UITableViewCellEditingStyleNone : UITableViewCellEditingStyleDelete;
+    if (tableView.isEditing || !self.viewModel.allowDelete)
+        return UITableViewCellEditingStyleNone;
+    
+    return UITableViewCellEditingStyleDelete;
 }
 
 - (BOOL)tableView:(UITableView *)tableView shouldIndentWhileEditingRowAtIndexPath:(NSIndexPath *)indexPath
@@ -72,6 +78,22 @@
     }
 }
 
+- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath
+{
+    _ignoreUpdates = YES;
+    
+    @weakify(self);
+    [[[self.viewModel movePlaylistFrom:fromIndexPath to:toIndexPath] finally:^{
+        @strongify(self);
+        if (self)
+            self->_ignoreUpdates = NO;
+    }]
+     subscribeError:^(NSError *error) {
+         [PLErrorManager logError:error];
+         // todo: show a TSMessage and reload the table view so that the operation gets undone in the view
+     }];
+}
+
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     PLPlaylistCell *cell = (PLPlaylistCell *)[tableView cellForRowAtIndexPath:indexPath];
@@ -79,6 +101,9 @@
     [self.navigationController dismissViewControllerAnimated:YES completion:nil];
 }
 
-- (IBAction)tappedAdd:(id)sender {
+- (IBAction)tappedAdd:(id)sender
+{
+    [self.viewModel addPlaylist];
 }
+
 @end

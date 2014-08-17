@@ -1,10 +1,4 @@
 next:
-crash reports
-main playlist screen sometimes not refreshed when adding a track
-do not allow the deletion of the last playlist
-introduce order for PLPlaylist + migration (assign alphabetically)
-reordering in UI, assigning the lowest order to new playlists (so that they appear on top)
-rudimentary adding of playlists with an alert, remove old UI
 editing playlist name and adding playlists inline
 
 1.0:

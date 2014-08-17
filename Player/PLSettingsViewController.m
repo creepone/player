@@ -5,10 +5,8 @@
 #import "PLDefaultsManager.h"
 #import "PLPlayer.h"
 #import "PLDataAccess.h"
-#import "PLAlerts.h"
 #import "PLColors.h"
 #import "SliderCell.h"
-#import "NSString+Extensions.h"
 #import "UIViewController+PLErrorExtensions.h"
 #import "PLRouter.h"
 
