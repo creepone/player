@@ -64,7 +64,7 @@ typedef enum {
 }
 
 - (void)prepare {
-    [self prepare:self.selector];
+    [self prepare:self.invocation.selector];
 }
 
 - (void)prepare:(SEL)selector {
