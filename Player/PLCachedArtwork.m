@@ -92,12 +92,14 @@
         AVURLAsset *asset = [AVURLAsset assetWithURL:fileURL];
         NSArray *artworks = [AVMetadataItem metadataItemsFromArray:asset.commonMetadata withKey:AVMetadataCommonKeyArtwork keySpace:AVMetadataKeySpaceCommon];
         for (AVMetadataItem *artworkItem in artworks) {
-            if ([artworkItem.keySpace isEqualToString:AVMetadataKeySpaceID3]) {
-                NSDictionary *itemMap = (NSDictionary *)[artworkItem.value copyWithZone:nil];
-                return [RACSignal return:[UIImage imageWithData:itemMap[@"data"]]];
-            } else if ([artworkItem.keySpace isEqualToString:AVMetadataKeySpaceiTunes]) {
-                NSData *itemData = (NSData *)[artworkItem.value copyWithZone:nil];
-                return [RACSignal return:[UIImage imageWithData:itemData]];
+            if ([artworkItem.keySpace isEqualToString:AVMetadataKeySpaceID3] || [artworkItem.keySpace isEqualToString:AVMetadataKeySpaceiTunes]) {
+                id itemValue = [artworkItem.value copyWithZone:nil];
+                if ([itemValue isKindOfClass:[NSDictionary class]])
+                    itemValue = itemValue[@"data"];
+                
+                if ([itemValue isKindOfClass:[NSData class]]) {
+                    return [RACSignal return:[UIImage imageWithData:itemValue]];
+                }
             }
         }
         
