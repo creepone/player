@@ -22,5 +22,5 @@ end
 
 target :test do
     pod "OCMock", "~> 3.0.2"
-    link_with "Player Tests"
+    link_with "PlayerTests"
 end
