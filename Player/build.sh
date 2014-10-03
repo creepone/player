@@ -1,0 +1,1 @@
+/usr/local/bin/xctool -workspace Player.xcworkspace -scheme Player -configuration Release CONFIGURATION_BUILD_DIR=`pwd`/build build

@@ -104,6 +104,8 @@
 		C3A4D67C193E40320060B704 /* PLFileImport.m in Sources */ = {isa = PBXBuildFile; fileRef = C3A4D67B193E40320060B704 /* PLFileImport.m */; };
 		C3A4D67F19433F1C0060B704 /* PLTableViewProgress.m in Sources */ = {isa = PBXBuildFile; fileRef = C3A4D67E19433F1C0060B704 /* PLTableViewProgress.m */; };
 		C3A4D682194343570060B704 /* PLProgressTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C3A4D681194343570060B704 /* PLProgressTableViewCell.m */; };
+		C3AD155C19DF204000629F98 /* tests.sh in Resources */ = {isa = PBXBuildFile; fileRef = C3AD155A19DF204000629F98 /* tests.sh */; };
+		C3AD156019DF206300629F98 /* build.sh in Resources */ = {isa = PBXBuildFile; fileRef = C3AD155E19DF206300629F98 /* build.sh */; };
 		C3BC5A361656B772002DA837 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = C3BC5A341656B772002DA837 /* InfoPlist.strings */; };
 		C3BC5A381656B772002DA837 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = C3BC5A371656B772002DA837 /* main.m */; };
 		C3BC5A3C1656B772002DA837 /* PLAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = C3BC5A3B1656B772002DA837 /* PLAppDelegate.m */; };
@@ -370,6 +372,8 @@
 		C3A4D67E19433F1C0060B704 /* PLTableViewProgress.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PLTableViewProgress.m; sourceTree = "<group>"; };
 		C3A4D680194343570060B704 /* PLProgressTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PLProgressTableViewCell.h; sourceTree = "<group>"; };
 		C3A4D681194343570060B704 /* PLProgressTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PLProgressTableViewCell.m; sourceTree = "<group>"; };
+		C3AD155A19DF204000629F98 /* tests.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = tests.sh; sourceTree = "<group>"; };
+		C3AD155E19DF206300629F98 /* build.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = build.sh; sourceTree = "<group>"; };
 		C3BC5A271656B772002DA837 /* Baladeur.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Baladeur.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C3BC5A331656B772002DA837 /* Player-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Player-Info.plist"; sourceTree = "<group>"; };
 		C3BC5A351656B772002DA837 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
@@ -1565,6 +1569,8 @@
 				C3CF9FD418B52EF4004EE4A1 /* revision.prefix */,
 				C3CF9FD518B52EF4004EE4A1 /* prebuild.sh */,
 				C3CF9FD618B52EF4004EE4A1 /* deploy.sh */,
+				C3AD155A19DF204000629F98 /* tests.sh */,
+				C3AD155E19DF206300629F98 /* build.sh */,
 			);
 			name = Build;
 			sourceTree = "<group>";
@@ -1654,6 +1660,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C3AD155C19DF204000629F98 /* tests.sh in Resources */,
 				C3CC2CA51972CA8F0013FC57 /* LiveSDK.framework in Resources */,
 				C3BC5A361656B772002DA837 /* InfoPlist.strings in Resources */,
 				C3F1A13518E83F6F00A82EAC /* Images.xcassets in Resources */,
@@ -1668,6 +1675,7 @@
 				C3381FF0196707E100DA2B7B /* CloudImport.storyboard in Resources */,
 				C3CC18B8191E43300026E681 /* Localizable.strings in Resources */,
 				C3BC5AAB1656C23A002DA837 /* list.png in Resources */,
+				C3AD156019DF206300629F98 /* build.sh in Resources */,
 				C3BC5AB31656C284002DA837 /* PLPlayerViewController.xib in Resources */,
 				C3BC5AB51656C2D7002DA837 /* music.png in Resources */,
 				C378CD78194C51D5001D0593 /* Main.storyboard in Resources */,
