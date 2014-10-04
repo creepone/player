@@ -20,5 +20,7 @@ extern NSString * const PLPlayerSavedPositionNotification;
 - (void)play;
 - (void)goBack;
 - (void)makeBookmark;
+- (void)moveToNext;
+- (void)moveToPrevious;
 
 @end

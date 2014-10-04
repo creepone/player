@@ -251,6 +251,54 @@ NSString * const PLPlayerSavedPositionNotification = @"PLPlayerSavedPositionNoti
     [self play];
 }
 
+- (void)moveToNext
+{
+    if (_currentSong == nil)
+        return;
+    
+    if (_currentSong.playlist == nil) {
+        self.currentSong = nil;
+        return;
+    }
+    
+    BOOL wasPlaying = [self isPlaying];
+    [self stop];
+    
+    PLPlaylist *playlist = _currentSong.playlist;
+    [playlist moveToNextSong];
+    
+    self.currentSong = playlist.currentSong;
+    [self save];
+    
+    if (wasPlaying)
+        [self play];
+}
+
+- (void)moveToPrevious
+{
+    if (_currentSong == nil)
+    return;
+    
+    if (_currentSong.playlist == nil) {
+        self.currentSong = nil;
+        return;
+    }
+    
+    BOOL wasPlaying = [self isPlaying];
+    [self stop];
+    
+    PLPlaylist *playlist = _currentSong.playlist;
+    
+    if (![playlist moveToPreviousSong])
+        _currentSong.position = @0;
+    
+    self.currentSong = playlist.currentSong;
+    [self save];
+    
+    if (wasPlaying)
+        [self play];
+}
+
 
 - (void)save
 {

@@ -100,19 +100,25 @@
     }
 }
 
-- (void)moveToNextSong
-{
+- (BOOL)moveToNextSong {
     PLPlaylistSong *nextSong = [self findNextSong];
-    if (nextSong != nil)
+    if (nextSong != nil) {
         self.position = nextSong.order;
-    else
+        return YES;
+    }
+    else {
         self.position = @(0);
+        return NO;
+    }
 }
 
-- (void)moveToPreviousSong {
+- (BOOL)moveToPreviousSong {
     PLPlaylistSong *previousSong = [self findPreviousSong];
-    if (previousSong != nil)
+    if (previousSong != nil) {
         self.position = previousSong.order;
+        return YES;
+    }
+    return NO;
 }
 
 - (PLPlaylistSong *)currentSong {

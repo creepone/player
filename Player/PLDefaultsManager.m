@@ -7,6 +7,7 @@ static NSString *kSelectedPlaylistUuid = @"SelectedPlaylistUuid";
 static NSString *kPlaybackRate = @"PlaybackRate";
 static NSString *kGoBackTime = @"GoBackTime";
 static NSString *kMirrorTracks = @"MirrorTracks";
+static NSString *kUseCustomRemoteCommands = @"UseCustomRemoteCommands";
 
 + (PLDefaultsManager *)sharedManager
 {
@@ -80,6 +81,19 @@ static NSString *kMirrorTracks = @"MirrorTracks";
 {
     NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
     [userDefaults setBool:mirrorTracks forKey:kMirrorTracks];
+    [userDefaults synchronize];
+}
+
+- (BOOL)useCustomRemoteCommands
+{
+    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+    return [userDefaults boolForKey:kUseCustomRemoteCommands];
+}
+
+- (void)setUseCustomRemoteCommands:(BOOL)useCustomRemoteCommands
+{
+    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+    [userDefaults setBool:useCustomRemoteCommands forKey:kUseCustomRemoteCommands];
     [userDefaults synchronize];
 }
 

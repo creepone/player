@@ -174,24 +174,37 @@ static void onUncaughtException(NSException* exception);
 
 - (void)remoteControlReceivedWithEvent:(UIEvent *)event
 {
+    BOOL useCustomCommands = [[PLDefaultsManager sharedManager] useCustomRemoteCommands];
+    PLPlayer *player = [PLPlayer sharedPlayer];
+    
     switch (event.subtype) {
         case UIEventSubtypeRemoteControlTogglePlayPause:
-            [[PLPlayer sharedPlayer] playPause];
+            [player playPause];
             break;
         case UIEventSubtypeRemoteControlPlay:
-            [[PLPlayer sharedPlayer] playPause];
+            [player playPause];
             break;
         case UIEventSubtypeRemoteControlPause:
-            [[PLPlayer sharedPlayer] playPause];
+            [player playPause];
             break;
         case UIEventSubtypeRemoteControlStop:
             break;
         case UIEventSubtypeRemoteControlNextTrack:
-            [[PLPlayer sharedPlayer] makeBookmark];
+        {
+            if (useCustomCommands)
+                [player makeBookmark];
+            else
+                [player moveToNext];
             break;
+        }
         case UIEventSubtypeRemoteControlPreviousTrack:
-            [[PLPlayer sharedPlayer] goBack];
+        {
+            if (useCustomCommands)
+                [player goBack];
+            else
+                [player moveToPrevious];
             break;
+        }
         default:
             break;
     }

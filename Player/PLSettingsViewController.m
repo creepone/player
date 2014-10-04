@@ -50,7 +50,7 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    NSInteger rows = 5;
+    NSInteger rows = 6;
     if (![MFMailComposeViewController canSendMail])
         rows--;
     return rows;
@@ -85,7 +85,7 @@
         else if (indexPath.row == 2) {
             cell.textLabel.text = @"Mirror iTunes tracks";
 
-            UISwitch *switchMirrorTracks = [[UISwitch alloc] init];
+            UISwitch *switchMirrorTracks = [UISwitch new];
             switchMirrorTracks.on = [[PLDefaultsManager sharedManager] mirrorTracks];
 
             [[switchMirrorTracks rac_signalForControlEvents:UIControlEventValueChanged] subscribeNext:^(UISwitch *switchMirrorTracks) {
@@ -95,10 +95,22 @@
             cell.accessoryView = switchMirrorTracks;
         }
         else if (indexPath.row == 3) {
+            cell.textLabel.text = @"Custom remote commands";
+            
+            UISwitch *switchRemoteCommands = [UISwitch new];
+            switchRemoteCommands.on = [[PLDefaultsManager sharedManager] useCustomRemoteCommands];
+            
+            [[switchRemoteCommands rac_signalForControlEvents:UIControlEventValueChanged] subscribeNext:^(UISwitch *switchRemoteCommands) {
+                [[PLDefaultsManager sharedManager] setUseCustomRemoteCommands:switchRemoteCommands.on];
+            }];
+            
+            cell.accessoryView = switchRemoteCommands;
+        }
+        else if (indexPath.row == 4) {
             cell.textLabel.text = @"Switch to new";
             cell.accessoryType = UITableViewCellAccessoryNone;
         }
-        else if (indexPath.row == 4) {
+        else if (indexPath.row == 5) {
             cell.textLabel.text = @"Send logs";
             cell.accessoryType = UITableViewCellAccessoryNone;
         }
@@ -155,10 +167,10 @@
         alert.tag = GoBackAlert;
         [alert show];
     }
-    else if (indexPath.row == 3) {
+    else if (indexPath.row == 4) {
         [PLRouter showNew];
     }
-    else if (indexPath.row == 4) {
+    else if (indexPath.row == 5) {
         NSString *archivePath = [PLLogging archiveLogs];
         NSData *archiveData = [NSData dataWithContentsOfFile:archivePath];
         
