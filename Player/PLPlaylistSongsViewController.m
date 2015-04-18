@@ -8,6 +8,8 @@
 #import "PLBookmarksViewModel.h"
 #import "PLPlaylistsViewController.h"
 #import "PLPlaylistsViewModel.h"
+#import "PLPlayingViewController.h"
+#import "PLPlayingViewModel.h"
 #import "PLNotificationObserver.h"
 #import "PLDataAccess.h"
 
@@ -144,6 +146,17 @@
 - (IBAction)tappedSettings:(id)sender
 {
     [_viewModel.switchCommand execute:nil];
+}
+
+- (IBAction)tappedPlaying:(id)sender
+{
+    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Playing" bundle:nil];
+    UINavigationController *navigationController = [storyboard instantiateInitialViewController];
+    
+    PLPlayingViewController *playingVc = navigationController.viewControllers[0];
+    playingVc.viewModel = [PLPlayingViewModel new];
+    
+    [self presentViewController:navigationController animated:YES completion:nil];
 }
 
 - (IBAction)tappedBookmarks:(id)sender

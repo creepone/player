@@ -168,6 +168,9 @@
 		C3CC2CEF197A7BC20013FC57 /* XCTAsyncTestCase.m in Sources */ = {isa = PBXBuildFile; fileRef = C3CC2CEE197A7BC20013FC57 /* XCTAsyncTestCase.m */; };
 		C3CC2CF2197A7C1F0013FC57 /* PLTestCase.m in Sources */ = {isa = PBXBuildFile; fileRef = C3CC2CF1197A7C1F0013FC57 /* PLTestCase.m */; };
 		C3CC2CFA197AA9050013FC57 /* PLMigrationManager+Migrations.m in Sources */ = {isa = PBXBuildFile; fileRef = C3CC2CF9197AA9050013FC57 /* PLMigrationManager+Migrations.m */; };
+		C3E0BADB1AE2526C00F324C8 /* Playing.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C3E0BADA1AE2526C00F324C8 /* Playing.storyboard */; };
+		C3E0BADF1AE2539300F324C8 /* PLPlayingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C3E0BADE1AE2539300F324C8 /* PLPlayingViewController.m */; };
+		C3E0BAE31AE254C900F324C8 /* PLPlayingViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = C3E0BAE21AE254C900F324C8 /* PLPlayingViewModel.m */; };
 		C3F1A13518E83F6F00A82EAC /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C3F1A13418E83F6F00A82EAC /* Images.xcassets */; };
 		C3F539F3195A047300409CC4 /* PLDownloadManager.m in Sources */ = {isa = PBXBuildFile; fileRef = C3F539F2195A047300409CC4 /* PLDownloadManager.m */; };
 		EF26B9B3F9D24987B46B5597 /* libPods-default.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 26E21AADB0AF4D49AC4231C4 /* libPods-default.a */; };
@@ -483,6 +486,11 @@
 		C3CF9FD418B52EF4004EE4A1 /* revision.prefix */ = {isa = PBXFileReference; lastKnownFileType = text; path = revision.prefix; sourceTree = "<group>"; };
 		C3CF9FD518B52EF4004EE4A1 /* prebuild.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = prebuild.sh; sourceTree = "<group>"; };
 		C3CF9FD618B52EF4004EE4A1 /* deploy.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = deploy.sh; sourceTree = "<group>"; };
+		C3E0BADA1AE2526C00F324C8 /* Playing.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Playing.storyboard; sourceTree = "<group>"; };
+		C3E0BADD1AE2539300F324C8 /* PLPlayingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PLPlayingViewController.h; sourceTree = "<group>"; };
+		C3E0BADE1AE2539300F324C8 /* PLPlayingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PLPlayingViewController.m; sourceTree = "<group>"; };
+		C3E0BAE11AE254C900F324C8 /* PLPlayingViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PLPlayingViewModel.h; sourceTree = "<group>"; };
+		C3E0BAE21AE254C900F324C8 /* PLPlayingViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PLPlayingViewModel.m; sourceTree = "<group>"; };
 		C3F1A13418E83F6F00A82EAC /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = Player/Images.xcassets; sourceTree = "<group>"; };
 		C3F539F1195A047300409CC4 /* PLDownloadManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PLDownloadManager.h; sourceTree = "<group>"; };
 		C3F539F2195A047300409CC4 /* PLDownloadManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PLDownloadManager.m; sourceTree = "<group>"; };
@@ -925,6 +933,7 @@
 			isa = PBXGroup;
 			children = (
 				C3A170511997B31C006F6684 /* Main Screen (Playlist) */,
+				C3E0BAD81AE2524A00F324C8 /* Playing */,
 				C3A170521997B341006F6684 /* Playlists */,
 				C3A170391996579C006F6684 /* Bookmarks */,
 			);
@@ -1587,6 +1596,42 @@
 			name = Build;
 			sourceTree = "<group>";
 		};
+		C3E0BAD81AE2524A00F324C8 /* Playing */ = {
+			isa = PBXGroup;
+			children = (
+				C3E0BAD91AE2525900F324C8 /* View */,
+				C3E0BAE01AE254AF00F324C8 /* ViewModel */,
+			);
+			name = Playing;
+			sourceTree = "<group>";
+		};
+		C3E0BAD91AE2525900F324C8 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				C3E0BADA1AE2526C00F324C8 /* Playing.storyboard */,
+				C3E0BADC1AE2537100F324C8 /* ViewControllers */,
+			);
+			name = View;
+			sourceTree = "<group>";
+		};
+		C3E0BADC1AE2537100F324C8 /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				C3E0BADD1AE2539300F324C8 /* PLPlayingViewController.h */,
+				C3E0BADE1AE2539300F324C8 /* PLPlayingViewController.m */,
+			);
+			name = ViewControllers;
+			sourceTree = "<group>";
+		};
+		C3E0BAE01AE254AF00F324C8 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				C3E0BAE11AE254C900F324C8 /* PLPlayingViewModel.h */,
+				C3E0BAE21AE254C900F324C8 /* PLPlayingViewModel.m */,
+			);
+			name = ViewModel;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -1675,6 +1720,7 @@
 				C3AD155C19DF204000629F98 /* tests.sh in Resources */,
 				C3CC2CA51972CA8F0013FC57 /* LiveSDK.framework in Resources */,
 				C3BC5A361656B772002DA837 /* InfoPlist.strings in Resources */,
+				C3E0BADB1AE2526C00F324C8 /* Playing.storyboard in Resources */,
 				C3F1A13518E83F6F00A82EAC /* Images.xcassets in Resources */,
 				C3BC5A3E1656B772002DA837 /* Default.png in Resources */,
 				C34BD66C197BC2EA007138B8 /* Podcasts.storyboard in Resources */,
@@ -1879,6 +1925,7 @@
 				C3381FFB19670EE700DA2B7B /* PLCloudItemsViewModel.m in Sources */,
 				C3381FFE19670FCD00DA2B7B /* PLCloudItemCellViewModel.m in Sources */,
 				696C159390EB7A51269C2399 /* NSString+PLExtensions.m in Sources */,
+				C3E0BADF1AE2539300F324C8 /* PLPlayingViewController.m in Sources */,
 				696C169A25ECD6B14186B438 /* PLEntity.m in Sources */,
 				C338200A1968365100DA2B7B /* PLDropboxPathAsset.m in Sources */,
 				C34BD654197BAC09007138B8 /* PLNetworkManager.m in Sources */,
@@ -1904,6 +1951,7 @@
 				C3381FE61965BB7D00DA2B7B /* PLKVOObserver.m in Sources */,
 				696C1D76AA5FA9B96D261F18 /* PLMusicLibraryViewModel.m in Sources */,
 				696C1ED23B36804F25FA57AA /* PLNotificationObserver.m in Sources */,
+				C3E0BAE31AE254C900F324C8 /* PLPlayingViewModel.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6250" systemVersion="13F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="RA1-QY-zJZ">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6244"/>
+    </dependencies>
+    <scenes>
+        <!--Now Playing-->
+        <scene sceneID="rPa-uq-g52">
+            <objects>
+                <viewController id="gI4-cL-V4j" customClass="PLPlayingViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="OoM-2B-ubI"/>
+                        <viewControllerLayoutGuide type="bottom" id="Eue-Db-4nf"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="dzg-N3-Svn">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Song title" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="V7q-sd-7mS">
+                                <rect key="frame" x="263" y="348" width="75" height="21"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Artist title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MLI-oA-61D">
+                                <rect key="frame" x="269" y="377" width="62" height="17"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="lFU-w6-dJB">
+                                <rect key="frame" x="190" y="96" width="220" height="220"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="220" id="A5a-DL-YV1"/>
+                                    <constraint firstAttribute="height" constant="220" id="MWj-3S-Tj0"/>
+                                </constraints>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="centerX" secondItem="V7q-sd-7mS" secondAttribute="centerX" id="1cj-xB-Pue"/>
+                            <constraint firstItem="MLI-oA-61D" firstAttribute="top" secondItem="V7q-sd-7mS" secondAttribute="bottom" constant="8" id="FJj-qA-31B"/>
+                            <constraint firstItem="lFU-w6-dJB" firstAttribute="top" secondItem="OoM-2B-ubI" secondAttribute="bottom" constant="32" id="FQa-3z-TNN"/>
+                            <constraint firstItem="V7q-sd-7mS" firstAttribute="top" secondItem="lFU-w6-dJB" secondAttribute="bottom" constant="32" id="QGE-qT-BIQ"/>
+                            <constraint firstAttribute="centerX" secondItem="lFU-w6-dJB" secondAttribute="centerX" id="WU7-sI-pS0"/>
+                            <constraint firstAttribute="centerX" secondItem="MLI-oA-61D" secondAttribute="centerX" id="tR9-oG-Bx2"/>
+                        </constraints>
+                    </view>
+                    <toolbarItems>
+                        <barButtonItem image="SkipToStart" id="fty-bd-STX">
+                            <connections>
+                                <action selector="tappedSkipToStart:" destination="gI4-cL-V4j" id="YNm-Jd-MhT"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem image="Rewind" id="LL5-kj-BCi">
+                            <connections>
+                                <action selector="tappedPrevious:" destination="gI4-cL-V4j" id="BeI-ny-VrX"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem image="Play-1" id="2Mr-Kd-oDi">
+                            <connections>
+                                <action selector="tappedPlay:" destination="gI4-cL-V4j" id="4bw-XE-9Lo"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem image="Forward" id="hlQ-wg-ZO6">
+                            <connections>
+                                <action selector="tappedNext:" destination="gI4-cL-V4j" id="LdS-KQ-Swv"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem width="5" style="plain" systemItem="fixedSpace" id="hPs-rs-gpg"/>
+                        <barButtonItem image="GoBack" id="Cfr-9e-PrH">
+                            <connections>
+                                <action selector="tappedGoBack:" destination="gI4-cL-V4j" id="pgd-nY-7Rr"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem width="10" style="plain" systemItem="fixedSpace" id="hkp-YE-hAJ"/>
+                        <barButtonItem image="Pin" id="6dd-fC-Bhv">
+                            <connections>
+                                <action selector="tappedBookmark:" destination="gI4-cL-V4j" id="OD6-Zc-cU7"/>
+                            </connections>
+                        </barButtonItem>
+                    </toolbarItems>
+                    <navigationItem key="navigationItem" title="Now Playing" id="zdL-Te-GWg">
+                        <barButtonItem key="rightBarButtonItem" style="done" systemItem="done" id="NUM-EX-eq0">
+                            <connections>
+                                <action selector="tappedDone:" destination="gI4-cL-V4j" id="YFV-tv-Prh"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="buttonItemPlayPause" destination="2Mr-Kd-oDi" id="Jg8-5Q-qdf"/>
+                        <outlet property="imageViewArtwork" destination="lFU-w6-dJB" id="e2q-Ep-457"/>
+                        <outlet property="labelArtist" destination="MLI-oA-61D" id="SzE-vz-8UW"/>
+                        <outlet property="labelTitle" destination="V7q-sd-7mS" id="7F3-vT-hWc"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="N0l-VB-OHb" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1381" y="432"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="aol-Lm-Gam">
+            <objects>
+                <navigationController toolbarHidden="NO" id="RA1-QY-zJZ" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="YLd-Z0-nFf">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <toolbar key="toolbar" opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="e33-f6-V8k">
+                        <autoresizingMask key="autoresizingMask"/>
+                    </toolbar>
+                    <connections>
+                        <segue destination="gI4-cL-V4j" kind="relationship" relationship="rootViewController" id="OsD-C0-eTX"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="RDm-1d-AaK" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="653" y="422"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="Forward" width="39" height="39"/>
+        <image name="GoBack" width="32" height="32"/>
+        <image name="Pin" width="32" height="32"/>
+        <image name="Play-1" width="39" height="39"/>
+        <image name="Rewind" width="39" height="39"/>
+        <image name="SkipToStart" width="39" height="39"/>
+    </resources>
+</document>

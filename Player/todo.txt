@@ -1,3 +1,8 @@
+now playing screen:
+* song title / artist as sliding text when too long
+* landscape mode (put everything into a scroll view or a different layout)
+* slider for position (make sure visible on 3.5 inch)
+
 next:
 editing playlist name and adding playlists inline
 
