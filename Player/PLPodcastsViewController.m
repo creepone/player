@@ -73,9 +73,12 @@
 
 - (IBAction)dismiss:(UIStoryboardSegue *)segue
 {
-    self.viewModel.dismissed = YES;
     [self.navigationController popToRootViewControllerAnimated:NO];
-    [self.presentingViewController dismissViewControllerAnimated:YES completion:nil];
+    
+    PLPodcastsViewModel *viewModel = self.viewModel;
+    [self.presentingViewController dismissViewControllerAnimated:YES completion:^{
+        viewModel.dismissed = YES;
+    }];
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
