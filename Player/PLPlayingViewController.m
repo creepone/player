@@ -6,8 +6,11 @@
     PLKVOObserver *_viewModelObserver;
 }
 
+@property (strong, nonatomic) IBOutlet UIScrollView *scrollView;
 @property (strong, nonatomic) IBOutlet UILabel *labelTitle;
 @property (strong, nonatomic) IBOutlet UILabel *labelArtist;
+@property (strong, nonatomic) IBOutlet UILabel *labelDuration;
+@property (strong, nonatomic) IBOutlet UISlider *sliderPosition;
 @property (strong, nonatomic) IBOutlet UIImageView *imageViewArtwork;
 @property (strong, nonatomic) IBOutlet UIBarButtonItem *buttonItemPlayPause;
 
@@ -19,6 +22,12 @@
 {
     [super viewDidLoad];
     [self setupBindings];
+}
+
+- (void)viewDidLayoutSubviews
+{
+    self.scrollView.contentInset = UIEdgeInsetsZero;
+    self.scrollView.scrollIndicatorInsets = UIEdgeInsetsZero;
 }
 
 - (void)setupBindings
@@ -37,7 +46,24 @@
         self.buttonItemPlayPause.image = value;
     }];
     
+    [observer addKeyPath:@keypath(_viewModel.durationText) handler:^(id value) { @strongify(self);
+        self.labelDuration.text = value;
+    }];
+    
+    [observer addKeyPath:@keypath(_viewModel.playbackProgress) handler:^(id value) { @strongify(self);
+        self.sliderPosition.value = [value floatValue];
+    }];
+    
+    [observer addKeyPath:@keypath(_viewModel.hasTrack) handler:^(id value) {
+        self.sliderPosition.hidden = ![value boolValue];
+    }];
+    
     _viewModelObserver = observer;
+}
+
+- (IBAction)sliderValueChanged:(id)sender
+{
+    _viewModel.playbackProgress = self.sliderPosition.value;
 }
 
 - (IBAction)tappedPlay:(id)sender

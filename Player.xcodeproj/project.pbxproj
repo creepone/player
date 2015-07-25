@@ -113,8 +113,6 @@
 		C3BC5A401656B772002DA837 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C3BC5A3F1656B772002DA837 /* Default@2x.png */; };
 		C3BC5A421656B772002DA837 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C3BC5A411656B772002DA837 /* Default-568h@2x.png */; };
 		C3BC5AAB1656C23A002DA837 /* list.png in Resources */ = {isa = PBXBuildFile; fileRef = C3BC5AAA1656C23A002DA837 /* list.png */; };
-		C3BC5AB21656C284002DA837 /* PLPlayerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C3BC5AB01656C284002DA837 /* PLPlayerViewController.m */; };
-		C3BC5AB31656C284002DA837 /* PLPlayerViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C3BC5AB11656C284002DA837 /* PLPlayerViewController.xib */; };
 		C3BC5AB51656C2D7002DA837 /* music.png in Resources */ = {isa = PBXBuildFile; fileRef = C3BC5AB41656C2D7002DA837 /* music.png */; };
 		C3BC5AB71656C480002DA837 /* settings.png in Resources */ = {isa = PBXBuildFile; fileRef = C3BC5AB61656C480002DA837 /* settings.png */; };
 		C3BC5AB91656C4D8002DA837 /* bookmark.png in Resources */ = {isa = PBXBuildFile; fileRef = C3BC5AB81656C4D8002DA837 /* bookmark.png */; };
@@ -389,9 +387,6 @@
 		C3BC5A3F1656B772002DA837 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
 		C3BC5A411656B772002DA837 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		C3BC5AAA1656C23A002DA837 /* list.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = list.png; sourceTree = "<group>"; };
-		C3BC5AAF1656C284002DA837 /* PLPlayerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PLPlayerViewController.h; sourceTree = "<group>"; };
-		C3BC5AB01656C284002DA837 /* PLPlayerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PLPlayerViewController.m; sourceTree = "<group>"; };
-		C3BC5AB11656C284002DA837 /* PLPlayerViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PLPlayerViewController.xib; sourceTree = "<group>"; };
 		C3BC5AB41656C2D7002DA837 /* music.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = music.png; sourceTree = "<group>"; };
 		C3BC5AB61656C480002DA837 /* settings.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = settings.png; sourceTree = "<group>"; };
 		C3BC5AB81656C4D8002DA837 /* bookmark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bookmark.png; sourceTree = "<group>"; };
@@ -759,7 +754,6 @@
 		C34ADCDC19164CBE00A07EBB /* Legacy */ = {
 			isa = PBXGroup;
 			children = (
-				C3BC5AC41656C7DB002DA837 /* Model */,
 				C3BC5AAD1656C25F002DA837 /* View */,
 				C3BC5AAC1656C24D002DA837 /* ViewControllers */,
 			);
@@ -1283,8 +1277,6 @@
 		C3BC5AAC1656C24D002DA837 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
-				C3BC5AAF1656C284002DA837 /* PLPlayerViewController.h */,
-				C3BC5AB01656C284002DA837 /* PLPlayerViewController.m */,
 				C3BC5ABF1656C4EF002DA837 /* PLSettingsViewController.h */,
 				C3BC5AC01656C4EF002DA837 /* PLSettingsViewController.m */,
 			);
@@ -1306,16 +1298,8 @@
 			children = (
 				C3BC5B1F165921AD002DA837 /* SliderCell.xib */,
 				C3BC5AC11656C4EF002DA837 /* PLSettingsViewController.xib */,
-				C3BC5AB11656C284002DA837 /* PLPlayerViewController.xib */,
 			);
 			name = Xibs;
-			sourceTree = "<group>";
-		};
-		C3BC5AC41656C7DB002DA837 /* Model */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			name = Model;
 			sourceTree = "<group>";
 		};
 		C3BC5ACA1656C808002DA837 /* Entities */ = {
@@ -1734,7 +1718,6 @@
 				C3CC18B8191E43300026E681 /* Localizable.strings in Resources */,
 				C3BC5AAB1656C23A002DA837 /* list.png in Resources */,
 				C3AD156019DF206300629F98 /* build.sh in Resources */,
-				C3BC5AB31656C284002DA837 /* PLPlayerViewController.xib in Resources */,
 				C3BC5AB51656C2D7002DA837 /* music.png in Resources */,
 				C378CD78194C51D5001D0593 /* Main.storyboard in Resources */,
 				C3BC5AB71656C480002DA837 /* settings.png in Resources */,
@@ -1839,7 +1822,6 @@
 				C3A170611997B965006F6684 /* PLPlaylistsViewModel.m in Sources */,
 				C3CC2CCA197A5A320013FC57 /* PLFileSharingItem.m in Sources */,
 				C3CC2CC1197A56210013FC57 /* PLFileSharingViewModel.m in Sources */,
-				C3BC5AB21656C284002DA837 /* PLPlayerViewController.m in Sources */,
 				C3CC2CC4197A56E70013FC57 /* PLFileSharingCellViewModel.m in Sources */,
 				C34BD67A197BDFBF007138B8 /* PLPodcast.m in Sources */,
 				C3A1705E1997B76C006F6684 /* PLPlaylistCellViewModel.m in Sources */,

@@ -22,7 +22,6 @@
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         self.title = @"Settings";
-        self.tabBarItem.image = [UIImage imageNamed:@"settings"];
     }
     return self;
 }
@@ -34,13 +33,14 @@
     self.tableView.dataSource = self;
 
     [self.tableView reloadData];
+    
+    
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(tappedDone:)];
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+- (void)tappedDone:(id)sender {
+    [PLRouter showNew];
 }
-
 
 #pragma mark - Table view data source
 
@@ -50,7 +50,7 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    NSInteger rows = 6;
+    NSInteger rows = 5;
     if (![MFMailComposeViewController canSendMail])
         rows--;
     return rows;
@@ -107,10 +107,6 @@
             cell.accessoryView = switchRemoteCommands;
         }
         else if (indexPath.row == 4) {
-            cell.textLabel.text = @"Switch to new";
-            cell.accessoryType = UITableViewCellAccessoryNone;
-        }
-        else if (indexPath.row == 5) {
             cell.textLabel.text = @"Send logs";
             cell.accessoryType = UITableViewCellAccessoryNone;
         }
@@ -168,9 +164,6 @@
         [alert show];
     }
     else if (indexPath.row == 4) {
-        [PLRouter showNew];
-    }
-    else if (indexPath.row == 5) {
         NSString *archivePath = [PLLogging archiveLogs];
         NSData *archiveData = [NSData dataWithContentsOfFile:archivePath];
         

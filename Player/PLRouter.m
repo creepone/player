@@ -1,7 +1,6 @@
 #import <ReactiveCocoa/ReactiveCocoa.h>
 #import "PLRouter.h"
 #import "PLSettingsViewController.h"
-#import "PLPlayerViewController.h"
 #import "PLImportActivityViewController.h"
 #import "PLPlaylistSongsViewController.h"
 #import "PLPlaylistSongsViewModel.h"
@@ -10,14 +9,12 @@
 
 + (void)showLegacy
 {
-    UIViewController *playerViewController = [[PLPlayerViewController alloc] initWithNibName:@"PLPlayerViewController" bundle:nil];
     UIViewController *settingsViewController = [[PLSettingsViewController alloc] initWithNibName:@"PLSettingsViewController" bundle:nil];
 
-    UITabBarController *tabBarController = [[UITabBarController alloc] init];
-    tabBarController.viewControllers = @[settingsViewController, playerViewController];
+    UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:settingsViewController];
 
     UIWindow *window = [[UIApplication sharedApplication] keyWindow];
-    window.rootViewController = tabBarController;
+    window.rootViewController = navigationController;
 }
 
 + (void)showNew
