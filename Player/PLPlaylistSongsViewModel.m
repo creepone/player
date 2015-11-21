@@ -11,9 +11,6 @@
     PLPlaylist *_playlist;
     NSFetchedResultsController *_fetchedResultsController;
     PLFetchedResultsControllerDelegate *_fetchedResultsControllerDelegate;
-    
-    BOOL _askedToRemoveAll;
-    NSInteger _removedCount;
 }
 @end
 
@@ -82,11 +79,7 @@
     if (wasCurrentSong)
         player.currentSong = playlist.currentSong;
     
-    _removedCount++;
-    
-    return [[[PLDataAccess sharedDataAccess] saveChangesSignal] doCompleted:^{
-        [self checkRemoveAll];
-    }];
+    return [[PLDataAccess sharedDataAccess] saveChangesSignal];
 }
 
 - (RACSignal *)clearPlaylist
@@ -100,26 +93,6 @@
         [_playlist removeSong:song];
     
     return [[PLDataAccess sharedDataAccess] saveChangesSignal];
-}
-
-- (void)checkRemoveAll
-{
-    if (_askedToRemoveAll || _removedCount <= 2)
-        return;
-    
-    _askedToRemoveAll = YES;
-    
-    // todo: localize
-    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Clear playlist" message:@"Do you want to clear the playlist?" delegate:nil cancelButtonTitle:NSLocalizedString(@"Common.Cancel", nil) otherButtonTitles:NSLocalizedString(@"Common.OK", nil), nil];
-    [alertView show];
-    
-    [[[alertView rac_buttonClickedSignal] take:1] subscribeNext:^(NSNumber *buttonIndex) {
-        if ([buttonIndex intValue] == alertView.cancelButtonIndex)
-            return;
-        
-        _askedToRemoveAll = NO;
-        [self clearPlaylist];
-    }];
 }
 
 - (RACSignal *)moveSongFrom:(NSIndexPath *)fromIndexPath to:(NSIndexPath *)toIndexPath

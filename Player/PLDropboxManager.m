@@ -1,7 +1,7 @@
 #import <DropboxSDK/DropboxSDK.h>
+#import <DropboxSDK/MPOAuthURLRequest.h>
 #import <ReactiveCocoa/ReactiveCocoa.h>
 #import "DBRestClient+RACSignalSupport.h"
-#import "MPOAuthURLRequest.h"
 #import "PLDropboxManager.h"
 #import "PLPathAssetSet.h"
 #import "PLDropboxPathAsset.h"

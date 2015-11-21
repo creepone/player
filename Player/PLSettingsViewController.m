@@ -1,4 +1,4 @@
-#import <ReactiveCocoa.h>
+#import <ReactiveCocoa/ReactiveCocoa.h>
 #import <MessageUI/MessageUI.h>
 
 #import "PLSettingsViewController.h"
