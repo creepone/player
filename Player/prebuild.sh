@@ -5,7 +5,7 @@ set -o pipefail
 # install pod dependencies
 export PATH=$PATH:$HOME/.rvm/bin  # Add RVM to PATH for scripting
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
-rvm use 2.1.1
+rvm use 2.2.2
 export LC_ALL="en_US.UTF-8"
 pod install
 

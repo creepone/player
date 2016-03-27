@@ -14,7 +14,7 @@ target :default do
     pod "FastImageCache", "~> 1.3"
     pod "SVProgressHUD", "~> 1.0"
     pod "FFCircularProgressView", "~> 0.3"
-    pod "Dropbox-iOS-SDK", "~> 1.3.10"
+    pod "Dropbox-iOS-SDK", "~> 1.3.13"
     pod "Google-API-Client", "~> 1.0"
     pod "RaptureXML", "~> 1.0.1"
     pod "SWTableViewCell", "~> 0.3.4"

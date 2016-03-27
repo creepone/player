@@ -1671,7 +1671,7 @@
 				ORGANIZATIONNAME = "Tomas Vana";
 				TargetAttributes = {
 					C3BC5A261656B772002DA837 = {
-						DevelopmentTeam = AVB86P2YPX;
+						DevelopmentTeam = MAP9UK3LX7;
 					};
 					C3CC2CCF197A71700013FC57 = {
 						TestTargetID = C3BC5A261656B772002DA837;
@@ -2081,7 +2081,9 @@
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_MODULES_AUTOLINK = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_RESOURCE_RULES_PATH = "$(SDKROOT)/ResourceRules.plist";
+				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
@@ -2090,11 +2092,13 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = NO;
 				GCC_PREFIX_HEADER = "Player/Player-Prefix.pch";
 				INFOPLIST_FILE = "Player/Player-Info.plist";
-				INFOPLIST_PREFIX_HEADER = revision.prefix;
+				INFOPLIST_PREFIX_HEADER = Player/revision.prefix;
 				INFOPLIST_PREPROCESS = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = at.iosapps.Baladeur1;
 				PRODUCT_NAME = Baladeur;
+				PROVISIONING_PROFILE = "";
 				USER_HEADER_SEARCH_PATHS = "\"${PROJECT_DIR}/Pods\"/**";
 				WRAPPER_EXTENSION = app;
 			};
@@ -2110,7 +2114,9 @@
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_MODULES_AUTOLINK = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_RESOURCE_RULES_PATH = "$(SDKROOT)/ResourceRules.plist";
+				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
@@ -2119,10 +2125,12 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = NO;
 				GCC_PREFIX_HEADER = "Player/Player-Prefix.pch";
 				INFOPLIST_FILE = "Player/Player-Info.plist";
-				INFOPLIST_PREFIX_HEADER = revision.prefix;
+				INFOPLIST_PREFIX_HEADER = Player/revision.prefix;
 				INFOPLIST_PREPROCESS = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				PRODUCT_BUNDLE_IDENTIFIER = at.iosapps.Baladeur1;
 				PRODUCT_NAME = Baladeur;
+				PROVISIONING_PROFILE = "";
 				USER_HEADER_SEARCH_PATHS = "\"${PROJECT_DIR}/Pods\"/**";
 				WRAPPER_EXTENSION = app;
 			};
